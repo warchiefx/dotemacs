@@ -1,0 +1,5 @@
+#name: for (var name : collection) { ... }
+# --
+for(${1:String var} : ${2:collection}) {
+     $0
+}

@@ -1,0 +1,8 @@
+#name: try { ... } finally { ... }
+# --
+try {
+     $1
+} finally {
+     $2
+}
+$0

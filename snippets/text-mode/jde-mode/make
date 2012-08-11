@@ -1,0 +1,22 @@
+#name: <constructor> (args) { ... }
+# --
+${1:public} `(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`($2) {
+       ${2:$
+       (mapconcat
+        '(lambda (x)
+           (if (not (string= (nth 0 x) ""))
+               (concat "this." (nth 0 x) " = " (nth 0 x) ";")))
+        (mapcar '(lambda (str) (list (second (split-string (car str) " "))))
+         (mapcar
+         '(lambda (x)
+            (mapcar
+             '(lambda (x)
+                (replace-regexp-in-string "\s*$" ""
+                 (replace-regexp-in-string "^\s*" "" x)))
+             x))
+         (mapcar '(lambda (x) (split-string x "="))
+                 (split-string text ","))))
+        (concat "\n" (make-string (current-column) 32)))
+       }
+     $0
+}

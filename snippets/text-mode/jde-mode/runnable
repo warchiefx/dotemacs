@@ -1,0 +1,7 @@
+#name: new Runnable() { ... }
+# --
+new Runnable() {
+     public void run() {
+          $0
+     }
+};

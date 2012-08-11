@@ -1,0 +1,9 @@
+2008-10-28  Ricardo Restituyo  <warchiefx@gmail.com>
+
+	* site-wcx/wcx-gnus.el (gnus-user-format-function-w): Added
+	gmail-like dates for gnus.
+
+	* site-wcx/wcx-nxhtml.el (locate-library): Installed nXhtml mode
+
+	* Started ChangeLog
+
