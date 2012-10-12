@@ -11,14 +11,12 @@
 ;; Version: $Id$
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'load-path (concat site-lisp-path "slime"))
-
 (when (locate-library "slime")
   (setq inferior-lisp-program "/usr/bin/sbcl")
   (setq common-lisp-hyperspec-root "file:///home/warchiefx/Docs/LISP/HyperSpec/HyperSpec/")
   (setq slime-complete-symbol-function (quote slime-fuzzy-complete-symbol))
   (require 'slime)
-  (slime-setup '(slime-fancy))
+  (slime-setup)
   (global-set-key [f7] 'slime-selector)
   (global-set-key [?\C-c ?s ?n] 'slime-list-compiler-notes))
 

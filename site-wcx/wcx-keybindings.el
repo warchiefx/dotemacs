@@ -12,8 +12,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (global-set-key (quote [f6]) 'compile)
-(global-set-key [?\C-c ?\C-e ?c] 'comment-or-uncomment-region)
-(global-set-key [?\C-c ?\C-e ?w] 'whitespace-cleanup)
+(global-set-key [?\C-c ?\C-x ?c] 'comment-or-uncomment-region)
+(global-set-key [?\C-c ?\C-x ?w] 'whitespace-cleanup)
 (global-set-key [M-return] 'expand-abbrev)
 (global-set-key (quote [f8]) 'gnus)
 

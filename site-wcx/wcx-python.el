@@ -29,6 +29,7 @@
 ;;(require 'epy-bindings)   ;; For my suggested keybindings [optional]
 (require 'epy-nose)       ;; For nose integration
 
+(setq python-saved-check-command nil)
 
 ;; (add-to-list 'load-path (concat site-lisp-path "Pymacs"))
 
