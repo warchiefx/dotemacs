@@ -12,7 +12,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-to-list 'load-path (concat site-lisp-path "emacs-for-python"))
-
+(add-to-list 'load-path (concat site-lisp-path "emacs-jedi"))
 
 (when (locate-library "python-mode")
   (load-library "python-mode"))
@@ -57,5 +57,10 @@
 ;;  "';'.join(module_completion('''%s'''))\n"
 ;;  python-shell-completion-string-code
 ;;  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+
+(when (locate-library "jedi")
+  (autoload 'jedi:setup "jedi" nil t)
+  (setq jedi:setup-keys t)
+  (add-hook 'python-mode-hook 'jedi:setup))
 
 (provide 'wcx-python)

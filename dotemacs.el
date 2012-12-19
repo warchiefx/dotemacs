@@ -17,6 +17,7 @@
 ;; (require 'wcx-evil)
 (require 'wcx-package)
 (require 'wcx-generic)
+(require 'wcx-modeline)
 (require 'wcx-utils)
 (require 'wcx-keybindings)
 (require 'wcx-icicles)

@@ -1,4 +1,4 @@
-;;; wcx-color-theme.el --- Color themes
+;; wcx-color-theme.el --- Color themes
 ;;
 ;; Filename: wcx-color-theme.el
 ;; Description:
@@ -138,8 +138,12 @@
 
 ;; (load-theme 'monokai)
 ;; (load-theme 'zenburn)
-;;(wcx-color-theme-3)
-(color-theme-sanityinc-tomorrow-night)
+(wcx-color-theme-3)
+;;(color-theme-sanityinc-tomorrow-night)
 ;; (color-theme-sanityinc-solarized-light)
+
+;;(load-theme 'tango-2)
+;;(load-theme 'zen-and-art)
+
 
 (provide 'wcx-color-theme)

@@ -18,9 +18,10 @@
 (windmove-default-keybindings 'meta)
 
 ;; ----- FontRelated Stuff
-(setq emacs-font "Envy Code R-11")
+;; (setq emacs-font "Envy Code R-11")
+;; (setq emacs-font "SourceCode Pro-11")
 ;; (setq emacs-font "PragmataPro-11")
-;;(setq emacs-font "Mensch-10.5")
+(setq emacs-font "Mensch-10.5")
 ;; (set-frame-font emacs-font)
 (set-face-attribute 'default nil :font emacs-font)
 
@@ -96,10 +97,6 @@
 (when (locate-library "adaptive-wrap")
   (load-library "adaptive-wrap"))
 
-(when (locate-library "smart-mode-line")
-  (load-library "smart-mode-line")
-  (sml/setup))
-
 (when (locate-library "dpaste")
   (load-library "dpaste"))
 
@@ -133,8 +130,14 @@
 (when (locate-library "multiple-cursors")
   (load-library "multiple-cursors")
   (global-set-key (kbd "C-#") 'mc/edit-lines)
-  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-.") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-,") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
+
+(when (locate-library "mark-more-like-this")
+  (load-library "mark-more-like-this")
+
+  (global-set-key (kbd "C-<") 'mark-previous-like-this)
+  (global-set-key (kbd "C->") 'mark-next-like-this))
 
 (provide 'wcx-generic)
