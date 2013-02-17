@@ -140,4 +140,8 @@
   (global-set-key (kbd "C-<") 'mark-previous-like-this)
   (global-set-key (kbd "C->") 'mark-next-like-this))
 
+(when (locate-library "rainbow-mode")
+  (load-library "rainbow-mode")
+  (global-set-key [?\C-c ?\C-x ?r] 'rainbow-mode))
+
 (provide 'wcx-generic)
