@@ -4,3 +4,5 @@ Required packages from your distro:
 - slime
 - ropemacs
 - pymacs
+- epc
+- jedi
