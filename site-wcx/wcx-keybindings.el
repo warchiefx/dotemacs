@@ -54,6 +54,9 @@
 ;; Undo & Redo
 (global-set-key [f3] 'undo)
 
+;; Toggle menu-bar-mode
+(global-set-key [C-f10] 'menu-bar-mode)
+
 ;; Mouse nav
 (global-set-key [mouse-8] 'scroll-up)
 (global-set-key [mouse-9] 'scroll-down)
