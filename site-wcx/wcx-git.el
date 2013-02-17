@@ -18,4 +18,8 @@
   (autoload 'git-blame-mode "git-blame"
     "Minor mode for incremental blame for Git." t))
 
+(when (locate-library "magit")
+  (require 'magit)
+  (global-set-key [?\C-c ?\C-x ?g] 'magit-status))
+
 (provide 'wcx-git)
