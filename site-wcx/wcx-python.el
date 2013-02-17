@@ -23,7 +23,7 @@
 ;;   (epy-setup-ipython))
 
 (require 'epy-setup)      ;; It will setup other loads, it is required!
-;;(require 'epy-python)     ;; If you want the python facilities [optional]
+;; (require 'epy-python)     ;; If you want the python facilities [optional]
 (require 'epy-completion) ;; If you want the autocompletion settings [optional]
 (require 'epy-editing)    ;; For configurations related to editing [optional]
 ;;(require 'epy-bindings)   ;; For my suggested keybindings [optional]
@@ -62,5 +62,10 @@
   (autoload 'jedi:setup "jedi" nil t)
   (setq jedi:setup-keys t)
   (add-hook 'python-mode-hook 'jedi:setup))
+
+;; Flymake setup
+(when (locate-library "flymake-python-pyflakes")
+  (require 'flymake-python-pyflakes)
+  (add-hook 'python-mode-hook 'flymake-python-pyflakes-load))
 
 (provide 'wcx-python)
