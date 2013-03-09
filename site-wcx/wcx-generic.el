@@ -1,14 +1,4 @@
 ;;; wcx-generic.el --- Generic customizations.
-;;
-;; Filename: wcx-generic.el
-;; Description:
-;; Author: Ricardo Restituyo
-;; Created: Wed Oct 22 11:18:50 2008
-;;
-;; Last-Updated: Thu May 19 12:18:40 2011 (-14400 AST)
-;;           By: Ricardo Restituyo
-;; Version: $Id$
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (which-func-mode t)
 (menu-bar-mode 0)
@@ -18,10 +8,12 @@
 (windmove-default-keybindings 'meta)
 
 ;; ----- FontRelated Stuff
-;;(setq emacs-font "Envy Code R-11")
+(setq emacs-font "Envy Code R-11")
 ;; (setq emacs-font "SourceCode Pro-10.5")
 ;; (setq emacs-font "PragmataPro-11")
-(setq emacs-font "Mensch-10.5")
+;;(setq emacs-font "Mensch-10.5")
+;;(setq emacs-font "Inconsolata-11")
+;;(setq emacs-font "Consolas-11")
 ;; (set-frame-font emacs-font)
 (set-face-attribute 'default nil :font emacs-font)
 
@@ -143,5 +135,8 @@
 (when (locate-library "rainbow-mode")
   (load-library "rainbow-mode")
   (global-set-key [?\C-c ?\C-x ?r] 'rainbow-mode))
+
+(when (locate-library "switch-window")
+  (require 'switch-window))
 
 (provide 'wcx-generic)
