@@ -31,8 +31,8 @@
 
   (setq org-log-done 'time)
   ;; Setup remember-mode integration
-  (org-remember-insinuate)
-  (define-key global-map [?\C-c ?o ?r] 'org-remember)
+  ;; (org-remember-insinuate)
+  ;; (define-key global-map [?\C-c ?o ?r] 'org-remember)
 
   (setq org-clock-persist 'history)
   (org-clock-persistence-insinuate)
