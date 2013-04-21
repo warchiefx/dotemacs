@@ -138,8 +138,8 @@
 
 ;; (load-theme 'monokai)
 ;; (load-theme 'zenburn)
-;;(wcx-color-theme-3)
-(color-theme-sanityinc-tomorrow-night)
+(wcx-color-theme-3)
+;;(color-theme-sanityinc-tomorrow-night)
 ;; (color-theme-sanityinc-solarized-light)
 
 ;;(load-theme 'tango-2)
