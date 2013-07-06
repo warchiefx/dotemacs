@@ -64,8 +64,8 @@
   (add-hook 'python-mode-hook 'jedi:setup))
 
 ;; Flymake setup
-(when (locate-library "flymake-python-pyflakes")
-  (require 'flymake-python-pyflakes)
-  (add-hook 'python-mode-hook 'flymake-python-pyflakes-load))
+;; (when (locate-library "flymake-python-pyflakes")
+;;   (require 'flymake-python-pyflakes)
+;;   (add-hook 'python-mode-hook 'flymake-python-pyflakes-load))
 
 (provide 'wcx-python)
