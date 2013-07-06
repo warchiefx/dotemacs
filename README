@@ -6,3 +6,4 @@ Required packages from your distro:
 - pymacs
 - epc
 - jedi
+- flakes8
