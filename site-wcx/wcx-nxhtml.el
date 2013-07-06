@@ -27,4 +27,9 @@
   (setq mumamo-background-colors nil) 
   (add-to-list 'auto-mode-alist '("\\.html$" . django-html-mumamo-mode)))
 
+(when (equal emacs-major-version 24)
+  (eval-after-load "mumamo"
+    '(setq mumamo-per-buffer-local-vars
+           (delq 'buffer-file-name mumamo-per-buffer-local-vars))))
+
 (provide 'wcx-nxhtml)
