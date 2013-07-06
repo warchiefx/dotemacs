@@ -24,7 +24,7 @@
 ;; (require 'wcx-iswitchb)
 (require 'wcx-ido)
 (require 'wcx-color-theme)
-(require 'wcx-anything)
+(require 'wcx-helm)
 (require 'wcx-encryption)
 
 ;; Tools
@@ -34,7 +34,7 @@
 ;;(require 'wcx-gnus-nnrss)
 ;;(require 'wcx-bbdb)
 (require 'wcx-tramp)
-(require 'wcx-svn)
+;;(require 'wcx-svn)
 (require 'wcx-git)
 (require 'wcx-mercurial)
 (require 'wcx-templates)
@@ -44,16 +44,18 @@
 ;;(require 'wcx-jabber)
 (require 'wcx-zencoding)
 ;;(require 'wcx-companymode)
-(require 'wcx-minimap)
+;;(require 'wcx-minimap)
+(require 'wcx-flycheck)
 
 ;; Programming Modes
 ;;(require 'wcx-java)
-;;(require 'wcx-malabar
+;;(require 'wcx-malabar)
 (require 'wcx-xml)
-(require 'wcx-nxhtml)
+;;(require 'wcx-nxhtml)
+(require 'wcx-web-mode)
 (require 'wcx-python)
 (require 'wcx-slime)
-;;(require 'wcx-lua)
+(require 'wcx-lua)
 (require 'wcx-javascript)
 ;;(require 'wcx-scala)
 (require 'wcx-auto-complete)

@@ -51,6 +51,7 @@
  '(ecb-wget-setup (quote ("/usr/bin/wget" . other)))
  '(echo-keystrokes 0.01)
  '(fill-column 78)
+ '(flycheck-flake8-maximum-line-length 100)
  '(frame-title-format (quote ("%f - " user-real-login-name "@" system-name)) t)
  '(global-company-mode t)
  '(global-font-lock-mode t nil (font-lock))
