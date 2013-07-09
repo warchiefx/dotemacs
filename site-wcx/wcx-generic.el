@@ -8,8 +8,8 @@
 (windmove-default-keybindings 'meta)
 
 ;; ----- FontRelated Stuff
-(setq emacs-font "Envy Code R-11")
-;; (setq emacs-font "SourceCode Pro-10.5")
+(setq emacs-font "Envy Code R-11.5")
+;; (setq emacs-font "SourceCode Pro-11")
 ;; (setq emacs-font "PragmataPro-11")
 ;;(setq emacs-font "Mensch-10.5")
 ;;(setq emacs-font "Inconsolata-11")
