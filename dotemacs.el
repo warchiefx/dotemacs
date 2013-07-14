@@ -46,6 +46,7 @@
 ;;(require 'wcx-companymode)
 ;;(require 'wcx-minimap)
 (require 'wcx-flycheck)
+(require 'wcx-projects)
 
 ;; Programming Modes
 ;;(require 'wcx-java)
