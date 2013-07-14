@@ -83,6 +83,14 @@
 (when (locate-library "ido-ubiquitous")
   (load-library "ido-ubiquitous"))
 
+(when (locate-library "flx")
+  (require 'flx-ido)
+  (ido-mode 1)
+  (ido-everywhere 1)
+  (flx-ido-mode 1)
+  ;; disable ido faces to see flx highlights.
+  (setq ido-use-faces nil))
+
 (when (locate-library "rfringe")
   (load-library "rfringe"))
 
