@@ -37,7 +37,7 @@
 ;;(require 'wcx-svn)
 (require 'wcx-git)
 (require 'wcx-mercurial)
-(require 'wcx-templates)
+;;(require 'wcx-templates)
 (require 'wcx-cedet)
 ;;(require 'wcx-elib)
 ;;(require 'wcx-ecb)

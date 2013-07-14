@@ -12,10 +12,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Yet Another Snippet library for emacs
-(add-to-list 'load-path (concat site-lisp-path "yasnippet"))
-(when (locate-library "yasnippet")
-  (require 'yasnippet)
-  (yas/initialize)
-  (yas/load-directory "~/.emacs.d/snippets/"))
+;; (add-to-list 'load-path (concat site-lisp-path "yasnippet"))
+;; (when (locate-library "yasnippet")
+;;   (require 'yasnippet)
+;;   (yas/initialize)
+;;   (yas/load-directory "~/.emacs.d/snippets/"))
 
 (provide 'wcx-templates)
