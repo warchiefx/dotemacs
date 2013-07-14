@@ -162,4 +162,6 @@
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+(setq gc-cons-threshold 20000000)
+
 (provide 'wcx-generic)
