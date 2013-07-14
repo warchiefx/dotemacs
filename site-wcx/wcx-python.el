@@ -31,41 +31,9 @@
 
 (setq python-saved-check-command nil)
 
-;; (add-to-list 'load-path (concat site-lisp-path "Pymacs"))
-
-;; (when (locate-library "pymacs")
-;;   (load-library "pymacs")
-;;   ;; pymacs
-;;   (autoload 'pymacs-apply "pymacs")
-;;   (autoload 'pymacs-call "pymacs")
-;;   (autoload 'pymacs-eval "pymacs" nil t)
-;;   (autoload 'pymacs-exec "pymacs" nil t)
-;;   (autoload 'pymacs-load "pymacs" nil t)
-;;   ;; ;;(eval-after-load "pymacs"
-;;   ;; ;;  '(add-to-list 'pymacs-load-path YOUR-PYMACS-DIRECTORY"))
-;;   (pymacs-load "ropemacs" "rope-")
-;;   (setq ropemacs-enable-autoimport t))
-
-;; (setq
-;;  python-shell-interpreter "ipython2"
-;;  python-shell-interpreter-args ""
-;;  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-;;  python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-;;  python-shell-completion-setup-code
-;;  "from IPython.core.completerlib import module_completion"
-;;  python-shell-completion-module-string-code
-;;  "';'.join(module_completion('''%s'''))\n"
-;;  python-shell-completion-string-code
-;;  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
-
 (when (locate-library "jedi")
   (autoload 'jedi:setup "jedi" nil t)
   (setq jedi:setup-keys t)
   (add-hook 'python-mode-hook 'jedi:setup))
-
-;; Flymake setup
-;; (when (locate-library "flymake-python-pyflakes")
-;;   (require 'flymake-python-pyflakes)
-;;   (add-hook 'python-mode-hook 'flymake-python-pyflakes-load))
 
 (provide 'wcx-python)
