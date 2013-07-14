@@ -130,9 +130,9 @@
 (when (locate-library "multiple-cursors")
   (load-library "multiple-cursors")
   (global-set-key (kbd "C-#") 'mc/edit-lines)
-  (global-set-key (kbd "C-.") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-,") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
+  (global-set-key [?\C-c ?m ?n] 'mc/mark-next-like-this)
+  (global-set-key [?\C-c ?m ?p] 'mc/mark-previous-like-this)
+  (global-set-key [?\C-c ?m ?a] 'mc/mark-all-like-this))
 
 (when (locate-library "mark-more-like-this")
   (load-library "mark-more-like-this")
@@ -171,5 +171,7 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 (setq gc-cons-threshold 20000000)
+
+(add-hook 'elisp-mode-hook (lambda () (paredit-mode +1)))
 
 (provide 'wcx-generic)
