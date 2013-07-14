@@ -11,29 +11,33 @@
 ;; Version: $Id$
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'load-path (concat site-lisp-path "emacs-for-python"))
-(add-to-list 'load-path (concat site-lisp-path "emacs-jedi"))
+;; (add-to-list 'load-path (concat site-lisp-path "emacs-for-python"))
+;; (add-to-list 'load-path (concat site-lisp-path "emacs-jedi"))
 
-(when (locate-library "python-mode")
-  (load-library "python-mode"))
+;; (when (locate-library "python-mode")
+;;   (load-library "python-mode"))
 
 ;; (when (locate-library "epy-init")
 ;;   (load-library "epy-init")
 ;;   (require 'epy-setup)
 ;;   (epy-setup-ipython))
 
-(require 'epy-setup)      ;; It will setup other loads, it is required!
-;; (require 'epy-python)     ;; If you want the python facilities [optional]
-(require 'epy-completion) ;; If you want the autocompletion settings [optional]
-(require 'epy-editing)    ;; For configurations related to editing [optional]
-;;(require 'epy-bindings)   ;; For my suggested keybindings [optional]
-(require 'epy-nose)       ;; For nose integration
+;; (require 'epy-setup)      ;; It will setup other loads, it is required!
+;; ;; (require 'epy-python)     ;; If you want the python facilities [optional]
+;; (require 'epy-completion) ;; If you want the autocompletion settings [optional]
+;; (require 'epy-editing)    ;; For configurations related to editing [optional]
+;; ;;(require 'epy-bindings)   ;; For my suggested keybindings [optional]
+;; (require 'epy-nose)       ;; For nose integration
+
+(when (locate-library "elpy")
+  (load-library "elpy")
+  (elpy-enable)
+  (elpy-clean-modeline)
+  (elpy-use-ipython))
+
+(when (locate-library "autopair")
+  (load-library "autopair"))
 
 (setq python-saved-check-command nil)
-
-(when (locate-library "jedi")
-  (autoload 'jedi:setup "jedi" nil t)
-  (setq jedi:setup-keys t)
-  (add-hook 'python-mode-hook 'jedi:setup))
 
 (provide 'wcx-python)

@@ -1,0 +1,6 @@
+ipython
+ipdb
+flakes8
+elpy
+jedi
+rope
