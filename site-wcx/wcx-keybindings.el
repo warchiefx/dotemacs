@@ -57,6 +57,18 @@
 ;; Toggle menu-bar-mode
 (global-set-key [C-f10] 'menu-bar-mode)
 
+;; Temporarily show line-numbers when using Goto-line
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
+
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+      (progn
+        (linum-mode 1)
+        (goto-line (read-number "Goto line: ")))
+    (linum-mode -1)))
+
 ;; Mouse nav
 (global-set-key [mouse-8] 'scroll-up)
 (global-set-key [mouse-9] 'scroll-down)
