@@ -1,11 +1,13 @@
 (when (locate-library "helm")
-  (helm-mode 1)
+  (require 'helm-config)
+
+  (helm-mode 0)
 
   (when (locate-library "helm-c-moccur")
     (load-library "helm-c-moccur"))
   (when (locate-library "helm-projectile")
     (load-library "helm-projectile"))
-
+  
   (defun wcx-helm ()
     (interactive)
     (let ((default (thing-at-point 'symbol)))
