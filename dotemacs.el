@@ -1,5 +1,14 @@
+;;; dotemacs.el --- Madness starts here
+
+;;; Commentary:
 ;; WaRCHieFX's .emacs file, use at you own risk
 ;; --------------------------------------------
+
+;;; Code:
+;; Turn off mouse interface early in startup to avoid momentary display
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; ----- Standard Loadpath
 (setq site-lisp-path "~/.emacs.d/site-lisp/")
@@ -83,6 +92,11 @@
 (server-start)
 
 (prefer-coding-system 'utf-8)
+
+(when (locate-library "diminish")
+  (diminish 'paredit-mode)
+  (diminish 'projectile-mode)
+  (diminish 'guide-key-mode))
 
 (message "Emacs startup time: %d seconds."
          (time-to-seconds (time-since emacs-load-start-time)))
