@@ -19,6 +19,7 @@
   (global-set-key "\C-cl" 'org-store-link)
   (global-set-key (quote [f11]) 'org-agenda)
   (global-set-key "\C-cb" 'org-iswitchb)
+  (global-set-key [?\C-c ?\C-x ?o] 'org-clock-jump-to-current-clock)
 
   (defun org-summary-todo (n-done n-not-done)
     "Switch entry to DONE when all subentries are done, to TODO otherwise."
