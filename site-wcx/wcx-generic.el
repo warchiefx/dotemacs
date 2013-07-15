@@ -1,6 +1,7 @@
 ;;; wcx-generic.el --- Generic customizations.
 
-(which-func-mode t)
+;;; Code:
+(which-function-mode t)
 (menu-bar-mode 0)
 (setq frame-title-format "emacs [%b]"
       icon-title-format "emacs [%b]"
@@ -127,23 +128,6 @@
 (when (locate-library "dropdown-list")
   (load-library "dropdown-list"))
 
-(when (locate-library "multiple-cursors")
-  (load-library "multiple-cursors")
-  (global-set-key (kbd "C-#") 'mc/edit-lines)
-  (global-set-key [?\C-c ?m ?n] 'mc/mark-next-like-this)
-  (global-set-key [?\C-c ?m ?p] 'mc/mark-previous-like-this)
-  (global-set-key [?\C-c ?m ?a] 'mc/mark-all-like-this))
-
-(when (locate-library "mark-more-like-this")
-  (load-library "mark-more-like-this")
-
-  (global-set-key (kbd "C-<") 'mark-previous-like-this)
-  (global-set-key (kbd "C->") 'mark-next-like-this))
-
-(when (locate-library "rainbow-mode")
-  (load-library "rainbow-mode")
-  (global-set-key [?\C-c ?\C-x ?r] 'rainbow-mode))
-
 (when (locate-library "switch-window")
   (require 'switch-window))
 
@@ -153,6 +137,12 @@
       (progn (forward-char 1)
              (just-one-space 0)
              (backward-char 1))))
+
+;; Join next line with this.
+(global-set-key (kbd "C-c j")
+                (lambda ()
+                  (interactive)
+                  (join-line -1)))
 
 ;; Indent on yank
 (dolist (command '(yank yank-pop))
@@ -170,8 +160,15 @@
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+;; Auto refresh buffers
+(global-auto-revert-mode 1)
+
+;; Also auto refresh dired, but be quiet about it
+(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)
+
 (setq gc-cons-threshold 20000000)
 
-(add-hook 'elisp-mode-hook (lambda () (paredit-mode +1)))
+(add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode +1)))
 
 (provide 'wcx-generic)

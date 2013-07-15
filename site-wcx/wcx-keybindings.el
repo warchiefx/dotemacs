@@ -64,4 +64,64 @@
 ;; term
 ;;(global-set-key [f2] 'ansi-term)
 
+(defun open-line-below ()
+  (interactive)
+  (end-of-line)
+  (newline)
+  (indent-for-tab-command))
+
+(defun open-line-above ()
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
+
+(global-set-key (kbd "<C-return>") 'open-line-below)
+(global-set-key (kbd "<C-S-return>") 'open-line-above)
+
+;; Rename current file, easy way
+(defun rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " filename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))
+
+(global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
+
+(when (locate-library "multiple-cursors")
+  (load-library "multiple-cursors")
+  (global-set-key (kbd "C-#") 'mc/edit-lines)
+  (global-set-key [?\C-c ?m ?n] 'mc/mark-next-like-this)
+  (global-set-key [?\C-c ?m ?p] 'mc/mark-previous-like-this)
+  (global-set-key [?\C-c ?m ?a] 'mc/mark-all-like-this))
+
+(when (locate-library "mark-more-like-this")
+  (load-library "mark-more-like-this")
+
+  (global-set-key (kbd "C-<") 'mark-previous-like-this)
+  (global-set-key (kbd "C->") 'mark-next-like-this))
+
+(when (locate-library "rainbow-mode")
+  (load-library "rainbow-mode")
+  (global-set-key [?\C-c ?\C-x ?r] 'rainbow-mode))
+
+(when (locate-library "guide-key")
+  (load-library "guide-key")
+  (setq guide-key/guide-key-sequence '("C-c p" "C-c C-x"))
+  (guide-key-mode 1)
+  (global-set-key [?\C-c ?\C-x ?k] 'guide-key-mode))  ; Enable guide-key-mode
+
+
 (provide 'wcx-keybindings)
