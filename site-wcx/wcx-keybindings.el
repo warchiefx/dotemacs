@@ -11,7 +11,6 @@
 ;; Version: $Id$
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key (quote [f6]) 'compile)
 (global-set-key [?\C-c ?\C-x ?c] 'comment-or-uncomment-region)
 (global-set-key [?\C-c ?\C-x ?w] 'whitespace-cleanup)
 (global-set-key [M-return] 'expand-abbrev)
@@ -27,7 +26,7 @@
 
 ;; Expand Region
 (when (locate-library "expand-region")
-  (global-set-key "\C-@" 'er/expand-region))
+  (global-set-key [f4] 'er/expand-region))
 
 ;; Nav keys
 (global-set-key [S-up] 'scroll-one-line-down)
@@ -49,7 +48,7 @@
 ;; Macros
 (global-set-key [f5] 'call-last-kbd-macro)
 (global-set-key [f2] 'start-kbd-macro)
-(global-set-key [f4] 'end-kbd-macro)
+(global-set-key [(control f2)] 'end-kbd-macro)
 
 ;; Undo & Redo
 (global-set-key [f3] 'undo)
@@ -135,5 +134,11 @@
   (guide-key-mode 1)
   (global-set-key [?\C-c ?\C-x ?k] 'guide-key-mode))  ; Enable guide-key-mode
 
+(when (locate-library "highlight-symbol")
+  (require 'highlight-symbol)
+  (global-set-key [f6] 'highlight-symbol-at-point)
+  (global-set-key [(control f6)] 'highlight-symbol-next)
+  (global-set-key [(shift f6)] 'highlight-symbol-prev)
+  (global-set-key [(meta f6)] 'highlight-symbol-query-replace))
 
 (provide 'wcx-keybindings)
