@@ -142,7 +142,7 @@
   (interactive)
   (color-theme-install
    '(wcx-color-theme-4
-     ((background-color . "#080808")
+     ((background-color . "#1d1f21")
       (foreground-color . "#FFFFFF")
       (background-mode . dark)
       (border-color . "#323232")
@@ -151,7 +151,7 @@
      (mode-line ((t (:foreground "#FFFFFF" :background "#323232"))))
      (region ((t (:background "#323232"))))
 
-     (font-lock-comment-face ((t (:foreground "#777777"))))
+     (font-lock-comment-face ((t (:foreground "#999999"))))
      (font-lock-constant-face ((t (:foreground "#FF5734"))))
      (font-lock-builtin-face ((t (:foreground "#ffaf00"))))
      (font-lock-function-name-face ((t (:foreground "#d7ff00"))))
