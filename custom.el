@@ -56,7 +56,7 @@
  '(elpy-rpc-project-specific nil)
  '(elpy-rpc-python-command "/home/warchiefx/.virtualenvs/emacs/bin/python")
  '(fill-column 78)
- '(flycheck-flake8-maximum-line-length 100)
+ '(flycheck-flake8-maximum-line-length 125)
  '(frame-title-format (quote ("%f - " user-real-login-name "@" system-name)) t)
  '(global-company-mode t)
  '(global-font-lock-mode t nil (font-lock))
