@@ -84,14 +84,6 @@
 (when (locate-library "ido-ubiquitous")
   (load-library "ido-ubiquitous"))
 
-(when (locate-library "flx")
-  (require 'flx-ido)
-  (ido-mode 1)
-  (ido-everywhere 1)
-  (flx-ido-mode 1)
-  ;; disable ido faces to see flx highlights.
-  (setq ido-use-faces nil))
-
 (when (locate-library "rfringe")
   (load-library "rfringe"))
 
@@ -170,5 +162,8 @@
 (setq gc-cons-threshold 20000000)
 
 (add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode +1)))
+
+(when (locate-library "dired+")
+  (load-library "dired+"))
 
 (provide 'wcx-generic)
