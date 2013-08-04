@@ -26,6 +26,6 @@
                  )
                ))))
 
-  (global-set-key [C-f2] 'wcx-helm))
+  (global-set-key [f1] 'wcx-helm))
 
 (provide 'wcx-helm)
