@@ -94,6 +94,7 @@
  '(org-agenda-files (quote ("~/Dropbox/log.org" "~/Dropbox/personal.org")))
  '(org-hide-leading-stars t)
  '(org-insert-mode-line-in-empty-file t)
+ '(org-src-fontify-natively t)
  '(package-archives (quote (("gnu" . "http://elpa.gnu.org/packages/") ("marmalade" . "http://marmalade-repo.org/packages/"))))
  '(puppet-indent-level tab-width)
  '(python-indent-offset 4)
