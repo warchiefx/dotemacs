@@ -10,6 +10,7 @@
 
 ;; ----- FontRelated Stuff
 (setq emacs-font "Envy Code R-11.5")
+;;(setq emacs-font "M+ 1mn regular-12")
 ;; (setq emacs-font "SourceCode Pro-11")
 ;; (setq emacs-font "PragmataPro-11")
 ;;(setq emacs-font "Mensch-10.5")
@@ -165,5 +166,15 @@
 
 (when (locate-library "dired+")
   (load-library "dired+"))
+
+(when (locate-library "anzu")
+  (load-library "anzu")
+  (set-face-attribute 'anzu-mode-line nil
+                      :foreground "yellow" :weight 'bold)
+  (global-anzu-mode))
+
+(when (locate-library "whitespace-cleanup-mode")
+  (load-library "whitespace-cleanup-mode")
+  (global-whitespace-cleanup-mode))
 
 (provide 'wcx-generic)

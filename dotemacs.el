@@ -97,7 +97,9 @@
 (when (locate-library "diminish")
   (diminish 'paredit-mode)
   (diminish 'projectile-mode)
-  (diminish 'guide-key-mode))
+  (diminish 'guide-key-mode)
+  (diminish 'anzu-mode)
+  (diminish 'whitespace-cleanup-mode))
 
 (message "Emacs startup time: %d seconds."
          (time-to-seconds (time-since emacs-load-start-time)))
