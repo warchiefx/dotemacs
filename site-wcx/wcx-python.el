@@ -36,7 +36,13 @@
   (elpy-use-ipython))
 
 (when (locate-library "autopair")
-  (load-library "autopair"))
+  (load-library "autopair")
+
+  (add-hook 'python-mode-hook
+            #'(lambda ()
+                (setq autopair-handle-action-fns
+                      (list #'autopair-default-handle-action
+                            #'autopair-python-triple-quote-action)))))
 
 (setq python-saved-check-command nil)
 
