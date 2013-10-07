@@ -88,12 +88,6 @@
 (when (locate-library "rfringe")
   (load-library "rfringe"))
 
-(when (locate-library "adaptive-wrap")
-  (load-library "adaptive-wrap"))
-
-(when (locate-library "dpaste")
-  (load-library "dpaste"))
-
 (when (locate-library "emacsd-tile")
   (load-library "emacsd-tile"))
 
