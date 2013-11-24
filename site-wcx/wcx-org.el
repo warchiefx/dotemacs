@@ -14,8 +14,6 @@
 ;; Org-mode setup
 ;; The following lines are always needed. Choose your own keys.
 
-(add-to-list 'load-path (concat site-lisp-path "org-mode/lisp"))
-
 (when (locate-library "org")
   (load-library "org")
   (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
@@ -52,7 +50,7 @@
           (let* ((clocked-time (org-clock-get-clocked-time))
                  (h (floor clocked-time 60))
                  (m (- clocked-time (* 60 h))))
-            (insert (format (concat org-time-clocksum-format " (%s)") 
+            (insert (format "%d:%02d (%s)"
                             h m org-clock-heading)))
         )))
   (wcx/org-clocking-info-to-file)
