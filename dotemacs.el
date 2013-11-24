@@ -68,6 +68,7 @@
 (require 'wcx-python)
 (require 'wcx-slime)
 (require 'wcx-lua)
+(require 'wcx-go)
 (require 'wcx-javascript)
 ;;(require 'wcx-scala)
 (require 'wcx-auto-complete)
