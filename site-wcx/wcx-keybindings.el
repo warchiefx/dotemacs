@@ -47,6 +47,7 @@
 
 ;; Macros
 (global-set-key [f5] 'call-last-kbd-macro)
+(global-set-key [S-f5] 'edit-last-kbd-macro)
 (global-set-key [f2] 'start-kbd-macro)
 (global-set-key [(control f2)] 'end-kbd-macro)
 
@@ -140,5 +141,13 @@
   (global-set-key [(control f6)] 'highlight-symbol-next)
   (global-set-key [(shift f6)] 'highlight-symbol-prev)
   (global-set-key [(meta f6)] 'highlight-symbol-query-replace))
+
+(when (locate-library "goto-chg")
+  (require 'goto-chg)
+  (global-set-key [(control .)] 'goto-last-change)
+  ; M-. can conflict with etags tag search. But C-. can get overwritten
+  ; by flyspell-auto-correct-word. And goto-last-change needs a really
+  ; fast key.
+  (global-set-key [(meta .)] 'goto-last-change))
 
 (provide 'wcx-keybindings)
