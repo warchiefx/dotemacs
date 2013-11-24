@@ -26,6 +26,7 @@
 ;; Custom stuff
 ;; (require 'wcx-evil)
 (require 'wcx-package)
+(require 'wcx-requirements)
 (require 'wcx-generic)
 (require 'wcx-modeline)
 (require 'wcx-utils)
