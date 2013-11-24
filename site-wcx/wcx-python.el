@@ -36,8 +36,6 @@
   (elpy-use-ipython))
 
 (when (locate-library "autopair")
-  (load-library "autopair")
-
   (add-hook 'python-mode-hook
             #'(lambda ()
                 (setq autopair-handle-action-fns

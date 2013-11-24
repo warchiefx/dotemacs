@@ -171,4 +171,11 @@
   (load-library "whitespace-cleanup-mode")
   (global-whitespace-cleanup-mode))
 
+(when (locate-library "autopair")
+  (load-library "autopair")
+  (autopair-global-mode 1))
+
+(when (locate-library "exec-path-from-shell")
+  (exec-path-from-shell-initialize))
+
 (provide 'wcx-generic)
