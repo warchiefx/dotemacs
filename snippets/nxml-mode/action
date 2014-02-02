@@ -1,0 +1,6 @@
+# contributor: Renaud Aubin <renaud.aubin@gmail.com>
+# name: <action ... />
+# condition: (string= (buffer-name) "AndroidManifest.xml")
+# key: action
+# --
+<action android:name="android.intent.action.$0" />

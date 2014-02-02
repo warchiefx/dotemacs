@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Intent
+# key: Intent
+# --
+Intent ${2:intent} = new Intent(this, ${1:SomeClass}.class);
+$0

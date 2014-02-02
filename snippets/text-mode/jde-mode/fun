@@ -1,7 +1,0 @@
-#name : public type func(args) { ... }
-# --
-
-${1:public} ${2:void} ${3:funcName}(${4:args}) {
-     $0
-     ${2:$(if (not (equal text "void")) "return null;" "")}
-}

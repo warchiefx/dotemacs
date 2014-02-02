@@ -1,0 +1,5 @@
+# contributor: Renaud Aubin <renaud.aubin@gmail.com>
+# name: List
+# key: List
+# --
+List<${1:String}> ${2:list} = new ArrayList<$1>();$0

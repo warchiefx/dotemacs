@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: <string name=.../>
+# key: string
+# condition: (string= (buffer-name) "strings.xml")
+# --
+<string name="${1:name}">${2:value}</string>$0

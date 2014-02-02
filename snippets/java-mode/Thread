@@ -1,0 +1,9 @@
+# contributor: Renaud Aubin <renaud.aubin@gmail.com>
+# name: Thread
+# key: Thread
+# --
+Thread t = new Thread($1) {
+    public void run() {
+        $0
+    }
+}.start();

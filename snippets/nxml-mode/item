@@ -1,0 +1,7 @@
+# name: <item ... />
+# key: menu_item
+# --
+<item android:id="@+id/$1"
+      android:icon="@drawable/ic_$1"
+      android:title="@string/$1"
+      android:showAsAction="ifRoom" />$0

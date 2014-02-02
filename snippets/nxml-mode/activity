@@ -1,0 +1,6 @@
+# contributor: Renaud Aubin <renaud.aubin@gmail.com>
+# name: <activity ... />
+# condition: (string= (buffer-name) "AndroidManifest.xml")
+# key: activity
+# --
+<activity android:name="$1" android:label="@string/$0" />

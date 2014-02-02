@@ -1,0 +1,8 @@
+# contributor: Renaud Aubin <renaud.aubin@gmail.com>
+# name: try, catch
+# key: tryc
+# --
+try {
+    $0
+} catch (${1:Exception} ${2:ex}) {
+}

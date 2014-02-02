@@ -1,0 +1,5 @@
+# contributor: Renaud Aubin <renaud.aubin@gmail.com>
+# name: Map
+# key: Map
+# --
+Map<${1:String}, ${2:Object}> ${3:map} = new HashMap<$1, $2>();$0

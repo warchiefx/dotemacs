@@ -1,0 +1,8 @@
+# contributor: Renaud Aubin <renaud.aubin@gmail.com>
+# name: Thread.sleep()
+# key: sleep
+# --
+try {
+    Thread.sleep(${1:1000});
+} catch (InterruptedException ignore) { }
+$0

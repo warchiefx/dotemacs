@@ -1,0 +1,5 @@
+# contributor: Ricardo Restituyo <warchiefx@gmail.com>
+# name: const
+# key: const
+# --
+public final static ${2:String} ${1:$$(upcase yas-text)} = "${3:value}";$0

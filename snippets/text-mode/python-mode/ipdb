@@ -1,3 +1,0 @@
-#name : import ipdb;ipdb.set_trace()
-# --
-import ipdb; ipdb.set_trace()$0

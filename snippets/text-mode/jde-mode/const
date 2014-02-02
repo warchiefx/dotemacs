@@ -1,4 +1,0 @@
-#name: public static final type var = ...
-# --
-/** ${2:name} : $3 - $0 */
-public static final ${1:type} ${2:$(upcase text)} = ${3:value};

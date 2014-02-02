@@ -1,0 +1,6 @@
+# contributor: Renaud Aubin <renaud.aubin@gmail.com>
+# name: new
+# key: new
+# --
+${1:Object} ${2:name} = new $1($3);
+$0

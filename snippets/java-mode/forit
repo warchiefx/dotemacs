@@ -1,0 +1,8 @@
+# contributor: Renaud Aubin <renaud.aubin@gmail.com>
+# name: for (Iterator ...) { ... }
+# key: forit
+# --
+for (Iterator ${1:it} = $2.iterator(); $1.hasNext(); ) {
+    ${3:String} ${4:name} = ($3)$1.next();
+    $0
+}

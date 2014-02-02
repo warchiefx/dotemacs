@@ -1,0 +1,7 @@
+# contributor: Renaud Aubin <renaud.aubin@gmail.com>
+# name: do { ... } while (...)
+# key: do
+# --
+do {
+    $0
+} while (${1:condition});

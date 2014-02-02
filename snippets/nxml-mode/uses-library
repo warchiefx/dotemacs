@@ -1,0 +1,6 @@
+# contributor: Renaud Aubin <renaud.aubin@gmail.com>
+# name: <uses-library ... />
+# condition: (string= (buffer-name) "AndroidManifest.xml")
+# key: uses-library
+# --
+<uses-library android:name="$0" android:required="true" />
