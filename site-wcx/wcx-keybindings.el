@@ -131,7 +131,7 @@
 
 (when (locate-library "guide-key")
   (load-library "guide-key")
-  (setq guide-key/guide-key-sequence '("C-c p" "C-c C-x"))
+  (setq guide-key/guide-key-sequence '("C-c p" "C-c C-x" "C-c"))
   (guide-key-mode 1)
   (global-set-key [?\C-c ?\C-x ?k] 'guide-key-mode))  ; Enable guide-key-mode
 
