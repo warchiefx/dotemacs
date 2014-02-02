@@ -9,15 +9,19 @@
 (windmove-default-keybindings 'meta)
 
 ;; ----- FontRelated Stuff
-(setq emacs-font "Envy Code R-11.5")
-;;(setq emacs-font "M+ 1mn regular-12")
-;; (setq emacs-font "SourceCode Pro-11")
+(setq emacs-font "Envy Code R-11")
+;;(setq emacs-font "M+ 1mn regular-11")
+;;(setq emacs-font "SourceCode Pro-11")
 ;; (setq emacs-font "PragmataPro-11")
 ;;(setq emacs-font "Mensch-10.5")
+;;(setq emacs-font "Monaco-11")
 ;;(setq emacs-font "Inconsolata-11")
+;;(setq emacs-font "Inconsolata-g-11")
+;;(setq emacs-font "anonymous Pro-12")
 ;;(setq emacs-font "Consolas-11")
 ;; (set-frame-font emacs-font)
-(set-face-attribute 'default nil :font emacs-font)
+(if (display-graphic-p)
+    (set-face-attribute 'default nil :font emacs-font))
 
 ;;; It is always better to know current line and column number
 (column-number-mode t)
@@ -116,7 +120,8 @@
   (load-library "dropdown-list"))
 
 (when (locate-library "switch-window")
-  (require 'switch-window))
+  (require 'switch-window)
+  (global-set-key (kbd "C-x o") 'switch-window))
 
 ;; Avoid having to delete extra spaces after kill-line on end of line
 (defadvice kill-line (before check-position activate)
@@ -156,7 +161,7 @@
 
 (setq gc-cons-threshold 20000000)
 
-(add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode +1)))
+;; (add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode +1)))
 
 (when (locate-library "dired+")
   (load-library "dired+"))
@@ -177,5 +182,9 @@
 
 (when (locate-library "exec-path-from-shell")
   (exec-path-from-shell-initialize))
+
+(global-ede-mode 1)
+(require 'semantic/sb)
+(semantic-mode 1)
 
 (provide 'wcx-generic)
