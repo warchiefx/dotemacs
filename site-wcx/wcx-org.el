@@ -33,6 +33,7 @@
                             (sequence "FIX(f)" "FIXING(F!)" "INVESTIGATING" "STUCK(s@/!)" "SOLUTIONKNOWN(S@)" "|" "FIXED(x!)" "WONTFIX(n@/!)")))
 
   (setq org-log-done 'time)
+  (setq org-time-clocksum-format "%d:%02d")
   ;; Setup remember-mode integration
   ;; (org-remember-insinuate)
   ;; (define-key global-map [?\C-c ?o ?r] 'org-remember)
