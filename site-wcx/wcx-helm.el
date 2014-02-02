@@ -1,5 +1,8 @@
 (when (locate-library "helm")
   (require 'helm-config)
+  (require 'helm-c-moccur)
+  (require 'helm-ls-git)
+  (require 'helm-ls-hg)
 
   (helm-mode 0)
   (helm-adaptative-mode)
@@ -18,23 +21,16 @@
   
   (defun wcx-helm ()
     (interactive)
-    (let ((default (thing-at-point 'symbol)))
-      (helm
-       :prompt "pattern: "
-       :sources
-       (append '(helm-source-buffers-list
-                 (when (projectile-project-p)
-                   helm--source-projectile-files-list)
-                 (when (projectile-project-p)
-                   helm-source-projectile-buffers-list)
-                 helm-c-source-occur-by-moccur
-                 helm-source-recentf
-                 helm-c-source-ctags
-                 helm-source-etags-select
-                 helm-source-files-in-current-dir
-                 helm-source-pp-bookmarks
-                 helm-source-buffer-not-found
-                 )))))
+    (helm :sources '(helm-c-source-dmoccur
+                     helm-source-moccur
+                     helm-source-buffers-list
+                     '(when (projectile-project-p)
+                        (helm-source-projectile-files-list))
+                     helm-source-findutils
+                     helm-source-recentf
+                     )
+          :buffer "*helm*"
+          :prompt "> "))
 
   (global-set-key [f1] 'wcx-helm)
   (global-set-key [S-f1] 'helm-do-grep))
