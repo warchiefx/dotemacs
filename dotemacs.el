@@ -21,6 +21,9 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
+; Use the system clipboard
+(setq x-select-enable-clipboard t)
+
 (setq emacs-load-start-time (current-time))
 
 ;; Custom stuff
@@ -28,13 +31,13 @@
 (require 'wcx-package)
 (require 'wcx-requirements)
 (require 'wcx-generic)
-(require 'wcx-modeline)
 (require 'wcx-utils)
 (require 'wcx-keybindings)
 (require 'wcx-icicles)
 ;; (require 'wcx-iswitchb)
 (require 'wcx-ido)
 (require 'wcx-color-theme)
+(require 'wcx-modeline)
 (require 'wcx-helm)
 (require 'wcx-encryption)
 
@@ -48,7 +51,7 @@
 ;;(require 'wcx-svn)
 (require 'wcx-git)
 (require 'wcx-mercurial)
-;;(require 'wcx-templates)
+(require 'wcx-templates)
 (require 'wcx-cedet)
 ;;(require 'wcx-elib)
 ;;(require 'wcx-ecb)
@@ -61,15 +64,15 @@
 
 ;; Programming Modes
 ;;(require 'wcx-java)
-;;(require 'wcx-malabar)
+(require 'wcx-malabar)
 (require 'wcx-xml)
 ;;(require 'wcx-nxhtml)
 (require 'wcx-web-mode)
 (require 'wcx-python)
-(require 'wcx-slime)
+;;(require 'wcx-slime)
 (require 'wcx-lua)
-(require 'wcx-go)
-(require 'wcx-javascript)
+;;(require 'wcx-go)
+;;(require 'wcx-javascript)
 ;;(require 'wcx-scala)
 (require 'wcx-auto-complete)
 (require 'wcx-jinja2)
@@ -96,12 +99,14 @@
 
 (prefer-coding-system 'utf-8)
 
-(when (locate-library "diminish")
-  (diminish 'paredit-mode)
-  (diminish 'projectile-mode)
-  (diminish 'guide-key-mode)
-  (diminish 'anzu-mode)
-  (diminish 'whitespace-cleanup-mode))
-
 (message "Emacs startup time: %d seconds."
          (time-to-seconds (time-since emacs-load-start-time)))
+
+(put 'upcase-region 'disabled nil)
+
+;; (when (locate-library "diminish")
+;;   (dolist (mod '("projectile-mode" "guide-key-mode" "anzu-mode"))
+;;     '(diminish 'projectile-mode)))
+
+(provide '.emacs)
+;;; emacs.el ends here
