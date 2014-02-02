@@ -11,11 +11,9 @@
 ;; Version: $Id$
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Yet Another Snippet library for emacs
-;; (add-to-list 'load-path (concat site-lisp-path "yasnippet"))
-;; (when (locate-library "yasnippet")
-;;   (require 'yasnippet)
-;;   (yas/initialize)
-;;   (yas/load-directory "~/.emacs.d/snippets/"))
+;;; Code:
+(when (locate-library "yasnippet")
+  (add-hook 'nxml-mode-hook 'yas/minor-mode-on))
 
 (provide 'wcx-templates)
+;;; wcx-templates.el ends here
