@@ -11,6 +11,7 @@
 
 (when (locate-library "smart-mode-line")
   (load-library "smart-mode-line")
+  (setq sml/override-theme nil)
   (eval-after-load "wcx-color-theme"
     '(sml/setup)))
 
