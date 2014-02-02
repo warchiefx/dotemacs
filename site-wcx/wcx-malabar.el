@@ -11,22 +11,33 @@
 ;; Version: $Id$
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Or enable more if you wish
+;;; Code:
+(when (locate-library "malabar-mode")
+  (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
+                                    global-semanticdb-minor-mode
+                                    global-semantic-idle-summary-mode
+                                    global-semantic-mru-bookmark-mode))
+  (semantic-mode 1)
+  (require 'malabar-mode)
+  (add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
 
-(add-to-list 'load-path (concat site-lisp-path "malabar/lisp"))
+  (add-hook 'malabar-mode-hook
+            (lambda ()
+              (yas/minor-mode-on)
+              (flycheck-mode-on-safe)))
 
-(setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
-                                  global-semanticdb-minor-mode
-                                  global-semantic-idle-summary-mode
-                                  global-semantic-mru-bookmark-mode))
-(semantic-mode 1)
-(require 'malabar-mode)
-(setq malabar-groovy-lib-dir (concat site-lisp-path "malabar/lib"))
-(add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
+  (add-hook 'malabar-mode-hook
+            (lambda ()
+              (add-hook 'after-save-hook 'malabar-compile-file-silently
+                        nil t)))
 
-(add-hook 'malabar-mode-hook
-          (lambda ()
-            (add-hook 'after-save-hook 'malabar-compile-file-silently
-                      nil t)))
+  (eval-after-load 'malabar-mode
+    '(define-key malabar-mode-map [f7] 'malabar-run-maven-command))
+
+  (setenv "ANDROID_HOME" "/home/warchiefx/Apps/android-sdk")
+  (setenv "JAVA_HOME" "/opt/java")
+
+  (setq malabar-groovy-lib-dir (concat site-lisp-path "malabar/lib")))
 
 (provide 'wcx-malabar)
+;;; wcx-malabar.el ends here
