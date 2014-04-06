@@ -3,6 +3,7 @@
   (require 'helm-c-moccur)
   (require 'helm-ls-git)
   (require 'helm-ls-hg)
+  (require 'helm-semantic)
 
   (helm-mode 0)
   (helm-adaptative-mode)
@@ -26,8 +27,8 @@
                      helm-source-buffers-list
                      '(when (projectile-project-p)
                         (helm-source-projectile-files-list))
-                     helm-source-findutils
                      helm-source-recentf
+                     helm-source-semantic
                      )
           :buffer "*helm*"
           :prompt "> "))
