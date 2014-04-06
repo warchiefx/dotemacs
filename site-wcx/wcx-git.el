@@ -37,4 +37,7 @@
 
 (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
 
+(when (locate-library "gist")
+  (load-library "gist"))
+
 (provide 'wcx-git)
