@@ -16,6 +16,12 @@
 (global-set-key [M-return] 'expand-abbrev)
 (global-set-key (quote [f8]) 'gnus)
 
+(defun wcx/autopep8()
+  (interactive)
+  (py-autopep8))
+
+(global-set-key [?\C-c ?\C-x ?a] 'wcx/autopep8)
+
 (defun scroll-one-line-up (&optional arg)
   (interactive "p")
   (scroll-up (or arg 1)))
