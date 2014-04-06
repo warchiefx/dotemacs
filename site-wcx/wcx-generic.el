@@ -11,6 +11,7 @@
 ;; ----- FontRelated Stuff
 (setq emacs-font "Envy Code R-11")
 ;;(setq emacs-font "M+ 1mn regular-11")
+;;(setq emacs-font "M+ 1p regular-11")
 ;;(setq emacs-font "SourceCode Pro-11")
 ;; (setq emacs-font "PragmataPro-11")
 ;;(setq emacs-font "Mensch-10.5")
@@ -19,6 +20,7 @@
 ;;(setq emacs-font "Inconsolata-g-11")
 ;;(setq emacs-font "anonymous Pro-12")
 ;;(setq emacs-font "Consolas-11")
+;;(setq emacs-font "MesloLGSDZ-10.5")
 ;; (set-frame-font emacs-font)
 (if (display-graphic-p)
     (set-face-attribute 'default nil :font emacs-font))
@@ -166,19 +168,9 @@
 (when (locate-library "dired+")
   (load-library "dired+"))
 
-(when (locate-library "anzu")
-  (load-library "anzu")
-  (set-face-attribute 'anzu-mode-line nil
-                      :foreground "yellow" :weight 'bold)
-  (global-anzu-mode))
-
 (when (locate-library "whitespace-cleanup-mode")
   (load-library "whitespace-cleanup-mode")
   (global-whitespace-cleanup-mode))
-
-(when (locate-library "autopair")
-  (load-library "autopair")
-  (autopair-global-mode 1))
 
 (when (locate-library "exec-path-from-shell")
   (exec-path-from-shell-initialize))
@@ -186,5 +178,9 @@
 (global-ede-mode 1)
 (require 'semantic/sb)
 (semantic-mode 1)
+
+;; Post 24.4 stuff
+(superword-mode 1)
+(electric-pair-mode) ;; Replaces autopair
 
 (provide 'wcx-generic)
