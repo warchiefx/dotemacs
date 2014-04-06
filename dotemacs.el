@@ -11,6 +11,8 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (blink-cursor-mode 0)
 
+(setq load-prefer-newer t)
+
 ;; ----- Standard Loadpath
 (setq site-lisp-path "~/.emacs.d/site-lisp/")
 (setq site-wcx-path "~/.emacs.d/site-wcx/")
@@ -72,7 +74,7 @@
 ;;(require 'wcx-slime)
 (require 'wcx-lua)
 ;;(require 'wcx-go)
-;;(require 'wcx-javascript)
+(require 'wcx-javascript)
 ;;(require 'wcx-scala)
 (require 'wcx-auto-complete)
 (require 'wcx-jinja2)
