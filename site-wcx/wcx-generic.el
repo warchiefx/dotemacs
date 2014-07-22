@@ -183,4 +183,8 @@
 (superword-mode 1)
 (electric-pair-mode) ;; Replaces autopair
 
+(when (locate-library "smart-shift")
+  (load-library "smart-shift")
+  (global-smart-shift-mode 1))
+
 (provide 'wcx-generic)
