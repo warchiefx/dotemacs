@@ -4,6 +4,7 @@
   (require 'helm-ls-git)
   (require 'helm-ls-hg)
   (require 'helm-semantic)
+  (require 'helm-flycheck)
 
   (helm-mode 0)
   (helm-adaptative-mode)
@@ -22,13 +23,11 @@
   
   (defun wcx-helm ()
     (interactive)
-    (helm :sources '(helm-c-source-dmoccur
-                     helm-source-moccur
-                     helm-source-buffers-list
-                     '(when (projectile-project-p)
-                        (helm-source-projectile-files-list))
-                     helm-source-recentf
+    (helm :sources '(
                      helm-source-semantic
+                     helm-source-buffers-list
+                     helm-source-recentf
+                     helm-source-flycheck
                      )
           :buffer "*helm*"
           :prompt "> "))
