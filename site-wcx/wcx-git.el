@@ -22,6 +22,10 @@
   (require 'magit)
   (global-set-key [?\C-c ?\C-x ?g] 'magit-status))
 
+(when (locate-library "git-timemachine")
+  (load-library "git-timemachine")
+  (global-set-key [?\C-c ?\C-x ?h] 'git-timemachine))
+
 ;; full screen magit-status
 
 (defadvice magit-status (around magit-fullscreen activate)
