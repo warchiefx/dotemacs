@@ -151,4 +151,6 @@
   ; fast key.
   (global-set-key [(meta .)] 'goto-last-change))
 
+(global-set-key [?\C-x ?\C-b] 'ibuffer)
+
 (provide 'wcx-keybindings)
