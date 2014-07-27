@@ -84,6 +84,7 @@
 
 ;; ----- Make this file be recompiled after it's saved
 (defun byte-compile-user-init-file ()
+  "Byte-compile the user init file."
   (let ((byte-compile-warnings '(unresolved)))
     ;; in case compilation fails, don't leave the old .elc around:
     (if (file-exists-p (concat user-init-file ".elc"))
@@ -92,6 +93,7 @@
     (message "%s compiled" user-init-file)
     ))
 (defun my-emacs-lisp-mode-hook ()
+  "Compile .emacs after it's saved."
   (when (equal buffer-file-name user-init-file)
     (add-hook 'after-save-hook 'byte-compile-user-init-file t t)))
 (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook)
@@ -106,9 +108,17 @@
 
 (put 'upcase-region 'disabled nil)
 
-;; (when (locate-library "diminish")
-;;   (dolist (mod '("projectile-mode" "guide-key-mode" "anzu-mode"))
-;;     '(diminish 'projectile-mode)))
+(defmacro diminish-afterload (package-name mode)
+  "After loading PACKAGE-NAME, diminish MODE."
+  `(eval-after-load ,package-name
+     '(diminish ,mode)))
+
+(when (locate-library "diminish")
+  (require 'diminish)
+  
+  (diminish-afterload "magit" 'magit-auto-revert-mode)
+  (diminish-afterload "guide-key" 'guide-key-mode)
+  (diminish-afterload "whitespace-cleanup-mode" 'whitespace-cleanup-mode))
 
 (provide '.emacs)
-;;; emacs.el ends here
+;;; .emacs ends here
