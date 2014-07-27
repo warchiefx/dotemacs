@@ -17,3 +17,13 @@ places
 *.swp
 *.un~
 
+/.places
+/flycheck-org-clock-save.el
+/flycheck_org-clock-save.el
+/helm-adaptive-history
+/projectile-bookmarks.eld
+/eproject.lst
+/.mc-lists.el
+/.flycheck_org-clock-save.el
+/eshell/
+/var/
