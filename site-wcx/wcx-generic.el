@@ -1,7 +1,6 @@
 ;;; wcx-generic.el --- Generic customizations.
 ;;; Commentary:
-;;; Code:
-(which-function-mode nil)
+;;; Code
 (menu-bar-mode 0)
 (setq frame-title-format "emacs [%b]"
       icon-title-format "emacs [%b]"
@@ -12,8 +11,8 @@
 (setq emacs-font "Envy Code R-11")
 ;;(setq emacs-font "M+ 1mn regular-11")
 ;;(setq emacs-font "M+ 1p regular-11")
-;;(setq emacs-font "SourceCode Pro-11")
-;; (setq emacs-font "PragmataPro-11")
+;;(setq emacs-font "SourceCode Pro-10.5")
+;;(setq emacs-font "PragmataPro-11")
 ;;(setq emacs-font "Mensch-10.5")
 ;;(setq emacs-font "Monaco-11")
 ;;(setq emacs-font "Inconsolata-11")
@@ -21,6 +20,8 @@
 ;;(setq emacs-font "anonymous Pro-12")
 ;;(setq emacs-font "Consolas-11")
 ;;(setq emacs-font "MesloLGSDZ-10.5")
+;;(setq emacs-font "DejaVu Sans Mono-10.5")
+;;(setq emacs-font "FiraMono-10.5")
 ;; (set-frame-font emacs-font)
 (if (display-graphic-p)
     (set-face-attribute 'default nil :font emacs-font))
