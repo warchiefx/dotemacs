@@ -193,4 +193,9 @@
 (require 'hungry-delete)
 (global-hungry-delete-mode)
 
+(when (locate-library "toggle-quotes")
+  (load-library "toggle-quotes")
+
+  (global-set-key [?\C-c ?\C-x ?q] 'toggle-quotes))
+
 (provide 'wcx-generic)
