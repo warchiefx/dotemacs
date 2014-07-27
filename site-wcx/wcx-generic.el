@@ -1,7 +1,7 @@
 ;;; wcx-generic.el --- Generic customizations.
-
+;;; Commentary:
 ;;; Code:
-(which-function-mode t)
+(which-function-mode nil)
 (menu-bar-mode 0)
 (setq frame-title-format "emacs [%b]"
       icon-title-format "emacs [%b]"
