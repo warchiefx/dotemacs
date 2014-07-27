@@ -187,4 +187,10 @@
   (load-library "smart-shift")
   (global-smart-shift-mode 1))
 
+(unless (fboundp 'hungry-delete-mode)
+  (package-install 'hungry-delete))
+
+(require 'hungry-delete)
+(global-hungry-delete-mode)
+
 (provide 'wcx-generic)
