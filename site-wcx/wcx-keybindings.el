@@ -1,15 +1,10 @@
 ;;; wcx-keybindings.el --- Custom keys
-;; 
-;; Filename: wcx-keybindings.el
-;; Description: 
-;; Author: Ricardo Restituyo
-;; Email: warchiefx@gmail.com
+;;
 ;; Created: Wed Oct 22 11:26:05 2008
-;; 
-;; Last-Updated: Wed May  5 16:15:27 2010 (-14400 AST)
-;;           By: Ricardo Restituyo
-;; Version: $Id$
+;;; Commentary:
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Code:
 
 (global-set-key [?\C-c ?\C-x ?c] 'comment-or-uncomment-region)
 (global-set-key [?\C-c ?\C-x ?w] 'whitespace-cleanup)
