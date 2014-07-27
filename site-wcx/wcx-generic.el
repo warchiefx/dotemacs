@@ -45,9 +45,6 @@
 
 (put 'narrow-to-region 'disabled nil)
 
-                                        ;(global-hl-line-mode 1)
-                                        ;(set-face-background 'hl-line "#111")
-
 (add-hook 'conf-javaprop-mode-hook
           '(lambda () (conf-quote-normal nil)))
 
@@ -198,4 +195,10 @@
 
   (global-set-key [?\C-c ?\C-x ?q] 'toggle-quotes))
 
+;; Save point position between sessions
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file (expand-file-name ".places" user-emacs-directory))
+
 (provide 'wcx-generic)
+;;; wcx-generic.el ends here
