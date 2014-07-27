@@ -58,7 +58,6 @@
 ;;(require 'wcx-elib)
 ;;(require 'wcx-ecb)
 ;;(require 'wcx-jabber)
-(require 'wcx-zencoding)
 ;;(require 'wcx-companymode)
 ;;(require 'wcx-minimap)
 (require 'wcx-flycheck)
@@ -118,7 +117,8 @@
   
   (diminish-afterload "magit" 'magit-auto-revert-mode)
   (diminish-afterload "guide-key" 'guide-key-mode)
-  (diminish-afterload "whitespace-cleanup-mode" 'whitespace-cleanup-mode))
+  (diminish-afterload "whitespace-cleanup-mode" 'whitespace-cleanup-mode)
+  (diminish-afterload "emmet-mode" 'emmet-mode))
 
 (provide '.emacs)
 ;;; .emacs ends here
