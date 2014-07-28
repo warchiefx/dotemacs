@@ -48,23 +48,16 @@
     (if (org-clock-is-active)
         (with-temp-file "~/Work/.clocking"
           ;; (message (org-clock-get-clock-string))
-          (let* ((clocked-time (org-clock-get-clocked-time))
-                 (h (floor clocked-time 60))
-                 (m (- clocked-time (* 60 h))))
-            (insert (format "%d:%02d (%s)"
-                            h m org-clock-heading)))
-        )))
-  (wcx/org-clocking-info-to-file)
-  (add-hook 'org-clock-in-hook 'wcx/org-clocking-info-to-file)
-  (add-hook 'org-clock-out-hook '(lambda ()
-                                   ;; remove previous file
-                                   (dired-delete-file "~/Work/.clocking")
-                                   ))
-  (add-hook 'org-clock-cancel-hook '(lambda ()
-                                   ;; remove previous file
-                                   (dired-delete-file "~/Work/.clocking")
-                                   ))
-  (add-hook 'display-time-hook 'wcx/org-clocking-info-to-file))
+          (insert (wcx/org-get-clocked-time)))))
+
+  (defun wcx/org-get-clocked-time ()
+    (interactive)
+    (if (org-clock-is-active)
+        (let* ((clocked-time (org-clock-get-clocked-time))
+               (h (floor clocked-time 60))
+               (m (- clocked-time (* 60 h))))
+          (format "%d:%02d (%s)"
+                  h m org-clock-heading)))))
 
 ;; (when (locate-library "ox-reveal")
 ;;   (require 'org-reveal))
