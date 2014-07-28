@@ -118,7 +118,10 @@
   (diminish-afterload "magit" 'magit-auto-revert-mode)
   (diminish-afterload "guide-key" 'guide-key-mode)
   (diminish-afterload "whitespace-cleanup-mode" 'whitespace-cleanup-mode)
-  (diminish-afterload "emmet-mode" 'emmet-mode))
+  (diminish-afterload "emmet-mode" 'emmet-mode)
+  (diminish-afterload "highlight-parentheses" 'highlight-parentheses-mode)
+  (diminish-afterload "projectile" 'projectile-mode))
+
 
 (provide '.emacs)
 ;;; .emacs ends here
