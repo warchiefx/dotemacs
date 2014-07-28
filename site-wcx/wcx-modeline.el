@@ -31,9 +31,15 @@
            (propertize "*" 'face 'mode-line-modified-face))
           (t " ")))
    " "
+   (:propertize "%I"
+                face mode-line-position-face)
+   " "
+
                                         ; directory and buffer/file name
-   (:propertize (:eval (shorten-directory default-directory 30))
-                face mode-line-folder-face)
+   (:eval (if (ignore-errors (projectile-project-root))
+              (propertize (concat " " (projectile-project-name) "|") 'face 'mode-line-folder-face)
+            (propertize (shorten-directory default-directory 30) 'face 'mode-line-folder-face)))
+
    (:propertize "%b"
                 face mode-line-filename-face)
                                         ; narrow [default -- keep?]
@@ -49,6 +55,7 @@
                       'face 'mode-line-minor-mode-face))
    (:propertize mode-line-process
                 face mode-line-process-face)
+
    " "
    (:propertize (global-mode-string global-mode-string)
                        face mode-line-mode-string-face)
@@ -56,7 +63,7 @@
 
 ;; Helper function
 (defun shorten-directory (dir max-length)
-  "Show up to `max-length' characters of a directory name `dir'."
+  "Show up to `MAX-LENGTH' characters of a directory name `DIR'."
   (let ((path (reverse (split-string (abbreviate-file-name dir) "/")))
         (output ""))
     (when (and path (equal "" (car path)))
@@ -67,6 +74,13 @@
     (when path
       (setq output (concat ".../" output)))
     output))
+
+(defvar lunaryorn-projectile-mode-line
+  '(:propertize
+    (:eval (when (ignore-errors (projectile-project-root))
+             (concat " " (projectile-project-name))))
+    face font-lock-constant-face)
+  "Mode line format for Projectile.")
 
 ;; Extra mode line faces
 (make-face 'mode-line-read-only-face)
@@ -101,7 +115,7 @@
                     :box '(:line-width 2 :color "#c82829"))
 (set-face-attribute 'mode-line-folder-face nil
                     :inherit 'mode-line-face :family "Roboto Condensed"
-                    :foreground "gray60")
+                    :foreground "gray80")
 (set-face-attribute 'mode-line-filename-face nil
                     :inherit 'mode-line-face
                     :foreground "#d7ff00" :family "Roboto Condensed"
