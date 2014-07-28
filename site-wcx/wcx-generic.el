@@ -46,6 +46,8 @@
 
 (put 'narrow-to-region 'disabled nil)
 
+(display-time-mode 0)
+
 (add-hook 'conf-javaprop-mode-hook
           '(lambda () (conf-quote-normal nil)))
 
