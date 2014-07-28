@@ -194,7 +194,8 @@
 (provide 'wcx-color-theme-4)
 (provide 'wcx-color-theme-5)
 
-(wcx-color-theme-5)
+;(wcx-color-theme-5)
+(load-theme 'sanityinc-tomorrow-night)
 
 (provide 'wcx-color-theme)
 ;;; wcx-color-theme.el ends here
