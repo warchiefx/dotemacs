@@ -15,12 +15,14 @@
 (setq-default
  mode-line-format
  '(; Position, including warning for 80 columns
+   "["
    (:propertize "%4l:" face mode-line-position-face)
    (:eval (propertize "%3c" 'face
                       (if (>= (current-column) 120)
                           'mode-line-80col-face
                         'mode-line-position-face)))
                                         ; emacsclient [default -- keep?]
+   "]"
    mode-line-client
    " "
                                         ; read-only or modified status
@@ -28,13 +30,8 @@
     (cond (buffer-read-only
            (propertize "R" 'face 'mode-line-read-only-face))
           ((buffer-modified-p)
-           (propertize "*" 'face 'mode-line-modified-face))
+           (propertize "◆" 'face 'mode-line-modified-face))
           (t " ")))
-   " "
-   (:propertize "%I"
-                face mode-line-position-face)
-   " "
-
                                         ; directory and buffer/file name
    (:eval (if (ignore-errors (projectile-project-root))
               (propertize (concat " " (projectile-project-name) "|") 'face 'mode-line-folder-face)
@@ -96,48 +93,48 @@
 (make-face 'mode-line-vc-face)
 
 (set-face-attribute 'mode-line nil
-                    :foreground "gray60" :background "black"
-                    :inverse-video nil :height 110
+                    :foreground "gray80" :background "black"
+                    :inverse-video nil :height 110 :family "Envy Code R"
                     :box '(:line-width 1 :color "gray10" :style nil))
 (set-face-attribute 'mode-line-inactive nil
-                    :foreground "gray80" :background "black"
-                    :inverse-video nil :height 110
+                    :foreground "gray60" :background "black"
+                    :inverse-video nil :height 110 :family "Envy Code R"
                     :box '(:line-width 1 :color "black" :style nil))
 
 (set-face-attribute 'mode-line-read-only-face nil
                     :inherit 'mode-line-face
-                    :foreground "#4271ae"
+                    :foreground "#4271ae" :family "Envy Code R"
                     :box '(:line-width 2 :color "#4271ae"))
 (set-face-attribute 'mode-line-modified-face nil
-                    :inherit 'mode-line-face
+                    :inherit 'mode-line-face :height 80
                     :foreground "#c82829"
-                    :background "#000000"
+                    :background "#000000" :family "Envy Code R"
                     :box '(:line-width 2 :color "#c82829"))
 (set-face-attribute 'mode-line-folder-face nil
-                    :inherit 'mode-line-face :family "Roboto Condensed"
+                    :inherit 'mode-line-face :family "Envy Code R"
                     :foreground "gray80")
 (set-face-attribute 'mode-line-filename-face nil
                     :inherit 'mode-line-face
-                    :foreground "#d7ff00" :family "Roboto Condensed"
+                    :foreground "#d7ff00" :family "Envy Code R"
                     :weight 'bold)
 (set-face-attribute 'mode-line-position-face nil
                     :inherit 'mode-line-face
-                    :family "Roboto Condensed" :height 100)
+                    :family "Envy Code R" :height 100)
 (set-face-attribute 'mode-line-mode-face nil
-                    :inherit 'mode-line-face :family "Roboto Condensed"
-                    :foreground "#FF5734" :height 104)
+                    :inherit 'mode-line-face :family "Envy Code R"
+                    :foreground "#FF5734" :height 100)
 (set-face-attribute 'mode-line-minor-mode-face nil
                     :inherit 'mode-line-mode-face
-                    :foreground "gray50" :family "Roboto Condensed"
+                    :foreground "gray50" :family "Envy Code R"
                     :height 100)
 (set-face-attribute 'mode-line-mode-string-face nil
                     :inherit 'mode-line-mode-face
-                    :foreground "gray60" :family "Roboto Condensed"
+                    :foreground "gray60" :family "Envy Code R"
                     :height 100)
 (set-face-attribute 'mode-line-vc-face nil
                     :inherit 'mode-line-mode-face :bold t
-                    :foreground "#5fafff" :family "Roboto Condensed"
-                    :height 105)
+                    :foreground "#5fafff" :family "Envy Code R"
+                    :height 100)
 (set-face-attribute 'mode-line-process-face nil
                     :inherit 'mode-line-face
                     :foreground "#718c00")
