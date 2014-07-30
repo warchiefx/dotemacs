@@ -302,6 +302,5 @@
           ))
   (telephone-line-mode 1))
 
-
 (provide 'wcx-modeline)
 ;;; wcx-modeline.el ends here
