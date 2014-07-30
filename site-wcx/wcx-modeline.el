@@ -93,11 +93,11 @@
 (make-face 'mode-line-vc-face)
 
 (set-face-attribute 'mode-line nil
-                    :foreground "gray80" :background "black"
+                    :foreground "gray60" :background "black"
                     :inverse-video nil :height 110 :family "Envy Code R"
                     :box '(:line-width 1 :color "gray10" :style nil))
 (set-face-attribute 'mode-line-inactive nil
-                    :foreground "gray60" :background "black"
+                    :foreground "gray80" :background "black"
                     :inverse-video nil :height 110 :family "Envy Code R"
                     :box '(:line-width 1 :color "black" :style nil))
 
