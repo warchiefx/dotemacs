@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code
 (menu-bar-mode 0)
+(horizontal-scroll-bar-mode 0)
 (setq frame-title-format "emacs [%b]"
       icon-title-format "emacs [%b]"
       scroll-conservatively 1)
@@ -9,6 +10,7 @@
 
 ;; ----- FontRelated Stuff
 (setq emacs-font "Envy Code R-11")
+;;(setq emacs-font "Input Sans Narrow Thin-10.5")
 ;;(setq emacs-font "M+ 1mn regular-11")
 ;;(setq emacs-font "M+ 1p regular-11")
 ;;(setq emacs-font "SourceCode Pro-10.5")
@@ -139,18 +141,18 @@
                   (join-line -1)))
 
 ;; Indent on yank
-(dolist (command '(yank yank-pop))
-  (eval `(defadvice ,command (after indent-region activate)
-           (and (not current-prefix-arg)
-                (member major-mode '(emacs-lisp-mode lisp-mode
-                                                     clojure-mode    scheme-mode
-                                                     haskell-mode    ruby-mode
-                                                     rspec-mode      python-mode
-                                                     c-mode          c++-mode
-                                                     objc-mode       latex-mode
-                                                     plain-tex-mode))
-                (let ((mark-even-if-inactive transient-mark-mode))
-                  (indent-region (region-beginning) (region-end) nil))))))
+;; (dolist (command '(yank yank-pop))
+;;   (eval `(defadvice ,command (after indent-region activate)
+;;            (and (not current-prefix-arg)
+;;                 (member major-mode '(emacs-lisp-mode lisp-mode
+;;                                                      clojure-mode    scheme-mode
+;;                                                      haskell-mode    ruby-mode
+;;                                                      rspec-mode      python-mode
+;;                                                      c-mode          c++-mode
+;;                                                      objc-mode       latex-mode
+;;                                                      plain-tex-mode))
+;;                 (let ((mark-even-if-inactive transient-mark-mode))
+;;                   (indent-region (region-beginning) (region-end) nil))))))
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
@@ -181,7 +183,8 @@
 
 ;; Post 24.4 stuff
 (superword-mode 1)
-(electric-pair-mode) ;; Replaces autopair
+(electric-pair-mode)  ;; Replaces autopair
+(electric-indent-mode 0)  ;; Currently annoying on python-mode
 
 (when (locate-library "smart-shift")
   (load-library "smart-shift")
@@ -202,6 +205,9 @@
 (require 'saveplace)
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
+
+(when (locate-library "use-package")
+  (require 'use-package))
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
