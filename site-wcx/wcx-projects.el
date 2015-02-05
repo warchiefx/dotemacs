@@ -3,8 +3,8 @@
   (load-library "projectile")
   (projectile-global-mode))
 
-(when (locate-library "helm-projectile")
-  (load-library "helm-projectile"))
+;; (when (locate-library "helm-projectile")
+;;   (load-library "helm-projectile"))
 
 
 (provide 'wcx-projects)
