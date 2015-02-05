@@ -13,7 +13,8 @@
 
 ;;; Code:
 (when (locate-library "yasnippet")
-  (add-hook 'nxml-mode-hook 'yas/minor-mode-on))
+  (require 'yasnippet)
+  (yas-global-mode 1))
 
 (provide 'wcx-templates)
 ;;; wcx-templates.el ends here
