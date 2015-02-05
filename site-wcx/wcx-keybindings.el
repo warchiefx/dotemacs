@@ -130,6 +130,13 @@
   (load-library "rainbow-mode")
   (global-set-key [?\C-c ?\C-x ?r] 'rainbow-mode))
 
+;;(when (locate-library "aggressive-indent")
+;;  (load-library "aggressive-indent")
+;;  (global-set-key [?\C-c ?\C-x ?i] 'global-aggressive-indent-mode))
+
+(when (locate-library "pyvenv")
+  (global-set-key [?\C-c ?\C-x ?v] 'pyvenv-workon))
+
 (when (locate-library "guide-key")
   (load-library "guide-key")
   (setq guide-key/guide-key-sequence '("C-c p" "C-c C-x" "C-c"))
