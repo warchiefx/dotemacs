@@ -42,6 +42,7 @@
 (require 'wcx-modeline)
 (require 'wcx-helm)
 (require 'wcx-encryption)
+(require 'wcx-workgroups)
 
 ;; Tools
 (require 'wcx-org)
@@ -120,6 +121,7 @@
   (diminish-afterload "whitespace-cleanup-mode" 'whitespace-cleanup-mode)
   (diminish-afterload "emmet-mode" 'emmet-mode)
   (diminish-afterload "highlight-parentheses" 'highlight-parentheses-mode)
+  (diminish-afterload "auto-complete" 'auto-complete-mode)
   (diminish-afterload "projectile" 'projectile-mode))
 
 
