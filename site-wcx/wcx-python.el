@@ -1,7 +1,6 @@
 (when (locate-library "elpy")
   (load-library "elpy")
   (elpy-enable)
-  (elpy-clean-modeline)
   (elpy-use-ipython))
 
 (setq py-autopep8-options '("--max-line-length=120"))
@@ -24,6 +23,10 @@
   '(progn
      (define-key elpy-mode-map (kbd "SPC") 'kdt-python-method-space-replace)))
 
+;; Standard Jedi.el setting
+(when (locate-library "jedi")
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (setq jedi:complete-on-dot t))
 
 (provide 'wcx-python)
 ;;; wcx-python.el ends here
