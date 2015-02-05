@@ -162,6 +162,13 @@
      (font-lock-string-face ((t (:foreground "#6A75FF"))))
      (font-lock-doc-string-face ((t (:foreground "#6A75FF"))))
      (font-lock-type-face ((t (:foreground "#d7ff00" :bold t))))
+     (warning ((t (:background "#f5871f" :bold t))))
+     (error ((t (:background "#c82829" :bold t))))
+
+     ;; Flycheck
+     (flycheck-fringe-error ((t (:foreground "#c82829" :inverse-video t))))
+     (flycheck-fringe-info ((t (:foreground "#5fafff" :inverse-video t))))
+     (flycheck-fringe-warning ((t (:foreground "#f5871f" :inverse-video t))))
      )))
 
 (defun wcx-color-theme-5 ()
@@ -189,13 +196,14 @@
      (font-lock-string-face ((t (:foreground "#6A75FF"))))
      (font-lock-doc-string-face ((t (:foreground "#6A75FF"))))
      (font-lock-type-face ((t (:foreground "#d7ff00" :bold t))))
+     (warning ((t (:background "#f5871f" :foreground "#000000" :bold t))))
+     (error ((t (:background "#c82829" :foreground "#000000" :bold t))))
      )))
 
 (provide 'wcx-color-theme-4)
 (provide 'wcx-color-theme-5)
 
-;(wcx-color-theme-5)
-(load-theme 'sanityinc-tomorrow-night)
+(wcx-color-theme-4)
 
 (provide 'wcx-color-theme)
 ;;; wcx-color-theme.el ends here
