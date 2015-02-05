@@ -20,7 +20,7 @@
 
   (global-set-key "\C-cl" 'org-store-link)
   (global-set-key (quote [f11]) 'org-agenda)
-  (global-set-key "\C-cb" 'org-iswitchb)
+  (global-set-key "\C-cb" 'org-ido-switchb)
   (global-set-key [?\C-c ?\C-x ?o] 'org-clock-jump-to-current-clock)
 
   (defun org-summary-todo (n-done n-not-done)
@@ -56,8 +56,18 @@
         (let* ((clocked-time (org-clock-get-clocked-time))
                (h (floor clocked-time 60))
                (m (- clocked-time (* 60 h))))
-          (format "%d:%02d (%s)"
-                  h m org-clock-heading)))))
+          (format "%d:%02d [%s] %s"
+                  h m (buffer-name (org-clocking-buffer)) org-clock-heading)))))
+
+(use-package org-projectile
+  :bind (("C-c n p" . org-projectile:project-todo-completing-read)
+         ("C-c c" . org-capture))
+  :config
+  (progn
+    (setq org-projectile:projects-file
+          "~/Dropbox/Work/orgfiles/projects.org")
+    (add-to-list 'org-capture-templates (org-projectile:project-todo-entry "p")))
+  :ensure t)
 
 ;; (when (locate-library "ox-reveal")
 ;;   (require 'org-reveal))
