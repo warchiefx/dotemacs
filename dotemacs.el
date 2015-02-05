@@ -58,14 +58,14 @@
 ;;(require 'wcx-elib)
 ;;(require 'wcx-ecb)
 ;;(require 'wcx-jabber)
-;;(require 'wcx-companymode)
+;; (require 'wcx-companymode)
 ;;(require 'wcx-minimap)
 (require 'wcx-flycheck)
 (require 'wcx-projects)
 
 ;; Programming Modes
 ;;(require 'wcx-java)
-(require 'wcx-malabar)
+;;(require 'wcx-malabar)
 (require 'wcx-xml)
 ;;(require 'wcx-nxhtml)
 (require 'wcx-web-mode)
