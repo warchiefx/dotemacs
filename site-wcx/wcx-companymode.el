@@ -1,6 +1,6 @@
 
 (when (locate-library "company")
   (load-library "company")
-  (global-company-mode 0))
+  (add-hook 'after-init-hook 'global-company-mode))
 
 (provide 'wcx-companymode)
