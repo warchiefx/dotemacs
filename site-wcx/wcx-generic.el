@@ -2,16 +2,18 @@
 ;;; Commentary:
 ;;; Code
 (menu-bar-mode 0)
-(horizontal-scroll-bar-mode 0)
+;;(horizontal-scroll-bar-mode 0)
 (setq frame-title-format "emacs [%b]"
       icon-title-format "emacs [%b]"
       scroll-conservatively 1)
 (windmove-default-keybindings 'meta)
 
 ;; ----- FontRelated Stuff
-(setq emacs-font "Envy Code R-11")
-;;(setq emacs-font "Input Sans Narrow Thin-10.5")
-;;(setq emacs-font "M+ 1mn regular-11")
+;(setq emacs-font "Envy Code R-11")
+;;(setq emacs-font "Input Sans Narrow Thin-11")
+;;(setq emacs-font "M+ 1mn regular-10.5")
+;;(setq emacs-font "M+ 1m regular-10.5")
+;;(setq emacs-font "M+ 2m regular-11")
 ;;(setq emacs-font "M+ 1p regular-11")
 ;;(setq emacs-font "SourceCode Pro-10.5")
 ;;(setq emacs-font "PragmataPro-11")
@@ -19,11 +21,15 @@
 ;;(setq emacs-font "Monaco-11")
 ;;(setq emacs-font "Inconsolata-11")
 ;;(setq emacs-font "Inconsolata-g-11")
+;;(setq emacs-font "NotoSans-10.5")
 ;;(setq emacs-font "anonymous Pro-12")
 ;;(setq emacs-font "Consolas-11")
-;;(setq emacs-font "MesloLGSDZ-10.5")
+;;(setq emacs-font "Lucida Grande Mono-10.5")
+;(setq emacs-font "MesloLGSDZ-10.5")
+(setq emacs-font "Hack-10.5")
 ;;(setq emacs-font "DejaVu Sans Mono-10.5")
 ;;(setq emacs-font "FiraMono-10.5")
+;;(setq emacs-font "Hermit-10")
 ;; (set-frame-font emacs-font)
 (if (display-graphic-p)
     (set-face-attribute 'default nil :font emacs-font))
@@ -208,6 +214,20 @@
 
 (when (locate-library "use-package")
   (require 'use-package))
+
+(use-package zeal-at-point
+  :ensure t
+  :bind (("C-c d" . zeal-at-point)))
+
+(use-package vimish-fold
+  :ensure t
+  :config
+  (vimish-fold-global-mode 1)
+  :bind (("C-c g" . vimish-fold-toggle)
+         ("C-c f f" . vimish-fold)
+         ("C-c f v" . vimish-fold-delete)
+         ("C-c f a" . vimish-fold-unfold-all)
+  ))
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here

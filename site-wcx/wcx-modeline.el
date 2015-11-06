@@ -9,7 +9,7 @@
   (eval-after-load "wcx-color-theme"
     '(sml/setup)
     )
-  (sml/apply-theme 'dark)
+  (sml/apply-theme 'respectful)
   )
 
 ;; Mode line setup
