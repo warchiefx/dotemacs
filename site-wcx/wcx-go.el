@@ -2,23 +2,25 @@
 ;;; Commentary:
 
 ;;; Code:
+(use-package "go-mode"
+  :ensure t
+  :mode "\\.go\\'"
+  :interpreter "go"
+  )
 
-(unless (package-installed-p 'go-mode)
-  (package-install 'go-mode))
-(when (locate-library "go-mode")
-  (unless (package-installed-p 'go-autocomplete)
-    (package-install 'go-autocomplete))
-  (unless (package-installed-p 'go-eldoc)
-    (package-install 'go-autocomplete))
-  (unless (package-installed-p 'go-snippets)
-    (package-install 'go-autocomplete))
+;; (use-package "go-autocomplete"
+;;   :ensure t
+;;   :bind (["M-return" ac-mode-map auto-complete])
 
-  (require 'go-autocomplete)
-  (require 'auto-complete-config)
-  (define-key ac-mode-map [M-return] 'auto-complete)
-  (require 'go-eldoc)
-  (add-hook 'go-mode-hook 'go-eldoc-setup)
-  (require 'go-snippets))
+(use-package "go-eldoc"
+  :ensure t
+  :config
+  (add-hook 'go-mode-hook 'go-eldoc-setup))
+
+(use-package "company-go")
+
+(use-package "go-snippets"
+  :ensure t)
 
 (provide 'wcx-go)
 ;;; wcx-go.el ends here

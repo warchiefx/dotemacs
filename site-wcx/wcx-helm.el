@@ -1,9 +1,13 @@
-(when (locate-library "helm")
+(use-package helm-projectile
+  :defer t)
+
+(use-package helm
+  :ensure t
+  :config
   (require 'helm-config)
-  (require 'helm-c-moccur)
+  ;;(require 'helm-c-moccur)
   (require 'helm-semantic)
   ;;(require 'helm-flycheck)
-
   (helm-mode 0)
   (helm-adaptative-mode)
 
@@ -43,7 +47,7 @@
 
     ;; When doing isearch, hand the word over to helm-swoop
     (define-key isearch-mode-map [C-f1] 'helm-swoop-from-isearch))
-  
+
   (defun wcx-helm ()
     (interactive)
     (let ((srcs '(
@@ -57,12 +61,13 @@
                   )))
       (if (projectile-project-p)
           (setq srcs (append srcs '(helm-source-projectile-files-list))))
-    (helm :sources srcs
-          :buffer "*helm*"
-          :prompt "> ")))
+      (helm :sources srcs
+            :buffer "*helm*"
+            :prompt "> ")))
+  :bind (([f1] . wcx-helm)
+         ([S-f1] . helm-do-grep)
+         ("M-y" . helm-show-kill-ring))
+  )
 
-  (global-set-key [f1] 'wcx-helm)
-  (global-set-key [S-f1] 'helm-do-grep)
-  (global-set-key (kbd "M-y") 'helm-show-kill-ring))
 
 (provide 'wcx-helm)

@@ -1,11 +1,9 @@
 
-(when (locate-library "projectile")
-  (load-library "projectile")
-  (projectile-global-mode))
-
-;; (when (locate-library "helm-projectile")
-;;   (load-library "helm-projectile"))
-
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-global-mode 1)
+  :diminish projectile-mode)
 
 (provide 'wcx-projects)
 ;;; wcx-projects.el ends here

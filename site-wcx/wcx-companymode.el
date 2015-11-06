@@ -1,6 +1,13 @@
+(use-package company
+  :ensure t
+  :demand t
+  :diminish company-mode)
 
-(when (locate-library "company")
-  (load-library "company")
-  (add-hook 'after-init-hook 'global-company-mode))
+(use-package company-quickhelp
+  :ensure t
+  :demand t)
+
+(global-company-mode 1)
+(company-quickhelp-mode 1)
 
 (provide 'wcx-companymode)

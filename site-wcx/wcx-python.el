@@ -1,7 +1,9 @@
-(when (locate-library "elpy")
-  (load-library "elpy")
+(use-package elpy
+  :ensure t
+  :config
   (elpy-enable)
-  (elpy-use-ipython))
+  ;;(elpy-use-ipython)
+  )
 
 (setq py-autopep8-options '("--max-line-length=120"))
 
@@ -23,10 +25,11 @@
   '(progn
      (define-key elpy-mode-map (kbd "SPC") 'kdt-python-method-space-replace)))
 
-;; Standard Jedi.el setting
-(when (locate-library "jedi")
-  (add-hook 'python-mode-hook 'jedi:setup)
-  (setq jedi:complete-on-dot t))
+
+;; (use-package py-smart-operator
+;;   :config
+;;   (add-hook 'python-mode-hook 'py-smart-operator-mode)
+;;   )
 
 (provide 'wcx-python)
 ;;; wcx-python.el ends here
