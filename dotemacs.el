@@ -6,6 +6,13 @@
 
 ;;; Code:
 ;; Turn off mouse interface early in startup to avoid momentary display
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -40,9 +47,8 @@
 (require 'wcx-ido)
 (require 'wcx-color-theme)
 (require 'wcx-modeline)
-(require 'wcx-helm)
 (require 'wcx-encryption)
-(require 'wcx-workgroups)
+;;(require 'wcx-workgroups)
 
 ;; Tools
 (require 'wcx-org)
@@ -59,10 +65,10 @@
 ;;(require 'wcx-elib)
 ;;(require 'wcx-ecb)
 ;;(require 'wcx-jabber)
-;; (require 'wcx-companymode)
 ;;(require 'wcx-minimap)
 (require 'wcx-flycheck)
 (require 'wcx-projects)
+(require 'wcx-helm)
 
 ;; Programming Modes
 ;;(require 'wcx-java)
@@ -76,7 +82,8 @@
 ;;(require 'wcx-go)
 (require 'wcx-javascript)
 ;;(require 'wcx-scala)
-(require 'wcx-auto-complete)
+;;(require 'wcx-auto-complete)
+(require 'wcx-companymode)
 (require 'wcx-jinja2)
 
 ;; Games
@@ -116,7 +123,7 @@
 (when (locate-library "diminish")
   (require 'diminish)
   
-  (diminish-afterload "magit" 'magit-auto-revert-mode)
+  ;;(diminish-afterload "magit" 'magit-auto-revert-mode)
   (diminish-afterload "guide-key" 'guide-key-mode)
   (diminish-afterload "whitespace-cleanup-mode" 'whitespace-cleanup-mode)
   (diminish-afterload "emmet-mode" 'emmet-mode)
