@@ -11,8 +11,8 @@
 ;; Version: $Id$
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when (locate-library "tramp")
-  (load-library "tramp")
-  (setq tramp-default-method "ftp"))
+;; (when (locate-library "tramp")
+;;   (load-library "tramp")
+;;   (setq tramp-default-method "ftp"))
 
 (provide 'wcx-tramp)
