@@ -11,41 +11,44 @@
 ;; Version: $Id$
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when (locate-library "vc-git")
-  (require 'vc-git)
+(use-package vc-git
+  :config
   (when (featurep 'vc-git) (add-to-list 'vc-handled-backends 'git))
   (require 'git)
   (autoload 'git-blame-mode "git-blame"
-    "Minor mode for incremental blame for Git." t))
+    "Minor mode for incremental blame for Git." t)
+  )
 
-(when (locate-library "magit")
-  (require 'magit)
-  (global-set-key [?\C-c ?\C-x ?g] 'magit-status))
+(use-package magit
+  :ensure t
+  :init
+  (setq magit-last-seen-setup-instructions "1.4.0")
+  :config
+  (defadvice magit-status (around magit-fullscreen activate)
+    (window-configuration-to-register :magit-fullscreen)
+    ad-do-it
+    (delete-other-windows))
 
-(when (locate-library "git-timemachine")
-  (load-library "git-timemachine")
-  (global-set-key [?\C-c ?\C-x ?h] 'git-timemachine))
+  (defun magit-quit-session ()
+    "Restores the previous window configuration and kills the magit buffer"
+    (interactive)
+    (kill-buffer)
+    (jump-to-register :magit-fullscreen))
 
-;; full screen magit-status
+  (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
+  :bind ("C-c C-x g" . magit-status)
+  )
 
-(defadvice magit-status (around magit-fullscreen activate)
-  (window-configuration-to-register :magit-fullscreen)
-  ad-do-it
-  (delete-other-windows))
-
-(defun magit-quit-session ()
-  "Restores the previous window configuration and kills the magit buffer"
-  (interactive)
-  (kill-buffer)
-  (jump-to-register :magit-fullscreen))
-
-(define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
-
-(when (locate-library "gist")
-  (load-library "gist"))
-
-(when (locate-library "magit-gitflow")
-  (require 'magit-gitflow)
+(use-package magit-gitflow
+  :ensure t
+  :config
   (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
+
+(use-package git-timemachine
+  :bind ("C-c C-x h". git-timemachine)
+  :defer t)
+
+(use-package gist
+  :defer t)
 
 (provide 'wcx-git)
