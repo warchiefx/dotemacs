@@ -47,7 +47,7 @@
  '(custom-enabled-themes (quote (sanityinc-tomorrow-bright)))
  '(custom-safe-themes
    (quote
-    ("806d8c827b214f5f60348114bd27c6dcb5d19047f7ac482ad61e8077a6c5ea60" "1934bf7e1713bf706a9cb36cc6a002741773aa42910ca429df194d007ee05c67" "784d5ee4d33befba6a21702ead67f98346770be7cc17ab64952ae3866a403743" "b21bf64c01dc3a34bc56fff9310d2382aa47ba6bc3e0f4a7f5af857cd03a7ef7" "696927ed40057050d219989dd473cc08fab27995e4febd6cf14429a448364bc6" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "025354235e98db5e7fd9c1a74622ff53ad31b7bde537d290ff68d85665213d85" "5ae4d52977a13212da7ec2f6932b6449f7d7c07b3cb01085f018c0d4a7f38cec" "bc89fda3d232a3daa4eb3a9f87d6ffe1272fea46e4cf86686d9e8078e4209e2c" "2fa2edc14dbb434fa1a08262c088a337fc4bb3efc12c89fdb9a288620b58c6f0" "f3d2144fed1adb27794a45e61166e98820ab0bbf3cc7ea708e4bf4b57447ee27" "5e6c2e2116c7a72ae0668390f92504fd0b77524cedd387582648b1aa1c582f59" "22558263b5a17ccb3544cca562fc070496eac03263a26f338f17761a4b223ad5" "68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" "636ecbf1091fbc99d95526d7a3a4810d1ccb58997e58bd3184863821303553f3" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "e57e7b19da7b4cd0e5512d5e9bc20d31c9cf50112c462de15a76bce0ea3c5ef5" "d7f1c86b425e148be505c689fc157d96323682c947b29ef00cf57b4e4e46e6c7" "9562e9eb5fd01677ac6b76b66f9a81338991fa9d270270802eeae5232c8da0a6" "0387cbee7d97362282bb951306113eab92bee32150bfcfc8edae17e8e876aec5" "e3e2db3b5acd2028f7f83581f9609e1e7369df20414ab53c9b2161e2eca08675" "1177fe4645eb8db34ee151ce45518e47cc4595c3e72c55dc07df03ab353ad132" "9f42bccce1e13fa5017eb8718574db099e85358b9f424db78e7318f86d1be08f" "1f3269f865292502f3dd577c3412110264ef3b89d8688aa5d649b4f496c780dc" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "fe6330ecf168de137bb5eddbf9faae1ec123787b5489c14fa5fa627de1d9f82b" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default)))
+    ("0aca3a26459bbb43a77f34bc22851c05c0a5d70d3230cbcdbda4fec20fef77e6" "1fab355c4c92964546ab511838e3f9f5437f4e68d9d1d073ab8e36e51b26ca6a" "3ed645b3c08080a43a2a15e5768b893c27f6a02ca3282576e3bc09f3d9fa3aaa" "fbb449ba8147e2914a9bebc2d6a210b8927313a6c1b70764a7f7c61a9bc04b90" "b8b5c353e73470377f2111fddb0ea652d35ce98e0a27a5c592d2ab9f66855106" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "9eb5269753c507a2b48d74228b32dcfbb3d1dbfd30c66c0efed8218d28b8f0dc" "5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" "12722541c8998f056b761bf63a92216aaf4610e4eb1afe7991842a31fa28b6d8" "ba9be9caf9aa91eb34cf11ad9e8c61e54db68d2d474f99a52ba7e87097fa27f5" "90d329edc17c6f4e43dbc67709067ccd6c0a3caa355f305de2041755986548f2" "bac3f5378bc938e96315059cd0488d6ef7a365bae73dac2ff6698960df90552d" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "2a12e95e9ee6ed57592e7df12f3f028205575e9b3affdb5e6fa589421c618136" "806d8c827b214f5f60348114bd27c6dcb5d19047f7ac482ad61e8077a6c5ea60" "1934bf7e1713bf706a9cb36cc6a002741773aa42910ca429df194d007ee05c67" "784d5ee4d33befba6a21702ead67f98346770be7cc17ab64952ae3866a403743" "b21bf64c01dc3a34bc56fff9310d2382aa47ba6bc3e0f4a7f5af857cd03a7ef7" "696927ed40057050d219989dd473cc08fab27995e4febd6cf14429a448364bc6" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "025354235e98db5e7fd9c1a74622ff53ad31b7bde537d290ff68d85665213d85" "5ae4d52977a13212da7ec2f6932b6449f7d7c07b3cb01085f018c0d4a7f38cec" "bc89fda3d232a3daa4eb3a9f87d6ffe1272fea46e4cf86686d9e8078e4209e2c" "2fa2edc14dbb434fa1a08262c088a337fc4bb3efc12c89fdb9a288620b58c6f0" "f3d2144fed1adb27794a45e61166e98820ab0bbf3cc7ea708e4bf4b57447ee27" "5e6c2e2116c7a72ae0668390f92504fd0b77524cedd387582648b1aa1c582f59" "22558263b5a17ccb3544cca562fc070496eac03263a26f338f17761a4b223ad5" "68769179097d800e415631967544f8b2001dae07972939446e21438b1010748c" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" "636ecbf1091fbc99d95526d7a3a4810d1ccb58997e58bd3184863821303553f3" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "e57e7b19da7b4cd0e5512d5e9bc20d31c9cf50112c462de15a76bce0ea3c5ef5" "d7f1c86b425e148be505c689fc157d96323682c947b29ef00cf57b4e4e46e6c7" "9562e9eb5fd01677ac6b76b66f9a81338991fa9d270270802eeae5232c8da0a6" "0387cbee7d97362282bb951306113eab92bee32150bfcfc8edae17e8e876aec5" "e3e2db3b5acd2028f7f83581f9609e1e7369df20414ab53c9b2161e2eca08675" "1177fe4645eb8db34ee151ce45518e47cc4595c3e72c55dc07df03ab353ad132" "9f42bccce1e13fa5017eb8718574db099e85358b9f424db78e7318f86d1be08f" "1f3269f865292502f3dd577c3412110264ef3b89d8688aa5d649b4f496c780dc" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "fe6330ecf168de137bb5eddbf9faae1ec123787b5489c14fa5fa627de1d9f82b" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default)))
  '(default-input-method "latin-1-prefix")
  '(display-time-mode nil)
  '(ecb-auto-activate nil)
@@ -66,6 +66,9 @@
  '(echo-keystrokes 0.01)
  '(electric-pair-inhibit-predicate (quote ignore))
  '(electric-pair-mode t)
+ '(elpy-modules
+   (quote
+    (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-sane-defaults)))
  '(erc-away-timestamp-format "<%h:%M>")
  '(exec-path
    (quote
@@ -75,7 +78,6 @@
  '(flycheck-flake8-maximum-line-length 125)
  '(flycheck-flake8rc "~/.flake8rc")
  '(frame-title-format (quote ("%f - " user-real-login-name "@" system-name)) t)
- '(global-company-mode t)
  '(global-font-lock-mode t nil (font-lock))
  '(global-pabbrev-mode t)
  '(global-semantic-highlight-edits-mode nil)
@@ -103,7 +105,7 @@
  '(inhibit-startup-echo-area-message "warchiefx")
  '(inhibit-startup-screen t)
  '(linum-format "  %d  ")
- '(magit-restore-window-configuration t)
+ '(magit-push-always-verify nil)
  '(mail-user-agent (quote gnus-user-agent))
  '(make-backup-files nil)
  '(menu-bar-mode nil)
@@ -114,7 +116,7 @@
  '(nxml-slash-auto-complete-flag t)
  '(org-agenda-files
    (quote
-    ("~/Dropbox/log.org" "~/Dropbox/personal.org" "~/Dropbox/Work/orgfiles")))
+    ("/home/warchiefx/Dropbox/Work/orgfiles/goodbed.org" "~/Dropbox/log.org" "~/Dropbox/personal.org" "/home/warchiefx/Dropbox/Work/orgfiles/azul.com.do.org" "/home/warchiefx/Dropbox/Work/orgfiles/caedro.org" "/home/warchiefx/Dropbox/Work/orgfiles/codemera.org" "/home/warchiefx/Dropbox/Work/orgfiles/coworking.org" "/home/warchiefx/Dropbox/Work/orgfiles/cto_stuff.org" "/home/warchiefx/Dropbox/Work/orgfiles/garnier_ecommerce.org" "/home/warchiefx/Dropbox/Work/orgfiles/imprimela.org" "/home/warchiefx/Dropbox/Work/orgfiles/ion8.org" "/home/warchiefx/Dropbox/Work/orgfiles/lesite.ca.org" "/home/warchiefx/Dropbox/Work/orgfiles/mesuma.org" "/home/warchiefx/Dropbox/Work/orgfiles/mgt.org" "/home/warchiefx/Dropbox/Work/orgfiles/mimetro.org" "/home/warchiefx/Dropbox/Work/orgfiles/nerdot.org" "/home/warchiefx/Dropbox/Work/orgfiles/projects.org" "/home/warchiefx/Dropbox/Work/orgfiles/pymes_do.org" "/home/warchiefx/Dropbox/Work/orgfiles/sirecine.org" "/home/warchiefx/Dropbox/Work/orgfiles/solucionalo.org" "/home/warchiefx/Dropbox/Work/orgfiles/solutions_engine.org" "/home/warchiefx/Dropbox/Work/orgfiles/sportrfid-design.org" "/home/warchiefx/Dropbox/Work/orgfiles/sportrfid.org" "/home/warchiefx/Dropbox/Work/orgfiles/whipcode.org")))
  '(org-hide-leading-stars t)
  '(org-insert-mode-line-in-empty-file t)
  '(org-src-fontify-natively t)
@@ -124,6 +126,22 @@
      ("marmalade" . "http://marmalade-repo.org/packages/")
      ("melpa" . "http://melpa.milkbox.net/packages/")
      ("org" . "http://orgmode.org/elpa/"))))
+ '(package-selected-packages
+   (quote
+    (vimish-fold zeal-at-point company-go company-jedi company-quickhelp company-restclient company-web go-complete quasi-monochrome-theme cbm ox-gfm magit-gitflow magit common-lisp-snippets elpy odersky-theme
+                 (symbol-value
+                  (quote t))
+                 (symbol-value
+                  (quote t))
+                 (symbol-value
+                  (quote t))
+                 (symbol-value
+                  (quote t))
+                 (symbol-value
+                  (quote t))
+                 (symbol-value
+                  (quote t))
+                 yascroll yaml-mode yagist workgroups2 whitespace-cleanup-mode wgrep web-mode w3m virtualenv use-package ucs-utils toggle-quotes textmate tern-auto-complete tabulated-list switch-window string-utils soft-charcoal-theme smooth-scroll smex smart-shift smart-mode-line-powerline-theme seti-theme save-packages sass-mode restclient rainbow-mode pyvirtualenv pyvenv python-pep8 py-autopep8 pony-mode pip-requirements pep8 paredit paradox ox-reveal otp org-projectile nose nginx-mode nav-flash multiple-cursors monky mongo minimap markdown-mode mark-multiple mark-more-like-this malabar-mode lua-mode loccur less-css-mode kurecolor jedi iedit idomenu ido-ubiquitous hungry-delete highlight-symbol highlight-parentheses highlight-indentation hideshowvis helm-themes helm-swoop helm-pydoc helm-projectile helm-mt helm-flycheck helm-c-moccur guide-key-tip gruvbox-theme gruber-darker-theme groovy-mode graphviz-dot-mode goto-last-change go-snippets go-projectile go-autocomplete git-timemachine git-commit gh fuzzy frame-tag flycheck-color-mode-line flx-ido firecode-theme find-file-in-project fastnav expand-region exec-path-from-shell evil-numbers evil emmet-mode emacsd-tile ecb-snapshot dropdown-list dired+ csv-mode color-theme-sanityinc-tomorrow color-theme color-file-completion coffee-mode button-lock autopair auto-indent-mode auto-dim-other-buffers angular-snippets android-mode all aggressive-indent adaptive-wrap ac-js2 abl-mode)))
  '(paradox-automatically-star t)
  '(paradox-github-token "82ab00370c54d392703cf9d0d7f32486c3e28e66")
  '(puppet-indent-level tab-width)
@@ -167,16 +185,15 @@
  '(sml/show-battery nil)
  '(sml/show-client t)
  '(sml/show-time nil)
- '(sml/theme (quote dark))
  '(sml/use-projectile-p (quote before-prefixes))
  '(sql-sqlite-program "sqlite3")
  '(tab-width 4)
  '(text-mode-hook (quote (turn-on-auto-fill text-mode-hook-identify)))
  '(tool-bar-mode nil)
- '(tramp-default-method "ftp")
+ '(tramp-default-method "ssh")
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(user-full-name "Ricardo Restituyo")
- '(user-mail-address "warchiefx@gmail.com")
+ '(user-mail-address "ricardo@codemera.com")
  '(virtualenv-workon-starts-python nil)
  '(w3m-home-page "about:blank")
  '(w3m-use-cookies t))
