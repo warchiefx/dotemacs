@@ -3,8 +3,8 @@
 
 ;;; Code:
 
-(when (locate-library "save-packages")
-  (install-saved-packages "~/.emacs.d/packages.txt"))
+;;(when (locate-library "save-packages")
+;;  (install-saved-packages "~/.emacs.d/packages.txt"))
 
 
 (provide 'wcx-requirements)
