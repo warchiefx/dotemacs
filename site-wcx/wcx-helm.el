@@ -9,7 +9,6 @@
   (require 'helm-semantic)
   ;;(require 'helm-flycheck)
   (helm-mode 0)
-  (helm-adaptative-mode)
 
   (setq
    helm-google-suggest-use-curl-p t
@@ -42,7 +41,7 @@
   (when (locate-library "helm-swoop")
     (require 'helm-swoop)
     (global-set-key [C-f1] 'helm-swoop)
-    (global-set-key [C-f4] 'helm-multi-swoop-all)
+    (global-set-key [C-f5] 'helm-multi-swoop-all)
     (global-set-key [C-S-f1] 'helm-swoop-back-to-last-point)
 
     ;; When doing isearch, hand the word over to helm-swoop

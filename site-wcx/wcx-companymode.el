@@ -3,11 +3,10 @@
   :demand t
   :diminish company-mode)
 
-(use-package company-quickhelp
-  :ensure t
-  :demand t)
+;; (use-package company-quickhelp
+;;   :ensure t
+;;   :demand t)
 
 (global-company-mode 1)
-(company-quickhelp-mode 1)
 
 (provide 'wcx-companymode)

@@ -1,13 +1,7 @@
-(when (locate-library "workgroups2")
-  (require 'workgroups2)
-  ;; Your settings here
-
-  ;;(setq wg-session-load-on-start t)    ; default: (not (daemonp))
-
-  ;; Change prefix key (before activating WG)
-  (setq wg-prefix-key (kbd "C-c z"))
-
-  ;; Change workgroups session file
+(use-package workgroups2
+  :ensure t
+  :config
+  (setq wg-prefix-key [f7])
   (setq wg-session-file "~/.emacs.d/.emacs_workgroups")
   (workgroups-mode 1))
 

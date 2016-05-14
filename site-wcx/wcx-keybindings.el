@@ -137,11 +137,13 @@
 (when (locate-library "pyvenv")
   (global-set-key [?\C-c ?\C-x ?v] 'pyvenv-workon))
 
-(when (locate-library "guide-key")
-  (load-library "guide-key")
-  (setq guide-key/guide-key-sequence '("C-c p" "C-c C-x" "C-c" "C-c z"))
+(use-package guide-key
+  :ensure t
+  :config
+  (setq guide-key/guide-key-sequence '("C-c p" "C-c C-x" "C-c" "C-c z" "C-c o" "C-,"))
   (guide-key-mode 1)
-  (global-set-key [?\C-c ?\C-x ?k] 'guide-key-mode))  ; Enable guide-key-mode
+  :bind ([?\C-c ?\C-x ?k] . guide-key-mode))
+
 
 (when (locate-library "highlight-symbol")
   (require 'highlight-symbol)
@@ -159,5 +161,32 @@
   (global-set-key [(meta .)] 'goto-last-change))
 
 (global-set-key [?\C-x ?\C-b] 'ibuffer)
+
+(use-package ibuffer-vc
+  :ensure t
+  :config
+  (add-hook 'ibuffer-hook
+            (lambda ()
+              (ibuffer-auto-mode 1)
+              (ibuffer-vc-set-filter-groups-by-vc-root)
+              (unless (eq ibuffer-sorting-mode 'alphabetic)
+                (ibuffer-do-sort-by-alphabetic))))
+  (setq ibuffer-formats
+        '((mark modified read-only vc-status-mini " "
+                (name 18 18 :left :elide)
+                " "
+                (size 9 -1 :right)
+                " "
+                (mode 16 16 :left :elide)
+                " "
+                (vc-status 16 16 :left)
+                " "
+                filename-and-process)))
+  (setq ibuffer-expert t)
+  (setq ibuffer-show-empty-filter-groups nil))
+
+(use-package embrace
+  :ensure t
+  :bind ("C-," . embrace-commander))
 
 (provide 'wcx-keybindings)

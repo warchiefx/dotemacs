@@ -8,4 +8,7 @@
                          ("elpy" . "http://jorgenschaefer.github.io/packages/")
                          ("org" . "http://orgmode.org/elpa/")))
 
+; Workaround for missing url-insert-buffer-contents function
+(load-library "url-handlers")
+
 (provide 'wcx-package)

@@ -209,10 +209,18 @@
 ;;(load-theme 'spacemacs-dark)
 
 ;;(wcx-color-theme-4)
-(load-theme 'sanityinc-tomorrow-night)
-;;(load-theme 'abyss)
-;;(load-theme 'quasi-monochrome)
+;;(load-theme 'sanityinc-tomorrow-night)
+;;(load-theme 'danneskjold)
+(load-theme 'material)
+;;(load-theme 'tao-yin)
 ;(load-theme 'atom-dark)
+;;(load-theme 'paganini)
+
+;; (use-package darkokai-theme
+;;   :ensure t
+;;   :config
+;;   (setq darkokai-mode-line-padding 1)
+;;   (load-theme 'darkokai t))
 
 (provide 'wcx-color-theme)
 ;;; wcx-color-theme.el ends here

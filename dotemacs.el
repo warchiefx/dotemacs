@@ -48,7 +48,7 @@
 (require 'wcx-color-theme)
 (require 'wcx-modeline)
 (require 'wcx-encryption)
-;;(require 'wcx-workgroups)
+;; (require 'wcx-workgroups)
 
 ;; Tools
 (require 'wcx-org)
@@ -69,6 +69,7 @@
 (require 'wcx-flycheck)
 (require 'wcx-projects)
 (require 'wcx-helm)
+(require 'wcx-codesearch)
 
 ;; Programming Modes
 ;;(require 'wcx-java)

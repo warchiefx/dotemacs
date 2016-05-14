@@ -6,8 +6,6 @@
   (ac-config-default)
   (global-auto-complete-mode t)
 
-  ;; Show 0.8 second later
-  (setq ac-auto-show-menu 0.8)
   (global-set-key [M-return] 'auto-complete)
 
   ;; android specific settings
