@@ -8,5 +8,6 @@
 ;;   :demand t)
 
 (global-company-mode 1)
+(add-to-list 'company-backends 'company-restclient)
 
 (provide 'wcx-companymode)

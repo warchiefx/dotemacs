@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code
 (menu-bar-mode 0)
+
 ;;(horizontal-scroll-bar-mode 0)
 (setq frame-title-format "emacs [%b]"
       icon-title-format "emacs [%b]"
