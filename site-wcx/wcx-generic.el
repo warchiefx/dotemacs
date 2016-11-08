@@ -86,6 +86,12 @@
                                    (smex-major-mode-commands)))
 
 
+(use-package ido-vertical-mode
+  :ensure t
+  :config
+  (ido-vertical-mode 1)
+  (setq ido-vertical-define-keys 'C-n-C-p-up-and-down))
+
 (when (locate-library "yascroll")
   (load-library "yascroll")
   (global-yascroll-bar-mode 1))
