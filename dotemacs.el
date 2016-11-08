@@ -35,6 +35,9 @@
 
 (setq emacs-load-start-time (current-time))
 
+(when (locate-library "use-package")
+  (require 'use-package))
+
 ;; Custom stuff
 ;; (require 'wcx-evil)
 (require 'wcx-package)

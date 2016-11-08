@@ -213,9 +213,6 @@
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
-(when (locate-library "use-package")
-  (require 'use-package))
-
 (use-package zeal-at-point
   :ensure t
   :bind (("C-c d" . zeal-at-point)))
