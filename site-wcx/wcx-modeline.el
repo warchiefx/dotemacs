@@ -2,15 +2,30 @@
 ;;; Commentary:
 ;;; Code:
 
-(when (locate-library "smart-mode-line")
-  (load-library "smart-mode-line")
-  (setq sml/override-theme nil)
-  (setq powerline-arrow-shape 'curve)
-  (eval-after-load "wcx-color-theme"
-    '(sml/setup)
-    )
-  (sml/apply-theme 'respectful)
-  )
+;; (when (locate-library "smart-mode-line")
+;;   (load-library "smart-mode-line")
+;;   (setq sml/override-theme nil)
+;;   (setq powerline-arrow-shape 'curve)
+;;   (eval-after-load "wcx-color-theme"
+;;     '(sml/setup)
+;;     )
+;;   (sml/apply-theme 'respectful)
+;;   )
+
+(use-package spaceline
+  :ensure t
+  :config
+  (require 'spaceline-config)
+  (spaceline-toggle-projectile-root-on)
+  (spaceline-emacs-theme)
+  (spaceline-helm-mode)
+  (spaceline-info-mode)
+  (spaceline-toggle-projectile-root-on))
+
+;; (use-package spaceline-all-the-icons
+;;     :ensure t
+;;     :after spaceline
+;;     :config (spaceline-all-the-icons-theme))
 
 ;; Mode line setup
 ;; (setq-default
