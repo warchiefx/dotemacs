@@ -41,7 +41,10 @@
   :ensure t
   :config
   (add-hook 'python-mode-hook 'anaconda-mode)
-  (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
+  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+  :diminish anaconda-mode
+  :diminish eldoc-mode
+  :diminish auto-revert-mode)
 
 (use-package company-anaconda
   :ensure t
@@ -49,6 +52,11 @@
   (eval-after-load "company"
     '(progn
        (add-to-list 'company-backends 'company-anaconda))))
+
+;; ipython support, also remove weird character on ipython prompt
+(when (executable-find "ipython")
+  (setq python-shell-interpreter "ipython")
+  (setq python-shell-interpreter-args "--simple-prompt"))
 
 (provide 'wcx-python)
 ;;; wcx-python.el ends here
