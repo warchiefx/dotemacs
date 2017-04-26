@@ -202,25 +202,29 @@
   (provide 'wcx-color-theme-4)
   (provide 'wcx-color-theme-5))
 
-;; (use-package stekene-theme
-;;   :ensure t)
-
-;;(load-theme 'stekene-dark t)
-;;(load-theme 'spacemacs-dark)
 
 ;;(wcx-color-theme-4)
 ;;(load-theme 'sanityinc-tomorrow-night)
 ;;(load-theme 'danneskjold)
 ;;(load-theme 'material)
 ;;(load-theme 'tao-yin)
-;(load-theme 'atom-dark)
 ;;(load-theme 'paganini)
 
-(use-package darkokai-theme
-  :ensure t
-  :config
-  (setq darkokai-mode-line-padding 1)
-  (load-theme 'darkokai t))
+ ;; (use-package darkokai-theme
+ ;;   :ensure t
+ ;;   :config
+ ;;   (setq darkokai-mode-line-padding 1)
+ ;;   (load-theme 'darkokai t))
+
+(use-package doom-themes
+   :ensure t
+   :config
+   (setq doom-enable-bold t
+         doom-enable-italic t)
+   (setq org-fontify-whole-heading-line t
+         org-fontify-done-headline t
+         org-fontify-quote-and-verse-blocks t)
+   (load-theme 'doom-molokai t))
 
 (provide 'wcx-color-theme)
 ;;; wcx-color-theme.el ends here
