@@ -203,11 +203,6 @@
   (load-library "smart-shift")
   (global-smart-shift-mode 1))
 
-(unless (fboundp 'hungry-delete-mode)
-  (package-install 'hungry-delete))
-
-(require 'hungry-delete)
-(global-hungry-delete-mode)
 
 (when (locate-library "toggle-quotes")
   (load-library "toggle-quotes")
@@ -232,6 +227,19 @@
          ("C-c f v" . vimish-fold-delete)
          ("C-c f a" . vimish-fold-unfold-all)
   ))
+
+(use-package neotree
+  :ensure t
+  :config
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  :bind (([f8] . neotree-toggle)))
+
+(use-package nlinum
+  :ensure t
+  :config (global-nlinum-mode))
+
+(use-package csv
+  :ensure t)
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here

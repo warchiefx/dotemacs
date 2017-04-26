@@ -9,7 +9,6 @@
 (global-set-key [?\C-c ?\C-x ?c] 'comment-or-uncomment-region)
 (global-set-key [?\C-c ?\C-x ?w] 'whitespace-cleanup)
 (global-set-key [M-return] 'expand-abbrev)
-(global-set-key (quote [f8]) 'gnus)
 
 (defun wcx/autopep8()
   (interactive)
@@ -145,12 +144,12 @@
   :bind ([?\C-c ?\C-x ?k] . guide-key-mode))
 
 
-(when (locate-library "highlight-symbol")
-  (require 'highlight-symbol)
-  (global-set-key [f6] 'highlight-symbol-at-point)
-  (global-set-key [(control f6)] 'highlight-symbol-next)
-  (global-set-key [(shift f6)] 'highlight-symbol-prev)
-  (global-set-key [(meta f6)] 'highlight-symbol-query-replace))
+(when (locate-library "symbol-overlay")
+  (require 'symbol-overlay)
+  (global-set-key [f6] 'symbol-overlay-put)
+  (global-set-key [(control f6)] 'symbol-overlay-switch-forward)
+  (global-set-key [(shift f6)] 'symbol-overlay-switch-backward)
+  (global-set-key [(meta f6)] 'symbol-overlay-rename))
 
 (when (locate-library "goto-chg")
   (require 'goto-chg)
