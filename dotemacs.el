@@ -12,6 +12,7 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
+(setq redisplay-dont-pause t)
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -26,6 +27,9 @@
 (add-to-list 'load-path site-lisp-path)
 (add-to-list 'load-path site-wcx-path)
 
+(setenv "PATH" (concat (getenv "PATH") ":~/.scripts"))
+(setq exec-path (append exec-path '("~/.scripts")))
+
 ;; Move custom definitions to another place.
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
@@ -36,7 +40,9 @@
 (setq emacs-load-start-time (current-time))
 
 (when (locate-library "use-package")
-  (require 'use-package))
+  (require 'use-package)
+  (use-package better-defaults
+    :ensure t))
 
 ;; Custom stuff
 ;; (require 'wcx-evil)
@@ -52,11 +58,13 @@
 (require 'wcx-modeline)
 (require 'wcx-encryption)
 ;; (require 'wcx-workgroups)
+(require 'wcx-debugger)
 
 ;; Tools
 (require 'wcx-org)
 ;; (require 'wcx-w3m)
-(require 'wcx-gnus)
+;;(require 'wcx-gnus)
+;;(require 'wcx-wanderlust)
 ;;(require 'wcx-gnus-nnrss)
 ;;(require 'wcx-bbdb)
 (require 'wcx-tramp)
