@@ -2,15 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (when (locate-library "smart-mode-line")
-;;   (load-library "smart-mode-line")
+
+;; (use-package smart-mode-line
+;;   :ensure t
+;;   :config
 ;;   (setq sml/override-theme nil)
 ;;   (setq powerline-arrow-shape 'curve)
 ;;   (eval-after-load "wcx-color-theme"
 ;;     '(sml/setup)
 ;;     )
-;;   (sml/apply-theme 'respectful)
-;;   )
+;;   (sml/apply-theme 'respectful))
 
 (use-package spaceline
   :ensure t
@@ -22,10 +23,16 @@
   (spaceline-info-mode)
   (spaceline-toggle-projectile-root-on))
 
-;; (use-package spaceline-all-the-icons
-;;     :ensure t
-;;     :after spaceline
-;;     :config (spaceline-all-the-icons-theme))
+(use-package spaceline-all-the-icons
+    :ensure t
+    :after spaceline
+    :config (spaceline-all-the-icons-theme)
+    ;;(spaceline-all-the-icons--setup-git-ahead)       ;; Enable # of commits ahead of upstream in git
+    (spaceline-all-the-icons--setup-paradox)         ;; Enable Paradox mode line
+    (spaceline-all-the-icons--setup-neotree)         ;; Enable Neotree mode line
+    (spaceline-all-the-icons--setup-anzu)            ;; Enable anzu searching
+    (spaceline-toggle-all-the-icons-git-status-on)
+)
 
 ;; Mode line setup
 ;; (setq-default
