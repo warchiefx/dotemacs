@@ -262,5 +262,12 @@ or the current buffer directory."
 (use-package csv
   :ensure t)
 
+(use-package anzu
+  :ensure t
+  :config
+  (global-anzu-mode +1)
+  (global-set-key [remap query-replace] 'anzu-query-replace)
+  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp))
+
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
