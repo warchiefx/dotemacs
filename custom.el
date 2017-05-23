@@ -167,6 +167,8 @@
  '(select-enable-primary nil)
  '(semantic-inhibit-functions nil)
  '(semantic-python-dependency-system-include-path (quote ("/usr/lib/python2.7/")))
+ '(shell-pop-shell-type (quote ("sane-term" "*shell*" (lambda nil (sane-term)))))
+ '(shell-pop-universal-key nil)
  '(show-paren-delay 0)
  '(show-paren-mode t nil (paren))
  '(size-indication-mode t)

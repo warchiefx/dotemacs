@@ -59,6 +59,7 @@
 (require 'wcx-encryption)
 ;; (require 'wcx-workgroups)
 (require 'wcx-debugger)
+(require 'wcx-terminal)
 
 ;; Tools
 (require 'wcx-org)
