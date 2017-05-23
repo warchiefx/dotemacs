@@ -2,9 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(when (locate-library "web-mode")
-  (load-library "web-mode")
-
+(use-package web-mode
+  :ensure t
+  :config
   (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
@@ -16,14 +16,16 @@
 
   (setq web-mode-engines-alist
         '(("jinja2"    . "\\.html\\'")
-          ))
+          )))
 
-  (when (locate-library "emmet-mode")
-    (require 'emmet-mode)
-    (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-    (add-hook 'html-mode-hook 'emmet-mode)
-    (add-hook 'css-mode-hook 'emmet-mode)
-    (add-hook 'web-mode-hook 'emmet-mode)))
+(use-package emmet-mode
+  :ensure t
+  :after web-mode
+  :config
+  (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+  (add-hook 'html-mode-hook 'emmet-mode)
+  (add-hook 'css-mode-hook 'emmet-mode)
+  (add-hook 'web-mode-hook 'emmet-mode))
 
 (provide 'wcx-web-mode)
 ;;; wcx-web-mode.el ends here
