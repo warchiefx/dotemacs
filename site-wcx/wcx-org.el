@@ -14,25 +14,24 @@
 ;; Org-mode setup
 ;; The following lines are always needed. Choose your own keys.
 
-(when (locate-library "org")
-  (load-library "org")
-  (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
-  (global-set-key "\C-cl" 'org-store-link)
+(use-package org
+  :ensure t
+  :config
+    (global-set-key "\C-cl" 'org-store-link)
   (global-set-key (quote [f9]) 'org-agenda)
   (global-set-key "\C-cb" 'org-ido-switchb)
   (global-set-key [?\C-c ?\C-x ?o] 'org-clock-jump-to-current-clock)
 
-  (require 'ox-md)
-  (require 'ox-gfm)
 
   (defun org-summary-todo (n-done n-not-done)
     "Switch entry to DONE when all subentries are done, to TODO otherwise."
     (let (org-log-done org-log-states)   ; turn off logging
       (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
   (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
-  (setq org-todo-keywords '((sequence "TODO(t)" "OPTIONAL(o)" "EXECUTING(e!)" "FEEDBACK(k@/!)" "VERIFY(v!)" "|" "DONE(d!)" "DELEGATED(@/!)" "CANCELLED(@)")
+  (setq org-todo-keywords '((sequence "TODO(t)" "OPTIONAL(o)" "EXECUTING(e!)" "FEEDBACK(k@/!)" "VERIFY(v!)" "|" "DONE(d!)" "CANCELLED(@)")
                             (sequence "INVESTIGATE" "READ" "READING" "|" "COMPLETED(c!)")
+                            (sequence "DELEGATED(@/!)" "|" "DONE(D!)")
                             (sequence "FIX(f)" "FIXING(F!)" "INVESTIGATING" "STUCK(s@/!)" "SOLUTIONKNOWN(S@)" "|" "FIXED(x!)" "WONTFIX(n@/!)")))
 
   (setq org-log-done 'time)
@@ -65,35 +64,13 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((sql . t))))
-;; add additional languages with '((language . t))))
 
-;; (use-package org-projectile
-;;   :bind (("C-c n p" . org-projectile:project-todo-completing-read)
-;;          ("C-c c" . org-capture))
-;;   :config
-;;   (progn
-;;     (setq org-projectile:projects-file
-;;           "~/Dropbox/Work/orgfiles/projects.org")
-;;     (add-to-list 'org-capture-templates (org-projectile:project-todo-entry "p")))
-;;   :ensure t)
+(use-package ox-qmd
+  :after org
+  :ensure t)
 
-;; (when (locate-library "ox-reveal")
-;;   (require 'org-reveal))
-
-;; (when (locate-library "org-present")
-;;   (eval-after-load "org-present"
-;;     '(progn
-;;        (add-hook 'org-present-mode-hook
-;;                  (lambda ()
-;;                    (org-present-big)
-;;                    (org-display-inline-images)
-;;                    (org-present-hide-cursor)
-;;                    (org-present-read-only)))
-;;        (add-hook 'org-present-mode-quit-hook
-;;                  (lambda ()
-;;                    (org-present-small)
-;;                    (org-remove-inline-images)
-;;                    (org-present-show-cursor)
-;;                    (org-present-read-write))))))
+(use-package ox-gfm
+  :after org
+  :ensure t)
 
 (provide 'wcx-org)

@@ -5,6 +5,9 @@
   (projectile-global-mode 1)
   :diminish projectile-mode)
 
+(use-package helm-projectile
+  :ensure t)
+
 ;; (use-package persp-mode
 ;;   :ensure t
 ;;   :config

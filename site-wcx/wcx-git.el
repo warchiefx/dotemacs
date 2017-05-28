@@ -45,10 +45,12 @@
   (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
 
 (use-package git-timemachine
+  :ensure t
   :bind ("C-c C-x h". git-timemachine)
   :defer t)
 
 (use-package gist
+  :ensure t
   :defer t)
 
 (provide 'wcx-git)

@@ -3,6 +3,8 @@
 ;;; Code
 (menu-bar-mode 0)
 
+(require 'iso-transl)  ;; Handle dead keys and such
+
 ;;(horizontal-scroll-bar-mode 0)
 (setq frame-title-format "emacs [%b]"
       icon-title-format "emacs [%b]"
@@ -18,7 +20,7 @@
 ;;(setq emacs-font "M+ 1p regular-11")
 ;;(setq emacs-font "SourceCode Pro-10.5")
 ;;(setq emacs-font "PragmataPro-11")
-;;(setq emacs-font "Mensch-10.5")
+;;(setq emacs-font "Mensch-11")
 ;;(setq emacs-font "Monaco-11")
 ;;(setq emacs-font "Inconsolata-11")
 ;;(setq emacs-font "Inconsolata-g-11")
@@ -71,7 +73,10 @@
 ;; Buffer naming strategy
 (require 'uniquify)
 
-(global-set-key [(meta x)] (lambda ()
+(use-package smex
+  :ensure t
+  :config
+  (global-set-key [(meta x)] (lambda ()
                              (interactive)
                              (or (boundp 'smex-cache)
                                  (smex-initialize))
@@ -83,7 +88,7 @@
                                    (or (boundp 'smex-cache)
                                        (smex-initialize))
                                    (global-set-key [(shift meta x)] 'smex-major-mode-commands)
-                                   (smex-major-mode-commands)))
+                                   (smex-major-mode-commands))))
 
 
 (use-package ido-vertical-mode
@@ -92,53 +97,36 @@
   (ido-vertical-mode 1)
   (setq ido-vertical-define-keys 'C-n-C-p-up-and-down))
 
-(when (locate-library "yascroll")
-  (load-library "yascroll")
+
+(use-package yascroll
+  :ensure t
+  :config
   (global-yascroll-bar-mode 1))
 
-;; (when (locate-library "smooth-scroll")
-;;   (load-library "smooth-scroll")
-;;   (smooth-scroll-mode))
+(use-package ido-ubiquitous
+  :ensure t)
 
-(when (locate-library "json")
-  (load-library "json"))
+(use-package rfringe
+  :ensure t)
 
-(when (locate-library "ido-ubiquitous")
-  (load-library "ido-ubiquitous"))
+(use-package emacsd-tile
+  :ensure t)
 
-(when (locate-library "rfringe")
-  (load-library "rfringe"))
+(use-package frame-tag
+  :ensure t
+  :config (frame-tag-mode 1))
 
-(when (locate-library "emacsd-tile")
-  (load-library "emacsd-tile"))
-
-(when (locate-library "frame-tag")
-  (load-library "frame-tag")
-  (frame-tag-mode 1))
-
-(when (locate-library "git-commit")
-  (load-library "git-commit"))
-
-(when (locate-library "hideshowvis")
-  (load-library "hideshowvis")
+(use-package hideshowvis
+  :ensure t
+  :config
   (hideshowvis-minor-mode 1))
 
-(when (locate-library "loccur")
-  (load-library "loccur")
+(use-package git-commit)
 
-  ;; defines shortcut for loccur of the current word
-  (define-key global-map [(control o)] 'loccur-current)
-  ;; defines shortcut for the interactive loccur command
-  (define-key global-map [(control meta o)] 'loccur)
-  ;; defines shortcut for the loccur of the previously found word
-  (define-key global-map [(control shift o)] 'loccur-previous-match))
+(use-package switch-window
+  :ensure t
+  :bind (("C-x o" . switch-window)))
 
-(when (locate-library "dropdown-list")
-  (load-library "dropdown-list"))
-
-(when (locate-library "switch-window")
-  (require 'switch-window)
-  (global-set-key (kbd "C-x o") 'switch-window))
 
 ;; Avoid having to delete extra spaces after kill-line on end of line
 (defadvice kill-line (before check-position activate)
@@ -180,15 +168,12 @@
 
 ;; (add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode +1)))
 
-(when (locate-library "dired+")
-  (load-library "dired+"))
+(use-package dired+
+  :ensure t)
 
-(when (locate-library "whitespace-cleanup-mode")
-  (load-library "whitespace-cleanup-mode")
-  (global-whitespace-cleanup-mode))
-
-(when (locate-library "exec-path-from-shell")
-  (exec-path-from-shell-initialize))
+(use-package whitespace-cleanup-mode
+  :ensure t
+  :config (global-whitespace-cleanup-mode))
 
 (global-ede-mode 1)
 (require 'semantic/sb)
@@ -199,15 +184,9 @@
 (electric-pair-mode)  ;; Replaces autopair
 (electric-indent-mode 0)  ;; Currently annoying on python-mode
 
-(when (locate-library "smart-shift")
-  (load-library "smart-shift")
-  (global-smart-shift-mode 1))
-
-
-(when (locate-library "toggle-quotes")
-  (load-library "toggle-quotes")
-
-  (global-set-key [?\C-c ?\C-x ?q] 'toggle-quotes))
+(use-package smart-shift
+  :ensure t
+  :config (global-smart-shift-mode 1))
 
 ;; Save point position between sessions
 (require 'saveplace)
@@ -218,15 +197,15 @@
   :ensure t
   :bind (("C-c d" . zeal-at-point)))
 
-(use-package vimish-fold
-  :ensure t
-  :config
-  (vimish-fold-global-mode 1)
-  :bind (("C-c g" . vimish-fold-toggle)
-         ("C-c f f" . vimish-fold)
-         ("C-c f v" . vimish-fold-delete)
-         ("C-c f a" . vimish-fold-unfold-all)
-  ))
+;; (use-package vimish-fold
+;;   :ensure t
+;;   :config
+;;   (vimish-fold-global-mode 1)
+;;   :bind (("C-c g" . vimish-fold-toggle)
+;;          ("C-c f f" . vimish-fold)
+;;          ("C-c f v" . vimish-fold-delete)
+;;          ("C-c f a" . vimish-fold-unfold-all)
+;;   ))
 
 (use-package neotree
   :ensure t
@@ -259,7 +238,7 @@ or the current buffer directory."
   :ensure t
   :bind (("C-c C-x l" . global-nlinum-mode)))
 
-(use-package csv
+(use-package csv-mode
   :ensure t)
 
 (use-package anzu

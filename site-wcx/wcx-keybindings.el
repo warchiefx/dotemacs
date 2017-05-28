@@ -119,6 +119,7 @@
   (global-set-key [?\C-c ?m ?p] 'mc/mark-previous-like-this)
   (global-set-key [?\C-c ?m ?a] 'mc/mark-all-like-this))
 
+
 (when (locate-library "mark-more-like-this")
   (load-library "mark-more-like-this")
 
@@ -139,25 +140,22 @@
 (use-package guide-key
   :ensure t
   :config
-  (setq guide-key/guide-key-sequence '("C-c p" "C-c C-x" "C-c" "C-c z" "C-c o" "C-,"))
-  (guide-key-mode 1)
+  (setq guide-key/guide-key-sequence '("C-c p" "C-c C-x" "C-c" "C-c f" "C-c o" "C-,"))
+  (guide-key-mode t)
   :bind ([?\C-c ?\C-x ?k] . guide-key-mode))
 
 
-(when (locate-library "symbol-overlay")
-  (require 'symbol-overlay)
-  (global-set-key [f6] 'symbol-overlay-put)
-  (global-set-key [(control f6)] 'symbol-overlay-switch-forward)
-  (global-set-key [(shift f6)] 'symbol-overlay-switch-backward)
-  (global-set-key [(meta f6)] 'symbol-overlay-rename))
+(use-package symbol-overlay
+  :ensure t
+  :bind (([f6] . symbol-overlay-put)
+         ([(control f6)] . symbol-overlay-switch-forward)
+         ([(shift f6)] . symbol-overlay-switch-backward)
+         ([(meta f6)] . symbol-overlay-rename)
+         ))
 
-(when (locate-library "goto-chg")
-  (require 'goto-chg)
-  (global-set-key [(control .)] 'goto-last-change)
-  ; M-. can conflict with etags tag search. But C-. can get overwritten
-  ; by flyspell-auto-correct-word. And goto-last-change needs a really
-  ; fast key.
-  (global-set-key [(meta .)] 'goto-last-change))
+(use-package goto-chg
+  :ensure t
+  :bind (([(control .)] . goto-last-change)))
 
 (global-set-key [?\C-x ?\C-b] 'ibuffer)
 

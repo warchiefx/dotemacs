@@ -6,10 +6,12 @@
   :ensure t
   :config
   (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
-  (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv))
+  (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
+  (add-hook 'pyvenv-post-activate-hooks 'pyvenv-restart-python))
 
 (use-package anaconda-mode
   :ensure t
+  :defer t
   :config
   (add-hook 'python-mode-hook 'anaconda-mode)
   (add-hook 'python-mode-hook 'anaconda-eldoc-mode)

@@ -32,15 +32,16 @@
 ;;        (tern-ac-setup))))
 ;;; Code:
 
-(use-package ac-js2
-  :ensure t)
 
-(use-package js2-mode
+(use-package rjsx-mode
   :ensure t
   :config
-  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-  (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
-  (setq js2-use-font-lock-faces t)
-  (add-hook 'js2-mode-hook 'ac-js2-mode))
+  (add-to-list 'auto-mode-alist '("\\.js$" . rjsx-mode)))
+
+(use-package company-tern
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-tern))
+
 
 (provide 'wcx-javascript)

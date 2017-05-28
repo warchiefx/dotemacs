@@ -11,14 +11,17 @@
 ;; Version: $Id$
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'flx-ido)
-(ido-mode 1)
-(ido-everywhere 1)
-(flx-ido-mode 1)
-;; disable ido faces to see flx highlights.
-(setq ido-use-faces nil)
-;; Use ido for buffer search
-(ido-everywhere t)
-(global-set-key "\C-xb" 'ido-switch-buffer)
+(use-package flx-ido
+  :ensure t
+  :config
+  (ido-mode 1)
+  (ido-everywhere 1)
+  (flx-ido-mode 1)
+  ;; disable ido faces to see flx highlights.
+  (setq ido-use-faces nil)
+  ;; Use ido for buffer search
+  (ido-everywhere t)
+  :bind (("\C-xb" . ido-switch-buffer)))
+
 
 (provide 'wcx-ido)

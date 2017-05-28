@@ -3,11 +3,15 @@
   :demand t
   :diminish company-mode)
 
-;; (use-package company-quickhelp
-;;   :ensure t
-;;   :demand t)
+(use-package company-quickhelp
+  :ensure t
+  :demand t)
+
+(use-package company-restclient
+  :ensure t
+  :config (add-to-list 'company-backends 'company-restclient))
 
 (global-company-mode 1)
-(add-to-list 'company-backends 'company-restclient)
+
 
 (provide 'wcx-companymode)

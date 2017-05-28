@@ -11,4 +11,8 @@
 ; Workaround for missing url-insert-buffer-contents function
 (load-library "url-handlers")
 
+;; Improved package manager
+(use-package paradox
+  :ensure t)
+
 (provide 'wcx-package)
