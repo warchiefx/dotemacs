@@ -95,7 +95,6 @@
  '(ido-create-new-buffer (quote always))
  '(ido-enable-flex-matching t)
  '(ido-enable-prefix nil)
- '(ido-everywhere t)
  '(ido-ignore-extensions t)
  '(ido-max-prospects 8)
  '(ido-mode (quote both) nil (ido))
@@ -109,7 +108,6 @@
  '(magit-push-always-verify nil)
  '(mail-user-agent (quote gnus-user-agent))
  '(make-backup-files nil)
- '(menu-bar-mode nil)
  '(mouse-drag-copy-region nil)
  '(nethack-use-tiles t)
  '(nxml-auto-insert-xml-declaration-flag t)
@@ -118,6 +116,7 @@
  '(org-agenda-files
    (quote
     ("~/gdrive/orgfiles/" "~/gdrive/orgfiles/research" "~/gdrive/orgfiles/work")))
+ '(org-clock-into-drawer t)
  '(org-enforce-todo-dependencies t)
  '(org-export-with-smart-quotes nil)
  '(org-export-with-toc nil)
@@ -125,9 +124,6 @@
  '(org-insert-mode-line-in-empty-file t)
  '(org-md-headline-style (quote atx))
  '(org-src-fontify-natively t)
- '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
- '(org-trello-files (quote ("/home/warchiefx/orgfiles/Work/Trello")) nil (org-trello))
- '(org-trello-input-completion-mechanism (quote helm) nil (org-trello))
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
@@ -136,7 +132,7 @@
      ("org" . "http://orgmode.org/elpa/"))))
  '(package-selected-packages
    (quote
-    (anzu anzu-mode shell-pop sane-term molokai-theme kotlin-mode dakrone-light-theme csv nlinum persp-mode-projectile-bridge neotree spaceline-all-the-icons better-defaults spaceline atom-one-dark-theme fixmee doom-theme doom-themes symbol-overlay ein realgud wanderlust ido-vertical-mode sexy-monochrome-theme po-mode hamburger-menu jade erlang darkokai-theme paganini-theme embrace danneskjold-theme mustard-theme ac-anaconda ac-emmet badwolf-theme flatland-theme tao-theme ibuffer-vc ibuffer-projectile anaconda-mode company-anaconda auto-virtualenv org-trello codesearch projectile-codesearch helm-codesearch idea-darkula-theme aurora-theme material-theme code-library vimish-fold zeal-at-point company-go company-jedi company-quickhelp company-restclient company-web go-complete quasi-monochrome-theme cbm ox-gfm magit-gitflow magit common-lisp-snippets elpy odersky-theme
+    (gist rfringe ido-uniquitous goto-chg company helm projectile flycheck yasnippet ox-md xterm-color sanityinc-tomorrow-themes sanityinc-themes sanityinc guide-key "use-package" "use-package" "use-package" "use-package" "use-package" company-tern rjsx-mode anzu anzu-mode shell-pop sane-term molokai-theme kotlin-mode dakrone-light-theme csv nlinum persp-mode-projectile-bridge neotree spaceline-all-the-icons better-defaults spaceline atom-one-dark-theme fixmee doom-theme doom-themes symbol-overlay ein realgud wanderlust ido-vertical-mode sexy-monochrome-theme po-mode hamburger-menu jade erlang darkokai-theme paganini-theme embrace danneskjold-theme mustard-theme ac-anaconda ac-emmet badwolf-theme flatland-theme tao-theme ibuffer-vc ibuffer-projectile anaconda-mode company-anaconda auto-virtualenv org-trello codesearch projectile-codesearch helm-codesearch idea-darkula-theme aurora-theme material-theme code-library zeal-at-point company-go company-jedi company-quickhelp company-restclient company-web go-complete quasi-monochrome-theme cbm ox-gfm magit-gitflow magit common-lisp-snippets elpy odersky-theme
           (symbol-value
            (quote t))
           (symbol-value
@@ -169,8 +165,6 @@
  '(shell-pop-shell-type (quote ("sane-term" "*shell*" (lambda nil (sane-term)))))
  '(shell-pop-universal-key nil)
  '(show-paren-delay 0)
- '(show-paren-mode t nil (paren))
- '(size-indication-mode t)
  '(slime-autodoc-use-multiline-p t)
  '(slime-complete-symbol*-fancy t)
  '(slime-complete-symbol-function (quote slime-fuzzy-complete-symbol))
@@ -214,9 +208,6 @@
  '(sql-sqlite-program "sqlite3")
  '(tab-width 4)
  '(text-mode-hook (quote (turn-on-auto-fill text-mode-hook-identify)))
- '(tool-bar-mode nil)
- '(tramp-default-method "ssh" nil (tramp))
- '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(user-full-name "Ricardo Restituyo")
  '(user-mail-address "ricardo@codemera.com")
  '(virtualenv-workon-starts-python nil)
@@ -227,20 +218,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ac-candidate-face ((t (:background "black" :foreground "gainsboro"))))
- '(ac-candidate-mouse-face ((t (:background "dim gray" :foreground "white smoke"))))
- '(company-preview-common ((t (:background "dim gray" :foreground "orange"))))
- '(company-scrollbar-bg ((t (:inherit company-tooltip :background "gray50"))))
- '(company-scrollbar-fg ((t (:background "gray90"))))
- '(company-tooltip ((t (:background "black" :foreground "gray90"))))
- '(company-tooltip-annotation ((t (:inherit company-tooltip :background "black" :foreground "dark orange" :weight normal))))
- '(company-tooltip-annotation-selection ((t nil)))
- '(company-tooltip-selection ((t (:inherit company-tooltip :background "gray20"))))
- '(info-menu ((t (:foreground "deep sky blue"))))
- '(minimap-font-face ((t (:height 30 :family "Inconsolata"))) t)
- '(mode-line-highlight ((t (:foreground "#b294bb" :box nil :weight bold))))
- '(sml-modeline-vis-face ((t (:inherit region :background "black"))) t)
- '(sml/filename ((t (:inherit (font-lock-function-name-face sml/global) :foreground "gold2" :weight bold))))
- '(sml/global ((t (:inherit sml/active_foreground_color))))
- '(spaceline-all-the-icons-sunset-face ((t (:inherit powerline-active2 :foreground "#fe3344"))))
- '(which-func ((t (:foreground "deep sky blue")))))
+ )
