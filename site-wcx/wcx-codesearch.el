@@ -14,7 +14,7 @@
   (setq helm-codesearch-global-csearchindex "~/.csearchindex")
   :bind
   (("C-c h f" . helm-codesearch-find-file)
-   ("C-c f" . helm-codesearch-find-pattern)
+   ([(control f1)] . helm-codesearch-find-pattern)
    ("C-c h I" . helm-codesearch-create-csearchindex)))
 
 
