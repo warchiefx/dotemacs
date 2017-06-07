@@ -1,4 +1,5 @@
 (use-package realgud
-  :ensure t)
+  :ensure t
+  :demand t)
 
 (provide 'wcx-debugger)
