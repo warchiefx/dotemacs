@@ -116,10 +116,17 @@
   :ensure t
   :config (frame-tag-mode 1))
 
-(use-package hideshowvis
+(use-package vimish-fold
   :ensure t
+  :defer 1
+  :bind
+  (:map vimish-fold-folded-keymap ("<tab>" . vimish-fold-unfold)
+        :map vimish-fold-unfolded-keymap ("<tab>" . vimish-fold-refold))
+  :init
+  (setq-default vimish-fold-dir (expand-file-name ".vimish-fold/" user-emacs-directory))
+  (vimish-fold-global-mode)
   :config
-  (hideshowvis-minor-mode 1))
+  (setq-default vimish-fold-header-width 79))
 
 (use-package switch-window
   :ensure t
@@ -217,7 +224,7 @@ or the current buffer directory."
            (ignore-errors
            ;;; Pick one: projectile or find-file-in-project
                                         ; (projectile-project-root)
-             (ffip-project-root)
+             (projectile-project-root)
              ))
           (file-name (buffer-file-name))
           (neo-smart-open t))
@@ -240,11 +247,14 @@ or the current buffer directory."
   :ensure t)
 
 (use-package anzu
-  :ensure t
+  :defer 1
+  :bind ([remap query-replace] . anzu-query-replace-regexp)
   :config
-  (global-anzu-mode +1)
-  (global-set-key [remap query-replace] 'anzu-query-replace)
-  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp))
+  (global-anzu-mode)
+  (setq-default
+   anzu-cons-mode-line-p nil
+   anzu-replace-to-string-separator " -> ")
+  :diminish anzu-mode)
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
