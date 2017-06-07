@@ -19,6 +19,8 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (blink-cursor-mode 0)
 
+(add-hook 'focus-out-hook #'garbage-collect)
+
 (setq load-prefer-newer t)
 
 ;; ----- Standard Loadpath
@@ -38,6 +40,9 @@
 (setq x-select-enable-clipboard t)
 
 (setq emacs-load-start-time (current-time))
+
+(unless (locate-library "use-package")
+  (package-install "use-package"))
 
 (when (locate-library "use-package")
   (require 'use-package)
@@ -63,6 +68,7 @@
 
 ;; Tools
 (require 'wcx-org)
+(require 'wcx-markdown)
 ;; (require 'wcx-w3m)
 ;;(require 'wcx-gnus)
 ;;(require 'wcx-wanderlust)
@@ -84,6 +90,7 @@
 (require 'wcx-codesearch)
 
 ;; Programming Modes
+(require 'wcx-companymode)
 ;;(require 'wcx-java)
 ;;(require 'wcx-malabar)
 (require 'wcx-xml)
@@ -93,11 +100,10 @@
 ;;(require 'wcx-slime)
 (require 'wcx-lua)
 ;;(require 'wcx-go)
-(require 'wcx-javascript)
 ;;(require 'wcx-scala)
 ;;(require 'wcx-auto-complete)
-(require 'wcx-companymode)
 (require 'wcx-jinja2)
+(require 'wcx-javascript)
 
 ;; Games
 ;; (require 'wcx-nethack)
