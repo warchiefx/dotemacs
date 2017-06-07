@@ -3,6 +3,15 @@
   :ensure t
   :config
   (projectile-global-mode 1)
+
+  ;; Disable projectile over tramp
+  (defadvice projectile-on (around exlude-tramp activate)
+    (unless  (--any? (and it (file-remote-p it))
+        (list
+            (buffer-file-name)
+            list-buffers-directory
+            default-directory))
+    ad-do-it))
   :diminish projectile-mode)
 
 (use-package helm-projectile
