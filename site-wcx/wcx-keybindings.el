@@ -10,12 +10,6 @@
 (global-set-key [?\C-c ?\C-x ?w] 'whitespace-cleanup)
 (global-set-key [M-return] 'expand-abbrev)
 
-(defun wcx/autopep8()
-  (interactive)
-  (py-autopep8))
-
-(global-set-key [?\C-c ?\C-x ?a] 'wcx/autopep8)
-
 (defun scroll-one-line-up (&optional arg)
   (interactive "p")
   (scroll-up (or arg 1)))
@@ -41,7 +35,6 @@
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 
 ;; Better backspace
-(global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
@@ -112,45 +105,38 @@
 
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
 
-(when (locate-library "multiple-cursors")
-  (load-library "multiple-cursors")
-  (global-set-key (kbd "C-#") 'mc/edit-lines)
-  (global-set-key [?\C-c ?m ?n] 'mc/mark-next-like-this)
-  (global-set-key [?\C-c ?m ?p] 'mc/mark-previous-like-this)
-  (global-set-key [?\C-c ?m ?a] 'mc/mark-all-like-this))
 
+(use-package multiple-cursors
+  :ensure t
+  :bind (("C-#" . mc/edit-lines)
+         ("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ([?\C-c ?m ?a] . mc/mark-all-like-this)))
 
-(when (locate-library "mark-more-like-this")
-  (load-library "mark-more-like-this")
-
-  (global-set-key (kbd "C-<") 'mark-previous-like-this)
-  (global-set-key (kbd "C->") 'mark-next-like-this))
-
-(when (locate-library "rainbow-mode")
-  (load-library "rainbow-mode")
-  (global-set-key [?\C-c ?\C-x ?r] 'rainbow-mode))
+(use-package rainbow-mode
+  :ensure t
+  :bind (([?\C-c ?\C-x ?r] . rainbow-mode)))
 
 ;;(when (locate-library "aggressive-indent")
 ;;  (load-library "aggressive-indent")
 ;;  (global-set-key [?\C-c ?\C-x ?i] 'global-aggressive-indent-mode))
 
-(when (locate-library "pyvenv")
-  (global-set-key [?\C-c ?\C-x ?v] 'pyvenv-workon))
-
 (use-package guide-key
   :ensure t
+  :demand t
+  :init
+  (setq guide-key/guide-key-sequence '("C-c C-x" "C-c" "C-,"))
   :config
-  (setq guide-key/guide-key-sequence '("C-c p" "C-c C-x" "C-c" "C-c f" "C-c o" "C-,"))
   (guide-key-mode t)
   :bind ([?\C-c ?\C-x ?k] . guide-key-mode))
 
 
 (use-package symbol-overlay
   :ensure t
-  :bind (([f6] . symbol-overlay-put)
-         ([(control f6)] . symbol-overlay-switch-forward)
-         ([(shift f6)] . symbol-overlay-switch-backward)
-         ([(meta f6)] . symbol-overlay-rename)
+  :bind (([(f6)] . symbol-overlay-put)
+         ;; ([(control f6 n)] . symbol-overlay-switch-forward)
+         ;; ([(control f6 p)] . symbol-overlay-switch-backward)
+         ([(shift f6 )] . symbol-overlay-rename)
          ))
 
 (use-package goto-chg
@@ -185,5 +171,103 @@
 (use-package embrace
   :ensure t
   :bind ("C-," . embrace-commander))
+
+;; Taken from https://github.com/angrybacon/dotemacs/blob/master/dotemacs.org#inline
+(global-set-key [remap move-beginning-of-line] 'me/beginning-of-line-dwim)
+
+(defun me/beginning-of-line-dwim ()
+  "Move point to first non-whitespace character, or beginning of line."
+  (interactive "^")
+  (let ((origin (point)))
+    (beginning-of-line)
+    (and (= origin (point))
+         (back-to-indentation))))
+
+
+(global-set-key [remap backward-paragraph] 'me/backward-paragraph-dwim)
+(global-set-key [remap forward-paragraph] 'me/forward-paragraph-dwim)
+
+(defun me/backward-paragraph-dwim ()
+  "Move backward to start of paragraph."
+  (interactive "^")
+  (skip-chars-backward "\n")
+  (unless (search-backward-regexp "\n[[:blank:]]*\n" nil t)
+    (goto-char (point-min)))
+  (skip-chars-forward "\n"))
+
+(defun me/forward-paragraph-dwim ()
+  "Move forward to start of next paragraph."
+  (interactive "^")
+  (skip-chars-forward "\n")
+  (unless (search-forward-regexp "\n[[:blank:]]*\n" nil t)
+    (goto-char (point-max)))
+  (skip-chars-forward "\n"))
+
+(use-package hydra
+  :ensure t
+  :bind
+  ("C-c <tab>" . hydra-fold/body)
+  ("C-c g" . hydra-magit/body)
+  ("C-c p" . hydra-projectile/body)
+  :config (setq-default hydra-default-hint nil))
+
+(defhydra hydra-fold (:color pink)
+  "
+^
+^Fold^              ^Do^                ^Jump^              ^Toggle^
+^────^──────────────^──^────────────────^────^──────────────^──────^────────────
+_q_ quit            _f_ fold            _<_ previous        _<tab>_ current
+^^                  _k_ kill            _>_ next            _S-<tab>_ all
+^^                  _K_ kill all        ^^                  ^^
+^^                  ^^                  ^^                  ^^
+"
+  ("q" nil)
+  ("<tab>" vimish-fold-toggle)
+  ("S-<tab>" vimish-fold-toggle-all)
+  ("<" vimish-fold-previous-fold)
+  (">" vimish-fold-next-fold)
+  ("f" vimish-fold)
+  ("k" vimish-fold-delete)
+  ("K" vimish-fold-delete-all))
+
+(defhydra hydra-magit (:color blue)
+  "
+^
+^Magit^             ^Do^
+^─────^─────────────^──^────────────────
+_q_ quit            _b_ blame
+^^                  _c_ clone
+^^                  _i_ init
+^^                  _s_ status
+^^                  ^^
+"
+  ("q" nil)
+  ("b" magit-blame)
+  ("c" magit-clone)
+  ("i" magit-init)
+  ("s" magit-status))
+
+(defhydra hydra-projectile (:color blue)
+  "
+^
+^Projectile^        ^Buffers^           ^Find^              ^Search^
+^──────────^────────^───────^───────────^────^──────────────^──────^────────────
+_q_ quit            _b_ list            _d_ directory       _r_ replace
+_i_ reset cache     _K_ kill all        _D_ root            _s_ ag
+^^                  _S_ save all        _f_ file            ^^
+^^                  ^^                  _p_ project         ^^
+^^                  ^^                  ^^                  ^^
+"
+  ("q" nil)
+  ("b" helm-projectile-switch-to-buffer)
+  ("d" helm-projectile-find-dir)
+  ("D" projectile-dired)
+  ("f" helm-projectile-find-file)
+  ("i" projectile-invalidate-cache :color red)
+  ("K" projectile-kill-buffers)
+  ("p" helm-projectile-switch-project)
+  ("r" projectile-replace)
+  ("s" helm-projectile-ag)
+  ("S" projectile-save-project-buffers))
 
 (provide 'wcx-keybindings)
