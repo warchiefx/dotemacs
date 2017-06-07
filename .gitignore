@@ -25,3 +25,11 @@ places
 *flycheck*
 /eshell/
 /var/
+.trello
+request
+/projectile.cache
+/network-security.data
+/dotemacsd-spacemacs
+.python-environments
+persp-confs/
+anaconda-mode/
