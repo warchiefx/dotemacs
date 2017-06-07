@@ -11,8 +11,10 @@
 ;; Version: $Id$
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when (locate-library "lua-mode")
-  (setq auto-mode-alist (cons '("\.lua$" . lua-mode) auto-mode-alist))
-  (autoload 'lua-mode "lua-mode" "Lua editing mode." t))
+
+(use-package lua-mode
+  :ensure t
+  :mode "\\.lua\\'"
+  :interpreter "lua")
 
 (provide 'wcx-lua)
