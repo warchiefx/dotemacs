@@ -53,4 +53,20 @@
   :ensure t
   :defer t)
 
+(use-package git-commit
+  :ensure t
+  :preface
+  (defun me/git-commit-auto-fill-everywhere ()
+    (setq fill-column 72)
+    (setq-local comment-auto-fill-only-comments nil))
+  :init (add-hook 'git-commit-mode-hook #'me/git-commit-auto-fill-everywhere)
+  :config (setq-default git-commit-summary-max-length 50))
+
+(use-package diff-hl
+  :ensure t
+  :demand t
+  :config
+  (global-diff-hl-mode 1)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
+
 (provide 'wcx-git)

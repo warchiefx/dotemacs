@@ -121,8 +121,6 @@
   :config
   (hideshowvis-minor-mode 1))
 
-(use-package git-commit)
-
 (use-package switch-window
   :ensure t
   :bind (("C-x o" . switch-window)))
