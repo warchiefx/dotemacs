@@ -73,4 +73,21 @@
   :after org
   :ensure t)
 
+(use-package org-edna
+  :ensure t
+  :after org
+  :demand t
+  :config
+  (org-edna-load))
+
+(use-package org-alert
+  :ensure t
+  :after org
+  :demand t
+  :config
+  (setq alert-default-style 'libnotify)
+  (setq org-alert-interval 7200)
+  (setq org-alert-notification-title "Agenda")
+  (org-alert-enable))
+
 (provide 'wcx-org)
