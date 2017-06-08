@@ -239,13 +239,15 @@ _q_ quit            _b_ blame
 ^^                  _c_ clone
 ^^                  _i_ init
 ^^                  _s_ status
+^^                  _h_ timemachine
 ^^                  ^^
 "
   ("q" nil)
   ("b" magit-blame)
   ("c" magit-clone)
   ("i" magit-init)
-  ("s" magit-status))
+  ("s" magit-status)
+  ("h" git-timemachine))
 
 (defhydra hydra-projectile (:color blue)
   "
