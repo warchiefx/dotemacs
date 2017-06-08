@@ -68,5 +68,14 @@
          ("M-y" . helm-show-kill-ring))
   )
 
+(use-package helm-ag
+  :ensure t
+  :after helm
+  :bind
+  (([(control f1)] . helm-ag-project-root))
+  ;; (:map helm-ag-map
+  ;;       ("<left>" . backward-char)
+  ;;       ("<right>" . forward-char))
+  :config (setq-default helm-ag-show-status-function nil))
 
 (provide 'wcx-helm)
