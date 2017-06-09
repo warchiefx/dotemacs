@@ -1,6 +1,8 @@
 
 (use-package projectile
   :ensure t
+  :init
+  (setq projectile-keymap-prefix (kbd "C-c C-p"))
   :config
   (projectile-global-mode 1)
 
