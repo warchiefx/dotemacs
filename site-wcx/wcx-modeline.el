@@ -5,9 +5,10 @@
 
 ;; (use-package smart-mode-line
 ;;   :ensure t
-;;   :config
+;;   :init
 ;;   (setq sml/override-theme nil)
 ;;   (setq powerline-arrow-shape 'curve)
+;;   :config
 ;;   (eval-after-load "wcx-color-theme"
 ;;     '(sml/setup)
 ;;     )
@@ -17,22 +18,35 @@
   :ensure t
   :config
   (require 'spaceline-config)
-  (spaceline-toggle-projectile-root-on)
   (spaceline-emacs-theme)
   (spaceline-helm-mode)
   (spaceline-info-mode)
+  (spaceline-toggle-evil-state-on)
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (spaceline-toggle-projectile-root-on))
 
-(use-package spaceline-all-the-icons
-    :ensure t
-    :after spaceline
-    :config (spaceline-all-the-icons-theme)
-    ;;(spaceline-all-the-icons--setup-git-ahead)       ;; Enable # of commits ahead of upstream in git
-    (spaceline-all-the-icons--setup-paradox)         ;; Enable Paradox mode line
-    (spaceline-all-the-icons--setup-neotree)         ;; Enable Neotree mode line
-    (spaceline-all-the-icons--setup-anzu)            ;; Enable anzu searching
-    (spaceline-toggle-all-the-icons-git-status-on)
-)
+(use-package all-the-icons
+  :ensure t)
+
+;; (use-package spaceline-all-the-icons
+;;     :ensure t
+;;     :after spaceline
+;;     :config (spaceline-all-the-icons-theme)
+;;     ;;(spaceline-all-the-icons--setup-git-ahead)       ;; Enable # of commits ahead of upstream in git
+;;     (spaceline-all-the-icons--setup-paradox)         ;; Enable Paradox mode line
+;;     (spaceline-all-the-icons--setup-neotree)         ;; Enable Neotree mode line
+;;     (spaceline-all-the-icons--setup-anzu)            ;; Enable anzu searching
+;;     (spaceline-toggle-all-the-icons-git-status-on)
+;;     (spaceline-toggle-all-the-icons-dedicated-on)
+;;     (spaceline-toggle-all-the-icons-bookmark-on)
+;;     (spaceline-toggle-all-the-icons-git-ahead-on)
+;;     (spaceline-toggle-all-the-icons-minor-modes-on)
+;;     (spaceline-toggle-all-the-icons-which-function-on)
+;;     (spaceline-toggle-all-the-icons-time-off)
+;;     (spaceline-toggle-all-the-icons-window-number-on)
+;;     (spaceline-toggle-evil-state-on)
+;;     (spaceline-toggle-python-pyenv-on)
+;; )
 
 ;; Mode line setup
 ;; (setq-default
