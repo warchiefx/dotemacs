@@ -76,4 +76,28 @@
     "\\" 'evilnc-comment-operator ; if you prefer backslash key
     ))
 
+(use-package evil-goggles
+  :ensure t
+  :config
+  (evil-goggles-mode)
+  ;; optionally use diff-mode's faces; as a result, deleted text
+  ;; will be highlighed with `diff-removed` face which is typically
+  ;; some red color (as defined by the color theme)
+  ;; other faces such as `diff-added` will be used for other actions
+  (evil-goggles-use-diff-faces))
+
+(use-package evil-space
+  :ensure t
+  :config
+  (evil-space-mode))
+
+(use-package evil-tutor
+  :ensure t
+  :commands (evil-tutor))
+
+(use-package evil-vimish-fold
+  :ensure t
+  :config
+  (evil-vimish-fold-mode 1))
+
 (provide 'wcx-evil)
