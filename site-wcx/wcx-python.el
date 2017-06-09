@@ -28,7 +28,7 @@
 
 (use-package python-docstring
   :ensure t
-  :demand t
+  :after anaconda-mode
   :config
   (python-docstring-install)
   :diminish python-docstring-mode)
