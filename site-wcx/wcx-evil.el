@@ -1,8 +1,24 @@
 ;;; wcx-evil.el --- Integrate EVIL vim compatibility
 
-(add-to-list 'load-path (concat site-lisp-path "evil"))
-(when (locate-library "evil")
-  (require 'evil)
-  (evil-mode 1))
+(use-package evil
+  :ensure t
+  :diminish undo-tree-mode
+  :config
+  (setcdr evil-insert-state-map nil)
+  (define-key evil-insert-state-map
+    (read-kbd-macro evil-toggle-key) 'evil-emacs-state)
+  ;; Rebind ESC so it returns us to evil normal state.
+  (global-set-key (kbd "<escape>") 'evil-normal-state)
+  (setq evil-default-state 'normal)
+  (evil-set-initial-state 'org-mode 'emacs)
+  (turn-on-evil-mode))
+
+(use-package evil-anzu
+  :ensure t
+  :after evil)
+
+(use-package evil-matchit
+  :ensure t
+  :after evil)
 
 (provide 'wcx-evil)

@@ -50,11 +50,11 @@
     :ensure t))
 
 ;; Custom stuff
-;; (require 'wcx-evil)
+(require 'wcx-evil)
 (require 'wcx-package)
 (require 'wcx-requirements)
 (require 'wcx-generic)
-(require 'wcx-utils)
+;;(require 'wcx-utils)
 (require 'wcx-keybindings)
 (require 'wcx-icicles)
 ;; (require 'wcx-iswitchb)
@@ -93,7 +93,7 @@
 (require 'wcx-companymode)
 ;;(require 'wcx-java)
 ;;(require 'wcx-malabar)
-(require 'wcx-xml)
+;;(require 'wcx-xml)
 ;;(require 'wcx-nxhtml)
 (require 'wcx-web-mode)
 (require 'wcx-python)
