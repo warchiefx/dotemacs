@@ -19,8 +19,16 @@
   (scroll-down (or arg 1)))
 
 ;; Expand Region
-(when (locate-library "expand-region")
-  (global-set-key [f4] 'er/expand-region))
+(use-package expand-region
+  :ensure t
+  :bind (([f4] . er/expand-region)))
+
+(use-package smart-hungry-delete
+  :ensure t
+  :bind (("<backspace>" . smart-hungry-delete-backward-char)
+         ("C-d" . smart-hungry-delete-forward-char))
+  :defer nil ;; dont defer so we can add our functions to hooks
+  :config (smart-hungry-delete-add-default-hooks))
 
 ;; Nav keys
 (global-set-key [S-up] 'scroll-one-line-down)
