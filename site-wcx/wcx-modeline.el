@@ -18,12 +18,15 @@
   :ensure t
   :config
   (require 'spaceline-config)
-  (spaceline-emacs-theme)
+  ;;(spaceline-emacs-theme)
+  (spaceline-spacemacs-theme)
   (spaceline-helm-mode)
   (spaceline-info-mode)
   (spaceline-toggle-evil-state-on)
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-  (spaceline-toggle-projectile-root-on))
+  (spaceline-toggle-projectile-root-on)
+  (spaceline-toggle-version-control-on)
+  (spaceline-toggle-which-function-on))
 
 (use-package all-the-icons
   :ensure t)
