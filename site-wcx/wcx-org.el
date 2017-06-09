@@ -14,16 +14,21 @@
 ;; Org-mode setup
 ;; The following lines are always needed. Choose your own keys.
 
-
 (use-package org
-  :ensure t
+  :ensure org-plus-contrib
+  :commands (wcx/org-get-clocked-time
+             org
+             org-capture
+             org-mode)
+  :bind (("C-c l" . org-store-link)
+         ([f9] . org-agenda)
+         ("C-c b" . org-ido-switchb)
+         ([?\C-c ?\C-x ?o] . org-clock-jump-to-current-clock)
+         ([f12] . org-cycle-agenda-files))
+  :mode (("\\.org_archive\\'" . org-mode)
+         ("\\.org\\'" . org-mode))
+
   :config
-    (global-set-key "\C-cl" 'org-store-link)
-  (global-set-key (quote [f9]) 'org-agenda)
-  (global-set-key "\C-cb" 'org-ido-switchb)
-  (global-set-key [?\C-c ?\C-x ?o] 'org-clock-jump-to-current-clock)
-
-
   (defun org-summary-todo (n-done n-not-done)
     "Switch entry to DONE when all subentries are done, to TODO otherwise."
     (let (org-log-done org-log-states)   ; turn off logging
@@ -42,9 +47,6 @@
 
   (setq org-clock-persist 'history)
   (org-clock-persistence-insinuate)
-
-  ;; Keybindings
-  (global-set-key [f12] 'org-cycle-agenda-files)
 
   (defun wcx/org-clocking-info-to-file ()
     (if (org-clock-is-active)
@@ -76,18 +78,16 @@
 (use-package org-edna
   :ensure t
   :after org
-  :demand t
   :config
   (org-edna-load))
 
-(use-package org-alert
-  :ensure t
-  :after org
-  :demand t
-  :config
-  (setq alert-default-style 'libnotify)
-  (setq org-alert-interval 7200)
-  (setq org-alert-notification-title "Agenda")
-  (org-alert-enable))
+;; (use-package org-alert
+;;   :ensure t
+;;   :after org
+;;   :config
+;;   (setq alert-default-style 'libnotify)
+;;   (setq org-alert-interval 7200)
+;;   (setq org-alert-notification-title "Agenda")
+;;   (org-alert-enable))
 
 (provide 'wcx-org)
