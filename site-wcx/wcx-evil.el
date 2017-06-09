@@ -84,12 +84,14 @@
   ;; will be highlighed with `diff-removed` face which is typically
   ;; some red color (as defined by the color theme)
   ;; other faces such as `diff-added` will be used for other actions
-  (evil-goggles-use-diff-faces))
+  (evil-goggles-use-diff-faces)
+  :diminish (evil-goggles-mode))
 
 (use-package evil-space
   :ensure t
   :config
-  (evil-space-mode))
+  (evil-space-mode)
+  :diminish (evil-space-mode))
 
 (use-package evil-tutor
   :ensure t
@@ -98,6 +100,7 @@
 (use-package evil-vimish-fold
   :ensure t
   :config
-  (evil-vimish-fold-mode 1))
+  (evil-vimish-fold-mode 1)
+  :diminish evil-vimish-fold-mode)
 
 (provide 'wcx-evil)
