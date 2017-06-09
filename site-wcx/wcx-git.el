@@ -36,11 +36,12 @@
     (jump-to-register :magit-fullscreen))
 
   (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
-  :bind ("C-c C-x g" . magit-status)
-  )
+  :commands (magit-status magit-blame)
+  :bind ("C-c C-x g" . magit-status))
 
 (use-package magit-gitflow
   :ensure t
+  :after magit
   :config
   (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
 
@@ -55,6 +56,7 @@
 
 (use-package git-commit
   :ensure t
+  :after magit
   :preface
   (defun me/git-commit-auto-fill-everywhere ()
     (setq fill-column 72)
