@@ -78,4 +78,11 @@
   ;;       ("<right>" . forward-char))
   :config (setq-default helm-ag-show-status-function nil))
 
+(use-package helm-descbinds
+  :ensure t
+  :after helm
+  :config
+  (helm-descbinds-mode)
+  (setq-default helm-descbinds-window-style 'split-window))
+
 (provide 'wcx-helm)
