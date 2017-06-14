@@ -17,7 +17,7 @@
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(blink-cursor-mode 0)
+;; (blink-cursor-mode 0)
 
 (add-hook 'focus-out-hook #'garbage-collect)
 
@@ -50,8 +50,8 @@
     :ensure t))
 
 ;; Custom stuff
-(require 'wcx-evil)
 (require 'wcx-package)
+(require 'wcx-evil)
 (require 'wcx-requirements)
 (require 'wcx-generic)
 ;;(require 'wcx-utils)
