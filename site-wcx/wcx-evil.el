@@ -9,6 +9,7 @@
     (read-kbd-macro evil-toggle-key) 'evil-emacs-state)
   (setq evil-default-state 'normal)
   (evil-set-initial-state 'org-mode 'emacs)
+  (evil-set-initial-state 'git-commit 'emacs)
   (turn-on-evil-mode))
 
 (use-package evil-anzu
@@ -51,10 +52,8 @@
     (global-evil-leader-mode)
     (setq evil-leader/in-all-states 1)
     (evil-leader/set-leader ","))
-
     ; ,x to be M-x
     (evil-leader/set-key "x" 'execute-extended-command))
-
 
 (use-package evil-nerd-commenter
   :ensure t
@@ -94,8 +93,7 @@
   :diminish (evil-space-mode))
 
 (use-package evil-tutor
-  :ensure t
-  :commands (evil-tutor))
+  :ensure evil-tutor)
 
 (use-package evil-vimish-fold
   :ensure t
