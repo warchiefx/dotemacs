@@ -10,7 +10,7 @@
   (setq evil-default-state 'normal)
   (evil-set-initial-state 'org-mode 'emacs)
   (evil-set-initial-state 'git-commit 'emacs)
-  (turn-on-evil-mode))
+  (evil-mode 1))
 
 (use-package evil-anzu
   :ensure t
@@ -49,24 +49,24 @@
   :after evil
   :config
   (progn
-    (global-evil-leader-mode)
     (setq evil-leader/in-all-states 1)
     (evil-leader/set-leader ","))
     ; ,x to be M-x
-    (evil-leader/set-key "x" 'execute-extended-command))
+    (evil-leader/set-key "x" 'execute-extended-command)
+    (evil-leader/set-key "e" 'evil-ace-jump-word-mode) ; ,e for Ace Jump (word)
+    (evil-leader/set-key "l" 'evil-ace-jump-line-mode) ; ,l for Ace Jump (line)
+    (global-evil-leader-mode))
 
 (use-package evil-nerd-commenter
   :ensure t
   :demand t
   :after evil
   :bind (("M-;" . evilnc-comment-or-uncomment-lines)
-         ("C-c l" . evilnc-quick-comment-or-uncomment-to-the-line)
          ("C-c c" . evilnc-copy-and-comment-lines))
   :config
   (evil-leader/set-key
     "ci" 'evilnc-comment-or-uncomment-lines
     "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-    "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
     "acc" 'evilnc-copy-and-comment-lines
     "cp" 'evilnc-comment-or-uncomment-paragraphs
     "cr" 'comment-or-uncomment-region
