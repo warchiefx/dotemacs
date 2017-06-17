@@ -61,7 +61,9 @@
   (defun me/git-commit-auto-fill-everywhere ()
     (setq fill-column 72)
     (setq-local comment-auto-fill-only-comments nil))
-  :init (add-hook 'git-commit-mode-hook #'me/git-commit-auto-fill-everywhere)
+  :init
+  (add-hook 'git-commit-mode-hook #'me/git-commit-auto-fill-everywhere)
+  (global-git-commit-mode)
   :config (setq-default git-commit-summary-max-length 50))
 
 (use-package diff-hl
