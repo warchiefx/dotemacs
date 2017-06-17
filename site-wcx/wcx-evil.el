@@ -9,7 +9,9 @@
     (read-kbd-macro evil-toggle-key) 'evil-emacs-state)
   (setq evil-default-state 'normal)
   (evil-set-initial-state 'org-mode 'emacs)
-  (evil-set-initial-state 'git-commit 'emacs)
+  (evil-set-initial-state 'git-commit-mode 'emacs)
+  (evil-set-initial-state 'with-editor-mode 'emacs)
+  (evil-set-initial-state 'paradox-menu-mode 'emacs)
   (evil-mode 1))
 
 (use-package evil-anzu
@@ -100,5 +102,9 @@
   :config
   (evil-vimish-fold-mode 1)
   :diminish evil-vimish-fold-mode)
+
+(use-package evil-magit
+  :after magit
+  :ensure t)
 
 (provide 'wcx-evil)
