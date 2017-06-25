@@ -10,7 +10,9 @@
 
 (use-package company-quickhelp
   :ensure t
-  :demand t)
+  :after company
+  :config
+  (company-quickhelp-mode 1))
 
 (use-package company-flx
   :ensure t
