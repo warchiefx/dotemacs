@@ -125,19 +125,20 @@
   :ensure t
   :bind (([?\C-c ?\C-x ?r] . rainbow-mode)))
 
-;;(when (locate-library "aggressive-indent")
-;;  (load-library "aggressive-indent")
-;;  (global-set-key [?\C-c ?\C-x ?i] 'global-aggressive-indent-mode))
+;; (use-package guide-key
+;;   :ensure t
+;;   :demand t
+;;   :init
+;;   (setq guide-key/guide-key-sequence '("C-c C-x" "C-c" "C-,"))
+;;   :config
+;;   (guide-key-mode t)
+;;   :bind ([?\C-c ?\C-x ?k] . guide-key-mode))
 
-(use-package guide-key
+(use-package which-key
   :ensure t
-  :demand t
-  :init
-  (setq guide-key/guide-key-sequence '("C-c C-x" "C-c" "C-,"))
+  :diminish which-key-mode
   :config
-  (guide-key-mode t)
-  :bind ([?\C-c ?\C-x ?k] . guide-key-mode))
-
+  (which-key-mode))
 
 (use-package symbol-overlay
   :ensure t
