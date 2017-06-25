@@ -12,6 +12,8 @@
   (evil-set-initial-state 'git-commit-mode 'emacs)
   (evil-set-initial-state 'with-editor-mode 'emacs)
   (evil-set-initial-state 'paradox-menu-mode 'emacs)
+  (add-hook 'git-commit-mode-hook 'evil-emacs-state)
+  (evil-set-initial-state 'magit-log-edit-mode 'insert)
   (evil-mode 1))
 
 (use-package evil-anzu
