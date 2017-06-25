@@ -103,8 +103,4 @@
   (evil-vimish-fold-mode 1)
   :diminish evil-vimish-fold-mode)
 
-(use-package evil-magit
-  :after magit
-  :ensure t)
-
 (provide 'wcx-evil)

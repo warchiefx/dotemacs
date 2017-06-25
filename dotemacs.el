@@ -87,7 +87,6 @@
 (require 'wcx-flycheck)
 (require 'wcx-projects)
 (require 'wcx-helm)
-;;(require 'wcx-codesearch)
 
 ;; Programming Modes
 (require 'wcx-companymode)
