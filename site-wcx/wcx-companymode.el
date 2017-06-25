@@ -12,6 +12,12 @@
   :ensure t
   :demand t)
 
+(use-package company-flx
+  :ensure t
+  :after company
+  :config
+  (setq company-flx-limit 400))
+
 (use-package company-restclient
   :ensure t
   :config (add-to-list 'company-backends 'company-restclient))
