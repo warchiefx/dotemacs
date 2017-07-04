@@ -70,6 +70,14 @@
 
 (mouse-avoidance-mode 'cat-and-mouse)
 
+(use-package dashboard
+  :ensure t
+  :config
+  (setq dashboard-items '((recents  . 5)
+                        (projects . 5)
+                        (agenda . 5)))
+  (dashboard-setup-startup-hook))
+
 ;; Buffer naming strategy
 (require 'uniquify)
 
