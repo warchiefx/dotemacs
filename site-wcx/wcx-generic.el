@@ -111,7 +111,7 @@
   :config
   (global-yascroll-bar-mode 1))
 
-(use-package ido-ubiquitous
+(use-package ido-completing-read+
   :ensure t)
 
 (use-package rfringe
