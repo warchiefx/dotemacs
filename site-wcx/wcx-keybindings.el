@@ -179,7 +179,7 @@
 
 (use-package embrace
   :ensure t
-  :bind ("C-," . embrace-commander))
+  :bind ("C-M-," . embrace-commander))
 
 ;; Taken from https://github.com/angrybacon/dotemacs/blob/master/dotemacs.org#inline
 (global-set-key [remap move-beginning-of-line] 'me/beginning-of-line-dwim)
