@@ -11,13 +11,13 @@
 ;; Version: $Id$
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package vc-git
-  :config
-  (when (featurep 'vc-git) (add-to-list 'vc-handled-backends 'git))
-  (require 'git)
-  (autoload 'git-blame-mode "git-blame"
-    "Minor mode for incremental blame for Git." t)
-  )
+;; (use-package vc-git
+;;   :config
+;;   (when (featurep 'vc-git) (add-to-list 'vc-handled-backends 'git))
+;;   (require 'git)
+;;   (autoload 'git-blame-mode "git-blame"
+;;     "Minor mode for incremental blame for Git." t)
+;;   )
 
 (use-package magit
   :ensure t
