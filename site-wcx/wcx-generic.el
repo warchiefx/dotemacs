@@ -290,5 +290,11 @@ or the current buffer directory."
           ("*helm.*"                :select t   :align below :size 0.33 :regexp t)
           ("*Org Src.*"             :select t   :align below :size 0.5  :regexp t))))
 
+
+(use-package makefile-executor
+  :ensure t
+  :config
+  (add-hook 'makefile-mode-hook 'makefile-executor-mode))
+
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here

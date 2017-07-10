@@ -265,12 +265,13 @@ _q_ quit            _b_ blame
 ^──────────^────────^───────^───────────^────^──────────────^──────^────────────
 _q_ quit            _b_ list            _d_ directory       _r_ replace
 _i_ reset cache     _K_ kill all        _D_ root            _s_ ag
-^^                  _S_ save all        _f_ file            ^^
+_m_ make            _S_ save all        _f_ file            ^^
 ^^                  ^^                  _p_ project         ^^
 ^^                  ^^                  ^^                  ^^
 "
   ("q" nil)
   ("b" helm-projectile-switch-to-buffer)
+  ("m" makefile-executor-execute-project-target)
   ("d" helm-projectile-find-dir)
   ("D" projectile-dired)
   ("f" helm-projectile-find-file)
