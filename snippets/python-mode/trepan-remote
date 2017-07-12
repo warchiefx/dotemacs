@@ -1,0 +1,12 @@
+# name: trepan remote setup
+# key: trepanr
+#--
+# TODO: Remove this before commit
+from trepan.interfaces import server as Mserver
+from trepan.api import debug
+conn_options = {'IO': 'TCP', 'PORT': ${1:8099}}
+intf = Mserver.ServerInterface(connection_opts=conn_options)
+dbg_opts = {'interface': intf}
+debug(dbg_opts=dbg_opts)
+print("Starting TCP server on port ${1}")
+$0
