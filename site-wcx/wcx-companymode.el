@@ -38,8 +38,8 @@
   :ensure t
   :diminish ycmd-mode
   :config
-  (setq ycmd-server-command "")
-  (set-variable 'ycmd-server-command '("python2" "/usr/share/vim/vimfiles/third_party/ycmd/ycmd"))
+  ; Remember to customize this variable for your environment
+  ;; (set-variable 'ycmd-server-command '("python2" "/usr/share/vim/vimfiles/third_party/ycmd/ycmd"))
   (add-hook 'after-init-hook #'global-ycmd-mode)
   (add-hook 'ycmd-mode-hook 'ycmd-eldoc-setup))
 
