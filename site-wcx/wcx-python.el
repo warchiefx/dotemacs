@@ -19,12 +19,12 @@
   :diminish eldoc-mode
   :diminish auto-revert-mode)
 
-(use-package company-anaconda
-  :ensure t
-  :config
-  (eval-after-load "company"
-    '(progn
-       (add-to-list 'company-backends '(company-anaconda :with company-capf)))))
+;; (use-package company-anaconda
+;;   :ensure t
+;;   :config
+;;   (eval-after-load "company"
+;;     '(progn
+;;        (add-to-list 'company-backends '(company-anaconda :with company-capf)))))
 
 (use-package python-docstring
   :ensure t
