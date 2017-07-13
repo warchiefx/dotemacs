@@ -24,6 +24,11 @@
    flycheck-display-errors-delay .3)
   (global-flycheck-mode 1)
   (add-hook 'python-mode-hook #'flycheck-virtualenv-setup)
+  (add-hook 'python-mode-hook (lambda ()
+                               (setq flycheck-checker 'python-pylint
+                                     flycheck-checker-error-threshold 900
+                                     flycheck-pylintrc "~/.pylintrc")))
+
   :diminish flycheck-mode)
 
 (provide 'wcx-flycheck)
