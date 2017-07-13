@@ -217,7 +217,7 @@
   :bind
   ("C-c <tab>" . hydra-fold/body)
   ("C-c g" . hydra-magit/body)
-  ("C-c p" . hydra-projectile/body)
+  ("C-c ;" . hydra-projectile/body)
   :config (setq-default hydra-default-hint nil))
 
 (defhydra hydra-fold (:color pink)
