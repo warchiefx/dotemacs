@@ -36,7 +36,7 @@
 
 (use-package ycmd
   :ensure t
-  :diminish ycmd-mode
+  :diminish (ycmd-mode eldoc-mode)
   :config
   ; Remember to customize this variable for your environment
   ;; (set-variable 'ycmd-server-command '("python2" "/usr/share/vim/vimfiles/third_party/ycmd/ycmd"))
