@@ -34,19 +34,6 @@
                                         ; useful in helm-mini that lists buffers
    )
 
-  (when (locate-library "helm-c-moccur")
-    (load-library "helm-c-moccur"))
-  (when (locate-library "helm-projectile")
-    (load-library "helm-projectile"))
-  (when (locate-library "helm-swoop")
-    (require 'helm-swoop)
-    (global-set-key [C-f1] 'helm-swoop)
-    (global-set-key [C-f5] 'helm-multi-swoop-all)
-    (global-set-key [C-S-f1] 'helm-swoop-back-to-last-point)
-
-    ;; When doing isearch, hand the word over to helm-swoop
-    (define-key isearch-mode-map [C-f1] 'helm-swoop-from-isearch))
-
   (defun wcx-helm ()
     (interactive)
     (let ((srcs '(
