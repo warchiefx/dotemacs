@@ -90,7 +90,7 @@
 
 ;; Programming Modes
 (require 'wcx-companymode)
-;;(require 'wcx-java)
+(require 'wcx-java)
 ;;(require 'wcx-malabar)
 ;;(require 'wcx-xml)
 ;;(require 'wcx-nxhtml)
