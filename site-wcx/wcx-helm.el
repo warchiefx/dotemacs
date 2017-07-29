@@ -72,4 +72,9 @@
   (helm-descbinds-mode)
   (setq-default helm-descbinds-window-style 'split-window))
 
+(use-package helm-dash
+  :ensure t
+  :commands (helm-dash helm-dash-install-docset)
+  :bind (([(M-f1)] . helm-dash)))
+
 (provide 'wcx-helm)
