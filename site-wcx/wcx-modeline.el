@@ -47,8 +47,6 @@
 ;;     (spaceline-toggle-all-the-icons-which-function-on)
 ;;     (spaceline-toggle-all-the-icons-time-off)
 ;;     (spaceline-toggle-all-the-icons-window-number-on)
-;;     (spaceline-toggle-evil-state-on)
-;;     (spaceline-toggle-python-pyenv-on)
 ;; )
 
 ;; Mode line setup

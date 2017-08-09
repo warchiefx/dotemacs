@@ -34,7 +34,7 @@
     (let (org-log-done org-log-states)   ; turn off logging
       (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
   (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
-  (setq org-todo-keywords '((sequence "TODO(t)" "OPTIONAL(o)" "EXECUTING(e!)" "FEEDBACK(k@/!)" "VERIFY(v!)" "|" "DONE(d!)" "CANCELLED(@)")
+  (setq org-todo-keywords '((sequence "TODO(t)" "OPTIONAL(o)" "EXECUTING(e!)" "FEEDBACK(k@/!)" "VERIFY(v!)" "BLOCKED(b@/!)" "|" "DONE(d!)" "CANCELLED(@)")
                             (sequence "INVESTIGATE" "READ" "READING" "|" "COMPLETED(c!)")
                             (sequence "DELEGATED(@/!)" "|" "DONE(D!)")
                             (sequence "FIX(f)" "FIXING(F!)" "INVESTIGATING" "STUCK(s@/!)" "SOLUTIONKNOWN(S@)" "|" "FIXED(x!)" "WONTFIX(n@/!)")))

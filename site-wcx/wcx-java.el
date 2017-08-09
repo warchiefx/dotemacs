@@ -52,7 +52,7 @@
         ("C-M-." . helm-imenu)
         ("M-r" . meghanada-reference)
         ("M-t" . meghanada-typeinfo)
-        ("C-z" . hydra-meghanada/body))
+        ("C-c C-k" . hydra-meghanada/body))
   :commands
   (meghanada-mode))
 
