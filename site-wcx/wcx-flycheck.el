@@ -31,5 +31,11 @@
 
   :diminish flycheck-mode)
 
+(use-package flycheck-popup-tip
+  :ensure t
+  :after flycheck
+  :config
+  (add-hook 'flycheck-mode-hook 'flycheck-popup-tip-mode))
+
 (provide 'wcx-flycheck)
 ;;; wcx-flycheck ends here
