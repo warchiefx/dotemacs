@@ -9,26 +9,34 @@
   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
   (add-hook 'pyvenv-post-activate-hooks 'pyvenv-restart-python))
 
-(use-package anaconda-mode
-  :ensure t
-  :defer t
-  :config
-  (add-hook 'python-mode-hook 'anaconda-mode)
-  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-  :diminish anaconda-mode
-  :diminish eldoc-mode
-  :diminish auto-revert-mode)
-
-;; (use-package company-anaconda
+;; (use-package anaconda-mode
 ;;   :ensure t
+;;   :defer t
 ;;   :config
-;;   (eval-after-load "company"
-;;     '(progn
-;;        (add-to-list 'company-backends '(company-anaconda :with company-capf)))))
+;;   (add-hook 'python-mode-hook 'anaconda-mode)
+;;   (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+;;   :diminish anaconda-mode
+;;   :diminish eldoc-mode
+;;   :diminish auto-revert-mode)
+
+(require 'package)
+(add-to-list 'package-archives
+             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+
+(use-package elpy
+  :ensure t
+  :config
+  ;; Disable flymake, switch it out for flycheck
+  (when (require 'flycheck nil t)
+    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+    (add-hook 'elpy-mode-hook 'flycheck-mode))
+  (elpy-use-cpython "python")
+  (elpy-enable)
+  :diminish highlight-indentation-mode)
+
 
 (use-package python-docstring
   :ensure t
-  :after anaconda-mode
   :config
   (python-docstring-install)
   :diminish python-docstring-mode)
