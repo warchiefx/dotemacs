@@ -178,17 +178,15 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Auto refresh buffers
-(global-auto-revert-mode 1)
-(when (package-installed-p 'diminish)
-  (diminish auto-revert-mode))
-
-;; Also auto refresh dired, but be quiet about it
-(setq global-auto-revert-non-file-buffers t)
-(setq auto-revert-verbose nil)
+(use-package auto-revert-mode
+  :diminish auto-revert-mode
+  :config
+  ;; Also auto refresh dired, but be quiet about it
+  (setq global-auto-revert-non-file-buffers t)
+  (setq auto-revert-verbose nil)
+  (global-auto-revert-mode 1))
 
 (setq gc-cons-threshold 20000000)
-
-;; (add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode +1)))
 
 (use-package dired+
   :ensure t)
