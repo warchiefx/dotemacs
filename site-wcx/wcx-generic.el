@@ -39,7 +39,10 @@
 
 ;;; It is always better to know current line and column number
 (column-number-mode t)
-(line-number-mode t)
+
+;; Use relative-line-numbers
+(global-display-line-numbers-mode 'relative)
+(setq display-line-numbers 'relative)
 
 ;;; Overwrite selection
 (delete-selection-mode t)
@@ -254,9 +257,9 @@ or the current buffer directory."
               (neotree-find file-name))))))
   :bind (([f8] . neotree-project-dir-toggle)))
 
-(use-package nlinum
-  :ensure t
-  :bind (("C-c C-x l" . global-nlinum-mode)))
+;; (use-package nlinum
+;;   :ensure t
+;;   :bind (("C-c C-x l" . global-nlinum-mode)))
 
 (use-package csv-mode
   :ensure t)
