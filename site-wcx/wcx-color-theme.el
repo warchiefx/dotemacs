@@ -13,21 +13,9 @@
 
 ;;; Code:
 
-;; (use-package molokai-theme
-;;   :ensure t
-;;   :config
-;;   (setq molokai-theme-kit t)
-;;   (load-theme 'molokai))
-
 ;; (use-package kaolin-theme
 ;;   :ensure t
 ;;   :config (load-theme 'kaolin))
-
-;; (use-package darkokai-theme
-;;   :ensure t
-;;   :config
-;;   (setq darkokai-mode-line-padding 1)
-;;   (load-theme 'darkokai t))
 
 ;; (use-package material-theme
 ;;   :ensure t
@@ -40,7 +28,8 @@
   (setq doom-themes-enable-bold t)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
-  (load-theme 'doom-molokai))
+  (load-theme 'doom-tomorrow-night))
 
 (provide 'wcx-color-theme)
+
 ;;; wcx-color-theme.el ends here
