@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;; (use-package smart-mode-line
 ;;   :ensure t
 ;;   :init
@@ -26,6 +25,8 @@
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   (spaceline-toggle-projectile-root-on)
   (spaceline-toggle-version-control-on)
+  (spaceline-toggle-buffer-position-off)
+  (spaceline-toggle-hud-off)
   (spaceline-toggle-which-function-on))
 
 (use-package all-the-icons
