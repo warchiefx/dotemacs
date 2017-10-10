@@ -329,5 +329,19 @@ or the current buffer directory."
           comment-tags-lighter nil))
   (add-hook 'prog-mode-hook 'comment-tags-mode))
 
+
+(use-package zoom
+  :ensure t
+  :config
+  (defun size-callback ()
+    (cond ((> (frame-pixel-width) 1500) '(120 . 0.75))
+          (t                            '(0.5 . 0.5))))
+
+  (custom-set-variables
+   '(zoom-size 'size-callback))
+  (zoom-mode t)
+  :diminish zoom-mode)
+
+
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
