@@ -339,9 +339,14 @@ or the current buffer directory."
 
   (custom-set-variables
    '(zoom-size 'size-callback))
+  (custom-set-variables
+   '(zoom-ignored-major-modes '(flycheck-error-list-mode))
+   ;; '(zoom-ignored-buffer-names '("zoom.el" "init.el"))
+   '(zoom-ignored-buffer-name-regexps nil)
+   ;; '(zoom-ignore-predicates '((lambda () (> (count-lines (point-min) (point-max)) 20))))
+   )
   (zoom-mode t)
   :diminish zoom-mode)
-
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
