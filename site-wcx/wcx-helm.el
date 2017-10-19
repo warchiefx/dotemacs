@@ -1,5 +1,7 @@
 (use-package helm-projectile
-  :defer t)
+  :ensure t
+  :bind
+  (([(control f1)] . helm-projectile-ag)))
 
 (use-package helm
   :ensure t
@@ -54,16 +56,6 @@
          ([S-f1] . helm-do-grep)
          ("M-y" . helm-show-kill-ring))
   )
-
-(use-package helm-ag
-  :ensure t
-  :after helm
-  :bind
-  (([(control f1)] . helm-ag-project-root))
-  ;; (:map helm-ag-map
-  ;;       ("<left>" . backward-char)
-  ;;       ("<right>" . forward-char))
-  :config (setq-default helm-ag-show-status-function nil))
 
 (use-package helm-descbinds
   :ensure t
