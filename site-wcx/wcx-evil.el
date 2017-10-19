@@ -108,4 +108,15 @@
   (evil-vimish-fold-mode 1)
   :diminish evil-vimish-fold-mode)
 
+(use-package helm-projectile
+  :bind (("C-S-P" . helm-projectile-switch-project)
+         :map evil-normal-state-map
+         ("C-p" . helm-projectile))
+  :ensure t
+  :config
+  (evil-leader/set-key
+    "ps" 'helm-projectile-ag
+    "pa" 'helm-projectile-find-file-in-known-projects
+  ))
+
 (provide 'wcx-evil)
