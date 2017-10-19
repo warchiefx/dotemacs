@@ -67,6 +67,8 @@
 (use-package helm-dash
   :ensure t
   :commands (helm-dash helm-dash-install-docset)
-  :bind (([(M-f1)] . helm-dash)))
+  :bind (([(M-f1)] . helm-dash))
+  :config
+  (setq helm-dash-browser-func 'eww))
 
 (provide 'wcx-helm)
