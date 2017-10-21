@@ -82,6 +82,7 @@
  '(flycheck-flake8rc "~/.flake8rc")
  '(frame-title-format (quote ("%f - " user-real-login-name "@" system-name)) t)
  '(global-font-lock-mode t nil (font-lock))
+ '(global-nlinum-mode t)
  '(global-pabbrev-mode t)
  '(global-semantic-highlight-edits-mode nil)
  '(global-semantic-stickyfunc-mode nil)
@@ -112,12 +113,11 @@
  '(make-backup-files nil)
  '(mouse-drag-copy-region nil)
  '(nethack-use-tiles t)
+ '(nlinum-highlight-current-line t)
  '(nxml-auto-insert-xml-declaration-flag t)
  '(nxml-bind-meta-tab-to-complete-flag t)
  '(nxml-slash-auto-complete-flag t)
- '(org-agenda-files
-   (quote
-    ("/home/rrestituyo/gdrive/orgfiles/work/vivial" "/home/rrestituyo/gdrive/orgfiles/")))
+ '(org-agenda-files nil)
  '(org-clock-into-drawer t)
  '(org-enforce-todo-dependencies t)
  '(org-export-with-smart-quotes nil)
@@ -207,6 +207,7 @@
  '(spaceline-all-the-icons-icon-set-modified (quote toggle))
  '(spaceline-all-the-icons-icon-set-window-numbering (quote solid))
  '(spaceline-all-the-icons-separator-type (quote none))
+ '(spaceline-all-the-icons-slim-render nil)
  '(sql-sqlite-program "sqlite3")
  '(tab-width 4)
  '(text-mode-hook (quote (turn-on-auto-fill text-mode-hook-identify)))
@@ -220,7 +221,10 @@
  '(w3m-use-cookies t)
  '(ycmd-server-command
    (quote
-    ("python2" "/home/rrestituyo/Work/youcompleteme/ycmd/ycmd"))))
+    ("python2" "/home/rrestituyo/Work/youcompleteme/ycmd/ycmd")))
+ '(zoom-ignored-buffer-name-regexps nil)
+ '(zoom-ignored-major-modes (quote (flycheck-error-list-mode)))
+ '(zoom-size (quote size-callback)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
