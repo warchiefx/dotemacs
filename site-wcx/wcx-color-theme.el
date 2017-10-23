@@ -13,22 +13,22 @@
 
 ;;; Code:
 
-;; (use-package kaolin-theme
-;;   :ensure t
-;;   :config (load-theme 'kaolin))
+(use-package kaolin-themes
+  :ensure t
+  :config (load-theme 'kaolin-dark t))
 
 ;; (use-package material-theme
 ;;   :ensure t
 ;;   :config
 ;;   (load-theme 'material t))
 
-(use-package doom-themes
-  :ensure t
-  :config
-  (setq doom-themes-enable-bold t)
-  (doom-themes-visual-bell-config)
-  (doom-themes-neotree-config)
-  (load-theme 'doom-tomorrow-night))
+;; (use-package doom-themes
+;;   :ensure t
+;;   :config
+;;   (setq doom-themes-enable-bold t)
+;;   (doom-themes-visual-bell-config)
+;;   (doom-themes-neotree-config)
+;;   (load-theme 'doom-tomorrow-night))
 
 (provide 'wcx-color-theme)
 
