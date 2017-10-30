@@ -52,8 +52,6 @@
 (global-set-key [f2] 'start-kbd-macro)
 (global-set-key [(control f2)] 'end-kbd-macro)
 
-;; Undo & Redo
-(global-set-key [f3] 'undo)
 
 ;; Toggle menu-bar-mode
 (global-set-key [C-f10] 'menu-bar-mode)
@@ -281,5 +279,20 @@ _m_ make            _S_ save all        _f_ file            ^^
   ("r" projectile-replace)
   ("s" helm-projectile-ag)
   ("S" projectile-save-project-buffers))
+
+(defhydra hydra-undo-tree (:color yellow
+                                  :hint nil
+                                  )
+  "
+  _p_: undo  _n_: redo _s_: save _l_: load   "
+  ("p"   undo-tree-undo)
+  ("n"   undo-tree-redo)
+  ("s"   undo-tree-save-history)
+  ("l"   undo-tree-load-history)
+  ("u"   undo-tree-visualize "visualize" :color blue)
+  ("q"   nil "quit" :color blue))
+
+;; Undo & Redo
+(global-set-key [f3] 'hydra-undo-tree/undo-tree-undo) ;; or whatever
 
 (provide 'wcx-keybindings)
