@@ -8,7 +8,7 @@
   (define-key evil-insert-state-map
     (read-kbd-macro evil-toggle-key) 'evil-emacs-state)
   (setq evil-default-state 'normal)
-  (evil-set-initial-state 'org-mode 'emacs)
+  ;; (evil-set-initial-state 'org-mode 'emacs)
   (evil-set-initial-state 'git-commit-mode 'emacs)
   (evil-set-initial-state 'with-editor-mode 'emacs)
   (evil-set-initial-state 'paradox-menu-mode 'emacs)
@@ -135,5 +135,14 @@
 
   ;; bind evil-jump-out-args
   (define-key evil-normal-state-map "K" 'evil-jump-out-args))
+
+(use-package evil-org
+  :ensure t
+  :after org
+  :config
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (add-hook 'evil-org-mode-hook
+            (lambda ()
+              (evil-org-set-key-theme))))
 
 (provide 'wcx-evil)
