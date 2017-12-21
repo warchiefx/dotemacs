@@ -19,6 +19,8 @@
 ;;   :diminish eldoc-mode
 ;;   :diminish auto-revert-mode)
 
+
+
 (require 'package)
 (add-to-list 'package-archives
              '("elpy" . "http://jorgenschaefer.github.io/packages/"))
@@ -34,6 +36,33 @@
   (elpy-enable)
   :diminish highlight-indentation-mode)
 
+(use-package hydra
+  :ensure t
+  :config
+  (defhydra elpy-nav-errors (:color red)
+    "
+  Navigate errors
+  "
+    ("n" next-error "next error")
+    ("p" previous-error "previous error")
+    ("s" (progn
+           (switch-to-buffer-other-window "*compilation*")
+           (goto-char (point-max))) "switch to compilation buffer" :color blue)
+    ("w" (venv-workon) "Workon venv…")
+    ("q" nil "quit")
+    ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
+    )
+
+  (defhydra elpy-hydra (:color red)
+    "
+    Elpy in venv: %`venv-current-name
+    "
+    ("d" (progn (call-interactively 'elpy-test-django-runner) (elpy-nav-errors/body)) "current test, Django runner" :color blue)
+    ("t" (progn (call-interactively 'elpy-test-pytest-runner) (elpy-nav-errors/body)) "current test, pytest runner" :color blue)
+    ("w" (venv-workon) "workon venv…")
+    ("q" nil "quit")
+    ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
+    ))
 
 (use-package python-docstring
   :ensure t
