@@ -181,13 +181,13 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Auto refresh buffers
-(use-package auto-revert-mode
-  :diminish auto-revert-mode
-  :config
-  ;; Also auto refresh dired, but be quiet about it
-  (setq global-auto-revert-non-file-buffers t)
-  (setq auto-revert-verbose nil)
-  (global-auto-revert-mode 1))
+;; (use-package auto-revert-mode
+;;   :diminish auto-revert-mode
+;;   :config
+;;   ;; Also auto refresh dired, but be quiet about it
+;;   (setq global-auto-revert-non-file-buffers t)
+;;   (setq auto-revert-verbose nil)
+;;   (global-auto-revert-mode 1))
 
 (setq gc-cons-threshold 20000000)
 
@@ -330,23 +330,23 @@ or the current buffer directory."
   (add-hook 'prog-mode-hook 'comment-tags-mode))
 
 
-(use-package zoom
-  :ensure t
-  :config
-  (defun size-callback ()
-    (cond ((> (frame-pixel-width) 1500) '(120 . 0.75))
-          (t                            '(0.5 . 0.5))))
+;; (use-package zoom
+;;   :ensure t
+;;   :config
+;;   (defun size-callback ()
+;;     (cond ((> (frame-pixel-width) 1500) '(120 . 0.75))
+;;           (t                            '(0.5 . 0.5))))
 
-  (custom-set-variables
-   '(zoom-size 'size-callback))
-  (custom-set-variables
-   '(zoom-ignored-major-modes '(flycheck-error-list-mode))
-   ;; '(zoom-ignored-buffer-names '("zoom.el" "init.el"))
-   '(zoom-ignored-buffer-name-regexps nil)
-   ;; '(zoom-ignore-predicates '((lambda () (> (count-lines (point-min) (point-max)) 20))))
-   )
-  (zoom-mode t)
-  :diminish zoom-mode)
+;;   (custom-set-variables
+;;    '(zoom-size 'size-callback))
+;;   (custom-set-variables
+;;    '(zoom-ignored-major-modes '(flycheck-error-list-mode))
+;;    ;; '(zoom-ignored-buffer-names '("zoom.el" "init.el"))
+;;    '(zoom-ignored-buffer-name-regexps nil)
+;;    ;; '(zoom-ignore-predicates '((lambda () (> (count-lines (point-min) (point-max)) 20))))
+;;    )
+;;   (zoom-mode t)
+;;   :diminish zoom-mode)
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here

@@ -27,5 +27,9 @@
   (add-hook 'css-mode-hook 'emmet-mode)
   (add-hook 'web-mode-hook 'emmet-mode))
 
+(use-package restclient
+  :ensure t
+  )
+
 (provide 'wcx-web-mode)
 ;;; wcx-web-mode.el ends here

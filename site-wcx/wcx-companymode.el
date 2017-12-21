@@ -34,25 +34,25 @@
    company-tern-meta-as-single-line t
    company-tern-property-marker " *"))
 
-(use-package ycmd
-  :ensure t
-  :diminish (ycmd-mode eldoc-mode)
-  :config
-  ; Remember to customize this variable for your environment
-  ;; (set-variable 'ycmd-server-command '("python2" "/usr/share/vim/vimfiles/third_party/ycmd/ycmd"))
-  (add-hook 'after-init-hook #'global-ycmd-mode)
-  (add-hook 'ycmd-mode-hook 'ycmd-eldoc-setup))
+;; (use-package ycmd
+;;   :ensure t
+;;   :diminish (ycmd-mode eldoc-mode)
+;;   :config
+;;   ; Remember to customize this variable for your environment
+;;   ;; (set-variable 'ycmd-server-command '("python2" "/usr/share/vim/vimfiles/third_party/ycmd/ycmd"))
+;;   (add-hook 'after-init-hook #'global-ycmd-mode)
+;;   (add-hook 'ycmd-mode-hook 'ycmd-eldoc-setup))
 
-(use-package company-ycmd
-  :ensure t
-  :config (company-ycmd-setup))
+;; (use-package company-ycmd
+;;   :ensure t
+;;   :config (company-ycmd-setup))
 
-;; Only install this if flycheck is installed
-(when (package-installed-p 'flycheck)
-  (use-package flycheck-ycmd
-    :ensure t
-    :after flycheck
-    :config (flycheck-ycmd-setup)))
+;; ;; Only install this if flycheck is installed
+;; (when (package-installed-p 'flycheck)
+;;   (use-package flycheck-ycmd
+;;     :ensure t
+;;     :after flycheck
+;;     :config (flycheck-ycmd-setup)))
 
 ;; /usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py
 
