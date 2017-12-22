@@ -16,6 +16,7 @@
   (evil-set-initial-state 'dashboard-mode 'emacs)
   (evil-set-initial-state 'neotree-mode 'emacs)
   (evil-set-initial-state 'eww-mode 'emacs)
+  (evil-set-initial-state 'indium-repl-mode 'emacs)
   (add-hook 'git-commit-mode-hook 'evil-emacs-state)
   (evil-set-initial-state 'magit-log-edit-mode 'insert)
   (evil-mode 1))
