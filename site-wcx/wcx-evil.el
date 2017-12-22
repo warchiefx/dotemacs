@@ -136,6 +136,8 @@
   ;; bind evil-jump-out-args
   (define-key evil-normal-state-map "K" 'evil-jump-out-args))
 
+(use-package exato :ensure t)
+
 (use-package evil-org
   :ensure t
   :after org
