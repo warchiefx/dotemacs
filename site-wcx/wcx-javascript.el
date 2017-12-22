@@ -43,5 +43,9 @@
   :config
   (add-to-list 'company-backends 'company-tern))
 
+(use-package indium
+  :ensure t
+  :config
+  (add-hook 'rjsx-mode-hook #'indium-interaction-mode))
 
 (provide 'wcx-javascript)
