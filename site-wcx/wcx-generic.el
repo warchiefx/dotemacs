@@ -348,5 +348,9 @@ or the current buffer directory."
 ;;   (zoom-mode t)
 ;;   :diminish zoom-mode)
 
+(use-package exec-path-from-shell
+  :ensure t
+  :config (exec-path-from-shell-initialize))
+
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
