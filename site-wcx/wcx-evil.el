@@ -148,4 +148,9 @@
             (lambda ()
               (evil-org-set-key-theme))))
 
+(use-package evil-collection
+  :ensure t
+  :custom (evil-collection-setup-minibuffer t)
+  :init (evil-collection-init))
+
 (provide 'wcx-evil)
