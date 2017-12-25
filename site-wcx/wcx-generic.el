@@ -51,7 +51,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;;; Change cursor into a bar instead of a block
-(setq-default cursor-type 'bar)
+;; (setq-default cursor-type 'bar)
 
 ;; Highlight parentheses according to nesting level
 (when (locate-library "highlight-parentheses")

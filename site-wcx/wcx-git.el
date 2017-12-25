@@ -73,4 +73,12 @@
   (global-diff-hl-mode 1)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
+;; (use-package ghub
+;;   :ensure t)
+
+(use-package magithub
+  :ensure t
+  :after magit
+  :config (magithub-feature-autoinject t))
+
 (provide 'wcx-git)
