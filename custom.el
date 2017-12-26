@@ -93,6 +93,12 @@
  '(gnus-gcc-mark-as-read t)
  '(gnus-registry-install t)
  '(gui-select-enable-clipboard t)
+ '(helm-gtags-path-style (quote relative))
+ '(helm-gtags-prefix-key "")
+ '(helm-gtags-suggested-key-mapping t)
+ '(helm-projectile-sources-list
+   (quote
+    (helm-source-semantic helm-source-projectile-buffers-list helm-source-projectile-files-list helm-source-projectile-projects helm-source-gtags-select)))
  '(helm-scroll-amount 4)
  '(icicle-fuzzy-completion-flag nil)
  '(ido-auto-merge-work-directories-length nil)
@@ -112,6 +118,7 @@
  '(magit-push-always-verify nil)
  '(mail-user-agent (quote gnus-user-agent))
  '(make-backup-files nil)
+ '(markdown-command "pandoc" t)
  '(mouse-drag-copy-region nil)
  '(nethack-use-tiles t)
  '(nlinum-highlight-current-line t)
