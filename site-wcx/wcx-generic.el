@@ -352,5 +352,15 @@ or the current buffer directory."
   :ensure t
   :config (exec-path-from-shell-initialize))
 
+(use-package ggtags
+  :ensure t
+  :config
+  (add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+              (ggtags-mode 1))))
+  (add-hook 'python-mode-hook (lambda () (ggtags-mode 1)))
+  )
+
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here

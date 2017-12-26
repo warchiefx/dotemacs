@@ -43,6 +43,7 @@
                   helm-source-buffers-list
                   helm-source-find-files
                   helm-source-file-name-history
+                  helm-source-gtags-select
                   ;;helm-source-recentf
                   helm-source-projectile-projects
                   ;;helm-source-flycheck
@@ -70,5 +71,8 @@
   :bind (([(M-f1)] . helm-dash))
   :config
   (setq helm-dash-browser-func 'eww))
+
+(use-package helm-gtags
+  :ensure t)
 
 (provide 'wcx-helm)
