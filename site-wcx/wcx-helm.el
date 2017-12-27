@@ -73,6 +73,8 @@
   (setq helm-dash-browser-func 'eww))
 
 (use-package helm-gtags
-  :ensure t)
+  :ensure t
+  :config
+  (global-set-key [C-down-mouse-1] 'helm-gtags-find-tag-from-here))
 
 (provide 'wcx-helm)
