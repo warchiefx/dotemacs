@@ -35,10 +35,10 @@
  '(c-default-style "k&r")
  '(case-fold-search t)
  '(column-number-mode t)
- '(company-auto-complete (quote company-explicit-action-p))
  '(company-frontends
    (quote
     (company-pseudo-tooltip-unless-just-one-frontend company-echo-metadata-frontend company-preview-if-just-one-frontend)))
+ '(company-gtags-modes (quote (prog-mode jde-mode python-mode)))
  '(company-show-numbers t)
  '(company-transformers (quote (company-sort-by-backend-importance)))
  '(compilation-scroll-output (quote first-error))
@@ -82,6 +82,7 @@
  '(flycheck-flake8-maximum-line-length 125)
  '(flycheck-flake8rc "~/.flake8rc")
  '(frame-title-format (quote ("%f - " user-real-login-name "@" system-name)) t)
+ '(ggtags-global-ignore-case t)
  '(global-font-lock-mode t nil (font-lock))
  '(global-nlinum-mode nil)
  '(global-pabbrev-mode t)
@@ -118,7 +119,7 @@
  '(magit-push-always-verify nil)
  '(mail-user-agent (quote gnus-user-agent))
  '(make-backup-files nil)
- '(markdown-command "pandoc" t)
+ '(markdown-command "pandoc")
  '(mouse-drag-copy-region nil)
  '(nethack-use-tiles t)
  '(nlinum-highlight-current-line t)
