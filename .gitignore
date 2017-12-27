@@ -33,3 +33,7 @@ request
 .python-environments
 persp-confs/
 anaconda-mode/
+/GTAGS
+/GRTAGS
+/GPATH
+/.vimish-fold
