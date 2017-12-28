@@ -9,58 +9,62 @@
   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
   (add-hook 'pyvenv-post-activate-hooks 'pyvenv-restart-python))
 
-;; (use-package anaconda-mode
+(use-package anaconda-mode
+  :ensure t
+  :config
+  (add-hook 'python-mode-hook 'anaconda-mode)
+  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+  :diminish anaconda-mode
+  :diminish eldoc-mode
+  :diminish auto-revert-mode)
+
+(use-package company-anaconda
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-anaconda))
+
+;; (require 'package)
+;; (add-to-list 'package-archives
+;;              '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+
+;; (use-package elpy
 ;;   :ensure t
-;;   :defer t
 ;;   :config
-;;   (add-hook 'python-mode-hook 'anaconda-mode)
-;;   (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-;;   :diminish anaconda-mode
-;;   :diminish eldoc-mode
-;;   :diminish auto-revert-mode)
+;;   ;; Disable flymake, switch it out for flycheck
+;;   (when (require 'flycheck nil t)
+;;     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+;;     (add-hook 'elpy-mode-hook 'flycheck-mode))
+;;   (elpy-use-cpython "python")
+;;   (elpy-enable)
+;;   :diminish highlight-indentation-mode)
 
-(require 'package)
-(add-to-list 'package-archives
-             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+;; (use-package hydra
+;;   :ensure t
+;;   :config
+;;   (defhydra elpy-nav-errors (:color red)
+;;     "
+;;   Navigate errors
+;;   "
+;;     ("n" next-error "next error")
+;;     ("p" previous-error "previous error")
+;;     ("s" (progn
+;;            (switch-to-buffer-other-window "*compilation*")
+;;            (goto-char (point-max))) "switch to compilation buffer" :color blue)
+;;     ("w" (venv-workon) "Workon venv…")
+;;     ("q" nil "quit")
+;;     ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
+;;     )
 
-(use-package elpy
-  :ensure t
-  :config
-  ;; Disable flymake, switch it out for flycheck
-  (when (require 'flycheck nil t)
-    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-    (add-hook 'elpy-mode-hook 'flycheck-mode))
-  (elpy-use-cpython "python")
-  (elpy-enable)
-  :diminish highlight-indentation-mode)
-
-(use-package hydra
-  :ensure t
-  :config
-  (defhydra elpy-nav-errors (:color red)
-    "
-  Navigate errors
-  "
-    ("n" next-error "next error")
-    ("p" previous-error "previous error")
-    ("s" (progn
-           (switch-to-buffer-other-window "*compilation*")
-           (goto-char (point-max))) "switch to compilation buffer" :color blue)
-    ("w" (venv-workon) "Workon venv…")
-    ("q" nil "quit")
-    ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
-    )
-
-  (defhydra elpy-hydra (:color red)
-    "
-    Elpy in venv: %`venv-current-name
-    "
-    ("d" (progn (call-interactively 'elpy-test-django-runner) (elpy-nav-errors/body)) "current test, Django runner" :color blue)
-    ("t" (progn (call-interactively 'elpy-test-pytest-runner) (elpy-nav-errors/body)) "current test, pytest runner" :color blue)
-    ("w" (venv-workon) "workon venv…")
-    ("q" nil "quit")
-    ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
-    ))
+;;   (defhydra elpy-hydra (:color red)
+;;     "
+;;     Elpy in venv: %`venv-current-name
+;;     "
+;;     ("d" (progn (call-interactively 'elpy-test-django-runner) (elpy-nav-errors/body)) "current test, Django runner" :color blue)
+;;     ("t" (progn (call-interactively 'elpy-test-pytest-runner) (elpy-nav-errors/body)) "current test, pytest runner" :color blue)
+;;     ("w" (venv-workon) "workon venv…")
+;;     ("q" nil "quit")
+;;     ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
+;;     ))
 
 (use-package python-docstring
   :ensure t
