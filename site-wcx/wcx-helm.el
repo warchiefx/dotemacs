@@ -75,6 +75,6 @@
 (use-package helm-gtags
   :ensure t
   :config
-  (global-set-key [C-mouse-1] 'helm-gtags-find-tag-from-here))
+  (global-set-key [C-down-mouse-1] 'helm-gtags-find-tag-from-here))
 
 (provide 'wcx-helm)
