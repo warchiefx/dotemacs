@@ -30,6 +30,7 @@
   :ensure t
   :init
   (add-hook 'js2-mode-hook 'tern-mode)
+  (add-hook 'web-mode-hook 'tern-mode)
   (add-hook 'rjsx-mode-hook 'tern-mode))
 
 (use-package company-tern
@@ -85,4 +86,15 @@
 (use-package react-snippets
   :ensure t)
 
-(provide 'wcx-webdev)
+(use-package prettier-js
+  :ensure t
+  :diminish prettier-js-mode
+  :config
+  (add-hook 'js2-mode-hook 'prettier-js-mode)
+  (add-hook 'rjsx-mode-hook 'prettier-js-mode)
+  (setq prettier-js-args '(
+                           "--trailing-comma" "all"
+                           "--bracket-spacing" "false"
+                           )))
+
+  (provide 'wcx-webdev)
