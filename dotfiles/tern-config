@@ -1,0 +1,16 @@
+ {
+   "libs": [
+     "browser",
+     "react"
+   ],
+   "plugins": {
+     "doc_comment": null,
+     "node": {},
+     "requirejs": {
+       "baseURL": "./",
+       "paths": {}
+     },
+     "commonjs": {},
+     "webpack": {}
+   }
+ }
