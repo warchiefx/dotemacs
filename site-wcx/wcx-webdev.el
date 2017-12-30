@@ -97,4 +97,12 @@
                            "--bracket-spacing" "false"
                            )))
 
+(use-package ggtags
+  :ensure t
+  :config
+  (add-hook 'js2-mode-hook (lambda () (ggtags-mode 1)))
+  (add-hook 'js-mode-hook (lambda () (ggtags-mode 1)))
+  (add-hook 'rjsx-mode-hook (lambda () (ggtags-mode 1)))
+  (add-hook 'web-mode-hook (lambda () (ggtags-mode 1))))
+
   (provide 'wcx-webdev)
