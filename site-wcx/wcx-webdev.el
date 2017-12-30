@@ -1,0 +1,88 @@
+(use-package js2-mode
+  :ensure t
+  :interpreter (("node" . js2-mode))
+  :bind (:map js2-mode-map ("C-c C-p" . js2-print-json-path))
+  :mode "\\.\\(js\\|json\\)$"
+  :config
+  (add-hook 'js-mode-hook 'js2-minor-mode)
+  (setq js2-basic-offset 2
+        js2-highlight-level 3
+        js2-mode-show-parse-errors nil
+        js2-mode-show-strict-warnings nil))
+
+(use-package js2-refactor
+  :defer t
+  :diminish js2-refactor-mode
+  :commands js2-refactor-mode
+  :ensure t
+  :init
+  (add-hook 'js2-mode-hook #'js2-refactor-mode)
+  :config
+  (js2r-add-keybindings-with-prefix "C-c C-m"))
+
+(use-package rjsx-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode)))
+
+(use-package tern
+  :diminish tern-mode
+  :ensure t
+  :init
+  (add-hook 'js2-mode-hook 'tern-mode)
+  (add-hook 'rjsx-mode-hook 'tern-mode))
+
+(use-package company-tern
+  :ensure t
+  :after tern
+  :config
+  (add-to-list 'company-backends 'company-tern))
+
+(use-package indium
+  :ensure t
+  :config
+  (add-hook 'rjsx-mode-hook #'indium-interaction-mode)
+  (add-hook 'js2-mode-hook #'indium-interaction-mode))
+
+(use-package web-mode
+  :ensure t
+  :mode "\\.html?\\'"
+  :init
+  (dolist (hook '(emmet-mode))
+    (add-hook 'web-mode-hook hook))
+  :config
+  (setq web-mode-markup-indent-offset 2
+        web-mode-css-indent-offset 2
+        web-mode-code-indent-offset 2
+        web-mode-enable-auto-pairing nil
+        web-mode-enable-auto-closing t
+        web-mode-enable-current-element-highlight t
+        web-mode-enable-current-column-highlight t)
+  (add-hook 'web-mode-before-auto-complete-hooks
+            '(lambda ()
+               (let ((web-mode-cur-language (web-mode-language-at-pos)))
+                 (if (string= web-mode-cur-language "css")
+                     (setq emmet-use-css-transform t)
+                   (setq emmet-use-css-transform nil))))))
+
+(use-package emmet-mode
+  :diminish emmet-mode
+  :ensure t
+  :init
+  (dolist (hook '(sgml-mode-hook css-mode-hook kolon-mode-hook))
+    (add-hook hook 'emmet-mode)))
+
+(mapc (lambda (mode)
+        (if (package-installed-p mode)
+            t
+          (if (assoc mode package-archive-contents)
+              (package-install mode)
+            (progn
+              (package-refresh-contents)
+              (package-install mode)))))
+      '(jade-mode scss-mode sass-mode))
+
+(use-package react-snippets
+  :ensure t)
+
+(provide 'wcx-webdev)
