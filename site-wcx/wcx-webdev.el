@@ -39,11 +39,18 @@
   :config
   (add-to-list 'company-backends 'company-tern))
 
-(use-package indium
+;; (use-package indium
+;;   :ensure t
+;;   :config
+;;   (add-hook 'rjsx-mode-hook #'indium-interaction-mode)
+;;   (add-hook 'js2-mode-hook #'indium-interaction-mode))
+
+(use-package skewer-mode
   :ensure t
   :config
-  (add-hook 'rjsx-mode-hook #'indium-interaction-mode)
-  (add-hook 'js2-mode-hook #'indium-interaction-mode))
+  (skewer-setup)
+  (add-hook 'web-mode-hook 'skewer-mode)
+  :diminish skewer-mode)
 
 (use-package web-mode
   :ensure t
