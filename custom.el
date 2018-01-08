@@ -244,4 +244,6 @@
  '(evil-goggles-undo-redo-change-face ((t (:inherit (quote diff-changed)))))
  '(evil-goggles-undo-redo-remove-face ((t (:inherit (quote diff-refine-removed)))))
  '(evil-goggles-yank-face ((t (:inherit (quote diff-changed)))))
- '(spaceline-python-venv ((t (:foreground "light gray")))))
+ '(spaceline-python-venv ((t (:foreground "light gray"))))
+ '(yascroll:thumb-fringe ((t (:background "dim gray" :foreground "dim gray"))))
+ '(yascroll:thumb-text-area ((t (:background "dim gray")))))

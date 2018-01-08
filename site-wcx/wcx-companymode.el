@@ -34,6 +34,10 @@
    company-tern-meta-as-single-line t
    company-tern-property-marker " *"))
 
+(use-package company-statistics
+  :ensure t
+  :config (company-statistics-mode))
+
 ;; (use-package ycmd
 ;;   :ensure t
 ;;   :diminish (ycmd-mode eldoc-mode)
