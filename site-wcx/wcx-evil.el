@@ -1,5 +1,7 @@
 ;;; wcx-evil.el --- Integrate EVIL vim compatibility
 
+(setq evil-want-integration nil)
+
 (use-package evil
   :ensure t
   :diminish undo-tree-mode
