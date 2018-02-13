@@ -77,8 +77,10 @@
   :diminish emmet-mode
   :ensure t
   :init
-  (dolist (hook '(sgml-mode-hook css-mode-hook kolon-mode-hook))
-    (add-hook hook 'emmet-mode)))
+  (dolist (hook '(sgml-mode-hook css-mode-hook kolon-mode-hook web-mode-hook))
+    (add-hook hook 'emmet-mode))
+  (setq emmet-expand-jsx-className? t))
+
 
 (mapc (lambda (mode)
         (if (package-installed-p mode)
