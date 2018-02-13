@@ -15,20 +15,22 @@
 
 (use-package kaolin-themes
   :ensure t
-  :config (load-theme 'kaolin-dark t))
+  :config (load-theme 'kaolin-aurora))
 
-;; (use-package material-theme
+;; (use-package nord-theme
 ;;   :ensure t
 ;;   :config
-;;   (load-theme 'material t))
+;;   (setq nord-comment-brightness 15)
+;;   (load-theme 'nord))
 
 ;; (use-package doom-themes
 ;;   :ensure t
 ;;   :config
 ;;   (setq doom-themes-enable-bold t)
+;;   (load-theme 'doom-one)
 ;;   (doom-themes-visual-bell-config)
 ;;   (doom-themes-neotree-config)
-;;   (load-theme 'doom-tomorrow-night))
+;;   (doom-themes-org-config))
 
 (provide 'wcx-color-theme)
 
