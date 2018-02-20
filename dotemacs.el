@@ -29,9 +29,6 @@
 (add-to-list 'load-path site-lisp-path)
 (add-to-list 'load-path site-wcx-path)
 
-(setenv "PATH" (concat (getenv "PATH") ":~/.scripts"))
-(setq exec-path (append exec-path '("~/.scripts")))
-
 ;; Move custom definitions to another place.
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)

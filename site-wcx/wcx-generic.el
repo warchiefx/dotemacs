@@ -350,9 +350,10 @@ or the current buffer directory."
 
 (use-package exec-path-from-shell
   :ensure t
-  :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
+)
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 (use-package ggtags
   :ensure t
