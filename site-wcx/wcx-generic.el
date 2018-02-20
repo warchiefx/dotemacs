@@ -348,12 +348,6 @@ or the current buffer directory."
 ;;   (zoom-mode t)
 ;;   :diminish zoom-mode)
 
-(use-package exec-path-from-shell
-  :ensure t
-)
-
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
 
 (use-package ggtags
   :ensure t
