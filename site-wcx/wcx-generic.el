@@ -358,5 +358,9 @@ or the current buffer directory."
               (ggtags-mode 1))))
   (add-hook 'python-mode-hook (lambda () (ggtags-mode 1))))
 
+(use-package git-link
+  :ensure t
+  :bind (("C-c C-x p" . git-link)))
+
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
