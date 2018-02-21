@@ -16,8 +16,7 @@
   :config
   (setq-default
    ;; flycheck-check-syntax-automatically '(save mode-enabled)
-   flycheck-disabled-checkers '(emacs-lisp-checkdoc)
-   flycheck-display-errors-delay .3)
+   flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (global-flycheck-mode 1)
   (add-hook 'python-mode-hook (lambda ()
                                (setq flycheck-checker 'python-pylint
