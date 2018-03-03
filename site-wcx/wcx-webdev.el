@@ -28,14 +28,13 @@
 (use-package tern
   :diminish tern-mode
   :ensure t
-  :init
+  :config
   (add-hook 'js2-mode-hook 'tern-mode)
   (add-hook 'web-mode-hook 'tern-mode)
   (add-hook 'rjsx-mode-hook 'tern-mode))
 
 (use-package company-tern
   :ensure t
-  :after tern
   :config
   (add-to-list 'company-backends 'company-tern))
 
