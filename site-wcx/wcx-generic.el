@@ -362,5 +362,9 @@ or the current buffer directory."
   :ensure t
   :bind (("C-c C-x p" . git-link)))
 
+(use-package beacon
+  :ensure t
+  :config (beacon-mode 1))
+
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
