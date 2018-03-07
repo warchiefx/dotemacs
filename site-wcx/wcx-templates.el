@@ -18,5 +18,8 @@
   (yas-global-mode 1)
   :diminish yas-minor-mode)
 
+(use-package yasnippet-snippets
+  :ensure t)
+
 (provide 'wcx-templates)
 ;;; wcx-templates.el ends here
