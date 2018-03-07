@@ -145,6 +145,8 @@
   (diminish-afterload "emmet-mode" 'emmet-mode)
   (diminish-afterload "highlight-parentheses" 'highlight-parentheses-mode)
   (diminish-afterload "auto-complete" 'auto-complete-mode)
+  (diminish-afterload "auto-revert" 'auto-revert-mode)
+  (diminish-afterload "undo-tree" 'undo-tree-mode)
   (diminish-afterload "projectile" 'projectile-mode))
 
 
