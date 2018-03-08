@@ -13,9 +13,9 @@
 
 ;;; Code:
 
-(use-package kaolin-themes
-  :ensure t
-  :config (load-theme 'kaolin-aurora))
+;; (use-package kaolin-themes
+;;   :ensure t
+;;   :config (load-theme 'kaolin-dark))
 
 ;; (use-package nord-theme
 ;;   :ensure t
@@ -23,14 +23,14 @@
 ;;   (setq nord-comment-brightness 15)
 ;;   (load-theme 'nord))
 
-;; (use-package doom-themes
-;;   :ensure t
-;;   :config
-;;   (setq doom-themes-enable-bold t)
-;;   (load-theme 'doom-one)
-;;   (doom-themes-visual-bell-config)
-;;   (doom-themes-neotree-config)
-;;   (doom-themes-org-config))
+(use-package doom-themes
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t)
+  (load-theme 'doom-citylights)
+  (doom-themes-visual-bell-config)
+  (doom-themes-neotree-config)
+  (doom-themes-org-config))
 
 (provide 'wcx-color-theme)
 
