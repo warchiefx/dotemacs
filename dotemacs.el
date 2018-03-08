@@ -146,6 +146,8 @@
   (diminish-afterload "highlight-parentheses" 'highlight-parentheses-mode)
   (diminish-afterload "auto-complete" 'auto-complete-mode)
   (diminish-afterload "auto-revert" 'auto-revert-mode)
+  (diminish-afterload "autorevert" 'auto-revert-mode)
+  (diminish-afterload "ggtags" 'ggtags-mode)
   (diminish-afterload "undo-tree" 'undo-tree-mode)
   (diminish-afterload "projectile" 'projectile-mode))
 
