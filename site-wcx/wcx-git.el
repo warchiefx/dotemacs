@@ -76,9 +76,14 @@
 ;; (use-package ghub
 ;;   :ensure t)
 
-(use-package magithub
+;; (use-package magithub
+;;   :ensure t
+;;   :after magit
+;;   :config (magithub-feature-autoinject t))
+
+(use-package magit-org-todos
   :ensure t
-  :after magit
-  :config (magithub-feature-autoinject t))
+  :config
+  (magit-org-todos-autoinsert))
 
 (provide 'wcx-git)
