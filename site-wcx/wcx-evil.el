@@ -157,4 +157,17 @@
   :custom (evil-collection-setup-minibuffer t)
   :init (evil-collection-init))
 
+
+(use-package evil-mc
+  :ensure t
+  :diminish (evil-mc-mode)
+  :config
+  (evil-define-local-var evil-mc-custom-paused nil
+    "Paused functionality when there are multiple cursors active.")
+
+  (defvar evil-mc-mode-line-prefix "ⓜ"
+    "Override of the default mode line string for `evil-mc-mode'.")
+
+  (global-evil-mc-mode 1))
+
 (provide 'wcx-evil)
