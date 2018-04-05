@@ -9,19 +9,19 @@
   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
   (add-hook 'pyvenv-post-activate-hooks 'pyvenv-restart-python))
 
-(use-package anaconda-mode
-  :ensure t
-  :config
-  (add-hook 'python-mode-hook 'anaconda-mode)
-  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-  :diminish anaconda-mode
-  :diminish eldoc-mode
-  :diminish auto-revert-mode)
+;; (use-package anaconda-mode
+;;   :ensure t
+;;   :config
+;;   (add-hook 'python-mode-hook 'anaconda-mode)
+;;   (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+;;   :diminish anaconda-mode
+;;   :diminish eldoc-mode
+;;   :diminish auto-revert-mode)
 
-(use-package company-anaconda
-  :ensure t
-  :config
-  (add-to-list 'company-backends 'company-anaconda))
+;; (use-package company-anaconda
+;;   :ensure t
+;;   :config
+;;   (add-to-list 'company-backends 'company-anaconda))
 
 (use-package python-docstring
   :ensure t
