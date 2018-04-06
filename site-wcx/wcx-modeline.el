@@ -106,11 +106,25 @@
                   (t "-"))))
         (concat " " tag))))
 
+  (telephone-line-defsegment my-projectile-segment ()
+    (let ((help-echo "Switch Project")
+        (local-map (make-mode-line-mouse-map 'mouse-1 'projectile-switch-project))
+        (project-id (if (and (fboundp 'projectile-project-p) (projectile-project-p))
+                        (projectile-project-name) "×"))
+        (space (propertize " " 'face `(:height 0.6))))
+
+    (concat
+     (format-icon 'all-the-icons-octicon "repo" "white")
+     space
+     (propertize project-id
+                 'display `(raise 0.0)
+                 'help-echo help-echo
+                 'local-map local-map)
+     )))
+
   ;; Display buffer name
   (telephone-line-defsegment my-buffer-segment ()
-    `(""
-      ,(telephone-line-raw mode-line-buffer-identification t)))
-
+    (buffer-name))
 
   ;; Display current position in a buffer
   (telephone-line-defsegment* my-position-segment ()
@@ -135,9 +149,8 @@
 
   ;; Display modified status
   (telephone-line-defsegment my-modified-status-segment ()
-    (if (and (buffer-modified-p) (not (member mode-name modeline-ignored-modes)) (not buffer-read-only))
-        (format-icon 'all-the-icons-octicon "primitive-dot" "#85b654")
-      (format-icon 'all-the-icons-octicon "primitive-dot" "dim gray")))
+    (when (and (buffer-modified-p) (not (member mode-name modeline-ignored-modes)) (not buffer-read-only))
+        (format-icon 'all-the-icons-octicon "primitive-dot" "#85b654")))
 
   ;; Display read-only status
   (telephone-line-defsegment my-read-only-status-segment ()
@@ -258,12 +271,14 @@
   ;; Left edge
   (setq telephone-line-lhs
         '((evil   . (my-evil-segment))
-          (nil    . (my-read-only-status-segment))
-          (nil    . (my-modified-status-segment))
+          (nil . (my-projectile-segment))
           (accent    . (my-buffer-segment))
           (nil    . (my-major-mode-segment))
+          (nil    . (my-flycheck-segment))
           (nil    . (selection-info))
-          (nil    . (my-flycheck-segment))))
+          (nil    . (my-read-only-status-segment))
+          (nil    . (my-modified-status-segment))
+          ))
 
   ;; Right edge
   (setq telephone-line-rhs
