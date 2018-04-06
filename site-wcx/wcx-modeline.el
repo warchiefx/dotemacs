@@ -1,4 +1,4 @@
-;;; wcx-modeline.el -- Modeline customization
+;;;;; wcx-modeline.el -- Modeline customization
 ;;; Commentary:
 ;;; Code:
 
@@ -267,6 +267,9 @@
                 'face '(:face "dim gray")
                 'help-echo (format "Virtual environment (via pyvenv): %s"
                                    pyvenv-virtual-env))))
+
+  (setq telephone-line-primary-left-separator 'telephone-line-identity-left)
+  (setq telephone-line-primary-right-separator 'telephone-line-identity-right)
 
   ;; Left edge
   (setq telephone-line-lhs
