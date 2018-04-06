@@ -68,16 +68,29 @@
   ;; (telephone-line-defsegment* my-color-segment
   ;;   (propertize "some-string" 'face `(:foreground "green")))
 
+  (defun get-venv-name ()
+    (when (and (telephone-line-selected-window-active)
+               (eq 'python-mode major-mode)
+               (bound-and-true-p pyvenv-virtual-env-name))
+      (propertize (format "[%s]" pyvenv-virtual-env-name)
+                  'face `(:foreground "dim grey"))))
+
+
   ;; Display major mode
   (telephone-line-defsegment* my-major-mode-segment ()
-    (let ((mode (cond
-                 ((string= mode-name "Fundamental") "text")
-                 ((string= mode-name "Emacs-Lisp") "elisp")
-                 ((string= mode-name "Javascript-IDE") "js")
-                 ((string= mode-name "Javascript-IDE") "js")
-                 ((string= mode-name "undo-tree-visualizer") "undo-tree")
-                 (t (downcase mode-name)))))
-      (propertize mode 'face `(:foreground "#9d81ba")))) ;; galaxy
+    (let* ((mode-text (propertize (format "%s %s"
+                                   (all-the-icons-icon-for-file (buffer-file-name)
+                                                                :height 0.8)
+                                   mode-name)
+                                  'face `(:foreground "light gray")
+                                  'display `(:raise 0.0)))
+           (space (propertize " " 'face `(:height 0.6))))
+      (mapconcat 'identity
+                 (cl-remove-if
+                  'null
+                  `(,mode-text
+                    ,(get-venv-name)))
+                  space)))
 
   ;; Display evil state
   (telephone-line-defsegment my-evil-segment ()
@@ -157,7 +170,7 @@
           ;; (fg-color "#6fb593") ; kaolin-dark
           ;; (fg-color "#9f84ae")) ; kaolin-galaxy
           ;; (fg-color "#709688")) ; kaolin-eclipse
-          (fg-color "#68f3ca")) ; kaolin-aurora
+          (fg-color "#709688")) ; kaolin-aurora
       (when vc-mode
         ;; double format to prevent warnings in '*Messages*' buffer
           (format "%s %s"
@@ -193,26 +206,12 @@
          (multi-line (format "%dL" lines))
          (t (format "%d" (if evil chars (1- chars))))))))
 
-
-  ;; (telephone-line-defsegment my-flycheck-segment ()
-  ;;   ;; TODO: split errors and warnings
-  ;;   (if (telephone-line-selected-window-active)
-  ;;       (when (boundp 'flycheck-last-status-change)
-  ;;         (pcase flycheck-last-status-change
-  ;;           ('finished (when flycheck-current-errors
-  ;;                          (let-alist (flycheck-count-errors flycheck-current-errors)
-  ;;                            (let ((errors (format "%s%s" (format-icon 'all-the-icons-material "error" "#bd2c40") (or .error 0)))
-  ;;                                  (warnings (format "%s%s" (format-icon 'all-the-icons-material "warning" "gold") (or .warning 0))))
-  ;;                              (string-join '(warnings errors) " ")))))
-  ;;           ('running     (format-icon 'all-the-icons-material "refresh" "dim gray"))
-  ;;           ('no-checker  "")
-  ;;           ('errored (format-icon 'all-the-icons-material "error_outline" "dim gray"))
-  ;;           ('interrupted "interrupted")))))
-  (defun format-flycheck-pip (icon text)
+ (defun format-flycheck-pip (icon text text-color)
     (when text
       (concat
+       (propertize (format "%s " text) 'face `(:foreground ,text-color))
        (propertize icon 'display `(raise 0.0))
-       (propertize (format "%s" text) 'face `(:foreground "dim gray")))))
+       )))
 
   (declare-function flycheck-count-errors  "ext:flycheck.el")
   (defvar flycheck-current-errors)
@@ -227,10 +226,12 @@
              (error-text (funcall get-text .error))
              (warn-text  (funcall get-text .warning))
              (info-text  (funcall get-text .info))
-
-             (error-icon (format-icon 'all-the-icons-material "error" "#bd2c40"))
-             (warn-icon (format-icon 'all-the-icons-material "warning" "gold"))
-             (help-icon (format-icon 'all-the-icons-material "help" "light blue"))
+             (error-color "#bd2c40")
+             (warning-color "gold")
+             (info-color "light blue")
+             (error-icon (format-icon 'all-the-icons-material "error" error-color))
+             (warn-icon (format-icon 'all-the-icons-material "warning" warning-color))
+             (help-icon (format-icon 'all-the-icons-material "help" info-color))
 
              (space (propertize " " 'face `(:height 0.6))))
 
@@ -238,18 +239,29 @@
          'identity
          (cl-remove-if
           'null
-          `(,(format-flycheck-pip error-icon error-text)
-            ,(format-flycheck-pip warn-icon warn-text)
-            ,(format-flycheck-pip help-icon info-text)))
+          `(,(format-flycheck-pip error-icon error-text error-color)
+            ,(format-flycheck-pip warn-icon warn-text warning-color)
+            ,(format-flycheck-pip help-icon info-text info-color)))
          space))))
 
   ;; TODO: Add virtualenv segment
+  (telephone-line-defsegment my-python-pyvenv-segment ()
+  "The current python venv.  Works with `pyvenv'."
+  (when (and (telephone-line-selected-window-active)
+             (eq 'python-mode major-mode)
+             (bound-and-true-p pyvenv-virtual-env-name))
+    (propertize pyvenv-virtual-env-name
+                'face '(:face "dim gray")
+                'help-echo (format "Virtual environment (via pyvenv): %s"
+                                   pyvenv-virtual-env))))
+
   ;; Left edge
   (setq telephone-line-lhs
         '((evil   . (my-evil-segment))
           (nil    . (my-read-only-status-segment))
           (nil    . (my-modified-status-segment))
           (accent    . (my-buffer-segment))
+          (nil    . (my-major-mode-segment))
           (nil    . (selection-info))
           (nil    . (my-flycheck-segment))))
 
@@ -257,7 +269,6 @@
   (setq telephone-line-rhs
         '((nil    . (my-vc-segment))
           (accent . (my-position-segment))
-          (nil    . (my-major-mode-segment))
           ))
   (telephone-line-mode 1))
 
