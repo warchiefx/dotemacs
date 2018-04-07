@@ -72,7 +72,7 @@
   ;;;; Custom segments
 
   ;; Example of color string segment
-  ;; (telephone-line-defsegment* my-color-segment
+  ;; (telephone-line-defsegment* wcx-color-segment
   ;;   (propertize "some-string" 'face `(:foreground "green")))
 
   (defun get-venv-name ()
@@ -84,7 +84,7 @@
 
 
   ;; Display major mode
-  (telephone-line-defsegment* my-major-mode-segment ()
+  (telephone-line-defsegment* wcx-major-mode-segment ()
     (let* ((mode-text (propertize (format "%s %s"
                                    (all-the-icons-icon-for-file (buffer-file-name)
                                                                 :height 0.8)
@@ -101,7 +101,7 @@
 
   ;; Display evil state
   (defvar evil-state)
-  (telephone-line-defsegment my-evil-segment ()
+  (telephone-line-defsegment wcx-evil-segment ()
     (if (telephone-line-selected-window-active)
       (let ((tag (cond
                   ((string= evil-state "normal")    "N")
@@ -114,7 +114,7 @@
                   (t "-"))))
         (concat " " tag))))
 
-  (telephone-line-defsegment my-projectile-segment ()
+  (telephone-line-defsegment wcx-projectile-segment ()
     (let ((help-echo "Switch Project")
         (local-map (make-mode-line-mouse-map 'mouse-1 'projectile-switch-project))
         (project-id (if (and (fboundp 'projectile-project-p) (projectile-project-p))
@@ -131,11 +131,11 @@
      )))
 
   ;; Display buffer name
-  (telephone-line-defsegment my-buffer-segment ()
+  (telephone-line-defsegment wcx-buffer-segment ()
     (buffer-name))
 
   ;; Display current position in a buffer
-  (telephone-line-defsegment* my-position-segment ()
+  (telephone-line-defsegment* wcx-position-segment ()
     (if (telephone-line-selected-window-active)
         (if (eq major-mode 'paradox-menu-mode)
             (telephone-line-trim (format-mode-line mode-line-front-space))
@@ -156,12 +156,12 @@
                                  "Messages"))
 
   ;; Display modified status
-  (telephone-line-defsegment my-modified-status-segment ()
+  (telephone-line-defsegment wcx-modified-status-segment ()
     (when (and (buffer-modified-p) (not (member mode-name modeline-ignored-modes)) (not buffer-read-only))
         (format-icon 'all-the-icons-octicon "primitive-dot" "#85b654")))
 
   ;; Display read-only status
-  (telephone-line-defsegment my-read-only-status-segment ()
+  (telephone-line-defsegment wcx-read-only-status-segment ()
     (when buffer-read-only
 
       ;; (propertize "ro" 'face `(:foreground "#dbac66"))
@@ -170,7 +170,7 @@
                   'display '(raise 0.0))))
 
   ;; Display encoding system
-  (telephone-line-defsegment my-coding-segment ()
+  (telephone-line-defsegment wcx-coding-segment ()
     (let* ((code (symbol-name buffer-file-coding-system))
            (eol-type (coding-system-eol-type buffer-file-coding-system))
            (eol (cond
@@ -182,11 +182,11 @@
 
   (defadvice vc-mode-line (after strip-backend () activate)
       (when (stringp vc-mode)
-        (let ((my-vc (replace-regexp-in-string "^ Git." "" vc-mode)))
-          (setq vc-mode my-vc))))
+        (let ((wcx-vc (replace-regexp-in-string "^ Git." "" vc-mode)))
+          (setq vc-mode wcx-vc))))
 
   ;; Display current branch
-  (telephone-line-defsegment my-vc-segment ()
+  (telephone-line-defsegment wcx-vc-segment ()
     (let (
           ;; (fg-color "#6fb593") ; kaolin-dark
           ;; (fg-color "#9f84ae")) ; kaolin-galaxy
@@ -239,7 +239,7 @@
   (defvar flycheck-current-errors)
   (defvar flycheck-last-status-change)
 
-  (telephone-line-defsegment my-flycheck-segment ()
+  (telephone-line-defsegment wcx-flycheck-segment ()
     (let-alist (flycheck-count-errors flycheck-current-errors)
       (let* ((get-text (lambda (text) (cond ((eq 'running flycheck-last-status-change) "?")
                                             ((zerop (or text 0)) nil)
@@ -269,7 +269,7 @@
   ;; TODO: Add virtualenv segment
   (defvar pyvenv-virtual-env-name)
   (defvar pyvenv-virtual-env)
-  (telephone-line-defsegment my-python-pyvenv-segment ()
+  (telephone-line-defsegment wcx-python-pyvenv-segment ()
     "The current python venv.  Works with `pyvenv'."
     (when (and (telephone-line-selected-window-active)
                (eq 'python-mode major-mode)
@@ -284,20 +284,20 @@
 
   ;; Left edge
   (setq telephone-line-lhs
-        '((evil   . (my-evil-segment))
-          (nil . (my-projectile-segment))
-          (accent    . (my-buffer-segment))
-          (nil    . (my-major-mode-segment))
-          (nil    . (my-flycheck-segment))
+        '((evil   . (wcx-evil-segment))
+          (nil . (wcx-projectile-segment))
+          (accent    . (wcx-buffer-segment))
+          (nil    . (wcx-major-mode-segment))
+          (nil    . (wcx-flycheck-segment))
           (nil    . (selection-info))
-          (nil    . (my-read-only-status-segment))
-          (nil    . (my-modified-status-segment))
+          (nil    . (wcx-read-only-status-segment))
+          (nil    . (wcx-modified-status-segment))
           ))
 
   ;; Right edge
   (setq telephone-line-rhs
-        '((nil    . (my-vc-segment))
-          (accent . (my-position-segment))
+        '((nil    . (wcx-vc-segment))
+          (accent . (wcx-position-segment))
           ))
   (telephone-line-mode 1))
 
