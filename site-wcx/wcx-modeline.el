@@ -56,6 +56,13 @@
   ;; To create custom segments
   (require 'telephone-line-utils)
 
+  ;; Declare some functions so that the parser is happy
+  (declare-function all-the-icons-icon-family "ext:all-the-icons.el")
+  (declare-function all-the-icons-octicon-family "ext:all-the-icons.el")
+  (declare-function all-the-icons-octicon "ext:all-the-icons.el")
+  (declare-function telephone-line-selected-window-active "ext:telephone-line.el")
+  (declare-function projectile-project-name "ext:projectile.el")
+
   ;; Set subseparator
   (if window-system
       (progn
@@ -93,6 +100,7 @@
                   space)))
 
   ;; Display evil state
+  (defvar evil-state)
   (telephone-line-defsegment my-evil-segment ()
     (if (telephone-line-selected-window-active)
       (let ((tag (cond
@@ -200,6 +208,7 @@
       (goto-char pos)
       (current-column)))
 
+  (defvar evil-visual-selection)
   (telephone-line-defsegment selection-info ()
     "Information about the size of the current selection, when applicable.
   Supports both Emacs and Evil cursor conventions."
@@ -258,15 +267,17 @@
          space))))
 
   ;; TODO: Add virtualenv segment
+  (defvar pyvenv-virtual-env-name)
+  (defvar pyvenv-virtual-env)
   (telephone-line-defsegment my-python-pyvenv-segment ()
-  "The current python venv.  Works with `pyvenv'."
-  (when (and (telephone-line-selected-window-active)
-             (eq 'python-mode major-mode)
-             (bound-and-true-p pyvenv-virtual-env-name))
-    (propertize pyvenv-virtual-env-name
-                'face '(:face "dim gray")
-                'help-echo (format "Virtual environment (via pyvenv): %s"
-                                   pyvenv-virtual-env))))
+    "The current python venv.  Works with `pyvenv'."
+    (when (and (telephone-line-selected-window-active)
+               (eq 'python-mode major-mode)
+               (bound-and-true-p pyvenv-virtual-env-name))
+      (propertize pyvenv-virtual-env-name
+                  'face '(:face "dim gray")
+                  'help-echo (format "Virtual environment (via pyvenv): %s"
+                                     pyvenv-virtual-env))))
 
   (setq telephone-line-primary-left-separator 'telephone-line-identity-left)
   (setq telephone-line-primary-right-separator 'telephone-line-identity-right)
