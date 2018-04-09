@@ -106,11 +106,11 @@
       (let ((tag (cond
                   ((string= evil-state "normal")    "NORMAL")
                   ((string= evil-state "insert")    "INSERT")
-                  ((string= evil-state "replace")   "REPLACE")
+                  ((string= evil-state "replace")   "REPL  ")
                   ((string= evil-state "visual")    "VISUAL")
-                  ((string= evil-state "operator")  "=")
+                  ((string= evil-state "operator")  "OP    ")
                   ((string= evil-state "motion")    "MOTION")
-                  ((string= evil-state "emacs")     "Emacs")
+                  ((string= evil-state "emacs")     "EMACS ")
                   (t "-"))))
         (concat " " tag))))
 
