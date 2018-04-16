@@ -139,12 +139,12 @@
   :config
   (setq-default vimish-fold-header-width 79))
 
-(use-package himp
-  :ensure t
-  :config
-  (add-hook 'python-mode-hook 'himp-mode)
-  (add-hook 'java-mode-hook 'himp-mode)
-  :diminish himp-mode)
+;; (use-package himp
+;;   :ensure t
+;;   :config
+;;   (add-hook 'python-mode-hook 'himp-mode)
+;;   (add-hook 'java-mode-hook 'himp-mode)
+;;   :diminish himp-mode)
 
 (use-package switch-window
   :ensure t
