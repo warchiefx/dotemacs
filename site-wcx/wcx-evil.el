@@ -170,4 +170,9 @@
 
   (global-evil-mc-mode 1))
 
+(use-package evil-exchange
+  :ensure t
+  :config
+  (evil-exchange-install))
+
 (provide 'wcx-evil)
