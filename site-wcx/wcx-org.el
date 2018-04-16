@@ -81,6 +81,11 @@
   :config
   (org-edna-load))
 
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
 ;; (use-package org-alert
 ;;   :ensure t
 ;;   :after org
