@@ -41,7 +41,10 @@
 
 (use-package py-autopep8
   :ensure t
-  :bind (([?\C-c ?\C-x ?a] . wcx/autopep8)))
+  :bind (([?\C-c ?\C-x ?a] . wcx/autopep8))
+  :config
+  (setq py-autopep8-options '("--max-line-length=120"))
+  (add-hook 'python-mode-hook 'py-autopep8-enable-on-save))
 
 (use-package pyvenv
   :ensure t
