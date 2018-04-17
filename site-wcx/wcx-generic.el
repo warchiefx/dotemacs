@@ -189,8 +189,6 @@
 ;;   (setq auto-revert-verbose nil)
 ;;   (global-auto-revert-mode 1))
 
-(setq gc-cons-threshold 20000000)
-
 (use-package dired+
   :ensure t)
 
@@ -348,6 +346,10 @@ or the current buffer directory."
 ;;   (zoom-mode t)
 ;;   :diminish zoom-mode)
 
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (use-package ggtags
   :ensure t

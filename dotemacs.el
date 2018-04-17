@@ -20,6 +20,7 @@
 ;; (blink-cursor-mode 0)
 
 (add-hook 'focus-out-hook #'garbage-collect)
+(setq gc-cons-threshold 64000000)
 
 (setq load-prefer-newer t)
 

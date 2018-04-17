@@ -1,6 +1,6 @@
 ;;; wcx-package.el --- Package system setup
 (require 'package)
-(package-initialize)
+;; (package-initialize)
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
