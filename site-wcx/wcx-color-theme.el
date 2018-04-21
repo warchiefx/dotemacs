@@ -14,7 +14,8 @@
 ;;; Code:
 
 (use-package kaolin-themes
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; (use-package flatui-theme
 ;;   :ensure t)
@@ -28,14 +29,15 @@
 ;;   (setq nord-comment-brightness 15)
 ;;   )
 
-;; (use-package doom-themes
-;;   :ensure t
-;;   :config
-;;   (setq doom-themes-enable-bold t)
-;;   ;; (load-theme 'doom-citylights)
-;;   (doom-themes-visual-bell-config)
-;;   (doom-themes-neotree-config)
-;;   (doom-themes-org-config))
+(use-package doom-themes
+  :ensure t
+  :defer t
+  :config
+  (setq doom-themes-enable-bold t)
+  ;; (load-theme 'doom-citylights)
+  (doom-themes-visual-bell-config)
+  (doom-themes-neotree-config)
+  (doom-themes-org-config))
 
 (use-package theme-changer
   :ensure t
@@ -43,8 +45,7 @@
   (setq calendar-location-name "Santo Domingo, DO")
   (setq calendar-latitude 18.486058)
   (setq calendar-longitude -69.931212)
-  (change-theme 'sanityinc-tomorrow-day 'kaolin-aurora))
-
+  (change-theme 'doom-one-light 'kaolin-aurora))
 (provide 'wcx-color-theme)
 
 ;;; wcx-color-theme.el ends here
