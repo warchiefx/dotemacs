@@ -71,7 +71,7 @@ PWD is not in a git repo (or the git command is not found)."
               (if (> (length git-output) 0)
                   (substring git-output 0 -1)
                 "(no branch)")
-              "]") 'face `(:foreground "yellow"))
+              "]") 'face `(:foreground "gold3"))
       )))
 
 (setq eshell-prompt-function
@@ -91,7 +91,7 @@ PWD is not in a git repo (or the git command is not found)."
               (mapconcat (lambda (elm) elm)
                          p-lst
                          "/")))
-          (split-string (pwd-repl-home (eshell/pwd)) "/")) 'face `(:foreground "cyan"))
+          (split-string (pwd-repl-home (eshell/pwd)) "/")) 'face `(:foreground 'custom-documentation))
          (or (curr-dir-git-branch-string (eshell/pwd)))
          (propertize "# " 'face 'default))))
 
