@@ -80,7 +80,7 @@
                (eq 'python-mode major-mode)
                (bound-and-true-p pyvenv-virtual-env-name))
       (propertize (format "[%s]" pyvenv-virtual-env-name)
-                  'face `(:foreground "dim grey"))))
+                  'face `(:foreground 'custom-comment-tag))))
 
 
   ;; Display major mode
@@ -122,7 +122,7 @@
         (space (propertize " " 'face `(:height 0.6))))
 
     (concat
-     (format-icon 'all-the-icons-octicon "repo" "white")
+     (format-icon 'all-the-icons-octicon "repo" 'custom-documentation)
      space
      (propertize project-id
                  'display `(raise 0.0)
@@ -191,7 +191,7 @@
           ;; (fg-color "#6fb593") ; kaolin-dark
           ;; (fg-color "#9f84ae")) ; kaolin-galaxy
           ;; (fg-color "#709688")) ; kaolin-eclipse
-          (fg-color "#709688")) ; kaolin-aurora
+          (fg-color 'custom-link)) ; kaolin-aurora
       (when vc-mode
         ;; double format to prevent warnings in '*Messages*' buffer
           (format "%s %s"

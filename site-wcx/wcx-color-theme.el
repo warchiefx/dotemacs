@@ -16,11 +16,17 @@
 (use-package kaolin-themes
   :ensure t)
 
+;; (use-package flatui-theme
+;;   :ensure t)
+
+;; (use-package tao-theme
+;;   :ensure t)
+
 ;; (use-package nord-theme
 ;;   :ensure t
 ;;   :config
 ;;   (setq nord-comment-brightness 15)
-;;   (load-theme 'nord))
+;;   )
 
 ;; (use-package doom-themes
 ;;   :ensure t
@@ -37,7 +43,7 @@
   (setq calendar-location-name "Santo Domingo, DO")
   (setq calendar-latitude 18.486058)
   (setq calendar-longitude -69.931212)
-  (change-theme 'kaolin-light 'kaolin-aurora))
+  (change-theme 'sanityinc-tomorrow-day 'kaolin-aurora))
 
 (provide 'wcx-color-theme)
 
