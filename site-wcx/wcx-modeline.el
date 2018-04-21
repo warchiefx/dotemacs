@@ -89,7 +89,7 @@
                                    (all-the-icons-icon-for-file (buffer-file-name)
                                                                 :height 0.8)
                                    mode-name)
-                                  'face `(:foreground "light gray")
+                                  'face `(:foreground 'custom-documentation)
                                   'display `(:raise 0.0)))
            (space (propertize " " 'face `(:height 0.6))))
       (mapconcat 'identity
@@ -249,7 +249,7 @@
              (warn-text  (funcall get-text .warning))
              (info-text  (funcall get-text .info))
              (error-color "#bd2c40")
-             (warning-color "gold")
+             (warning-color "gold3")
              (info-color "light blue")
              (error-icon (format-icon 'all-the-icons-material "error" error-color))
              (warn-icon (format-icon 'all-the-icons-material "warning" warning-color))

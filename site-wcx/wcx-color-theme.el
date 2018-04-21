@@ -13,9 +13,8 @@
 
 ;;; Code:
 
-;; (use-package kaolin-themes
-;;   :ensure t
-;;   :config (load-theme 'kaolin-dark))
+(use-package kaolin-themes
+  :ensure t)
 
 ;; (use-package nord-theme
 ;;   :ensure t
@@ -27,10 +26,18 @@
   :ensure t
   :config
   (setq doom-themes-enable-bold t)
-  (load-theme 'doom-citylights)
+  ;; (load-theme 'doom-citylights)
   (doom-themes-visual-bell-config)
   (doom-themes-neotree-config)
   (doom-themes-org-config))
+
+(use-package theme-changer
+  :ensure t
+  :config
+  (setq calendar-location-name "Santo Domingo, DO")
+  (setq calendar-latitude 18.486058)
+  (setq calendar-longitude -69.931212)
+  (change-theme 'doom-one-light 'doom-city-lights))
 
 (provide 'wcx-color-theme)
 
