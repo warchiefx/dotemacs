@@ -22,14 +22,14 @@
 ;;   (setq nord-comment-brightness 15)
 ;;   (load-theme 'nord))
 
-(use-package doom-themes
-  :ensure t
-  :config
-  (setq doom-themes-enable-bold t)
-  ;; (load-theme 'doom-citylights)
-  (doom-themes-visual-bell-config)
-  (doom-themes-neotree-config)
-  (doom-themes-org-config))
+;; (use-package doom-themes
+;;   :ensure t
+;;   :config
+;;   (setq doom-themes-enable-bold t)
+;;   ;; (load-theme 'doom-citylights)
+;;   (doom-themes-visual-bell-config)
+;;   (doom-themes-neotree-config)
+;;   (doom-themes-org-config))
 
 (use-package theme-changer
   :ensure t
@@ -37,7 +37,7 @@
   (setq calendar-location-name "Santo Domingo, DO")
   (setq calendar-latitude 18.486058)
   (setq calendar-longitude -69.931212)
-  (change-theme 'doom-one-light 'doom-city-lights))
+  (change-theme 'kaolin-light 'kaolin-aurora))
 
 (provide 'wcx-color-theme)
 
