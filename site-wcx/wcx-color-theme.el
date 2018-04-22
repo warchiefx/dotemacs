@@ -45,7 +45,7 @@
   (setq calendar-location-name "Santo Domingo, DO")
   (setq calendar-latitude 18.486058)
   (setq calendar-longitude -69.931212)
-  (change-theme 'doom-one-light 'kaolin-aurora))
+  (change-theme 'doom-one-light 'doom-city-lights))
 (provide 'wcx-color-theme)
 
 ;;; wcx-color-theme.el ends here
