@@ -149,6 +149,8 @@
                                  "Warnings"
                                  "Compilation"
                                  "EShell"
+                                 "paradox"
+                                 "Packages"
                                  "Debugger"
                                  "Quickrun"
                                  "REPL"
@@ -193,7 +195,6 @@
           ;; (fg-color "#709688")) ; kaolin-eclipse
           (fg-color 'custom-link)) ; kaolin-aurora
       (when vc-mode
-        ;; double format to prevent warnings in '*Messages*' buffer
           (format "%s %s"
                   (propertize (all-the-icons-octicon "git-branch")
                               'face `(:family ,(all-the-icons-octicon-family) :height 1.0 :foreground ,fg-color)
@@ -250,7 +251,7 @@
              (info-text  (funcall get-text .info))
              (error-color "#bd2c40")
              (warning-color "gold3")
-             (info-color "light blue")
+             (info-color "blue")
              (error-icon (format-icon 'all-the-icons-material "error" error-color))
              (warn-icon (format-icon 'all-the-icons-material "warning" warning-color))
              (help-icon (format-icon 'all-the-icons-material "help" info-color))
