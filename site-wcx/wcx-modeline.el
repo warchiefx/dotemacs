@@ -251,7 +251,7 @@
              (info-text  (funcall get-text .info))
              (error-color "#bd2c40")
              (warning-color "gold3")
-             (info-color "blue")
+             (info-color "royal blue")
              (error-icon (format-icon 'all-the-icons-material "error" error-color))
              (warn-icon (format-icon 'all-the-icons-material "warning" warning-color))
              (help-icon (format-icon 'all-the-icons-material "help" info-color))
