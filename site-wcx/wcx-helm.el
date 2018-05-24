@@ -77,4 +77,9 @@
   :config
   (global-set-key [C-down-mouse-1] 'helm-gtags-find-tag-from-here))
 
+(use-package swiper-helm
+  :ensure t
+  :bind (([M-f1] . swiper-helm)
+         ))
+
 (provide 'wcx-helm)
