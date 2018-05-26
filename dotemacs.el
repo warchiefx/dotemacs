@@ -11,7 +11,9 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+(when (< emacs-major-version 25)
+  (package-initialize))
+
 (setq redisplay-dont-pause t)
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -23,6 +25,9 @@
 (setq gc-cons-threshold 64000000)
 
 (setq load-prefer-newer t)
+(setq ring-bell-function (lambda ()
+                           (invert-face 'mode-line)
+                           (run-with-timer 0.1 nil 'invert-face 'mode-line)))
 
 ;; ----- Standard Loadpath
 (setq site-lisp-path "~/.emacs.d/site-lisp/")

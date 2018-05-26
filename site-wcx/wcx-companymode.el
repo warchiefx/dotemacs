@@ -58,6 +58,4 @@
     :after flycheck
     :config (flycheck-ycmd-setup)))
 
-;; /usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py
-
 (provide 'wcx-companymode)
