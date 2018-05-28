@@ -42,8 +42,8 @@
   :ensure t
   :diminish (ycmd-mode eldoc-mode)
   :config
-  ; Remember to customize this variable for your environment
-  (set-variable 'ycmd-server-command `("python" ,(file-truename "~/.emacs.d/ycmd/ycmd/")))
+  (require 'wcx-utils)
+  (set-variable 'ycmd-server-command `(,(executable-find "python3") ,(file-truename "~/.emacs.d/ycmd/ycmd/")))
   (add-hook 'after-init-hook #'global-ycmd-mode)
   (add-hook 'ycmd-mode-hook 'ycmd-eldoc-setup))
 

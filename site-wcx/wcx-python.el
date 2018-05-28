@@ -2,12 +2,19 @@
 
 (setq python-saved-check-command nil)
 
+
+(defun wcx-restart-python ()
+  (require 'wcx-utils)
+  (set-variable 'ycmd-server-command `(,(executable-find "python3") ,(file-truename "~/.emacs.d/ycmd/ycmd/")))
+  (pyvenv-restart-python)
+  (ycmd-restart-semantic-server))
+
 (use-package auto-virtualenv
   :ensure t
   :config
   (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
-  (add-hook 'pyvenv-post-activate-hooks 'pyvenv-restart-python))
+  (add-hook 'pyvenv-post-activate-hooks 'wcx-restart-python))
 
 ;; (use-package anaconda-mode
 ;;   :ensure t
