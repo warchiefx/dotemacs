@@ -46,6 +46,9 @@
   (setq calendar-latitude 18.486058)
   (setq calendar-longitude -69.931212)
   (change-theme 'doom-one-light 'doom-city-lights))
+(defadvice load-theme (before clear-previous-themes activate)
+  "Clear existing theme settings instead of layering them"
+  (mapc #'disable-theme custom-enabled-themes))
 (provide 'wcx-color-theme)
 
 ;;; wcx-color-theme.el ends here
