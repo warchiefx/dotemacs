@@ -162,7 +162,9 @@
          ("C-x 4 C-f" . switch-window-then-find-file)
          ("C-x 4 C-o" . switch-window-then-display-buffer)
 
-         ("C-x 4 0" . switch-window-then-kill-buffer)))
+         ("C-x 4 0" . switch-window-then-kill-buffer))
+  :config
+  (setq switch-window-threshold 2))
 
 
 ;; Avoid having to delete extra spaces after kill-line on end of line
