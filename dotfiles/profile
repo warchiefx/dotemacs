@@ -17,9 +17,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin directories
-PATH="$HOME/bin:$HOME/.local/bin:$PATH:$HOME/.scripts"
-
-export PATH=$PATH:/home/rrestituyo/.scripts
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH:$HOME/.scripts"
 
 export TERM=xterm-256color
 
