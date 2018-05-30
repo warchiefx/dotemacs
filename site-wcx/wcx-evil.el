@@ -175,4 +175,16 @@
   :config
   (evil-exchange-install))
 
+(evil-define-operator evil-narrow-op (beg end type)
+  "Evil indirect *narrow* operator."
+  (interactive "<R>")
+  (deactivate-mark)
+  (let ((buf (clone-indirect-buffer nil nil)))
+    (with-current-buffer buf
+      (narrow-to-region beg end))
+    (split-window-sensibly)
+    (switch-to-buffer buf)))
+
+(define-key evil-motion-state-map (kbd "g n") #'evil-narrow-op)
+
 (provide 'wcx-evil)
