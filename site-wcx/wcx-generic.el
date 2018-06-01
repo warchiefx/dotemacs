@@ -256,8 +256,16 @@ or the current buffer directory."
           (if project-dir
               (neotree-dir project-dir))
           (if file-name
-              (neotree-find file-name))))))
+              (neotree-find file-name)))))
+    (ibuffer-sidebar-toggle-sidebar))
   :bind (([f8] . neotree-project-dir-toggle)))
+
+(use-package ibuffer-sidebar
+  :ensure t
+  :commands (ibuffer-sidebar-toggle-sidebar)
+  :config
+  (setq ibuffer-sidebar-use-custom-font t)
+  (setq ibuffer-sidebar-face `(:family "Helvetica" :height 110)))
 
 (use-package nlinum
   :ensure t
