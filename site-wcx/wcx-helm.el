@@ -3,6 +3,18 @@
   :bind
   (([(control f1)] . helm-projectile-ag)))
 
+(use-package helm-flx
+  :ensure t
+  :after (helm)
+  :config
+  (helm-flx-mode +1))
+
+(use-package helm-fuzzier
+  :ensure t
+  :after (helm)
+  :config
+  (helm-fuzzier-mode +1))
+
 (use-package helm
   :ensure t
   :config

@@ -64,5 +64,9 @@
     (setq-local completion-ignore-case t))
   :init (add-hook 'pip-requirements-mode-hook #'me/pip-requirements-ignore-case))
 
+(use-package python-pytest
+  :ensure t
+  :bind (("C-c C-x t" . python-pytest-popup)))
+
 (provide 'wcx-python)
 ;;; wcx-python.el ends here

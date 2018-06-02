@@ -149,19 +149,7 @@
 (use-package switch-window
   :ensure t
   :bind (("C-x o" . switch-window)
-         ("C-x 1" . switch-window-then-maximize)
-         ("C-x 2" . switch-window-then-split-below)
-         ("C-x 3" . switch-window-then-split-right)
          ("C-x 0" . switch-window-then-delete)
-
-         ("C-x 4 d" . switch-window-then-dired)
-         ("C-x 4 f" . switch-window-then-find-file)
-         ("C-x 4 m" . switch-window-then-compose-mail)
-         ("C-x 4 r" . switch-window-then-find-file-read-only)
-
-         ("C-x 4 C-f" . switch-window-then-find-file)
-         ("C-x 4 C-o" . switch-window-then-display-buffer)
-
          ("C-x 4 0" . switch-window-then-kill-buffer))
   :config
   (setq switch-window-threshold 2))
@@ -268,8 +256,16 @@ or the current buffer directory."
           (if project-dir
               (neotree-dir project-dir))
           (if file-name
-              (neotree-find file-name))))))
+              (neotree-find file-name)))))
+    (ibuffer-sidebar-toggle-sidebar))
   :bind (([f8] . neotree-project-dir-toggle)))
+
+(use-package ibuffer-sidebar
+  :ensure t
+  :commands (ibuffer-sidebar-toggle-sidebar)
+  :config
+  (setq ibuffer-sidebar-use-custom-font t)
+  (setq ibuffer-sidebar-face `(:family "Helvetica" :height 110)))
 
 (use-package nlinum
   :ensure t
