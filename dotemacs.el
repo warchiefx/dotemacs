@@ -89,7 +89,8 @@
 ;;(require 'wcx-minimap)
 (require 'wcx-flycheck)
 (require 'wcx-projects)
-(require 'wcx-helm)
+;; (require 'wcx-helm)
+(require 'wcx-counsel)
 
 ;; Programming Modes
 (require 'wcx-companymode)
