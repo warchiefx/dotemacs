@@ -66,8 +66,7 @@
             :buffer "*helm*"
             :prompt "> ")))
   :bind (([f1] . wcx-helm)
-         ([S-f1] . helm-do-grep)
-         ("M-y" . helm-show-kill-ring))
+         ([S-f1] . helm-do-grep))
   )
 
 (use-package helm-descbinds
