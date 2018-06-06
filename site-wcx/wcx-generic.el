@@ -257,6 +257,11 @@ or the current buffer directory."
               (neotree-dir project-dir))
           (if file-name
               (neotree-find file-name))))))
+
+  (defun my/neotree-hook (_unused)
+    (setq-local display-line-numbers nil))
+  (add-hook 'neo-after-create-hook 'my/neotree-hook)
+
   :bind (([f8] . neotree-project-dir-toggle)))
 
 (use-package nlinum
