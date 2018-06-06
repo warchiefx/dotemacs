@@ -40,15 +40,16 @@
   :ensure t
   :diminish (counsel-mode . "")
   :bind
-  (("M-y" . counsel-yank-pop)
+  (("M-x" . counsel-M-x)
+   ("C-x C-f" . counsel-find-file)
+   ("C-x b" . counsel-ibuffer)
+   ("C-<f1>" . counsel-ag)
+   ("C-x l" . counsel-locate)
+   ("M-y" . counsel-yank-pop)
    :map ivy-minibuffer-map
    ("M-y" . ivy-next-line))
   :config
-  (counsel-mode 1)
-  (global-set-key (kbd "M-x") 'counsel-M-x)
-  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-  (global-set-key (kbd "C-<f1>") 'counsel-ag)
-  (global-set-key (kbd "C-x l") 'counsel-locate))
+  (counsel-mode 1))
 
 (use-package counsel-projectile
   :ensure t
