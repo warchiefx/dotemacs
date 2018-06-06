@@ -264,10 +264,6 @@ or the current buffer directory."
 
   :bind (([f8] . neotree-project-dir-toggle)))
 
-(use-package nlinum
-  :ensure t
-  :bind (("C-c C-x l" . global-nlinum-mode)))
-
 (use-package csv-mode
   :ensure t)
 
