@@ -36,6 +36,11 @@
     (jump-to-register :magit-fullscreen))
 
   (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
+
+  (defun my/magit-hook ()
+    (setq-local display-line-numbers nil))
+  (add-hook 'magit-mode-hook 'my/magit-hook)
+
   :commands (magit-status magit-blame)
   :bind ("C-c C-x g" . magit-status))
 
