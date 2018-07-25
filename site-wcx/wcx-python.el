@@ -5,16 +5,15 @@
 
 (defun wcx-restart-python ()
   (require 'wcx-utils)
-  (set-variable 'ycmd-server-command `(,(executable-find "python3") ,(file-truename "~/.emacs.d/ycmd/ycmd/")))
-  (pyvenv-restart-python)
+  (set-variable 'ycmd-server-command `(,(executable-find "pipenv") "run" ,(file-truename "~/.emacs.d/ycmd/ycmd/")))
   (ycmd-restart-semantic-server))
 
-(use-package auto-virtualenv
-  :ensure t
-  :config
-  (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
-  (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
-  (add-hook 'pyvenv-post-activate-hooks 'wcx-restart-python))
+;; (use-package auto-virtualenv
+;;   :ensure t
+;;   :config
+;;   (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
+;;   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
+;;   (add-hook 'pyvenv-post-activate-hooks 'wcx-restart-python))
 
 ;; (use-package anaconda-mode
 ;;   :ensure t
@@ -67,6 +66,14 @@
 (use-package python-pytest
   :ensure t
   :bind (("C-c C-x t" . python-pytest-popup)))
+
+(use-package pipenv
+  :ensure t
+  :hook (python-mode . pipenv-mode)
+  :init
+  (setq
+   pipenv-projectile-after-switch-function
+   #'pipenv-projectile-after-switch-extended))
 
 (provide 'wcx-python)
 ;;; wcx-python.el ends here
