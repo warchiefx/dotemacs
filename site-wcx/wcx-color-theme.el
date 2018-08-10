@@ -31,7 +31,6 @@
 
 (use-package doom-themes
   :ensure t
-  :defer t
   :config
   (setq doom-themes-enable-bold t)
   ;; (load-theme 'doom-citylights)
@@ -49,6 +48,18 @@
 (defadvice load-theme (before clear-previous-themes activate)
   "Clear existing theme settings instead of layering them"
   (mapc #'disable-theme custom-enabled-themes))
+
+;; (use-package color-identifiers-mode
+;;   :ensure t
+;;   :config
+;;   (add-hook 'after-init-hook 'global-color-identifiers-mode))
+
+(use-package rainbow-identifiers
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-identifiers-mode))
+
+
 (provide 'wcx-color-theme)
 
 ;;; wcx-color-theme.el ends here
