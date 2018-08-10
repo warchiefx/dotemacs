@@ -68,5 +68,10 @@
   :ensure t
   :bind (("C-c C-x t" . python-pytest-popup)))
 
+(use-package smart-dash
+  :ensure t
+  :config
+  (add-hook 'python-mode-hook 'smart-dash-mode))
+
 (provide 'wcx-python)
 ;;; wcx-python.el ends here
