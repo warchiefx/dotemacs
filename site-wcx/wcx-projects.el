@@ -2,7 +2,7 @@
 (use-package projectile
   :ensure t
   :init
-  (setq projectile-keymap-prefix (kbd "C-c C-p"))
+  (setq projectile-keymap-prefix (kbd "s-<f2>"))
   :config
   (projectile-global-mode 1)
 
