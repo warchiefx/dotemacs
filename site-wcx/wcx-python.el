@@ -28,6 +28,7 @@
 ;;   :ensure t
 ;;   :config
 ;;   (add-to-list 'company-backends 'company-anaconda))
+;;
 
 (use-package python-docstring
   :ensure t
@@ -78,7 +79,8 @@
   :init
   (setq
    pipenv-projectile-after-switch-function
-   #'pipenv-projectile-after-switch-extended))
+   #'pipenv-projectile-after-switch-extended)
+  (setq pipenv-keymap-prefix (kbd "C-c C-o")))
 
 (provide 'wcx-python)
 ;;; wcx-python.el ends here
