@@ -150,13 +150,20 @@
 ;;   (add-hook 'org-mode-hook 'evil-org-mode)
 ;;   (add-hook 'evil-org-mode-hook
 ;;             (lambda ()
-;;               (evil-org-set-key-theme))))
+
+(use-package evil-org
+  :ensure t
+  :after (evil org)
+  :config
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (add-hook 'evil-org-mode-hook
+            (lambda ()
+              (evil-org-set-key-theme '(navigation insert textobjects)))))
 
 (use-package evil-collection
   :ensure t
   :custom (evil-collection-setup-minibuffer t)
   :init (evil-collection-init))
-
 
 (use-package evil-mc
   :ensure t
@@ -186,5 +193,10 @@
     (switch-to-buffer buf)))
 
 (define-key evil-motion-state-map (kbd "g n") #'evil-narrow-op)
+
+(use-package evil-indent-plus
+  :ensure t
+  :config
+  (evil-indent-plus-default-bindings))
 
 (provide 'wcx-evil)
