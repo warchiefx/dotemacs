@@ -53,11 +53,6 @@
 ;;; Change cursor into a bar instead of a block
 ;; (setq-default cursor-type 'bar)
 
-;; Highlight parentheses according to nesting level
-(when (locate-library "highlight-parentheses")
-  (require 'highlight-parentheses)
-  (add-hook 'find-file-hooks 'highlight-parentheses-mode))
-
 (put 'narrow-to-region 'disabled nil)
 
 (display-time-mode 0)
@@ -396,7 +391,18 @@ or the current buffer directory."
   :diminish dumb-jump-mode
   :bind (("C-M-g" . dumb-jump-go)
          ("C-M-p" . dumb-jump-back)
-         ("C-M-q" . dumb-jump-quick-look)))
+         ("C-M-S-g" . dumb-jump-quick-look)))
+
+(use-package highlight-thing
+  :ensure t
+  :config
+  (setq highlight-thing-limit-to-defun t)
+  (setq highlight-thing-case-sensitive-p t)
+  (setq highlight-thing-exclude-thing-under-point t)
+  (setq highlight-thing-ignore-list '("False" "True"))
+  (setq highlight-thing-face '((t
+                                (:inherit 'diff-hl-insert))))
+  (global-highlight-thing-mode))
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
