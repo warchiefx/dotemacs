@@ -41,7 +41,10 @@
 (use-package company-tern
   :ensure t
   :config
-  (add-to-list 'company-backends 'company-tern))
+  (add-to-list 'company-backends 'company-tern)
+  (add-hook 'js2-mode-hook (lambda ()
+                              (ycmd-mode -1)
+                              (rainbow-identifiers-mode -1))))
 
 (use-package indium
   :ensure t
