@@ -15,7 +15,14 @@
 
 (use-package kaolin-themes
   :ensure t
-  :defer t)
+  :config
+  (load-theme 'kaolin-mono-dark)
+  (kaolin-treemacs-theme))
+
+;; (use-package base16-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'base16-ocean))
 
 ;; (use-package flatui-theme
 ;;   :ensure t)
@@ -27,37 +34,38 @@
 ;;   :ensure t
 ;;   :config
 ;;   (setq nord-comment-brightness 15)
-;;   )
+;;   (load-theme 'nord))
 
-(use-package doom-themes
-  :ensure t
-  :config
-  (setq doom-themes-enable-bold t)
-  ;; (load-theme 'doom-citylights)
-  (doom-themes-visual-bell-config)
-  (doom-themes-neotree-config)
-  (doom-themes-org-config))
+;; (use-package doom-themes
+;;   :ensure t
+;;   :config
+;;   (setq doom-themes-enable-bold t)
+;;   (load-theme 'doom-molokai)
+;;   (doom-themes-visual-bell-config)
+;;   (doom-themes-neotree-config)
+;;   (doom-themes-org-config))
 
-(use-package theme-changer
-  :ensure t
-  :config
-  (setq calendar-location-name "Santo Domingo, DO")
-  (setq calendar-latitude 18.486058)
-  (setq calendar-longitude -69.931212)
-  (change-theme 'doom-one-light 'doom-city-lights))
+;; (use-package theme-changer
+;;   :ensure t
+;;   :config
+;;   (setq calendar-location-name "Santo Domingo, DO")
+;;   (setq calendar-latitude 18.486058)
+;;   (setq calendar-longitude -69.931212)
+;;   (change-theme 'doom-city-lights 'doom-tomorrow-night))
+
 (defadvice load-theme (before clear-previous-themes activate)
   "Clear existing theme settings instead of layering them"
   (mapc #'disable-theme custom-enabled-themes))
 
-;; (use-package color-identifiers-mode
-;;   :ensure t
-;;   :config
-;;   (add-hook 'after-init-hook 'global-color-identifiers-mode))
-
-(use-package rainbow-identifiers
+(use-package color-identifiers-mode
   :ensure t
   :config
-  (add-hook 'prog-mode-hook 'rainbow-identifiers-mode))
+  (add-hook 'after-init-hook 'global-color-identifiers-mode))
+
+;; (use-package rainbow-identifiers
+;;   :ensure t
+;;   :config
+;;   (add-hook 'prog-mode-hook 'rainbow-identifiers-mode))
 
 
 (provide 'wcx-color-theme)
