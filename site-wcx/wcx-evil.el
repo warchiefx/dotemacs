@@ -1,6 +1,7 @@
 ;;; wcx-evil.el --- Integrate EVIL vim compatibility
 
 (setq evil-want-integration nil)
+(setq evil-want-keybinding nil)
 
 (use-package evil
   :ensure t
