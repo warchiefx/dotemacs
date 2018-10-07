@@ -38,12 +38,6 @@
   :config
   (add-to-list 'company-backends 'company-tern))
 
-;; (use-package indium
-;;   :ensure t
-;;   :config
-;;   (add-hook 'rjsx-mode-hook #'indium-interaction-mode)
-;;   (add-hook 'js2-mode-hook #'indium-interaction-mode))
-
 (use-package skewer-mode
   :ensure t
   :config
@@ -113,4 +107,9 @@
   (add-hook 'rjsx-mode-hook (lambda () (ggtags-mode 1)))
   (add-hook 'web-mode-hook (lambda () (ggtags-mode 1))))
 
-  (provide 'wcx-webdev)
+(use-package indium
+  :ensure t
+  :config
+  (add-hook 'rjsx-mode-hook #'indium-interaction-mode))
+
+(provide 'wcx-webdev)

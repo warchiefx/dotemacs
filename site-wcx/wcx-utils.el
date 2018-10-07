@@ -11,26 +11,6 @@
 ;; Version: $Id$
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; When inserting ""s or ()s, insert the ending one right after.
-(when (locate-library "pair-mode")
-  (load-library "pair-mode")
-  (global-set-key [?\C-c ?u ?p] 'pair-mode))
-
-;; Extensions to info-mode
-(when (locate-library "info+")
-  (eval-after-load "info" '(require 'info+)))
-
-;; Better dabbrev.
-;; (when (locate-library "pabbrev")
-;;   (load-library "pabbrev")
-;;   (pabbrev-mode)
-;;   (global-set-key [?\C-c ?u ?a] 'pabbrev-mode))
-
-;; Remember mode
-(add-to-list 'load-path (concat site-lisp-path "remember"))
-(when (locate-library "remember")
-  (require 'remember))
-
 ;; ----- Misc Stuff
 (defun create-tags (dir-name)
   "Create tags file."
