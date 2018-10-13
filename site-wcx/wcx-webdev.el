@@ -47,7 +47,7 @@
 
 (use-package web-mode
   :ensure t
-  :mode "\\.html?\\'"
+  :mode "\\.\\(html\\|hbs\\)$"
   :init
   (dolist (hook '(emmet-mode))
     (add-hook 'web-mode-hook hook))
