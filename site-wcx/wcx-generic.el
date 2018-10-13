@@ -395,6 +395,7 @@ or the current buffer directory."
 
 (use-package highlight-thing
   :ensure t
+  :diminish (highlight-thing-mode hi-lock-mode)
   :config
   (setq highlight-thing-limit-to-defun t)
   (setq highlight-thing-case-sensitive-p t)
