@@ -112,11 +112,11 @@
 (use-package ido-completing-read+
   :ensure t)
 
-(use-package rfringe
-  :ensure t)
+;; (use-package rfringe
+;;   :ensure t)
 
-(use-package emacsd-tile
-  :ensure t)
+;; (use-package emacsd-tile
+;;   :ensure t)
 
 (use-package frame-tag
   :ensure t
@@ -188,8 +188,8 @@
 ;;   (setq auto-revert-verbose nil)
 ;;   (global-auto-revert-mode 1))
 
-(use-package dired+
-  :ensure t)
+;; (use-package dired+
+;;   :ensure t)
 
 (use-package whitespace-cleanup-mode
   :ensure t

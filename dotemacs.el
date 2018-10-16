@@ -47,16 +47,20 @@
 (unless (locate-library "use-package")
   (package-install "use-package"))
 
+(require 'wcx-package)
+(unless (locate-library "diminish")
+  (package-install "diminish"))
+
 (when (locate-library "use-package")
   (require 'use-package)
   (use-package better-defaults
     :ensure t))
 
 ;; Custom stuff
-(require 'wcx-package)
 (require 'wcx-evil)
 (require 'wcx-requirements)
 (require 'wcx-generic)
+;; (require 'wcx-fonts)
 ;;(require 'wcx-utils)
 (require 'wcx-keybindings)
 (require 'wcx-icicles)
