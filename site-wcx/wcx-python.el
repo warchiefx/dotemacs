@@ -8,12 +8,12 @@
   (set-variable 'ycmd-server-command `(,(executable-find "pipenv") "run" ,(file-truename "~/.emacs.d/ycmd/ycmd/")))
   (ycmd-restart-semantic-server))
 
-;; (use-package auto-virtualenv
-;;   :ensure t
-;;   :config
-;;   (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
-;;   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
-;;   (add-hook 'pyvenv-post-activate-hooks 'wcx-restart-python))
+(use-package auto-virtualenv
+  :ensure t
+  :config
+  (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
+  (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
+  (add-hook 'pyvenv-post-activate-hooks 'wcx-restart-python))
 
 ;; (use-package anaconda-mode
 ;;   :ensure t
