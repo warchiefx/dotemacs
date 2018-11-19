@@ -103,6 +103,7 @@
 ;;(require 'wcx-go)
 ;;(require 'wcx-scala)
 ;;(require 'wcx-auto-complete)
+(require 'wcx-lsp)
 
 ;; Games
 ;; (require 'wcx-nethack)
