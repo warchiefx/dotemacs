@@ -10,6 +10,7 @@
         (let ((root (projectile-project-root dir)))
           (and root (cons 'transient root)))))
 
+  ;; Integrate project.el with projectile
   (add-to-list 'project-find-functions #'wcx/find-projectile-project)
 
   (add-hook 'java-mode-hook 'wcx/activate-lsp)

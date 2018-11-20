@@ -5,7 +5,8 @@
 
 (defun wcx-restart-python ()
   (require 'wcx-utils)
-  (set-variable 'ycmd-server-command `(,(executable-find "pipenv") "run" ,(file-truename "~/.emacs.d/ycmd/ycmd/")))
+  (set-variable 'ycmd-server-command `(,(executable-find "python3") ,(file-truename "~/.emacs.d/ycmd/ycmd/")))
+  (pyvenv-restart-python)
   (ycmd-restart-semantic-server))
 
 (use-package auto-virtualenv
