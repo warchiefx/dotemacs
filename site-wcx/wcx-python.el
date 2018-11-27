@@ -42,18 +42,6 @@
   (setq python-shell-interpreter "ipython")
   (setq python-shell-interpreter-args "--simple-prompt"))
 
-
-;; (defun wcx/autopep8()
-;;   (interactive)
-;;   (py-autopep8))
-
-;; (use-package py-autopep8
-;;   :ensure t
-;;   :bind (([?\C-c ?\C-x ?a] . wcx/autopep8))
-;;   :config
-;;   (setq py-autopep8-options '("--max-line-length=120"))
-;;   (add-hook 'python-mode-hook 'py-autopep8-enable-on-save))
-
 (use-package blacken
   :ensure t
   :diminish blacken-mode
