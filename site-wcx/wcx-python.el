@@ -47,7 +47,7 @@
   :diminish blacken-mode
   :hook (python-mode . blacken-mode)
   :config
-  (setq blacken-line-length 100)
+  ;; (setq blacken-line-length 100)
   :bind (([?\C-c ?\C-x ?a] . blacken-buffer)))
 
 (use-package pyvenv
