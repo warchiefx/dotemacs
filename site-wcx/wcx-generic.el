@@ -389,9 +389,16 @@ or the current buffer directory."
 (use-package dumb-jump
   :ensure t
   :diminish dumb-jump-mode
-  :bind (("C-M-g" . dumb-jump-go)
-         ("C-M-p" . dumb-jump-back)
-         ("C-M-S-g" . dumb-jump-quick-look)))
+  ;; :bind (("C-M-g" . dumb-jump-go)
+  ;;        ("C-M-p" . dumb-jump-back)
+  ;;        ("C-M-S-g" . dumb-jump-quick-look)))
+  )
+
+(use-package smart-jump
+  :ensure t
+  :diminish smart-jump-mode
+  :config
+  (smart-jump-setup-default-registers))
 
 (use-package highlight-thing
   :ensure t
