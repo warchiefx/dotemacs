@@ -400,17 +400,17 @@ or the current buffer directory."
   :config
   (smart-jump-setup-default-registers))
 
-(use-package highlight-thing
-  :ensure t
-  :diminish (highlight-thing-mode hi-lock-mode)
-  :config
-  (setq highlight-thing-limit-to-defun t)
-  (setq highlight-thing-case-sensitive-p t)
-  (setq highlight-thing-exclude-thing-under-point t)
-  (setq highlight-thing-ignore-list '("False" "True"))
-  (setq highlight-thing-face '((t
-                                (:inherit 'diff-hl-insert))))
-  (global-highlight-thing-mode))
+;; (use-package highlight-thing
+;;   :ensure t
+;;   :diminish (highlight-thing-mode hi-lock-mode)
+;;   :config
+;;   (setq highlight-thing-limit-to-defun t)
+;;   (setq highlight-thing-case-sensitive-p t)
+;;   (setq highlight-thing-exclude-thing-under-point t)
+;;   (setq highlight-thing-ignore-list '("False" "True"))
+;;   (setq highlight-thing-face '((t
+;;                                 (:inherit 'diff-hl-insert))))
+;;   (global-highlight-thing-mode))
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
