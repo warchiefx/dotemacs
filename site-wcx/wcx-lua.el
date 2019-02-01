@@ -15,6 +15,11 @@
 (use-package lua-mode
   :ensure t
   :mode "\\.lua\\'"
-  :interpreter "lua")
+  :interpreter "lua"
+  :config
+  (when (package-installed-p 'eglot)
+    (add-to-list 'eglot-server-programs '(lua-mode . ("lua-lsp")))
+  ))
+
 
 (provide 'wcx-lua)
