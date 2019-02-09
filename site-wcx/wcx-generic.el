@@ -410,7 +410,14 @@ or the current buffer directory."
 ;;   (setq highlight-thing-ignore-list '("False" "True"))
 ;;   (setq highlight-thing-face '((t
 ;;                                 (:inherit 'diff-hl-insert))))
-;;   (global-highlight-thing-mode))
+
+(use-package nswbuff                    ; Quick switching between buffers
+  :ensure t
+  :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
+          ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
+  :config (setq nswbuff-buffer-list-function #'nswbuff-projectile-buffer-list
+                nswbuff-display-intermediate-buffers t))
+;   (global-highlight-thing-mode))
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
