@@ -34,7 +34,7 @@
   :ensure t
   :after evil)
 
-; Allow escaping of lots of things
+                                        ; Allow escaping of lots of things
 (use-package evil-escape
   :ensure t
   :config
@@ -43,7 +43,7 @@
     (global-set-key (kbd "<escape>") 'evil-escape))
   :diminish evil-escape-mode)
 
-; C-+ C-- to increase/decrease number like Vim's C-a C-x
+                                        ; C-+ C-- to increase/decrease number like Vim's C-a C-x
 (use-package evil-numbers
   :ensure t
   :config
@@ -65,11 +65,11 @@
   (progn
     (setq evil-leader/in-all-states 1)
     (evil-leader/set-leader ","))
-    ; ,x to be M-x
-    (evil-leader/set-key "x" 'execute-extended-command)
-    (evil-leader/set-key "e" 'evil-ace-jump-word-mode) ; ,e for Ace Jump (word)
-    (evil-leader/set-key "l" 'evil-ace-jump-line-mode) ; ,l for Ace Jump (line)
-    (global-evil-leader-mode))
+                                        ; ,x to be M-x
+  (evil-leader/set-key "x" 'execute-extended-command)
+  (evil-leader/set-key "e" 'evil-ace-jump-word-mode) ; ,e for Ace Jump (word)
+  (evil-leader/set-key "l" 'evil-ace-jump-line-mode) ; ,l for Ace Jump (line)
+  (global-evil-leader-mode))
 
 (use-package evil-nerd-commenter
   :ensure t
@@ -124,7 +124,7 @@
   (evil-leader/set-key
     "ps" 'helm-projectile-ag
     "pa" 'helm-projectile-find-file-in-known-projects
-  ))
+    ))
 
 (use-package evil-args
   :ensure t
@@ -195,9 +195,21 @@
 
 (define-key evil-motion-state-map (kbd "g n") #'evil-narrow-op)
 
-(use-package evil-indent-plus
-  :ensure t
-  :config
-  (evil-indent-plus-default-bindings))
+(when (package-installed-p 'expand-region)
+  (use-package evil-indent-plus
+    :ensure t
+    :config
+    (evil-indent-plus-default-bindings))
+
+  (defun evil-visual-char-or-expand-region ()
+    (interactive)
+    (if (region-active-p)
+        (call-interactively 'er/expand-region)
+      (evil-visual-char)))
+
+  (define-key evil-normal-state-map "v" 'evil-visual-char-or-expand-region)
+  (define-key evil-visual-state-map "v" 'evil-visual-char-or-expand-region)
+  (define-key evil-visual-state-map (kbd "M-v") 'er/contract-region)
+  (define-key evil-visual-state-map [escape] 'evil-visual-char))
 
 (provide 'wcx-evil)
