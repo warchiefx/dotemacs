@@ -68,6 +68,7 @@
 (require 'wcx-color-theme)
 (require 'wcx-modeline)
 (require 'wcx-encryption)
+(require 'wcx-hydra)
 ;; (require 'wcx-workgroups)
 (require 'wcx-debugger)
 (require 'wcx-terminal)
