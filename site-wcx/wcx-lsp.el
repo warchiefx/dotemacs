@@ -16,6 +16,7 @@
   (add-hook 'java-mode-hook 'wcx/activate-lsp)
   (add-hook 'python-mode-hook 'wcx/activate-lsp)
   (add-hook 'ruby-mode-hook 'wcx/activate-lsp)
+  (add-hook 'lua-mode-hook 'wcx/activate-lsp)
   (add-hook 'bash-mode-hook 'wcx/activate-lsp))
 
 (provide 'wcx-lsp)
