@@ -79,5 +79,26 @@
    #'pipenv-projectile-after-switch-default)
   (setq pipenv-keymap-prefix (kbd "C-c C-o")))
 
+;; Python mode hydra
+(when (package-installed-p 'major-mode-hydra)
+  (major-mode-hydra-bind python-mode "Nav"
+    ("n" python-nav-forward-defun "next-defun" :exit nil)
+    ("p" python-nav-backward-defun "prev-defun" :exit nil))
+  (major-mode-hydra-bind python-mode "LSP"
+    ("A" eglot-code-actions "code actions" :exit nil)
+    ("h" eglot-help-at-point "help at point" :exit nil)
+    ("r" eglot-reconnect "restart"))
+  (major-mode-hydra-bind python-mode "Pipenv"
+    ("a" pipenv-activate "activate" :exit nil)
+    ("d" pipenv-deactivate "deactivate" :exit nil)
+    ("s" run-python "pyshell")
+    ("S" pipenv-shell "shell")
+    ("i" pipenv-install "install"))
+  (major-mode-hydra-bind python-mode "Tools"
+    ("f" blacken-buffer "reformat")
+    ("c" whitespace-cleanup "clean whitespace"))
+  (major-mode-hydra-bind python-mode "Test"
+    ("t" python-pytest-popup "pytest...")))
+
 (provide 'wcx-python)
 ;;; wcx-python.el ends here
