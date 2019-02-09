@@ -45,7 +45,7 @@
 (use-package blacken
   :ensure t
   :diminish blacken-mode
-  :hook (python-mode . blacken-mode)
+  ;; :hook (python-mode . blacken-mode)
   :config
   ;; (setq blacken-line-length 100)
   :bind (([?\C-c ?\C-x ?a] . blacken-buffer)))
