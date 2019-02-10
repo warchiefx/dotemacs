@@ -414,7 +414,9 @@ or the current buffer directory."
 (use-package nswbuff                    ; Quick switching between buffers
   :ensure t
   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
-          ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer))
+          ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer)
+          ("<C-next>"           . nswbuff-switch-to-next-buffer)
+          ("<C-prior>" . nswbuff-switch-to-previous-buffer))
   :config (setq nswbuff-buffer-list-function #'nswbuff-projectile-buffer-list
                 nswbuff-display-intermediate-buffers t))
 ;   (global-highlight-thing-mode))
