@@ -16,7 +16,8 @@
 (use-package kaolin-themes
   :ensure t
   :config
-  (load-theme 'kaolin-mono-dark)
+  (setq kaolin-themes-modeline-border nil)
+  (load-theme 'kaolin-aurora)
   (kaolin-treemacs-theme))
 
 ;; (use-package base16-theme
@@ -40,7 +41,7 @@
 ;;   :ensure t
 ;;   :config
 ;;   (setq doom-themes-enable-bold t)
-;;   (load-theme 'doom-molokai)
+;;   (load-theme 'doom-city-lights)
 ;;   (doom-themes-visual-bell-config)
 ;;   (doom-themes-neotree-config)
 ;;   (doom-themes-org-config))
