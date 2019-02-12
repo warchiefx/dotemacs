@@ -84,6 +84,10 @@
   (major-mode-hydra-bind python-mode "Nav"
     ("n" python-nav-forward-defun "next-defun" :exit nil)
     ("p" python-nav-backward-defun "prev-defun" :exit nil))
+  (major-mode-hydra-bind python-mode "Errors"
+    ("<" flycheck-previous-error "prev" :exit nil :color pink)
+    (">" flycheck-next-error "next" :exit nil :color pink)
+    ("l" flycheck-list-errors "list"))
   (major-mode-hydra-bind python-mode "LSP"
     ("A" eglot-code-actions "code actions" :exit nil)
     ("h" eglot-help-at-point "help at point" :exit nil)
