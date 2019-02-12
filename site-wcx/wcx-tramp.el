@@ -11,8 +11,7 @@
 ;; Version: $Id$
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package tramp
-  :ensure t)
+(use-package tramp)
 
 
 (provide 'wcx-tramp)
