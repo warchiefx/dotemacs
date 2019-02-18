@@ -293,6 +293,6 @@ _m_ make            _S_ save all        _f_ file            ^^
   ("q"   nil "quit" :color blue))
 
 ;; Undo & Redo
-(global-set-key [f3] 'hydra-undo-tree/undo-tree-undo) ;; or whatever
+(global-set-key [f3] 'undo) ;; or whatever
 
 (provide 'wcx-keybindings)
