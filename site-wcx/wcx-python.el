@@ -92,9 +92,10 @@
     ("A" eglot-code-actions "code actions" :exit nil)
     ("h" eglot-help-at-point "help at point" :exit nil)
     ("r" eglot-reconnect "restart"))
-  (major-mode-hydra-bind python-mode "Pipenv"
+  (major-mode-hydra-bind python-mode "Env commans"
     ("a" pipenv-activate "activate" :exit nil)
     ("d" pipenv-deactivate "deactivate" :exit nil)
+    ("w" pyvenv-workon "workon...")
     ("s" run-python "pyshell")
     ("S" pipenv-shell "shell")
     ("i" pipenv-install "install"))
