@@ -133,6 +133,7 @@
  '(magit-diff-use-overlays nil)
  '(magit-push-always-verify nil)
  '(mail-user-agent 'gnus-user-agent)
+ '(major-mode-hydra-invisible-quit-key "q")
  '(make-backup-files nil)
  '(mouse-drag-copy-region nil)
  '(nethack-use-tiles t)
