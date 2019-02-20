@@ -13,24 +13,35 @@
 ;;     )
 ;;   (sml/setup))
 
-(use-package spaceline
-  :ensure t
-  :config
-  (require 'spaceline-config)
-  ;;(spaceline-emacs-theme)
-  (spaceline-spacemacs-theme)
-  (spaceline-helm-mode)
-  (spaceline-info-mode)
-  (spaceline-toggle-evil-state-on)
-  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-  (spaceline-toggle-projectile-root-on)
-  (spaceline-toggle-version-control-on)
-  (spaceline-toggle-buffer-position-off)
-  (spaceline-toggle-hud-off)
-  (spaceline-toggle-which-function-on))
+;; (use-package spaceline
+;;   :ensure t
+;;   :config
+;;   (require 'spaceline-config)
+;;   ;;(spaceline-emacs-theme)
+;;   (spaceline-spacemacs-theme)
+;;   (spaceline-helm-mode)
+;;   (spaceline-info-mode)
+;;   (spaceline-toggle-evil-state-on)
+;;   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+;;   (spaceline-toggle-projectile-root-on)
+;;   (spaceline-toggle-version-control-on)
+;;   (spaceline-toggle-buffer-position-off)
+;;   (spaceline-toggle-hud-off)
+;;   (spaceline-toggle-which-function-on))
 
-;; (use-package all-the-icons
-;;   :ensure t)
+(use-package doom-modeline
+      :ensure t
+      :defer t
+      :hook (after-init . doom-modeline-init)
+      :config
+      (setq doom-modeline-height 15)
+      (setq doom-modeline-buffer-file-name-style 'relative-from-project)
+      (setq doom-modeline-minor-modes t)
+      (setq doom-modeline-icon nil)
+      (setq doom-modeline-python-executable "python"))
+
+(use-package all-the-icons
+  :ensure t)
 
 ;; (defun format-icon (func icon-name color)
 ;;   (let ((icon (funcall func icon-name)))
