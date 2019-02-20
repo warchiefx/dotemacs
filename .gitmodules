@@ -1,3 +1,6 @@
 [submodule "ycmd"]
 	path = ycmd
 	url = git@github.com:Valloric/ycmd.git
+[submodule "dotfiles"]
+	path = dotfiles
+	url = git@github.com:warchiefx/dotfiles
