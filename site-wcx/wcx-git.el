@@ -86,4 +86,10 @@
   :config
   (magit-org-todos-autoinsert))
 
+(use-package magit-gh-pulls
+  :ensure t
+  :after magit
+  :config
+  (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
+
 (provide 'wcx-git)
