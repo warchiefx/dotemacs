@@ -1,17 +1,4 @@
 ;; wcx-color-theme.el --- Color themes
-;;
-;; Filename: wcx-color-theme.el
-;; Description:
-;; Author: Ricardo Restituyo
-;; Email: warchiefx@gmail.com
-;; Created: Wed Oct 22 11:51:19 2008
-;;
-;; Last-Updated: Wed Mar 24 10:45:39 2010 (-14400 -0400)
-;;           By: Ricardo Restituyo
-;; Version: $Id$
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;; Code:
 
 (use-package kaolin-themes
   :ensure t
@@ -20,22 +7,11 @@
   (load-theme 'kaolin-aurora)
   (kaolin-treemacs-theme))
 
-;; (use-package base16-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'base16-ocean))
-
-;; (use-package flatui-theme
-;;   :ensure t)
-
-;; (use-package tao-theme
-;;   :ensure t)
-
 ;; (use-package nord-theme
 ;;   :ensure t
 ;;   :config
 ;;   (setq nord-comment-brightness 15)
-;;   (load-theme 'nord))
+;;   )
 
 ;; (use-package doom-themes
 ;;   :ensure t
@@ -52,7 +28,7 @@
 ;;   (setq calendar-location-name "Santo Domingo, DO")
 ;;   (setq calendar-latitude 18.486058)
 ;;   (setq calendar-longitude -69.931212)
-;;   (change-theme 'doom-city-lights 'doom-tomorrow-night))
+;;   (change-theme 'kaolin-mono-dark 'kaolin-aurora))
 
 (defadvice load-theme (before clear-previous-themes activate)
   "Clear existing theme settings instead of layering them"
