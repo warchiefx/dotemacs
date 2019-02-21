@@ -32,12 +32,13 @@
 (use-package doom-modeline
       :ensure t
       :defer t
-      :hook (after-init . doom-modeline-init)
+      :hook (after-init . doom-modeline-mode)
       :config
       (setq doom-modeline-height 15)
       (setq doom-modeline-buffer-file-name-style 'relative-from-project)
       (setq doom-modeline-minor-modes t)
       (setq doom-modeline-icon nil)
+      (setq doom-modeline-github t)
       (setq doom-modeline-python-executable "python"))
 
 (use-package all-the-icons
