@@ -22,13 +22,20 @@
              org-mode)
   :bind (("C-c l" . org-store-link)
          ([f9] . org-agenda)
-         ("C-c b" . org-ido-switchb)
          ([?\C-c ?\C-x ?o] . org-clock-jump-to-current-clock)
+         ([s-f12] . org-capture)
          ([f12] . org-cycle-agenda-files))
   :mode (("\\.org_archive\\'" . org-mode)
          ("\\.org\\'" . org-mode))
 
   :config
+  (load-library "find-lisp")
+  (setq org-agenda-files
+        (find-lisp-find-files "~/gdrive/orgfiles" "\.org$"))
+
+  (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
+  (setq org-default-notes-file "~/gdrive/orgfiles/main.org")
+
   (defun org-summary-todo (n-done n-not-done)
     "Switch entry to DONE when all subentries are done, to TODO otherwise."
     (let (org-log-done org-log-states)   ; turn off logging
@@ -47,6 +54,7 @@
 
   (setq org-clock-persist 'history)
   (org-clock-persistence-insinuate)
+  (setq org-export-with-sub-superscripts nil)
 
   (defun wcx/org-clocking-info-to-file ()
     (if (org-clock-is-active)
