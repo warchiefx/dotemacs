@@ -73,6 +73,7 @@
 (use-package pipenv
   :ensure t
   :hook (python-mode . pipenv-mode)
+  :diminish pipenv-mode
   :init
   (setq
    pipenv-projectile-after-switch-function
