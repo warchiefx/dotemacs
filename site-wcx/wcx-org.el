@@ -31,15 +31,31 @@
   :config
   (load-library "find-lisp")
   (setq org-agenda-files
-        (find-lisp-find-files "~/gdrive/orgfiles" "\.org$"))
+        (append '("~/gdrive/orgfiles/main.org" "~/gdrive/orgfiles/readlater.org")
+         (find-lisp-find-files "~/gdrive/orgfiles" "\.org$")))
 
   (setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
   (setq org-default-notes-file "~/gdrive/orgfiles/main.org")
 
-  (setq org-capture-templates '(("t" "todo" entry (file "~/gdrive/orgfiles/main.org")
+  (defun wcx/create-notes-file (target-dir)
+    "Create an org file in ~/notes/."
+    (interactive)
+    (let* ((name (read-string "Project: "))
+           (filename (replace-regexp-in-string "[ /]" "-" name)))
+      (expand-file-name (format "%s.org"
+                                filename) target-dir)))
+
+  (setq org-capture-templates '(("t" "Todo" entry (file+headline "~/gdrive/orgfiles/main.org" "Tasks")
                                "* TODO %?\n%U\n%a\n")
-                              ("n" "note" entry (file "~/gdrive/orgfiles/main.org")
-                               "* %? :NOTE:\n%U\n%a\n")))
+                              ("n" "Note" entry (file+headline "~/gdrive/orgfiles/main.org" "Notes")
+                               "* %? :NOTE:\n%U\n%a\n")
+                              ("r" "Read Later" entry (file+headline "~/gdrive/orgfiles/readlater.org" "Read Later")
+                               "* TODO %? :LATER:\n" :prepend t)
+                              ("p" "Project" entry (file (lambda () (funcall-interactively 'wcx/create-notes-file "~/gdrive/orgfiles/projects/")))
+                               "%[~/gdrive/orgfiles/templates/project.org]")
+                              ("R" "Research Project" entry (file (lambda () (funcall-interactively 'wcx/create-notes-file "~/gdrive/orgfiles/research/")))
+                               "%[~/gdrive/orgfiles/templates/research.org]")
+                              ))
 
   (setq org-tag-alist '((:startgroup)
                         ("BUG" . ?b) ("RESEARCH" . ?r) ("MGMT" . ?m)
@@ -50,7 +66,7 @@
                         (:endgroup)
                         ("NICETOHAVE" . ?n)
                         (:startgroup)
-                        ("SOON" . ?s) ("ONHOLD" . ?O)
+                        ("SOON" . ?s) ("ONHOLD" . ?O) ("LATER" . ?l)
                         (:endgroup)
                         (:startgroup)
                         ("@home" . ?h) ("@office" . ?o)
