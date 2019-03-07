@@ -33,16 +33,37 @@
   (setq org-agenda-files
         (find-lisp-find-files "~/gdrive/orgfiles" "\.org$"))
 
-  (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
+  (setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
   (setq org-default-notes-file "~/gdrive/orgfiles/main.org")
+
+  (setq org-capture-templates '(("t" "todo" entry (file "~/gdrive/orgfiles/main.org")
+                               "* TODO %?\n%U\n%a\n")
+                              ("n" "note" entry (file "~/gdrive/orgfiles/main.org")
+                               "* %? :NOTE:\n%U\n%a\n")))
+
+  (setq org-tag-alist '((:startgroup)
+                        ("BUG" . ?b) ("RESEARCH" . ?r) ("MGMT" . ?m)
+                        ("NOTE" . ?t)
+                        (:endgroup)
+                        (:startgroup)
+                        ("TRIVIAL" . ?T) ("TEDIOUS" . ?e)
+                        (:endgroup)
+                        ("NICETOHAVE" . ?n)
+                        (:startgroup)
+                        ("SOON" . ?s) ("ONHOLD" . ?O)
+                        (:endgroup)
+                        (:startgroup)
+                        ("@home" . ?h) ("@office" . ?o)
+                        (:endgroup))
 
   (defun org-summary-todo (n-done n-not-done)
     "Switch entry to DONE when all subentries are done, to TODO otherwise."
     (let (org-log-done org-log-states)   ; turn off logging
       (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
   (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
-  (setq org-todo-keywords '((sequence "TODO(t)" "OPTIONAL(o)" "EXECUTING(e!)" "FEEDBACK(k@/!)" "VERIFY(v!)" "BLOCKED(b@/!)" "|" "DONE(d!)" "CANCELLED(@)")
-                            (sequence "INVESTIGATE" "READ" "READING" "|" "COMPLETED(c!)")
+  (setq org-todo-keywords '((sequence "TODO(t)" "OPTIONAL(o)" "FEEDBACK(k@/!)" "VERIFY(v!)" "BLOCKED(b@/!)" "|" "DONE(d!)" "CANCELLED(@)")
+                            (sequence "INVESTIGATE" "|" "DONE(d!)")
+                            (sequence "DEFINE" "|" "DONE(d!)")
                             (sequence "DELEGATED(@/!)" "|" "DONE(D!)")
                             (sequence "FIX(f)" "FIXING(F!)" "INVESTIGATING" "STUCK(s@/!)" "SOLUTIONKNOWN(S@)" "|" "FIXED(x!)" "WONTFIX(n@/!)")))
 
