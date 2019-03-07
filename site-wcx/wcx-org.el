@@ -23,7 +23,7 @@
   :bind (("C-c l" . org-store-link)
          ([f9] . org-agenda)
          ([?\C-c ?\C-x ?o] . org-clock-jump-to-current-clock)
-         ([s-f12] . org-capture)
+         ([C-f9] . org-capture)
          ([f12] . org-cycle-agenda-files))
   :mode (("\\.org_archive\\'" . org-mode)
          ("\\.org\\'" . org-mode))
@@ -70,13 +70,15 @@
                         (:endgroup)
                         (:startgroup)
                         ("@home" . ?h) ("@office" . ?o)
-                        (:endgroup))
+                        (:endgroup)))
 
   (defun org-summary-todo (n-done n-not-done)
     "Switch entry to DONE when all subentries are done, to TODO otherwise."
     (let (org-log-done org-log-states)   ; turn off logging
       (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+
   (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+
   (setq org-todo-keywords '((sequence "TODO(t)" "OPTIONAL(o)" "FEEDBACK(k@/!)" "VERIFY(v!)" "BLOCKED(b@/!)" "|" "DONE(d!)" "CANCELLED(@)")
                             (sequence "INVESTIGATE" "|" "DONE(d!)")
                             (sequence "DEFINE" "|" "DONE(d!)")
@@ -92,12 +94,6 @@
   (setq org-clock-persist 'history)
   (org-clock-persistence-insinuate)
   (setq org-export-with-sub-superscripts nil)
-
-  (defun wcx/org-clocking-info-to-file ()
-    (if (org-clock-is-active)
-        (with-temp-file "~/Work/.clocking"
-          ;; (message (org-clock-get-clock-string))
-          (insert (wcx/org-get-clocked-time)))))
 
   (defun wcx/org-get-clocked-time ()
     (interactive)
