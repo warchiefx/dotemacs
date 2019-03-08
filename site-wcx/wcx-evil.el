@@ -144,22 +144,15 @@
 
 (use-package exato :ensure t)
 
-;; (use-package evil-org
-;;   :ensure t
-;;   :after org
-;;   :config
-;;   (add-hook 'org-mode-hook 'evil-org-mode)
-;;   (add-hook 'evil-org-mode-hook
-;;             (lambda ()
-
 (use-package evil-org
   :ensure t
   :after (evil org)
+  :diminish evil-org-mode
   :config
   (add-hook 'org-mode-hook 'evil-org-mode)
   (add-hook 'evil-org-mode-hook
             (lambda ()
-              (evil-org-set-key-theme '(navigation insert textobjects)))))
+              (evil-org-set-key-theme '(navigation insert textobjects heading todo)))))
 
 (use-package evil-collection
   :ensure t
