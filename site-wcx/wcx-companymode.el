@@ -29,10 +29,10 @@
   :ensure t
   :config (company-statistics-mode 1))
 
-(use-package company-etags
-  :config
-  (eval-after-load 'company-etags '(progn (add-to-list 'company-etags-modes 'web-mode)))
-  (setq company-etags-everywhere '(php-mode html-mode web-mode nxml-mode)))
+;; (use-package company-etags
+;;   :config
+;;   (eval-after-load 'company-etags '(progn (add-to-list 'company-etags-modes 'web-mode)))
+;;   (setq company-etags-everywhere '(php-mode html-mode web-mode nxml-mode)))
 
 (use-package company-statistics
   :ensure t
