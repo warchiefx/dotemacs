@@ -6,14 +6,6 @@
 
 ;;; Code:
 ;; Turn off mouse interface early in startup to avoid momentary display
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(when (< emacs-major-version 25)
-  (package-initialize))
-
 (setq redisplay-dont-pause t)
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -44,17 +36,13 @@
 
 (setq emacs-load-start-time (current-time))
 
-(unless (locate-library "use-package")
-  (package-install "use-package"))
-
 (require 'wcx-package)
+
 (unless (locate-library "diminish")
   (package-install "diminish"))
 
 (when (locate-library "use-package")
-  (require 'use-package)
-  (use-package better-defaults
-    :ensure t))
+  (use-package better-defaults))
 
 ;; Custom stuff
 (require 'wcx-evil)
