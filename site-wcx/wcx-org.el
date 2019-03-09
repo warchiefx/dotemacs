@@ -46,7 +46,7 @@
                                 filename) target-dir)))
 
   (setq org-capture-templates '(("t" "Todo" entry (file+headline "~/gdrive/orgfiles/main.org" "Tasks")
-                               "* TODO %?\n%U\n%a\n")
+                               "* TODO %?\n%U\n%a\n" :prepend t)
                               ("n" "Note" entry (file+headline "~/gdrive/orgfiles/main.org" "Notes")
                                "* %? :NOTE:\n%U\n%a\n")
                               ("r" "Read Later" entry (file+headline "~/gdrive/orgfiles/readlater.org" "Read Later")
