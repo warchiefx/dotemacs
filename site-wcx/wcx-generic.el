@@ -401,17 +401,6 @@ or the current buffer directory."
   :config
   (smart-jump-setup-default-registers))
 
-;; (use-package highlight-thing
-;;   :ensure t
-;;   :diminish (highlight-thing-mode hi-lock-mode)
-;;   :config
-;;   (setq highlight-thing-limit-to-defun t)
-;;   (setq highlight-thing-case-sensitive-p t)
-;;   (setq highlight-thing-exclude-thing-under-point t)
-;;   (setq highlight-thing-ignore-list '("False" "True"))
-;;   (setq highlight-thing-face '((t
-;;                                 (:inherit 'diff-hl-insert))))
-
 (use-package nswbuff                    ; Quick switching between buffers
   :ensure t
   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
@@ -420,7 +409,12 @@ or the current buffer directory."
           ("<C-prior>" . nswbuff-switch-to-previous-buffer))
   :config (setq nswbuff-buffer-list-function #'nswbuff-projectile-buffer-list
                 nswbuff-display-intermediate-buffers t))
-;   (global-highlight-thing-mode))
+
+(use-package smartparens
+  :ensure t
+  :config
+  (require 'smartparens-config)
+  (add-hook 'lisp-mode-hook #'smartparens-strict-mode))
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
