@@ -64,7 +64,7 @@
                         ("NOTE" . ?t)
                         (:endgroup)
                         (:startgroup)
-                        ("TRIVIAL" . ?T) ("TEDIOUS" . ?e)
+                        ("TRIVIAL" . ?T) ("TEDIOUS" . ?e) ("TODELEGATE" . ?d)
                         (:endgroup)
                         ("NICETOHAVE" . ?n)
                         (:startgroup)
