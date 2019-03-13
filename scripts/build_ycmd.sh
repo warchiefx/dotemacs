@@ -11,7 +11,7 @@ function checkout_ycmd {
 
 function build_ycmd_module {
     cd $YCMD_DIR
-    ./build.py --clang-completer --rust-completer --js-completer --java-completer
+    python3 build.py --clang-completer --rust-completer --js-completer --java-completer
 }
 
 if [ -d ${YCMD_DIR} -a -z "$(ls -A ${YCMD_DIR})" ]; then

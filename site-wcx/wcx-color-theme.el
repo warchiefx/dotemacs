@@ -1,26 +1,20 @@
 ;; wcx-color-theme.el --- Color themes
 
-(use-package kaolin-themes
+;; (use-package kaolin-themes
+;;   :ensure t
+;;   :config
+;;   (setq kaolin-themes-modeline-border nil)
+;;   (load-theme 'kaolin-aurora)
+;;   (kaolin-treemacs-theme))
+
+(use-package doom-themes
   :ensure t
   :config
-  (setq kaolin-themes-modeline-border nil)
-  (load-theme 'kaolin-aurora)
-  (kaolin-treemacs-theme))
-
-;; (use-package nord-theme
-;;   :ensure t
-;;   :config
-;;   (setq nord-comment-brightness 15)
-;;   )
-
-;; (use-package doom-themes
-;;   :ensure t
-;;   :config
-;;   (setq doom-themes-enable-bold t)
-;;   (load-theme 'doom-city-lights)
-;;   (doom-themes-visual-bell-config)
-;;   (doom-themes-neotree-config)
-;;   (doom-themes-org-config))
+  (setq doom-themes-enable-bold t)
+  (load-theme 'doom-tomorrow-night)
+  (doom-themes-visual-bell-config)
+  (doom-themes-neotree-config)
+  (doom-themes-org-config))
 
 ;; (use-package theme-changer
 ;;   :ensure t

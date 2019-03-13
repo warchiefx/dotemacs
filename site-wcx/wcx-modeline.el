@@ -31,9 +31,8 @@
 
 (use-package doom-modeline
       :ensure t
-      :defer t
       :hook (after-init . doom-modeline-mode)
-      :config
+      :init
       (setq doom-modeline-height 15)
       (setq doom-modeline-buffer-file-name-style 'relative-from-project)
       (setq doom-modeline-minor-modes t)
