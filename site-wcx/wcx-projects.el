@@ -12,6 +12,7 @@
             list-buffers-directory
             default-directory))
     ad-do-it))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   :diminish projectile-mode)
 
 (use-package helm-projectile
