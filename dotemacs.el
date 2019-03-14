@@ -42,7 +42,7 @@
   (package-install "diminish"))
 
 (when (locate-library "use-package")
-  (use-package better-defaults))
+  (use-package better-defaults :ensure t))
 
 ;; Custom stuff
 (require 'wcx-evil)
@@ -57,7 +57,7 @@
 (require 'wcx-modeline)
 (require 'wcx-encryption)
 (require 'wcx-hydra)
-(require 'wcx-workgroups)
+;; (require 'wcx-workgroups)
 (require 'wcx-debugger)
 (require 'wcx-terminal)
 
