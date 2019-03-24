@@ -417,5 +417,12 @@ or the current buffer directory."
   (require 'smartparens-config)
   (add-hook 'lisp-mode-hook #'smartparens-strict-mode))
 
+(use-package electric-operator
+  :ensure t
+  :hook
+  ((python-mode java-mode shell-script-mdoe) . electric-operator-mode)
+  :custom
+  (electric-operator-R-named-argument-style 'spaced))
+
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
