@@ -388,13 +388,13 @@ or the current buffer directory."
         search-ring
         regexp-search-ring))
 
-(use-package dumb-jump
-  :ensure t
-  :diminish dumb-jump-mode
-  ;; :bind (("C-M-g" . dumb-jump-go)
-  ;;        ("C-M-p" . dumb-jump-back)
-  ;;        ("C-M-S-g" . dumb-jump-quick-look)))
-  )
+;; (use-package dumb-jump
+;;   :ensure t
+;;   :diminish dumb-jump-mode
+;;   ;; :bind (("C-M-g" . dumb-jump-go)
+;;   ;;        ("C-M-p" . dumb-jump-back)
+;;   ;;        ("C-M-S-g" . dumb-jump-quick-look)))
+;;   )
 
 (use-package smart-jump
   :ensure t
