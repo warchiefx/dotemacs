@@ -84,7 +84,7 @@
   (setq org-todo-keywords '((sequence "TODO(t)" "OPTIONAL(o)" "FEEDBACK(k@/!)" "VERIFY(v!)" "BLOCKED(b@/!)" "|" "DONE(d!)" "CANCELLED(@)")
                             (sequence "INVESTIGATE" "|" "DONE(d!)")
                             (sequence "DEFINE" "|" "DONE(d!)")
-                            (sequence "DELEGATE(@/!)" "|" "DELEGATED(D!)")
+                            (sequence "DELEGATE(@/!)" "|" "DELEGATED(D@/!)")
                             (sequence "FIX(f)" "FIXING(F!)" "INVESTIGATING" "STUCK(s@/!)" "SOLUTIONKNOWN(S@)" "|" "FIXED(x!)" "WONTFIX(n@/!)")))
 
   (setq org-log-done 'time)
