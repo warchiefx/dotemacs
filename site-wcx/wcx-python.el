@@ -7,7 +7,8 @@
   (require 'wcx-utils)
   (set-variable 'ycmd-server-command `(,(executable-find "python3") ,(file-truename "~/.emacs.d/ycmd/ycmd/")))
   (pyvenv-restart-python)
-  (ycmd-restart-semantic-server))
+  (ycmd-restart-semantic-server)
+  (lsp))
 
 (use-package auto-virtualenv
   :ensure t
