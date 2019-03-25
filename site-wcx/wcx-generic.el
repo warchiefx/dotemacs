@@ -419,6 +419,7 @@ or the current buffer directory."
 
 (use-package electric-operator
   :ensure t
+  :diminish electric-operator-mode
   :hook
   ((python-mode java-mode shell-script-mdoe) . electric-operator-mode)
   :custom
