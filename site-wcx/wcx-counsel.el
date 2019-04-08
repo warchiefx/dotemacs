@@ -69,7 +69,7 @@
 
 (use-package swiper
   :ensure t
-  :bind (([M-f1] . swiper)))
+  :bind (([M-f1] . swiper-isearch)))
 
 (use-package ivy-hydra
   :ensure t)
