@@ -46,6 +46,7 @@
 ;(message "eshell-ask-to-save-history is %s" eshell-ask-to-save-history)
 
 (defun eshell/ef (fname-regexp &rest dir) (ef fname-regexp default-directory))
+(setenv "PAGER" "cat")
 
 
 ;;; ---- path manipulation
@@ -95,6 +96,82 @@ PWD is not in a git repo (or the git command is not found)."
          (or (curr-dir-git-branch-string (eshell/pwd)))
          (propertize "# " 'face 'default))))
 
+(add-hook 'eshell-mode-hook
+            (lambda ()
+              (add-to-list 'eshell-visual-commands "ssh")
+              (add-to-list 'eshell-visual-commands "tail")
+              (add-to-list 'eshell-visual-commands "top")))
+
 (setq eshell-highlight-prompt nil)
+
+(eshell/alias "ff" "find-file $1")
+(eshell/alias "fw" "find-file-other-window $1")
+(eshell/alias "fr" "find-file-other-frame $1")
+(eshell/alias "emacs" "find-file $1")
+(eshell/alias "gd" "magit-diff-unstaged")
+(eshell/alias "gds" "magit-diff-staged")
+(eshell/alias "d" "dired $1")
+
+;; Better clear implementation
+(defun eshell/clear ()
+  "clear the eshell buffer."
+  (interactive)
+  (let ((inhibit-read-only t))
+    (erase-buffer)))
+
+;; Just call magit
+(defun eshell/gst (&rest args)
+    (magit-status (pop args) nil)
+    (eshell/echo))   ;; The echo command suppresses output
+
+;; Allow using C-d to delete characters
+(defun ha/eshell-quit-or-delete-char (arg)
+  (interactive "p")
+  (if (and (eolp) (looking-back eshell-prompt-regexp))
+      (progn
+        (eshell-life-is-too-much) ; Why not? (eshell/exit)
+        (ignore-errors
+          (delete-window)))
+    (delete-forward-char arg)))
+
+(add-hook 'eshell-mode-hook
+          (lambda ()
+            (bind-keys :map eshell-mode-map
+                       ("C-d" . ha/eshell-quit-or-delete-char))))
+
+;; Better history browsing
+(defun eshell-next-prompt (n)
+  "Move to end of Nth next prompt in the buffer. See `eshell-prompt-regexp'."
+  (interactive "p")
+  (re-search-forward eshell-prompt-regexp nil t n)
+  (when eshell-highlight-prompt
+    (while (not (get-text-property (line-beginning-position) 'read-only) )
+      (re-search-forward eshell-prompt-regexp nil t n)))
+  (eshell-skip-prompt))
+
+(defun eshell-previous-prompt (n)
+  "Move to end of Nth previous prompt in the buffer. See `eshell-prompt-regexp'."
+  (interactive "p")
+  (backward-char)
+  (eshell-next-prompt (- n)))
+
+(defun eshell-insert-history ()
+  "Displays the eshell history to select and insert back into your eshell."
+  (interactive)
+  (insert (ido-completing-read "Eshell history: "
+                               (delete-dups
+                                (ring-elements eshell-history-ring)))))
+
+(add-hook 'eshell-mode-hook (lambda ()
+    (define-key eshell-mode-map (kbd "M-S-P") 'eshell-previous-prompt)
+    (define-key eshell-mode-map (kbd "M-S-N") 'eshell-next-prompt)
+    (define-key eshell-mode-map (kbd "M-r") 'eshell-insert-history)))
+
+(use-package esh-autosuggest
+  :hook (eshell-mode . esh-autosuggest-mode)
+  ;; If you have use-package-hook-name-suffix set to nil, uncomment and use the
+  ;; line below instead:
+  ;; :hook (eshell-mode-hook . esh-autosuggest-mode)
+  :ensure t)
 
 (provide 'wcx-terminal)
