@@ -104,13 +104,13 @@ PWD is not in a git repo (or the git command is not found)."
 
 (setq eshell-highlight-prompt nil)
 
-(eshell/alias "ff" "find-file $1")
-(eshell/alias "fw" "find-file-other-window $1")
-(eshell/alias "fr" "find-file-other-frame $1")
-(eshell/alias "emacs" "find-file $1")
-(eshell/alias "gd" "magit-diff-unstaged")
-(eshell/alias "gds" "magit-diff-staged")
-(eshell/alias "d" "dired $1")
+;; (eshell/alias "ff" "find-file $1")
+;; (eshell/alias "fw" "find-file-other-window $1")
+;; (eshell/alias "fr" "find-file-other-frame $1")
+;; (eshell/alias "emacs" "find-file $1")
+;; (eshell/alias "gd" "magit-diff-unstaged")
+;; (eshell/alias "gds" "magit-diff-staged")
+;; (eshell/alias "d" "dired $1")
 
 ;; Better clear implementation
 (defun eshell/clear ()
