@@ -34,8 +34,6 @@
 ; Use the system clipboard
 (setq x-select-enable-clipboard t)
 
-(setq emacs-load-start-time (current-time))
-
 (require 'wcx-package)
 
 (unless (locate-library "diminish")
@@ -44,55 +42,64 @@
 (when (locate-library "use-package")
   (use-package better-defaults :ensure t))
 
+(require 'benchmark)
+
+; If debug-init is set, print module load times
+(defmacro load-feature (name)
+  `(if init-file-debug
+       (message "Feature '%s' loaded in %.2fs" ,name
+                (benchmark-elapse (require ,name)))
+     (require ,name)))
+
 ;; Custom stuff
-(require 'wcx-evil)
-(require 'wcx-requirements)
-(require 'wcx-generic)
-;; (require 'wcx-fonts)
-;;(require 'wcx-utils)
-(require 'wcx-keybindings)
-(require 'wcx-icicles)
-(require 'wcx-ido)
-(require 'wcx-color-theme)
-(require 'wcx-modeline)
-(require 'wcx-encryption)
-(require 'wcx-hydra)
-;; (require 'wcx-workgroups)
-(require 'wcx-debugger)
-(require 'wcx-terminal)
+(load-feature 'wcx-evil)
+(load-feature 'wcx-requirements)
+(load-feature 'wcx-generic)
+;; (load-feature 'wcx-fonts)
+;;(load-feature 'wcx-utils)
+(load-feature 'wcx-keybindings)
+(load-feature 'wcx-icicles)
+(load-feature 'wcx-ido)
+(load-feature 'wcx-color-theme)
+(load-feature 'wcx-modeline)
+(load-feature 'wcx-encryption)
+(load-feature 'wcx-hydra)
+;; (load-feature 'wcx-workgroups)
+(load-feature 'wcx-debugger)
+(load-feature 'wcx-terminal)
 
 ;; Tools
-(require 'wcx-org)
-(require 'wcx-markdown)
-;; (require 'wcx-w3m)
-;;(require 'wcx-gnus)
-;;(require 'wcx-wanderlust)
-;;(require 'wcx-gnus-nnrss)
-;;(require 'wcx-bbdb)
-(require 'wcx-tramp)
-;;(require 'wcx-svn)
-(require 'wcx-git)
-(require 'wcx-mercurial)
-(require 'wcx-templates)
-(require 'wcx-cedet)
-;;(require 'wcx-minimap)
-(require 'wcx-flycheck)
-(require 'wcx-projects)
-;; (require 'wcx-helm)
-(require 'wcx-counsel)
+(load-feature 'wcx-org)
+(load-feature 'wcx-markdown)
+;; (load-feature 'wcx-w3m)
+;;(load-feature 'wcx-gnus)
+;;(load-feature 'wcx-wanderlust)
+;;(load-feature 'wcx-gnus-nnrss)
+;;(load-feature 'wcx-bbdb)
+(load-feature 'wcx-tramp)
+;;(load-feature 'wcx-svn)
+(load-feature 'wcx-git)
+(load-feature 'wcx-mercurial)
+(load-feature 'wcx-templates)
+(load-feature 'wcx-cedet)
+;;(load-feature 'wcx-minimap)
+(load-feature 'wcx-flycheck)
+(load-feature 'wcx-projects)
+;; (load-feature 'wcx-helm)
+(load-feature 'wcx-counsel)
 
 ;; Programming Modes
-(require 'wcx-companymode)
-(require 'wcx-java)
-;;(require 'wcx-malabar)
-(require 'wcx-python)
-(require 'wcx-webdev)
-;;(require 'wcx-slime)
-(require 'wcx-lua)
-;;(require 'wcx-go)
-;;(require 'wcx-scala)
-;;(require 'wcx-auto-complete)
-(require 'wcx-lsp)
+(load-feature 'wcx-companymode)
+(load-feature 'wcx-java)
+;;(load-feature 'wcx-malabar)
+(load-feature 'wcx-python)
+(load-feature 'wcx-webdev)
+;;(load-feature 'wcx-slime)
+(load-feature 'wcx-lua)
+;;(load-feature 'wcx-go)
+;;(load-feature 'wcx-scala)
+;;(load-feature 'wcx-auto-complete)
+(load-feature 'wcx-lsp)
 
 ;; Games
 ;; (require 'wcx-nethack)
@@ -118,9 +125,6 @@
 (server-start)
 
 (prefer-coding-system 'utf-8)
-
-(message "Emacs startup time: %d seconds."
-         (time-to-seconds (time-since emacs-load-start-time)))
 
 (put 'upcase-region 'disabled nil)
 
@@ -151,6 +155,10 @@
 
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
+
+(defun display-startup-echo-area-message ()
+  "Display startup echo area message."
+  (message "Initialized in %s" (emacs-init-time)))
 
 (provide '.emacs)
 ;;; .emacs ends here
