@@ -28,7 +28,7 @@
           treemacs-recenter-after-project-jump   'always
           treemacs-recenter-after-project-expand 'on-distance
           treemacs-show-cursor                   nil
-          treemacs-show-hidden-files             t
+          treemacs-show-hidden-files             nil
           treemacs-silent-filewatch              nil
           treemacs-silent-refresh                nil
           treemacs-sorting                       'alphabetic-desc
