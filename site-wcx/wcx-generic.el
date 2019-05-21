@@ -44,6 +44,7 @@
 ;; Use relative-line-numbers
 ;; (global-display-line-numbers-mode 'relative)
 ;; (setq display-line-numbers 'relative)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;;; Overwrite selection
 (delete-selection-mode t)
