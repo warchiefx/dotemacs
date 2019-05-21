@@ -98,6 +98,7 @@ PWD is not in a git repo (or the git command is not found)."
 
 (add-hook 'eshell-mode-hook
             (lambda ()
+              (display-line-numbers-mode -1)
               (add-to-list 'eshell-visual-commands "ssh")
               (add-to-list 'eshell-visual-commands "tail")
               (add-to-list 'eshell-visual-commands "top")))

@@ -71,6 +71,7 @@
 ;; Tools
 (load-feature 'wcx-org)
 (load-feature 'wcx-markdown)
+(load-feature 'wcx-filebrowser)
 ;; (load-feature 'wcx-w3m)
 ;;(load-feature 'wcx-gnus)
 ;;(load-feature 'wcx-wanderlust)
