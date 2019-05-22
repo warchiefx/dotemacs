@@ -130,8 +130,14 @@
       ("w" (org-clock-in '(4)) "Clock-In") ; used with (org-clock-persistence-insinuate) (setq org-clock-persist t)
       ("o" org-clock-out "Clock-Out") ; you might also want (setq org-log-note-clock-out t)
       ("J" org-clock-goto "Clock Goto") ; global visit the clocked task
-      )
-  ))
+      ))
+
+  (add-hook 'org-mode-hook (lambda ()
+   "Beautify Org Checkbox Symbol"
+   (push '("[ ]" .  "☐") prettify-symbols-alist)
+   (push '("[X]" . "☑" ) prettify-symbols-alist)
+   (push '("[-]" . "❍" ) prettify-symbols-alist)
+   (prettify-symbols-mode))))
 
 (use-package ox-qmd
   :after org
