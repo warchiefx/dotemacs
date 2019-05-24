@@ -36,10 +36,13 @@
       (setq doom-modeline-height 15)
       (setq doom-modeline-buffer-file-name-style 'relative-from-project)
       (setq doom-modeline-minor-modes t)
-      (setq doom-modeline-icon nil)
-      (setq doom-modeline-github t)
+      (setq doom-modeline-icon t)
+      (setq doom-modeline-major-mode-icon nil)
+      (setq doom-modeline-github nil)
+      (setq doom-modeline-checker-simple-format nil)
       (setq doom-modeline-env-version nil)
-      (setq doom-modeline-python-executable "python"))
+      (setq doom-modeline-python-executable "python")
+      (setq find-file-visit-truename t))
 
 (use-package all-the-icons
   :ensure t)
