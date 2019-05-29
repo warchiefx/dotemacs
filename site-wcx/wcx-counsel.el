@@ -42,7 +42,7 @@
   :bind
   (("M-x" . counsel-M-x)
    ("C-x C-f" . counsel-find-file)
-   ("C-<f1>" . counsel-ag)
+   ("C-<f1>" . counsel-rg)
    ("s-<f1>" . counsel-projectile-find-file-dwim)
    ("C-x l" . counsel-locate)
    ("M-y" . counsel-yank-pop)
