@@ -12,14 +12,19 @@
 
 ;; Bootstrap use-package
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents) ; update archives
-  (package-install 'use-package)) ; grab the newest use-package
+    (package-refresh-contents)
+    (package-install 'use-package)
+    (package-install 'diminish)
+    (package-install 'quelpa)
+    (package-install 'bind-key)
 
-;; Define packages
-(require 'use-package)
+    (require 'use-package))
 
-;; Always download if not available
 (setq use-package-always-ensure t)
+(setq use-package-expand-minimally t)
+
+(require 'diminish)
+(require 'bind-key)
 
 ;; Improved package manager
 (use-package paradox
