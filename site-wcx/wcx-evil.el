@@ -67,8 +67,11 @@
     (evil-leader/set-leader ","))
                                         ; ,x to be M-x
   (evil-leader/set-key "x" 'execute-extended-command)
-  (evil-leader/set-key "e" 'evil-ace-jump-word-mode) ; ,e for Ace Jump (word)
-  (evil-leader/set-key "l" 'evil-ace-jump-line-mode) ; ,l for Ace Jump (line)
+  (evil-leader/set-key "jt" 'evil-avy-goto-char-timer)
+  (evil-leader/set-key "jl" 'evil-avy-goto-line)
+  (evil-leader/set-key "jw" 'evil-avy-goto-word-or-subword-1)
+  (evil-leader/set-key "jj" 'evil-avy-goto-char)
+  (evil-leader/set-key "jJ" 'evil-avy-goto-char-2)
   (global-evil-leader-mode))
 
 (use-package evil-nerd-commenter
