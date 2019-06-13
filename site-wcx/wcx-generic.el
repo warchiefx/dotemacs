@@ -36,6 +36,7 @@
 ;;(setq emacs-font "Hermit-10")
 ;; (set-frame-font emacs-font)
 (defvar default-font (concat emacs-font ":antialias=natural"))
+(add-to-list 'face-font-rescale-alist (cons emacs-font 0.86))
 (if (display-graphic-p)
     (set-face-attribute 'default nil :font default-font)
     (add-to-list 'default-frame-alist `(font . ,default-font)))
@@ -402,8 +403,9 @@
   (electric-operator-R-named-argument-style 'spaced))
 
 (use-package dimmer
+  :disabled
   :custom
-  (dimmer-fraction 0.5)
+  (dimmer-fraction 0.25)
   (dimmer-exclusion-regexp-list
        '(".*Minibuf.*"
          ".*which-key.*"
@@ -412,6 +414,7 @@
          ".*Async.*"
          ".*Warnings.*"
          ".*LV.*"
+         ".*Flycheck.*"
          ".*Ilist.*"))
   :config
   (dimmer-mode t))
