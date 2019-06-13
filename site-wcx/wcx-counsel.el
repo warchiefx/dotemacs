@@ -38,7 +38,11 @@
 
 (use-package ivy-posframe
   :ensure t
+  :diminish (ivy-posframe-mode . "")
   :config
+  (setq ivy-posframe-parameters
+      '((left-fringe . 8)
+        (right-fringe . 8)))
   (setq ivy-posframe-display-functions-alist
       '((swiper          . nil)
         (complete-symbol . ivy-posframe-display-at-point)
