@@ -122,8 +122,11 @@
 (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook)
 
 ;; Start emacs-server, for emacsclient usage.
-(set-default 'server-socket-dir "~/.emacs.d/server")
-(server-start)
+(use-package server
+  :ensure nil
+  :config
+  (set-default 'server-socket-dir "~/.emacs.d/server")
+  :hook (after-init . server-mode))
 
 (prefer-coding-system 'utf-8)
 
