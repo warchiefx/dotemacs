@@ -136,6 +136,10 @@
   :ensure t
   :diminish which-key-mode
   :config
+  (use-package which-key-posframe
+    :config
+    (setq which-key-posframe-poshandler 'posframe-poshandler-window-bottom-left-corner)
+    (which-key-posframe-mode))
   (which-key-mode))
 
 (use-package symbol-overlay
