@@ -35,8 +35,10 @@
 ;;(setq emacs-font "FiraCode-9")
 ;;(setq emacs-font "Hermit-10")
 ;; (set-frame-font emacs-font)
+(defvar default-font (concat emacs-font ":antialias=natural"))
 (if (display-graphic-p)
-    (set-face-attribute 'default nil :font emacs-font))
+    (set-face-attribute 'default nil :font default-font)
+    (add-to-list 'default-frame-alist `(font . ,default-font)))
 
 ;;; It is always better to know current line and column number
 (column-number-mode t)
@@ -71,12 +73,17 @@
 (mouse-avoidance-mode 'cat-and-mouse)
 
 (use-package dashboard
-  :ensure t
-  :config
-  (setq dashboard-items '((recents  . 5)
-                        (projects . 5)
-                        (agenda . 5)))
-  (dashboard-setup-startup-hook))
+  :diminish
+  (dashboard-mode page-break-lines-mode)
+  :custom
+  (dashboard-center-content t)
+  (dashboard-items '((recents . 10)
+                     (projects . 5)
+                     (bookmarks . 5)))
+  :custom-face
+  (dashboard-heading ((t (:weight bold))))
+  :hook
+  (after-init . dashboard-setup-startup-hook))
 
 ;; Buffer naming strategy
 (require 'uniquify)
@@ -393,6 +400,30 @@
   ((python-mode java-mode shell-script-mdoe) . electric-operator-mode)
   :custom
   (electric-operator-R-named-argument-style 'spaced))
+
+(use-package dimmer
+  :custom
+  (dimmer-fraction 0.5)
+  (dimmer-exclusion-regexp-list
+       '(".*Minibuf.*"
+         ".*which-key.*"
+         ".*NeoTree.*"
+         ".*Messages.*"
+         ".*Async.*"
+         ".*Warnings.*"
+         ".*LV.*"
+         ".*Ilist.*"))
+  :config
+  (dimmer-mode t))
+
+(use-package highlight-indent-guides
+  :diminish
+  :hook
+  ((prog-mode yaml-mode) . highlight-indent-guides-mode)
+  :custom
+  (highlight-indent-guides-auto-enabled t)
+  (highlight-indent-guides-responsive t)
+  (highlight-indent-guides-method 'character)) ; column
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
