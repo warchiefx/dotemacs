@@ -36,6 +36,16 @@
       (evil-escape)
       )))
 
+(use-package ivy-posframe
+  :ensure t
+  :config
+  (setq ivy-posframe-display-functions-alist
+      '((swiper          . nil)
+        (complete-symbol . ivy-posframe-display-at-point)
+        (counsel-M-x     . ivy-posframe-display-at-window-bottom-left)
+        (t               . ivy-posframe-display)))
+  (ivy-posframe-mode 1))
+
 (use-package counsel
   :ensure t
   :diminish (counsel-mode . "")
