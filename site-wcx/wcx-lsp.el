@@ -8,7 +8,10 @@
   (require 'lsp-clients)
   (add-hook 'prog-mode-hook (lambda () (flymake-mode -1)))
   (define-key lsp-mode-map (kbd "S-<f6>") 'lsp-rename)
-  :hook ((python-mode java-mode bash-mode lua-mode ruby-mode) . lsp))
+  (defun wcx/activate-lsp ()
+    (ycmd-mode -1)
+    (lsp))
+  :hook ((python-mode java-mode bash-mode lua-mode ruby-mode) . wcx/activate-lsp))
 
 (use-package lsp-ui
   :ensure t
@@ -33,7 +36,6 @@
 ;;   :ensure t
 ;;   :config
 ;;   (defun wcx/activate-lsp ()
-;;     ;; (flycheck-mode 0)
 ;;     (eglot-ensure))
 
 ;;   (defun wcx/find-projectile-project (dir)
@@ -45,14 +47,9 @@
 ;;   (add-to-list 'project-find-functions #'wcx/find-projectile-project)
 ;;   (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
 
-;;   (add-hook 'java-mode-hook 'wcx/activate-lsp)
-;;   (add-hook 'python-mode-hook 'wcx/activate-lsp)
-;;   (add-hook 'ruby-mode-hook 'wcx/activate-lsp)
-;;   (add-hook 'bash-mode-hook 'wcx/activate-lsp)
-;;   (add-hook 'lua-mode-hook 'wcx/activate-lsp)
-
 ;;   (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
 ;;   (define-key eglot-mode-map (kbd "S-<f6>") 'eglot-rename)
-;;   (define-key eglot-mode-map (kbd "C-<f4>") 'eglot-code-actions))
+;;   (define-key eglot-mode-map (kbd "C-<f4>") 'eglot-code-actions)
+;;   :hook ((python-mode java-mode bash-mode lua-mode ruby-mode) . wcx/activate-lsp))
 
 (provide 'wcx-lsp)
