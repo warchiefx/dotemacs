@@ -25,18 +25,12 @@
 
   :diminish flycheck-mode)
 
-(use-package flycheck-popup-tip
-  :ensure t
-  :after flycheck
-  :defer t)
-
-(use-package flycheck-pos-tip
+(use-package flycheck-posframe
   :ensure t
   :after flycheck
   :config
-  (if (display-graphic-p)
-      (flycheck-pos-tip-mode)
-    (flycheck-popup-tip-mode)))
+  (flycheck-posframe-configure-pretty-defaults)
+  (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
 
 (provide 'wcx-flycheck)
 ;;; wcx-flycheck ends here
