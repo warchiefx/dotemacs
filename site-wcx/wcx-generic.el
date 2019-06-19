@@ -430,7 +430,14 @@
 
 (use-package deadgrep
   :bind
-  (("C-<f1>" . deadgrep)))
+  (("C-<f1>" . deadgrep))
+  :config
+  (defun wcx/find-projectile-project (dir)
+    (if (fboundp 'projectile-project-root)
+        (let ((root (projectile-project-root dir)))
+          (and root (cons 'transient root)))))
+  ;; Integrate project.el with projectile
+  (add-to-list 'project-find-functions #'wcx/find-projectile-project))
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
