@@ -432,6 +432,17 @@
   :bind
   (("C-<f1>" . deadgrep))
   :config
+  (with-eval-after-load 'evil
+    (evil-define-state deadgrep
+      "Evil deadgrep state"
+      :cursor 'bar
+      :enable (motion))
+
+    (add-hook 'deadgrep-mode-hook #'evil-deadgrep-state)
+
+    (define-key evil-deadgrep-state-map (kbd "<return>") #'deadgrep-visit-result)
+    (define-key evil-deadgrep-state-map (kbd "gr") #'deadgrep-restart))
+
   (defun wcx/find-projectile-project (dir)
     (if (fboundp 'projectile-project-root)
         (let ((root (projectile-project-root dir)))
