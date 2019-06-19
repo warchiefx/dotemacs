@@ -428,5 +428,9 @@
   (highlight-indent-guides-responsive t)
   (highlight-indent-guides-method 'character)) ; column
 
+(use-package deadgrep
+  :bind
+  (("C-<f1>" . deadgrep)))
+
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
