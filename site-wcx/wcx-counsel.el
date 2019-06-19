@@ -43,11 +43,13 @@
   (setq ivy-posframe-parameters
       '((left-fringe . 8)
         (right-fringe . 8)))
+  (setq ivy-posframe-height-alist '((swiper . 40)
+                                    (t      . 20)))
   (setq ivy-posframe-display-functions-alist
-      '((swiper          . nil)
+      '((swiper          . ivy-posframe-display-at-window-bottom-left)
         (complete-symbol . ivy-posframe-display-at-point)
         (counsel-M-x     . ivy-posframe-display-at-window-bottom-left)
-        (t               . ivy-posframe-display)))
+        (t               . ivy-posframe-display-at-window-bottom-left)))
   (ivy-posframe-mode 1))
 
 (use-package counsel
