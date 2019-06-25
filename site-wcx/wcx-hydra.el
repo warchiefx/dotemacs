@@ -30,6 +30,9 @@
   ("C-c w" . hydra-windows/body)
   :config (setq-default hydra-default-hint nil))
 
+(use-package use-package-hydra
+  :ensure t)
+
 (defhydra hydra-fold (:color pink)
   "
 ^
