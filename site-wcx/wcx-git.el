@@ -1,24 +1,3 @@
-;;; wcx-git.el --- git integration
-;; 
-;; Filename: wcx-git.el
-;; Description: 
-;; Author: Ricardo Restituyo
-;; Email: warchiefx@gmail.com
-;; Created: Mon Oct 27 19:16:28 2008
-;; 
-;; Last-Updated: Mon Oct 27 19:25:42 2008 (-14400 AST)
-;;           By: Ricardo Restituyo
-;; Version: $Id$
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (use-package vc-git
-;;   :config
-;;   (when (featurep 'vc-git) (add-to-list 'vc-handled-backends 'git))
-;;   (require 'git)
-;;   (autoload 'git-blame-mode "git-blame"
-;;     "Minor mode for incremental blame for Git." t)
-;;   )
-
 (use-package magit
   :ensure t
   :init
@@ -91,5 +70,35 @@
   :after magit
   :config
   (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
+
+(use-package smerge-mode
+  :bind (:map smerge-mode-map ("C-<f12>" . hydra-smerge/body))
+  :hydra (hydra-smerge (:color pink :hint nil :pre (smerge-mode 1) :post (smerge-auto-leave))
+                       "
+^Move^       ^Keep^               ^Diff^                 ^Other^
+^^-----------^^-------------------^^---------------------^^-------
+_n_ext       _b_ase               _<_: upper/base        _C_ombine
+_p_rev       _u_pper              _=_: upper/lower       _r_esolve
+^^           _l_ower              _>_: base/lower        _k_ill current
+^^           _a_ll                _R_efine
+^^           _RET_: current       _E_diff
+"
+                       ("n" smerge-next)
+                       ("p" smerge-prev)
+                       ("b" smerge-keep-base)
+                       ("u" smerge-keep-upper)
+                       ("l" smerge-keep-lower)
+                       ("a" smerge-keep-all)
+                       ("RET" smerge-keep-current)
+                       ("\C-m" smerge-keep-current)
+                       ("<" smerge-diff-base-upper)
+                       ("=" smerge-diff-upper-lower)
+                       (">" smerge-diff-base-lower)
+                       ("R" smerge-refine)
+                       ("E" smerge-ediff)
+                       ("C" smerge-combine-with-next)
+                       ("r" smerge-resolve)
+                       ("k" smerge-kill-current)
+                       ("q" nil "cancel" :color blue)))
 
 (provide 'wcx-git)
