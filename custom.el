@@ -144,7 +144,7 @@
  '(jdee-db-spec-breakpoint-face-colors (cons "#0d0d0d" "#5a5b5a"))
  '(linum-format "  %d  ")
  '(lsp-ui-doc-include-signature t)
- '(lsp-ui-doc-use-webkit t)
+ '(lsp-ui-doc-use-webkit nil)
  '(lsp-ui-flycheck-enable t)
  '(lsp-ui-imenu-enable nil)
  '(lsp-ui-peek-enable nil)
