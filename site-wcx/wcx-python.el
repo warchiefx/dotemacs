@@ -7,8 +7,7 @@
   (require 'wcx-utils)
   (set-variable 'ycmd-server-command `(,(executable-find "python3") ,(file-truename "~/.emacs.d/ycmd/ycmd/")))
   (pyvenv-restart-python)
-  (ycmd-restart-semantic-server)
-  (lsp))
+  (ycmd-restart-semantic-server))
 
 (use-package auto-virtualenv
   :ensure t
@@ -90,9 +89,12 @@
     ("<" flycheck-previous-error "prev" :exit nil :color pink)
     (">" flycheck-next-error "next" :exit nil :color pink)
     ("l" flycheck-list-errors "list"))
+  ;; (major-mode-hydra-bind python-mode "LSP"
+  ;;   ("A" lsp-execute-code-action "code actions" :exit nil)
+  ;;   ("r" lsp-restart-workspace "restart"))
   (major-mode-hydra-bind python-mode "LSP"
-    ("A" lsp-execute-code-action "code actions" :exit nil)
-    ("r" lsp-restart-workspace "restart"))
+    ("A" eglot-code-actions "code actions" :exit nil)
+    ("r" eglot-reconnect "restart"))
   (major-mode-hydra-bind python-mode "Env commans"
     ("a" pipenv-activate "activate" :exit nil)
     ("d" pipenv-deactivate "deactivate" :exit nil)
