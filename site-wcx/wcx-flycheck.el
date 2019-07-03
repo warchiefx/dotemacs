@@ -15,13 +15,13 @@
   :ensure t
   :config
   (setq-default
-   ;; flycheck-check-syntax-automatically '(save mode-enabled)
+   flycheck-check-syntax-automatically '(save mode-enabled idle-change)
+   flycheck-idle-change-delay 4
    flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (global-flycheck-mode 1)
   ;; (add-hook 'python-mode-hook (lambda ()
   ;;                              (setq flycheck-checker 'python-pylint
   ;;                                    flycheck-checker-error-threshold 900
-  ;;                                    flycheck-pylintrc "~/.pylintrc")))
 
   :diminish flycheck-mode)
 
