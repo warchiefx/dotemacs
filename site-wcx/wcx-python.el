@@ -89,13 +89,13 @@
     ("<" flycheck-previous-error "prev" :exit nil :color pink)
     (">" flycheck-next-error "next" :exit nil :color pink)
     ("l" flycheck-list-errors "list"))
-  ;; (major-mode-hydra-bind python-mode "LSP"
-  ;;   ("A" lsp-execute-code-action "code actions" :exit nil)
-  ;;   ("r" lsp-restart-workspace "restart"))
   (major-mode-hydra-bind python-mode "LSP"
-    ("A" eglot-code-actions "code actions" :exit nil)
-    ("r" eglot-reconnect "restart"))
-  (major-mode-hydra-bind python-mode "Env commans"
+    ("A" lsp-execute-code-action "code actions" :exit nil)
+    ("r" lsp-restart-workspace "restart"))
+  ;; (major-mode-hydra-bind python-mode "LSP"
+  ;;   ("A" eglot-code-actions "code actions" :exit nil)
+  ;;   ("r" eglot-reconnect "restart"))
+  (major-mode-hydra-bind python-mode "Env"
     ("a" pipenv-activate "activate" :exit nil)
     ("d" pipenv-deactivate "deactivate" :exit nil)
     ("w" pyvenv-workon "workon...")
