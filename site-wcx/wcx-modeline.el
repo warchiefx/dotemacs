@@ -1,7 +1,3 @@
-;;;;; wcx-modeline.el -- Modeline customization
-;;; Commentary:
-;;; Code:
-
 ;; (use-package smart-mode-line
 ;;   :ensure t
 ;;   :init
@@ -57,14 +53,14 @@
 (use-package all-the-icons
   :ensure t)
 
-(use-package all-the-icons-ivy
-  :ensure t
-  :after (all-the-icons ivy)
-  :custom (all-the-icons-ivy-buffer-commands '(ivy-switch-buffer-other-window))
-  :config
-  (add-to-list 'all-the-icons-ivy-file-commands 'counsel-dired-jump)
-  (add-to-list 'all-the-icons-ivy-file-commands 'counsel-find-library)
-  (all-the-icons-ivy-setup))
+;; (use-package all-the-icons-ivy
+;;   :ensure t
+;;   :after (all-the-icons ivy)
+;;   :custom (all-the-icons-ivy-buffer-commands '(ivy-switch-buffer-other-window))
+;;   :config
+;;   (add-to-list 'all-the-icons-ivy-file-commands 'counsel-dired-jump)
+;;   (add-to-list 'all-the-icons-ivy-file-commands 'counsel-find-library)
+;;   (all-the-icons-ivy-setup))
 
 ;; (defun format-icon (func icon-name color)
 ;;   (let ((icon (funcall func icon-name)))
