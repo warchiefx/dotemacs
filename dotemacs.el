@@ -64,7 +64,7 @@
 (load-feature 'wcx-modeline)
 (load-feature 'wcx-encryption)
 (load-feature 'wcx-hydra)
-;; (load-feature 'wcx-workgroups)
+(load-feature 'wcx-workgroups)
 (load-feature 'wcx-debugger)
 (load-feature 'wcx-terminal)
 

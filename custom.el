@@ -92,6 +92,8 @@
  '(exec-path
    (quote
     ("/usr/local/sbin" "/usr/local/bin" "/usr/bin" "/opt/java/bin" "/opt/java/db/bin" "/opt/java/jre/bin" "/usr/bin/vendor_perl" "/usr/bin/core_perl" "/usr/lib/emacs/24.3/x86_64-unknown-linux-gnu" "/usr/share/git/remote-helpers")))
+ '(eyebrowse-switch-back-and-forth t)
+ '(eyebrowse-wrap-around t)
  '(fill-column 78)
  '(flycheck-executable-find (quote flycheck-virtualenv-executable-find))
  '(flycheck-flake8-maximum-line-length 125)
