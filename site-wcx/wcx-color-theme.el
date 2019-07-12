@@ -16,12 +16,16 @@
 ;;   (load-theme 'zerodark t)
 ;;   (zerodark-setup-modeline-format))
 
-;; (use-package kaolin-themes
-;;   :ensure t
+;; (use-package constant-theme
 ;;   :config
-;;   (setq kaolin-themes-modeline-border nil)
-;;   (load-theme 'kaolin-dark)
-;;   (kaolin-treemacs-theme))
+;;   (load-theme 'constant t))
+
+(use-package kaolin-themes
+  :ensure t
+  :config
+  (setq kaolin-themes-modeline-border nil)
+  (load-theme 'kaolin-dark)
+  (kaolin-treemacs-theme))
 
 ;; (use-package darkokai-theme
 ;;   :ensure t
@@ -29,7 +33,10 @@
 ;;   (setq darkokai-mode-line-padding 1)
 ;;   (load-theme 'darkokai t))
 
-;; (custom-set-variables '(madhat2r-theme-custom-colors
+;; (use-package madhat2r-theme
+;;   :ensure t
+;;   :init
+;;   (custom-set-variables '(madhat2r-theme-custom-colors
 ;;                         '((act1 . "#000000")
 ;;                           (act2 . "#000000")
 ;;                           (border . "#000000")
@@ -37,8 +44,6 @@
 ;;                           (act2-term . "#000000")
 ;;                           (border-term . "#000000"))
 ;;                         ))
-;; (use-package madhat2r-theme
-;;   :ensure t
 ;;   :config
 ;;   (load-theme 'madhat2r t))
 
@@ -47,10 +52,10 @@
 ;;   :config
 ;;   (load-theme 'overcast t))
 
-(use-package mood-one-theme
-  :ensure t
-  :config
-  (load-theme 'mood-one t))
+;; (use-package mood-one-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'mood-one t))
 
 ;; (use-package nord-theme
 ;;   :ensure t
@@ -63,9 +68,8 @@
 ;;   :ensure t
 ;;   :config
 ;;   (setq doom-themes-enable-bold t)
-;;   (load-theme 'doom-city-lights)
+;;   (load-theme 'doom-tomorrow-night)
 ;;   (doom-themes-visual-bell-config)
-;;   (doom-themes-treemacs-config)
 ;;   (doom-themes-org-config))
 
 ;; Favorite light theme
@@ -82,11 +86,11 @@
 ;;   (setq calendar-longitude -69.931212)
 ;;   (change-theme 'flucui-light 'kaolin-aurora))
 
-(use-package color-identifiers-mode
-  :ensure t
-  :diminish color-identifiers-mode
-  :config
-  (add-hook 'after-init-hook 'global-color-identifiers-mode))
+;; (use-package color-identifiers-mode
+;;   :ensure t
+;;   :diminish color-identifiers-mode
+;;   :config
+;;   (add-hook 'after-init-hook 'global-color-identifiers-mode))
 
 ;; (use-package rainbow-identifiers
 ;;   :ensure t
