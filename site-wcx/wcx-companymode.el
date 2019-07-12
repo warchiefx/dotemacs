@@ -2,6 +2,8 @@
   :ensure t
   :demand t
   :diminish company-mode
+  :init
+  (setq company-idle-delay 0.4)
   :config
   (setq-default
    ;; company-minimum-prefix-length 1
