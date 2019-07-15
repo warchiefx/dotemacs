@@ -80,33 +80,31 @@
    #'pipenv-projectile-after-switch-default)
   (setq pipenv-keymap-prefix (kbd "C-c C-o")))
 
-;; Python mode hydra
-(when (package-installed-p 'major-mode-hydra)
-  (major-mode-hydra-bind python-mode "Nav"
-    ("n" python-nav-forward-defun "next-defun" :exit nil)
+(use-package python-mode
+  :mode "\\.py\\'"
+  :mode-hydra
+  ("Nav"
+   (("n" python-nav-forward-defun "next-defun" :exit nil)
     ("p" python-nav-backward-defun "prev-defun" :exit nil))
-  (major-mode-hydra-bind python-mode "Errors"
-    ("<" flycheck-previous-error "prev" :exit nil :color pink)
-    (">" flycheck-next-error "next" :exit nil :color pink)
+   "Errors"
+   (("<" flycheck-previous-error "prev" :exit nil)
+    (">" flycheck-next-error "next" :exit nil)
     ("l" flycheck-list-errors "list"))
-  (major-mode-hydra-bind python-mode "LSP"
-    ("A" lsp-execute-code-action "code actions" :exit nil)
+   "LSP"
+   (("A" lsp-execute-code-action :exit nil)
     ("r" lsp-restart-workspace "restart"))
-  ;; (major-mode-hydra-bind python-mode "LSP"
-  ;;   ("A" eglot-code-actions "code actions" :exit nil)
-  ;;   ("r" eglot-reconnect "restart"))
-  (major-mode-hydra-bind python-mode "Env"
-    ("a" pipenv-activate "activate" :exit nil)
-    ("d" pipenv-deactivate "deactivate" :exit nil)
+   "Env"
+   (("a" pipenv-activate "pipenv-activate" :exit nil)
+    ("d" pipenv-deactivate "pipenv-deactivate" :exit nil)
     ("w" pyvenv-workon "workon...")
     ("s" run-python "pyshell")
-    ("S" pipenv-shell "shell")
-    ("i" pipenv-install "install"))
-  (major-mode-hydra-bind python-mode "Tools"
-    ("f" blacken-buffer "reformat")
+    ("S" pipenv-shell "pipenv-shell")
+    ("i" pipenv-install "pipenv-install"))
+   "Tools"
+   (("f" blacken-buffer "reformat")
     ("c" whitespace-cleanup "clean whitespace"))
-  (major-mode-hydra-bind python-mode "Test"
-    ("t" python-pytest-popup "pytest...")))
+   "Test"
+   (("t" python-pytest-popup "pytest..."))))
 
 (provide 'wcx-python)
 ;;; wcx-python.el ends here

@@ -112,4 +112,23 @@
   :config
   (add-hook 'rjsx-mode-hook #'indium-interaction-mode))
 
+(use-package restclient
+  :mode "\\.http\\'"
+  :mode-hydra
+  (restclient-mode
+   ("Nav"
+    (("n" restclient-jump-next "next" :exit nil)
+     ("p" restclient-jump-prev "previous" :exit nil)
+     ("N" restclient-narrow-to-current "narrow")
+     ("W" widen "widen")
+     ("q" nil "quit"))
+    "Send"
+    (("s" restclient-http-send-current-stay-in-window "send" :exit nil)
+     ("S" restclient-http-send-current "send and jump")
+     ("r" restclient-http-send-current-raw "send raw"))
+    "Misc"
+    (("w" restclient-copy-curl-command "copy curl")
+     ("m" restclient-mark-current "mark")
+     ("q" nil "quit")))))
+
 (provide 'wcx-webdev)
