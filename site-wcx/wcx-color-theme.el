@@ -20,11 +20,16 @@
 ;;   :config
 ;;   (load-theme 'constant t))
 
+;; (use-package wilmersdorf-theme
+;;   :load-path "themes/"
+;;   :config
+;;   (load-theme 'wilmersdorf t))
+
 (use-package kaolin-themes
   :ensure t
   :config
   (setq kaolin-themes-modeline-border nil)
-  (load-theme 'kaolin-dark)
+  (load-theme 'kaolin-ocean)
   (kaolin-treemacs-theme))
 
 ;; (use-package darkokai-theme
@@ -97,6 +102,16 @@
 ;;   :config
 ;;   (add-hook 'prog-mode-hook 'rainbow-identifiers-mode))
 
+(mapatoms (lambda (atom)
+            (let ((underline nil))
+              (when (and (facep atom)
+                         (setq underline
+                               (face-attribute atom
+                                               :underline))
+                         (eq (plist-get underline :style) 'wave))
+                (plist-put underline :style 'line)
+                (set-face-attribute atom nil
+                                    :underline underline)))))
 
 (provide 'wcx-color-theme)
 
