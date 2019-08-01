@@ -74,23 +74,9 @@
   (evil-leader/set-key "jJ" 'evil-avy-goto-char-2)
   (global-evil-leader-mode))
 
-(use-package evil-nerd-commenter
-  :ensure t
-  :demand t
-  :after evil
-  :bind (("M-;" . evilnc-comment-or-uncomment-lines)
-         ("C-c c" . evilnc-copy-and-comment-lines))
+(use-package evil-commentary
   :config
-  (evil-leader/set-key
-    "ci" 'evilnc-comment-or-uncomment-lines
-    "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-    "acc" 'evilnc-copy-and-comment-lines
-    "cp" 'evilnc-comment-or-uncomment-paragraphs
-    "cr" 'comment-or-uncomment-region
-    "cv" 'evilnc-toggle-invert-comment-line-by-line
-    "."  'evilnc-copy-and-comment-operator
-    "\\" 'evilnc-comment-operator ; if you prefer backslash key
-    ))
+  (evil-commentary-mode))
 
 (use-package evil-goggles
   :ensure t
@@ -161,18 +147,6 @@
   :ensure t
   :custom (evil-collection-setup-minibuffer t)
   :init (evil-collection-init))
-
-;; (use-package evil-mc
-;;   :ensure t
-;;   :diminish (evil-mc-mode)
-;;   :config
-;;   (evil-define-local-var evil-mc-custom-paused nil
-;;     "Paused functionality when there are multiple cursors active.")
-
-;;   (defvar evil-mc-mode-line-prefix "ⓜ"
-;;     "Override of the default mode line string for `evil-mc-mode'.")
-
-;;   (global-evil-mc-mode 1))
 
 (use-package evil-multiedit
   :ensure t
