@@ -175,4 +175,9 @@ PWD is not in a git repo (or the git command is not found)."
   ;; :hook (eshell-mode-hook . esh-autosuggest-mode)
   :ensure t)
 
+(use-package vterm
+  :commands vterm
+  :ensure t
+  :bind (:map vterm-mode-map ("C-y" . vterm-yank)))
+
 (provide 'wcx-terminal)
