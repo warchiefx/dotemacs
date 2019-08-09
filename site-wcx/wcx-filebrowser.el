@@ -76,8 +76,8 @@
   :after treemacs magit
   :ensure t)
 
-(use-package lsp-treemacs
-  :after treemacs lsp-mode)
+;; (use-package lsp-treemacs
+;;   :after treemacs lsp-mode)
 
 ;; (use-package neotree
 ;;   :ensure t

@@ -24,6 +24,12 @@
 (use-package lsp-java
   :ensure t)
 
+;; (use-package lsp-python-ms
+;;   :ensure t
+;;   :hook (python-mode . (lambda ()
+;;                           (require 'lsp-python-ms)
+;;                           (lsp))))  ; or lsp-deferred
+
 (use-package dap-mode
   :ensure t
   :config
@@ -50,6 +56,6 @@
 ;;   (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
 ;;   (define-key eglot-mode-map (kbd "S-<f6>") 'eglot-rename)
 ;;   (define-key eglot-mode-map (kbd "C-<f4>") 'eglot-code-actions)
-;;   :hook ((python-mode java-mode bash-mode lua-mode ruby-mode) . wcx/activate-lsp))
+;;   :hook ((python-mode java-mode bash-mode lua-mode ruby-mode rust-mode) . wcx/activate-lsp))
 
 (provide 'wcx-lsp)
