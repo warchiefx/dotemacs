@@ -32,8 +32,7 @@
 
 (use-package eyebrowse
   :config
-  (eyebrowse-mode t)
-  (eyebrowse-setup-evil-keys))
+  (eyebrowse-mode t))
 
 ;; (use-package spacebar
 ;;   :after projectile
