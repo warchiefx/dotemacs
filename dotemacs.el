@@ -88,6 +88,7 @@
 (load-feature 'wcx-projects)
 ;; (load-feature 'wcx-helm)
 (load-feature 'wcx-counsel)
+(load-feature 'wcx-containers)
 
 ;; Programming Modes
 (load-feature 'wcx-companymode)
@@ -126,6 +127,7 @@
   :ensure nil
   :config
   (set-default 'server-socket-dir "~/.emacs.d/server")
+  (server-start)
   :hook (after-init . server-mode))
 
 (prefer-coding-system 'utf-8)

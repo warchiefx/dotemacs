@@ -450,9 +450,5 @@
   ;; Integrate project.el with projectile
   (add-to-list 'project-find-functions #'wcx/find-projectile-project))
 
-(use-package yaml-mode
-  :mode "\\.yml\\'"
-  :ensure t)
-
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
