@@ -11,10 +11,10 @@
   ;; After killing a term buffer, not cycle to another.
   (setq sane-term-next-on-kill nil))
 
-(use-package shell-pop
-  :ensure t
-  :bind (([f7] . shell-pop)
-         ([shift f7] . sane-term-create)))
+;; (use-package shell-pop
+;;   :ensure t
+;;   :bind (([f7] . shell-pop)
+;;          ([shift f7] . sane-term-create)))
 
 (use-package xterm-color
   :ensure t
@@ -179,5 +179,25 @@ PWD is not in a git repo (or the git command is not found)."
   :commands vterm
   :ensure t
   :bind (:map vterm-mode-map ("C-y" . vterm-yank)))
+
+(use-package vterm-toggle
+  :bind (([f7] . vterm-toggle)
+         ([shift f7] . vterm-toggle-cd)
+         (:map vterm-mode-map ("s-n" . vterm-toggle-forward))
+         (:map vterm-mode-map ("s-p" . vterm-toggle-backward))
+         (:map vterm-mode-map ([f7] . vterm-toggle))
+         )
+  :config
+  (setq vterm-toggle-fullscreen-p nil)
+  (evil-set-initial-state 'vterm-mode 'emacs)
+  (add-to-list 'display-buffer-alist
+               '("^v?term.*"
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 ;;(display-buffer-reuse-window display-buffer-in-direction)
+                 ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                 ;;(direction . bottom)
+                 ;;(dedicated . t) ;dedicated is supported in emacs27
+                 (reusable-frames . visible)
+                 (window-height . 0.4))))
 
 (provide 'wcx-terminal)
