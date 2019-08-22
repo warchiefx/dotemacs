@@ -25,8 +25,7 @@
 
 ;; If you want to pull in the Evil compatibility package.
 (use-package kubernetes-evil
-  :ensure t
-  :after kubernetes)
+  :ensure t)
 
 (use-package k8s-mode
   :ensure t

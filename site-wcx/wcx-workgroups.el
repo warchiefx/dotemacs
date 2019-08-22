@@ -30,9 +30,9 @@
 
 ;;   (torus-install-default-bindings))
 
-(use-package eyebrowse
-  :config
-  (eyebrowse-mode t))
+;; (use-package eyebrowse
+;;   :config
+;;   (eyebrowse-mode t))
 
 ;; (use-package spacebar
 ;;   :after projectile
