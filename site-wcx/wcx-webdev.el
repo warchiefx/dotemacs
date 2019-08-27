@@ -113,7 +113,7 @@
   (add-hook 'rjsx-mode-hook #'indium-interaction-mode))
 
 (use-package restclient
-  :mode "\\.http\\'"
+  :mode ("\\.http\\'" . restclient-mode)
   :mode-hydra
   (restclient-mode
    ("Nav"
