@@ -81,7 +81,8 @@
   (setq pipenv-keymap-prefix (kbd "C-c C-o")))
 
 (use-package python-mode
-  :mode "\\.py\\'"
+  :mode ("\\.py\\'" . python-mode)
+  :interpreter ("python" . python-mode)
   :mode-hydra
   ("Nav"
    (("n" python-nav-forward-defun "next-defun" :exit nil)
