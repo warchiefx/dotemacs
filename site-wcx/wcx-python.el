@@ -80,6 +80,9 @@
    #'pipenv-projectile-after-switch-default)
   (setq pipenv-keymap-prefix (kbd "C-c C-o")))
 
+(use-package py-isort
+  :commands (py-isort-buffer py-isort-region))
+
 (use-package python-mode
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
@@ -106,7 +109,8 @@
     ("i" pipenv-install "pipenv-install"))
    "Tools"
    (("f" blacken-buffer "reformat")
-    ("c" whitespace-cleanup "clean whitespace"))
+    ("c" whitespace-cleanup "clean whitespace")
+    ("i" py-isort-buffer "sort imports"))
    "Test"
    (("t" python-pytest-popup "pytest..."))))
 
