@@ -39,6 +39,7 @@
       (setq doom-modeline-env-version nil)
       (setq doom-modeline-python-executable "python")
       (setq find-file-visit-truename t)
+      (setq inhibit-compacting-font-caches t)
       :config
       (set-face-attribute 'mode-line nil
                           :box '(:line-width 1 :color "#000000")
