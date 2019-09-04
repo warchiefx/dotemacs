@@ -46,8 +46,8 @@
 
 ;; Use relative-line-numbers
 ;; (global-display-line-numbers-mode 'relative)
-;; (setq display-line-numbers 'relative)
-;; (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(setq display-line-numbers 'absolute)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 ;;; Overwrite selection
 (delete-selection-mode t)
@@ -66,6 +66,15 @@
           '(lambda () (conf-quote-normal nil)))
 
 (winner-mode 1)
+
+;; Emacs auth-sources
+(require 'auth-source)
+(require 'auth-source-pass)
+(auth-source-pass-enable)
+
+(use-package auto-compile
+  :defer nil
+  :config (auto-compile-on-load-mode))
 
 ;; Some hooks
 ;; (add-hook 'term-mode-hook '(lambda () (yas/minor-mode nil)))
@@ -219,9 +228,10 @@
   :config (global-smart-shift-mode 1))
 
 ;; Save point position between sessions
-(require 'saveplace)
-(setq-default save-place t)
-(setq save-place-file (expand-file-name ".places" user-emacs-directory))
+(use-package saveplace
+  :defer nil
+  :config
+  (save-place-mode))
 
 (use-package zeal-at-point
   :ensure t
