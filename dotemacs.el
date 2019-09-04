@@ -51,9 +51,9 @@
      (require ,name)))
 
 ;; Custom stuff
+(load-feature 'wcx-generic)
 (load-feature 'wcx-evil)
 (load-feature 'wcx-requirements)
-(load-feature 'wcx-generic)
 ;; (load-feature 'wcx-fonts)
 ;;(load-feature 'wcx-utils)
 (load-feature 'wcx-keybindings)

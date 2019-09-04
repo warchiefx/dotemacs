@@ -93,4 +93,8 @@
 (use-package frog-jump-buffer
   :bind (("C-x b" . frog-jump-buffer)))
 
+(use-package imenu-anywhere
+  :bind
+  ("M-i" . ivy-imenu-anywhere))
+
 (provide 'wcx-counsel)

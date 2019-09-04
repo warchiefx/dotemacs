@@ -30,13 +30,13 @@
 ;;                           (require 'lsp-python-ms)
 ;;                           (lsp))))  ; or lsp-deferred
 
-(use-package dap-mode
-  :ensure t
-  :config
-  (dap-mode 1)
-  (dap-ui-mode 1)
-  (require 'dap-java)
-  (require 'dap-python))
+;; (use-package dap-mode
+;;   :ensure t
+;;   :config
+;;   (dap-mode 1)
+;;   (dap-ui-mode 1)
+;;   (require 'dap-java)
+;;   (require 'dap-python))
 
 ;; (use-package eglot
 ;;   :ensure t

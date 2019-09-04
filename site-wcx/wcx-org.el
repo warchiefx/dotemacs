@@ -74,6 +74,10 @@
                         ("@home" . ?h) ("@office" . ?o)
                         (:endgroup)))
 
+  (use-package org-indent
+    :ensure nil
+    :diminish)
+
   (defun org-summary-todo (n-done n-not-done)
     "Switch entry to DONE when all subentries are done, to TODO otherwise."
     (let (org-log-done org-log-states)   ; turn off logging
