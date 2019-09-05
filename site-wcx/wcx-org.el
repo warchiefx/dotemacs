@@ -85,11 +85,13 @@
 
   (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 
-  (setq org-todo-keywords '((sequence "TODO(t)" "OPTIONAL(o)" "FEEDBACK(k@/!)" "VERIFY(v!)" "BLOCKED(b@/!)" "|" "DONE(d!)" "CANCELLED(@)")
+  (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(x)"  "OPTIONAL(o)" "FEEDBACK(k@/!)" "VERIFY(v!)" "BLOCKED(b@/!)" "|" "DONE(d!)" "CANCELLED(@)")
                             (sequence "INVESTIGATE" "|" "DONE(d!)")
                             (sequence "DEFINE" "|" "DONE(d!)")
                             (sequence "DELEGATE(@/!)" "|" "DELEGATED(D@/!)")
                             (sequence "FIX(f)" "FIXING(F!)" "INVESTIGATING" "STUCK(s@/!)" "SOLUTIONKNOWN(S@)" "|" "FIXED(x!)" "WONTFIX(n@/!)")))
+
+  (setq org-clock-into-drawer "CLOCKING")
 
   (setq org-log-done 'time)
   (setq org-time-clocksum-format "%d:%02d")
