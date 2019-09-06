@@ -102,11 +102,11 @@
     (">" flycheck-next-error "next" :exit nil)
     ("l" flycheck-list-errors "list"))
    "LSP"
-   ;; (("A" lsp-execute-code-action :exit nil)
-   ;;  ("r" lsp-restart-workspace "restart"))
-   (("h" eglot-help-at-point :exit nil)
-    ("A" eglot-code-actions :exit nil)
-    ("r" eglot-reconnect "restart"))
+   (("A" lsp-execute-code-action :exit nil)
+    ("r" lsp-restart-workspace "restart"))
+   ;; (("h" eglot-help-at-point :exit nil)
+   ;;  ("A" eglot-code-actions :exit nil)
+   ;;  ("r" eglot-reconnect "restart"))
    "Env"
    (("a" pipenv-activate "pipenv-activate" :exit nil)
     ("d" pipenv-deactivate "pipenv-deactivate" :exit nil)

@@ -143,10 +143,11 @@
             (lambda ()
               (evil-org-set-key-theme '(navigation insert textobjects heading todo)))))
 
-(use-package evil-collection
-  :ensure t
-  :custom (evil-collection-setup-minibuffer t)
-  :init (evil-collection-init))
+;; (use-package evil-collection
+;;   :ensure t
+;;   :after (company)
+;;   :custom (evil-collection-setup-minibuffer t)
+;;   :init (evil-collection-init))
 
 (use-package evil-multiedit
   :ensure t
