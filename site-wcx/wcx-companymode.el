@@ -5,6 +5,7 @@
   :init
   (setq company-idle-delay 0.4)
   :config
+  (require 'company-tng)
   (setq-default
    ;; company-minimum-prefix-length 1
    company-tooltip-align-annotations t))

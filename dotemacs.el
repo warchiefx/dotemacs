@@ -52,6 +52,7 @@
 
 ;; Custom stuff
 (load-feature 'wcx-generic)
+(load-feature 'wcx-companymode)
 (load-feature 'wcx-evil)
 (load-feature 'wcx-requirements)
 ;; (load-feature 'wcx-fonts)
@@ -90,7 +91,6 @@
 (load-feature 'wcx-containers)
 
 ;; Programming Modes
-(load-feature 'wcx-companymode)
 (load-feature 'wcx-java)
 ;;(load-feature 'wcx-malabar)
 (load-feature 'wcx-python)
