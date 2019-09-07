@@ -29,7 +29,7 @@
   :ensure t
   :config
   (setq kaolin-themes-modeline-border nil)
-  (load-theme 'kaolin-ocean)
+  (load-theme 'kaolin-aurora)
   (kaolin-treemacs-theme))
 
 ;; (use-package darkokai-theme
@@ -73,7 +73,7 @@
 ;;   :ensure t
 ;;   :config
 ;;   (setq doom-themes-enable-bold t)
-;;   (load-theme 'doom-tomorrow-night)
+;;   (load-theme 'doom-wilmersdorf)
 ;;   (doom-themes-visual-bell-config)
 ;;   (doom-themes-org-config))
 
