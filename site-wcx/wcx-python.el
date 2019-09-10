@@ -88,6 +88,7 @@
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :config
+  (setq-default lsp-pyls-configuration-sources ["pylint"])
   (add-hook 'python-mode-hook (lambda ()
                                (semantic-mode 1)
                                (setq flycheck-checker 'python-pylint
