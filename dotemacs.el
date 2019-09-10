@@ -145,7 +145,6 @@
   (diminish-afterload "guide-key" 'guide-key-mode)
   (diminish-afterload "whitespace-cleanup-mode" 'whitespace-cleanup-mode)
   (diminish-afterload "emmet-mode" 'emmet-mode)
-  (diminish-afterload "highlight-parentheses" 'highlight-parentheses-mode)
   (diminish-afterload "auto-complete" 'auto-complete-mode)
   (diminish-afterload "auto-revert" 'auto-revert-mode)
   (diminish-afterload "autorevert" 'auto-revert-mode)
