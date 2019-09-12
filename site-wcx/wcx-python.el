@@ -16,21 +16,6 @@
   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
   (add-hook 'pyvenv-post-activate-hooks 'wcx-restart-python))
 
-;; (use-package anaconda-mode
-;;   :ensure t
-;;   :config
-;;   (add-hook 'python-mode-hook 'anaconda-mode)
-;;   (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-;;   :diminish anaconda-mode
-;;   :diminish eldoc-mode
-;;   :diminish auto-revert-mode)
-
-;; (use-package company-anaconda
-;;   :ensure t
-;;   :config
-;;   (add-to-list 'company-backends 'company-anaconda))
-;;
-
 (use-package python-docstring
   :ensure t
   :config
@@ -62,16 +47,15 @@
   :init (add-hook 'pip-requirements-mode-hook #'me/pip-requirements-ignore-case))
 
 (use-package python-pytest
-  :ensure t
+  :commands (python-pytest-popup)
   :bind (("C-c C-x t" . python-pytest-popup)))
 
 (use-package smart-dash
-  :ensure t
-  :config
-  (add-hook 'python-mode-hook 'smart-dash-mode))
+  :defer t
+  :hook (python-mode . smart-dash-mode))
 
 (use-package pipenv
-  :ensure t
+  :defer t
   :hook (python-mode . pipenv-mode)
   :diminish pipenv-mode
   :init
@@ -81,6 +65,7 @@
   (setq pipenv-keymap-prefix (kbd "C-c C-o")))
 
 (use-package py-isort
+  :defer t
   :commands (py-isort-buffer py-isort-region))
 
 
@@ -103,11 +88,11 @@
     (">" flycheck-next-error "next" :exit nil)
     ("l" flycheck-list-errors "list"))
    "LSP"
-   ;; (("A" lsp-execute-code-action :exit nil)
-   ;;  ("r" lsp-restart-workspace "restart"))
-   (("h" eglot-help-at-point :exit nil)
-    ("A" eglot-code-actions :exit nil)
-    ("r" eglot-reconnect "restart"))
+   (("A" lsp-execute-code-action :exit nil)
+    ("r" lsp-restart-workspace "restart"))
+   ;; (("h" eglot-help-at-point :exit nil)
+   ;;  ("A" eglot-code-actions :exit nil)
+   ;;  ("r" eglot-reconnect "restart"))
    "Env"
    (("a" pipenv-activate "pipenv-activate" :exit nil)
     ("d" pipenv-deactivate "pipenv-deactivate" :exit nil)
@@ -121,6 +106,9 @@
     ("i" py-isort-buffer "sort imports"))
    "Test"
    (("t" python-pytest-popup "pytest..."))))
+
+(use-package ggtags
+  :hook (python-mode . ggtags-mode))
 
 (provide 'wcx-python)
 ;;; wcx-python.el ends here

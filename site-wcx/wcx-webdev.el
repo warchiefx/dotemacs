@@ -1,10 +1,10 @@
 (use-package js2-mode
-  :ensure t
+  :defer t
   :interpreter (("node" . js2-mode))
   :bind (:map js2-mode-map ("C-c C-p" . js2-print-json-path))
   :mode "\\.\\(js\\|json\\|mjs\\|node\\)$"
+  :hook (js-mode . js2-minor-mode)
   :config
-  (add-hook 'js-mode-hook 'js2-minor-mode)
   (setq js2-basic-offset 2
         js2-highlight-level 4
         js2-mode-show-parse-errors nil
@@ -21,36 +21,29 @@
   (js2r-add-keybindings-with-prefix "C-c C-m"))
 
 (use-package rjsx-mode
-  :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.jsx$" . rjsx-mode)))
+  :defer t
+  :mode "\\.\\jsx\\$")
 
 (use-package tern
   :diminish tern-mode
-  :ensure t
-  :config
-  (add-hook 'js2-mode-hook 'tern-mode)
-  (add-hook 'web-mode-hook 'tern-mode)
-  (add-hook 'rjsx-mode-hook 'tern-mode))
+  :defer t
+  :hook ((js2-mode web-mode rjsx-mode) . tern-mode))
 
 (use-package company-tern
-  :ensure t
   :config
   (add-to-list 'company-backends 'company-tern))
 
 (use-package skewer-mode
-  :ensure t
+  :defer t
+  :hook (web-mode . skewer-mode)
   :config
   (skewer-setup)
-  (add-hook 'web-mode-hook 'skewer-mode)
   :diminish skewer-mode)
 
 (use-package web-mode
-  :ensure t
+  :defer t
   :mode "\\.\\(html\\|hbs\\)$"
-  :init
-  (dolist (hook '(emmet-mode))
-    (add-hook 'web-mode-hook hook))
+  :hook (web-mode . emmet-mode)
   :config
   (setq web-mode-markup-indent-offset 2
         web-mode-css-indent-offset 2
@@ -68,7 +61,8 @@
 
 (use-package emmet-mode
   :diminish emmet-mode
-  :ensure t
+  :after web-mode
+  :defer t
   :init
   (dolist (hook '(sgml-mode-hook css-mode-hook kolon-mode-hook web-mode-hook))
     (add-hook hook 'emmet-mode))
@@ -85,34 +79,25 @@
               (package-install mode)))))
       '(jade-mode scss-mode sass-mode))
 
-(use-package react-snippets
-  :ensure t)
+(use-package react-snippets)
 
 (use-package prettier-js
-  :ensure t
   :diminish prettier-js-mode
+  :hook ((js2-mode rjsx-mode) . prettier-js-mode)
   :config
-  (add-hook 'js2-mode-hook 'prettier-js-mode)
-  (add-hook 'rjsx-mode-hook 'prettier-js-mode)
   (setq prettier-js-args '(
                            "--trailing-comma" "all"
                            "--bracket-spacing" "false"
                            )))
 
 (use-package ggtags
-  :ensure t
-  :config
-  (add-hook 'js2-mode-hook (lambda () (ggtags-mode 1)))
-  (add-hook 'js-mode-hook (lambda () (ggtags-mode 1)))
-  (add-hook 'rjsx-mode-hook (lambda () (ggtags-mode 1)))
-  (add-hook 'web-mode-hook (lambda () (ggtags-mode 1))))
+  :hook ((js2-mode js-mode rjsx-mode web-mode) . (lambda () (ggtags-mode 1))))
 
 (use-package indium
-  :ensure t
-  :config
-  (add-hook 'rjsx-mode-hook #'indium-interaction-mode))
+  :hook (rjsx-mode . indium-interaction-mode))
 
 (use-package restclient
+  :defer t
   :mode ("\\.http\\'" . restclient-mode)
   :mode-hydra
   (restclient-mode

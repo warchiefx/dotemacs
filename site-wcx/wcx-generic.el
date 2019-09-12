@@ -76,10 +76,6 @@
   :defer nil
   :config (auto-compile-on-load-mode))
 
-;; Some hooks
-;; (add-hook 'term-mode-hook '(lambda () (yas/minor-mode nil)))
-(add-hook 'python-mode-hook '(lambda () (yas/minor-mode 1)))
-
 (mouse-avoidance-mode 'cat-and-mouse)
 
 (use-package dashboard
@@ -117,33 +113,24 @@
 
 
 (use-package ido-vertical-mode
-  :ensure t
   :config
   (ido-vertical-mode 1)
   (setq ido-vertical-define-keys 'C-n-C-p-up-and-down))
 
 
 (use-package yascroll
-  :ensure t
   :config
   (global-yascroll-bar-mode 1))
 
 (use-package ido-completing-read+
   :ensure t)
 
-;; (use-package rfringe
-;;   :ensure t)
-
-;; (use-package emacsd-tile
-;;   :ensure t)
-
 (use-package frame-tag
   :ensure t
   :config (frame-tag-mode 1))
 
 (use-package vimish-fold
-  :ensure t
-  :defer 1
+  :defer t
   :bind
   (:map vimish-fold-folded-keymap ("<tab>" . vimish-fold-unfold)
         :map vimish-fold-unfolded-keymap ("<tab>" . vimish-fold-refold))
@@ -161,7 +148,7 @@
 ;;   :diminish himp-mode)
 
 (use-package switch-window
-  :ensure t
+  :defer t
   :bind (("C-x o" . switch-window)
          ("C-x 0" . switch-window-then-delete)
          ("C-x 4 0" . switch-window-then-kill-buffer))
@@ -234,7 +221,7 @@
   (save-place-mode))
 
 (use-package zeal-at-point
-  :ensure t
+  :defer t
   :bind (("C-c d" . zeal-at-point)))
 
 ;; (use-package vimish-fold
@@ -247,11 +234,10 @@
 ;;          ("C-c f a" . vimish-fold-unfold-all)
 ;;   ))
 
-(use-package csv-mode
-  :ensure t)
+(use-package csv-mode)
 
 (use-package anzu
-  :defer 1
+  :defer t
   :bind ([remap query-replace] . anzu-query-replace-regexp)
   :config
   (global-anzu-mode)
@@ -262,7 +248,6 @@
 
 
 (use-package shackle
-  :ensure t
   :config
   (shackle-mode t)
 
@@ -289,13 +274,13 @@
 
 
 (use-package makefile-executor
-  :ensure t
-  :config
-  (add-hook 'makefile-mode-hook 'makefile-executor-mode))
+  :defer t
+  :hook (makefile-mode . makefile-executor-mode))
 
 
 (use-package comment-tags
-  :ensure t
+  :defer t
+  :hook (prog-mode . comment-tags-mode)
   :config
   (autoload 'comment-tags-mode "comment-tags-mode")
   (setq comment-tags-keymap-prefix (kbd "C-c t"))
@@ -313,8 +298,7 @@
           comment-tags-require-colon nil
           comment-tags-case-sensitive t
           comment-tags-show-faces t
-          comment-tags-lighter nil))
-  (add-hook 'prog-mode-hook 'comment-tags-mode))
+          comment-tags-lighter nil)))
 
 
 ;; (use-package zoom
@@ -336,25 +320,13 @@
 ;;   :diminish zoom-mode)
 
 (use-package rainbow-delimiters
-  :ensure t
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-
-(use-package ggtags
-  :ensure t
-  :config
-  (add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-              (ggtags-mode 1))))
-  (add-hook 'python-mode-hook (lambda () (ggtags-mode 1))))
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package git-link
-  :ensure t
+  :defer t
   :bind (("C-c C-x p" . git-link)))
 
 (use-package beacon
-  :ensure t
   :diminish beacon-mode
   :config (beacon-mode 1))
 
@@ -390,7 +362,6 @@
   (smart-jump-setup-default-registers))
 
 (use-package nswbuff                    ; Quick switching between buffers
-  :ensure t
   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
           ("<C-S-iso-lefttab>" . nswbuff-switch-to-previous-buffer)
           ("<C-next>"           . nswbuff-switch-to-next-buffer)
@@ -399,13 +370,11 @@
                 nswbuff-display-intermediate-buffers t))
 
 (use-package smartparens
-  :ensure t
+  :hook (lisp-mode . smartparens-strict-mode)
   :config
-  (require 'smartparens-config)
-  (add-hook 'lisp-mode-hook #'smartparens-strict-mode))
+  (require 'smartparens-config))
 
 (use-package electric-operator
-  :ensure t
   :diminish electric-operator-mode
   :hook
   ((python-mode java-mode shell-script-mdoe) . electric-operator-mode)

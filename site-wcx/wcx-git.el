@@ -1,5 +1,4 @@
 (use-package magit
-  :ensure t
   :init
   (setq magit-last-seen-setup-instructions "1.4.0")
   :config
@@ -24,23 +23,20 @@
   :bind ("C-c C-x g" . magit-status))
 
 (use-package magit-gitflow
-  :ensure t
   :after magit
   :config
   (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
 
 (use-package git-timemachine
-  :ensure t
   :bind ("C-c C-x h". git-timemachine)
   :defer t)
 
 (use-package gist
-  :ensure t
   :defer t)
 
 (use-package git-commit
-  :ensure t
   :after magit
+  :defer t
   :preface
   (defun me/git-commit-auto-fill-everywhere ()
     (setq fill-column 72)
@@ -51,22 +47,18 @@
   :config (setq-default git-commit-summary-max-length 50))
 
 (use-package diff-hl
-  :ensure t
   :demand t
   :config
   (global-diff-hl-mode 1)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
-(use-package ghub
-  :ensure t)
-
 (use-package magit-org-todos
-  :ensure t
+  :after magit
+  :defer t
   :config
   (magit-org-todos-autoinsert))
 
 (use-package magit-gh-pulls
-  :ensure t
   :after magit
   :config
   (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))

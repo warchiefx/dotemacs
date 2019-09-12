@@ -12,7 +12,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package flx-ido
-  :ensure t
+  :disabled
   :config
   (ido-mode 1)
   (ido-everywhere 1)
