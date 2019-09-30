@@ -326,9 +326,9 @@
   :defer t
   :bind (("C-c C-x p" . git-link)))
 
-(use-package beacon
-  :diminish beacon-mode
-  :config (beacon-mode 1))
+;; (use-package beacon
+;;   :diminish beacon-mode
+;;   :config (beacon-mode 1))
 
 ;; History management
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
