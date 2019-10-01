@@ -191,7 +191,9 @@
   ;; Display modified status
   (telephone-line-defsegment wcx-modified-status-segment ()
     (when (and (buffer-modified-p) (not (member mode-name modeline-ignored-modes)) (not buffer-read-only))
-        (format-icon 'all-the-icons-octicon "pencil" "#85b654")))
+      (propertize (all-the-icons-octicon "pencil")
+                  'face `(:family ,(all-the-icons-octicon-family) :height 1.0 :foreground "#85b654")
+                  'display '(raise 0.0))))
 
   ;; Display read-only status
   (telephone-line-defsegment wcx-read-only-status-segment ()
