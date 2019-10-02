@@ -163,7 +163,9 @@
 
   ;; Display buffer name
   (telephone-line-defsegment wcx-buffer-segment ()
-    (buffer-name))
+    (if (projectile-project-p)
+        (file-relative-name buffer-file-name (projectile-project-root))
+      (buffer-name)))
 
   ;; Display current position in a buffer
   (telephone-line-defsegment* wcx-position-segment ()
