@@ -430,6 +430,7 @@
   (add-to-list 'project-find-functions #'wcx/find-projectile-project))
 
 (use-package fast-scroll
+  :diminish fast-scroll-mode
   :config
   (fast-scroll-config)
   (fast-scroll-mode 1))

@@ -164,7 +164,8 @@
   ;; Display buffer name
   (telephone-line-defsegment wcx-buffer-segment ()
     (if (projectile-project-p)
-        (file-relative-name buffer-file-name (projectile-project-root))
+        (or (file-relative-name buffer-file-name (projectile-project-root))
+            (buffer-name))
       (buffer-name)))
 
   ;; Display current position in a buffer
@@ -323,6 +324,7 @@
           (nil . (wcx-projectile-segment))
           (accent    . (wcx-buffer-segment))
           (nil    . (wcx-major-mode-segment))
+          (nil    . (telephone-line-process-segment))
           (nil    . (wcx-flycheck-segment))
           (nil    . (selection-info))
           (nil    . (wcx-read-only-status-segment))
@@ -331,7 +333,9 @@
 
   ;; Right edge
   (setq telephone-line-rhs
-        '((nil    . (wcx-vc-segment))
+        '((nil    . (telephone-line-minor-mode-segment))
+          (nil    . (telephone-line-misc-info-segment))
+          (nil    . (wcx-vc-segment))
           (accent . (wcx-position-segment))
           ))
   (telephone-line-mode 1))
