@@ -333,8 +333,8 @@
 
   ;; Right edge
   (setq telephone-line-rhs
-        '((nil    . (telephone-line-minor-mode-segment))
-          (nil    . (telephone-line-misc-info-segment))
+        '((nil    . (telephone-line-misc-info-segment))
+          (accent    . (telephone-line-minor-mode-segment))
           (nil    . (wcx-vc-segment))
           (accent . (wcx-position-segment))
           ))
