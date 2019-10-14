@@ -84,6 +84,7 @@
  '(elpy-syntax-check-command "pylint")
  '(elpy-test-runner (quote elpy-test-pytest-runner))
  '(erc-away-timestamp-format "<%h:%M>")
+ '(evil-collection-company-use-tng nil)
  '(evil-collection-setup-minibuffer t)
  '(evil-emacs-state-cursor (quote ("#E57373" hbar)) t)
  '(evil-insert-state-cursor (quote ("#E57373" bar)) t)
