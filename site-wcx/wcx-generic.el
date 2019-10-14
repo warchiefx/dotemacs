@@ -429,11 +429,11 @@
   ;; Integrate project.el with projectile
   (add-to-list 'project-find-functions #'wcx/find-projectile-project))
 
-(use-package fast-scroll
-  :diminish fast-scroll-mode
-  :config
-  (fast-scroll-config)
-  (fast-scroll-mode 1))
+;; (use-package fast-scroll
+;;   :diminish fast-scroll-mode
+;;   :config
+;;   (fast-scroll-config)
+;;   (fast-scroll-mode 1))
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here

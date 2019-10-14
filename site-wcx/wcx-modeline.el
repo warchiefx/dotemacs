@@ -169,11 +169,11 @@
       (buffer-name)))
 
   ;; Display current position in a buffer
-  (telephone-line-defsegment* wcx-position-segment ()
-    (if (telephone-line-selected-window-active)
-        (if (eq major-mode 'paradox-menu-mode)
-            (telephone-line-trim (format-mode-line mode-line-front-space))
-          '(" %3l,%2c "))))
+  ;; (telephone-line-defsegment* wcx-position-segment ()
+  ;;   (if (telephone-line-selected-window-active)
+  ;;       (if (eq major-mode 'paradox-menu-mode)
+  ;;           (telephone-line-trim (format-mode-line mode-line-front-space))
+  ;;         '(" %3l,%2c "))))
 
   ;; Exclude some buffers in modeline
   (defvar modeline-ignored-modes nil
@@ -336,7 +336,7 @@
         '((nil    . (telephone-line-misc-info-segment))
           (accent    . (telephone-line-minor-mode-segment))
           (nil    . (wcx-vc-segment))
-          (accent . (wcx-position-segment))
+          ;; (accent . (wcx-position-segment))
           ))
   (telephone-line-mode 1))
 

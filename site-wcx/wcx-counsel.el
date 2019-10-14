@@ -90,8 +90,8 @@
 (use-package ivy-hydra
   :ensure t)
 
-(use-package frog-jump-buffer
-  :bind (("C-x b" . frog-jump-buffer)))
+;; (use-package frog-jump-buffer
+;;   :bind (("C-x b" . frog-jump-buffer)))
 
 (use-package imenu-anywhere
   :bind
