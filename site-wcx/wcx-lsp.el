@@ -10,6 +10,9 @@
   (defun wcx/activate-lsp ()
     (ycmd-mode -1)
     (lsp))
+
+  (with-eval-after-load 'lsp-pyls
+    (setq lsp-pyls-plugins-pyls_mypy-live-mode nil))
   :hook ((python-mode java-mode bash-mode lua-mode ruby-mode) . wcx/activate-lsp))
 
 
@@ -49,6 +52,10 @@
 (use-package company-lsp
   :after lsp-mode
   :commands company-lsp
+  :init
+  (setq company-lsp-async t)
+  (setq company-lsp-enable-recompletion t)
+  (setq company-lsp-enable-snippet t )
   :config
   (push 'company-lsp company-backends))
 

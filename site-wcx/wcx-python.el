@@ -68,7 +68,6 @@
   :defer t
   :commands (py-isort-buffer py-isort-region))
 
-
 (use-package python-mode
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
@@ -97,9 +96,7 @@
    (("a" pipenv-activate "pipenv-activate" :exit nil)
     ("d" pipenv-deactivate "pipenv-deactivate" :exit nil)
     ("w" pyvenv-workon "workon...")
-    ("s" run-python "pyshell")
-    ("S" pipenv-shell "pipenv-shell")
-    ("i" pipenv-install "pipenv-install"))
+    ("s" run-python "pyshell"))
    "Tools"
    (("f" blacken-buffer "reformat")
     ("c" whitespace-cleanup "clean whitespace")
