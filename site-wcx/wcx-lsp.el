@@ -24,7 +24,6 @@
 
 (use-package lsp-ui
   :after lsp-mode
-  :diminish (lsp-ui eldoc)
   :commands lsp-ui-mode
   :custom-face
   (lsp-ui-doc-background ((t (:background nil))))

@@ -75,6 +75,7 @@
   (global-evil-leader-mode))
 
 (use-package evil-commentary
+  :diminish
   :config
   (evil-commentary-mode))
 

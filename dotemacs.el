@@ -150,6 +150,7 @@
   (diminish-afterload "autorevert" 'auto-revert-mode)
   (diminish-afterload "ggtags" 'ggtags-mode)
   (diminish-afterload "undo-tree" 'undo-tree-mode)
+  (diminish-afterload "eldoc" 'eldoc-mode)
   (diminish-afterload "projectile" 'projectile-mode))
 
 
