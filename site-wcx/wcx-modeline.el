@@ -127,7 +127,7 @@
                  (cl-remove-if
                   'null
                   `(,mode-text
-                    ,(get-venv-name)))
+                    ))
                   space)))
 
   ;; Display evil state
