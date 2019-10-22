@@ -13,7 +13,7 @@
 
 ;;; Code:
 (use-package yasnippet
-  :ensure t
+  :hook (prog-mode . yas-minor-mode)
   :config
   (yas-global-mode 1)
   :diminish yas-minor-mode)

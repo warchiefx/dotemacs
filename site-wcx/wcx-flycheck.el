@@ -12,7 +12,8 @@
     (executable-find executable)))
 
 (use-package "flycheck"
-  :ensure t
+  :defer t
+  :hook (prog-mode . flycheck-mode)
   :config
   (setq-default
    flycheck-check-syntax-automatically '(save mode-enabled idle-change)
@@ -26,7 +27,6 @@
   :diminish flycheck-mode)
 
 (use-package flycheck-posframe
-  :ensure t
   :after flycheck
   :config
   (flycheck-posframe-configure-pretty-defaults)

@@ -29,7 +29,7 @@
   :ensure t
   :config
   (setq kaolin-themes-modeline-border nil)
-  (load-theme 'kaolin-aurora)
+  (load-theme 'kaolin-mono-dark)
   (kaolin-treemacs-theme))
 
 ;; (use-package darkokai-theme

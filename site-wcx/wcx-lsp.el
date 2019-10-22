@@ -8,17 +8,23 @@
   (add-hook 'prog-mode-hook (lambda () (flymake-mode -1)))
   (define-key lsp-mode-map (kbd "S-<f6>") 'lsp-rename)
   (defun wcx/activate-lsp ()
-    (ycmd-mode -1)
+    ;; (ycmd-mode -1)
     (lsp))
 
   (with-eval-after-load 'lsp-pyls
     (setq lsp-pyls-plugins-pyls_mypy-live-mode nil))
+
+  (defun lsp-set-cfg ()
+    (let ((lsp-cfg `(:pyls (:plugins (:pyls_mypy (:live_mode nil))))))
+      (lsp--set-configuration lsp-cfg)))
+
+  (add-hook 'lsp-after-initialize-hook 'lsp-set-cfg)
   :hook ((python-mode java-mode bash-mode lua-mode ruby-mode) . wcx/activate-lsp))
 
 
 (use-package lsp-ui
   :after lsp-mode
-  :diminish
+  :diminish (lsp-ui eldoc)
   :commands lsp-ui-mode
   :custom-face
   (lsp-ui-doc-background ((t (:background nil))))
