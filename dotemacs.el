@@ -5,15 +5,9 @@
 ;; --------------------------------------------
 
 ;;; Code:
-;; Turn off mouse interface early in startup to avoid momentary display
-(setq redisplay-dont-pause t)
-
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-;; (blink-cursor-mode 0)
-
-(add-hook 'focus-out-hook #'garbage-collect)
 
 (setq load-prefer-newer t)
 (setq ring-bell-function (lambda ()
@@ -40,6 +34,12 @@
 
 (when (locate-library "use-package")
   (use-package better-defaults :ensure t))
+
+(use-package gcmh
+  :ensure t
+  :diminish
+  :config
+  (gcmh-mode 1))
 
 (require 'benchmark)
 
