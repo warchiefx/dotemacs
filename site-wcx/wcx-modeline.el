@@ -120,7 +120,6 @@
                                    (all-the-icons-icon-for-file (buffer-file-name)
                                                                 :height 0.8)
                                    mode-name)
-                                  'face `(:foreground 'custom-documentation)
                                   'display `(:raise 0.0)))
            (space (propertize " " 'face `(:height 0.6))))
       (mapconcat 'identity
@@ -153,7 +152,7 @@
         (space (propertize " " 'face `(:height 0.6))))
 
     (concat
-     (format-icon 'all-the-icons-octicon "repo" 'custom-documentation)
+     (format-icon 'all-the-icons-octicon "repo" "#ffffff")
      space
      (propertize project-id
                  'display `(raise 0.0)
@@ -226,19 +225,16 @@
   ;; Display current branch
   (telephone-line-defsegment wcx-vc-segment ()
     (let (
-          ;; (fg-color "#6fb593") ; kaolin-dark
-          ;; (fg-color "#9f84ae")) ; kaolin-galaxy
-          ;; (fg-color "#709688")) ; kaolin-eclipse
-          (fg-color 'custom-link)) ; kaolin-aurora
+          (fg-color 'bold))
       (when vc-mode
           (format "%s %s"
                   (propertize (all-the-icons-octicon "git-branch")
-                              'face `(:family ,(all-the-icons-octicon-family) :height 1.0 :foreground ,fg-color)
+                              'face `(:family ,(all-the-icons-octicon-family) :height 1.0)
                               'display '(raise 0.0))
                   (propertize
                     (format "%s"
                       (telephone-line-raw vc-mode t))
-                    'face `(:foreground ,fg-color))))))
+                    )))))
 
   (defun column-num-at-pos (pos)
     (save-excursion
