@@ -224,16 +224,6 @@
   :defer t
   :bind (("C-c d" . zeal-at-point)))
 
-;; (use-package vimish-fold
-;;   :ensure t
-;;   :config
-;;   (vimish-fold-global-mode 1)
-;;   :bind (("C-c g" . vimish-fold-toggle)
-;;          ("C-c f f" . vimish-fold)
-;;          ("C-c f v" . vimish-fold-delete)
-;;          ("C-c f a" . vimish-fold-unfold-all)
-;;   ))
-
 (use-package csv-mode)
 
 (use-package anzu

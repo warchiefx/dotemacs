@@ -49,11 +49,6 @@
   (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
     (setq mode-line-format nil)))
 
-;; (use-package lsp-ui
-;;   :after lsp
-;;   :defer t
-;;   :commands lsp-ui-mode)
-
 (use-package company-lsp
   :after lsp-mode
   :commands company-lsp
