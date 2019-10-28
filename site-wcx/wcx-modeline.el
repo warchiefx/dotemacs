@@ -25,31 +25,30 @@
 ;;   (spaceline-toggle-hud-off)
 ;;   (spaceline-toggle-which-function-on))
 
-;; (use-package doom-modeline
-;;       :ensure t
-;;       :hook (after-init . doom-modeline-mode)
-;;       :init
-;;       (setq doom-modeline-height 10)
-;;       (setq doom-modeline-buffer-file-name-style 'relative-from-project)
-;;       (setq doom-modeline-minor-modes t)
-;;       (setq doom-modeline-icon nil)
-;;       (setq doom-modeline-major-mode-icon nil)
-;;       (setq doom-modeline-github nil)
-;;       (setq doom-modeline-checker-simple-format nil)
-;;       (setq doom-modeline-env-version nil)
-;;       (setq doom-modeline-python-executable "python")
-;;       (setq find-file-visit-truename t)
-;;       (setq inhibit-compacting-font-caches t)
-;;       :config
-;;       (set-face-attribute 'mode-line nil
-;;                           :box '(:line-width 1 :color "#000000")
-;;                           :overline nil
-;;                           :underline nil)
+(use-package doom-modeline
+  :hook (after-init . doom-modeline-mode)
+  :init
+  (setq doom-modeline-height 10)
+  (setq doom-modeline-buffer-file-name-style 'relative-from-project)
+  (setq doom-modeline-minor-modes t)
+  (setq doom-modeline-icon nil)
+  (setq doom-modeline-major-mode-icon nil)
+  (setq doom-modeline-github nil)
+  (setq doom-modeline-checker-simple-format nil)
+  (setq doom-modeline-env-version nil)
+  (setq doom-modeline-python-executable "python")
+  (setq find-file-visit-truename t)
+  (setq inhibit-compacting-font-caches t)
+  :config
+  (set-face-attribute 'mode-line nil
+                      :box '(:line-width 1 :color "#000000")
+                      :overline nil
+                      :underline nil)
 
-;;       (set-face-attribute 'mode-line-inactive nil
-;;                           :box '(:line-width 1 :color "#000000")
-;;                           :overline nil
-;;                           :underline nil))
+  (set-face-attribute 'mode-line-inactive nil
+                      :box '(:line-width 1 :color "#000000")
+                      :overline nil
+                      :underline nil))
 
 (use-package all-the-icons
   :ensure t)
@@ -71,7 +70,7 @@
 
 ;; ;; Telephone line
 (use-package telephone-line
-  :ensure t
+  :disabled
   :init
   ;; Need to display telephone-line in *Messages* buffer
   ;; (defun recreate-message-buffer ()
