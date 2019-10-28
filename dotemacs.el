@@ -84,7 +84,7 @@
 (load-feature 'wcx-templates)
 (load-feature 'wcx-cedet)
 ;; (load-feature 'wcx-minimap)
-(load-feature 'wcx-flycheck)
+(load-feature 'wcx-checking)
 (load-feature 'wcx-projects)
 ;; (load-feature 'wcx-helm)
 (load-feature 'wcx-counsel)
