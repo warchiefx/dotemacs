@@ -248,6 +248,7 @@
           ("*helm semantic/imenu*"  :select t   :align right :size 0.4)
           ("*helm org inbuffer*"    :select t   :align right :size 0.4)
           (flycheck-error-list-mode :select nil :align below :size 0.15)
+          (flymake-diagnostics-buffer-mode :select nil :align below :size 0.15)
           (ert-results-mode         :select t   :align below :size 0.5)
           (calendar-mode            :select t   :align below :size 0.25)
           (racer-help-mode          :select t   :align right :size 0.5)

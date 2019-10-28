@@ -321,7 +321,7 @@
           (accent    . (wcx-buffer-segment))
           (nil    . (wcx-major-mode-segment))
           (nil    . (telephone-line-process-segment))
-          (nil    . (wcx-flycheck-segment))
+          ;; (nil    . (wcx-flycheck-segment))
           (nil    . (selection-info))
           (nil    . (wcx-read-only-status-segment))
           (nil    . (wcx-modified-status-segment))
@@ -330,7 +330,7 @@
   ;; Right edge
   (setq telephone-line-rhs
         '((nil    . (telephone-line-misc-info-segment))
-          (accent    . (telephone-line-minor-mode-segment))
+          (nil    . (telephone-line-minor-mode-segment))
           (nil    . (wcx-vc-segment))
           ;; (accent . (wcx-position-segment))
           ))
