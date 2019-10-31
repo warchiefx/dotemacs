@@ -27,6 +27,7 @@
          ([f12] . org-cycle-agenda-files))
   :mode (("\\.org_archive\\'" . org-mode)
          ("\\.org\\'" . org-mode))
+  :hook (org-mode . org-indent-mode)
 
   :config
   (load-library "find-lisp")
@@ -73,10 +74,6 @@
                         (:startgroup)
                         ("@home" . ?h) ("@office" . ?o)
                         (:endgroup)))
-
-  (use-package org-indent
-    :ensure nil
-    :diminish)
 
   (defun org-summary-todo (n-done n-not-done)
     "Switch entry to DONE when all subentries are done, to TODO otherwise."
