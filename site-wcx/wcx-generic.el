@@ -426,5 +426,9 @@
 ;;   (fast-scroll-config)
 ;;   (fast-scroll-mode 1))
 
+(use-package keychain-environment
+  :ensure t
+  :hook (after-init . keychain-refresh-environment))
+
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
