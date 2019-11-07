@@ -65,7 +65,11 @@
 (add-hook 'conf-javaprop-mode-hook
           '(lambda () (conf-quote-normal nil)))
 
-(winner-mode 1)
+(use-package winner
+  :bind (("C-<f3>" . winner-undo)
+         ("M-<f3>" . winner-redo))
+  :config
+  (winner-mode 1))
 
 ;; Emacs auth-sources
 (require 'auth-source)
