@@ -59,10 +59,10 @@
   :config
   (magit-org-todos-autoinsert))
 
-(use-package magit-gh-pulls
-  :after magit
-  :config
-  (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
+;; (use-package magit-gh-pulls
+;;   :after magit
+;;   :config
+;;   (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
 
 (use-package smerge-mode
   :bind (:map smerge-mode-map ("C-<f12>" . hydra-smerge/body))
