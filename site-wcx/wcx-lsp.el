@@ -72,6 +72,9 @@
   ;;                           (require 'lsp-python-ms)
   ;;                           (lsp))))  ; or lsp-deferred
 
+  (use-package lsp-ivy
+    :bind ("<f1>" . lsp-ivy-global-workspace-symbol))
+
   (use-package dap-mode
     :ensure t
     :config
