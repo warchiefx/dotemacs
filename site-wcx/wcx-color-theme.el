@@ -25,12 +25,21 @@
 ;;   :config
 ;;   (load-theme 'wilmersdorf t))
 
-(use-package kaolin-themes
+(use-package minsk-theme
   :ensure t
   :config
-  (setq kaolin-themes-modeline-border nil)
-  (load-theme 'kaolin-mono-dark)
-  (kaolin-treemacs-theme))
+  (load-theme 'minsk t))
+
+;; (use-package kaolin-themes
+;;   :ensure t
+;;   :config
+;;   (setq kaolin-themes-modeline-border nil)
+;;   (load-theme 'kaolin-mono-dark)
+;;   (kaolin-treemacs-theme))
+
+;; (use-package tron-legacy-theme
+;;   :load-path "themes/"
+;;   :config (load-theme 'tron-legacy t))
 
 ;; (use-package darkokai-theme
 ;;   :ensure t
@@ -71,11 +80,21 @@
 
 ;; (use-package doom-themes
 ;;   :ensure t
-;;   :config
+;;   :init
 ;;   (setq doom-themes-enable-bold t)
-;;   (load-theme 'doom-wilmersdorf)
+;;   :config
+;;   (load-theme 'doom-city-lights t)
 ;;   (doom-themes-visual-bell-config)
 ;;   (doom-themes-org-config))
+
+;; (use-package berrys-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'berrys t)
+
+;;   :config ;; for good measure and clarity
+;;   (setq-default cursor-type '(bar . 2))
+;;   (setq-default line-spacing 2))
 
 ;; Favorite light theme
 ;; (use-package flucui-themes
