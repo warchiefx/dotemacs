@@ -116,4 +116,7 @@
      ("m" restclient-mark-current "mark")
      ("q" nil "quit")))))
 
+(use-package verb
+  :mode ("\\.verb\\'" . verb-mode))
+
 (provide 'wcx-webdev)
