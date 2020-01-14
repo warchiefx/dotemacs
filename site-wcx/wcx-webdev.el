@@ -117,6 +117,22 @@
      ("q" nil "quit")))))
 
 (use-package verb
-  :mode ("\\.verb\\'" . verb-mode))
+  :defer t
+  :mode ("\\.verb\\'" . verb-mode)
+  :mode-hydra
+  (verb-mode
+   ("Send"
+    (("s" verb-send-request-on-point "Send")
+     ("o" verb-send-request-on-point-other-window "Send (other window)")
+     ("q" nil "quit"))
+    "Cleanup"
+    (("k" verb-auto-kill-response-buffers "Kill buffers"))
+    "Nav"
+    (("a" outline-show-all "Show all" :exit nil)
+     ("p" outline-previous-visible-heading "Prev" :exit nil)
+     ("n" outline-next-visible-heading "Next" :exit nil)
+     ("c" verb-cycle "Cycle" :exit nil)
+     ("e" verb-export-request-on-point "Export...")))
+   ))
 
 (provide 'wcx-webdev)
