@@ -180,7 +180,7 @@ PWD is not in a git repo (or the git command is not found)."
   :bind (:map vterm-mode-map ("C-y" . vterm-yank)))
 
 (use-package vterm-toggle
-  :bind (([C-f7] . vterm-toggle-cd)
+  :bind (([C-f7] . vterm-toggle)
          (:map vterm-mode-map ("s-n" . vterm-toggle-forward))
          (:map vterm-mode-map ("s-p" . vterm-toggle-backward))
          (:map vterm-mode-map ([f7] . vterm-toggle))
