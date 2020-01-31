@@ -52,6 +52,7 @@
 
 ;; Custom stuff
 (load-feature 'wcx-generic)
+(load-feature 'wcx-hydra)
 (load-feature 'wcx-companymode)
 (load-feature 'wcx-evil)
 (load-feature 'wcx-requirements)
@@ -63,7 +64,6 @@
 (load-feature 'wcx-color-theme)
 (load-feature 'wcx-modeline)
 (load-feature 'wcx-encryption)
-(load-feature 'wcx-hydra)
 (load-feature 'wcx-workgroups)
 (load-feature 'wcx-debugger)
 (load-feature 'wcx-terminal)
