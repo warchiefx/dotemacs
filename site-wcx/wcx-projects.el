@@ -15,8 +15,8 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   :diminish projectile-mode)
 
-(use-package helm-projectile
-  :ensure t)
+;; (use-package helm-projectile
+;;   :ensure t)
 
 ;; (use-package persp-mode
 ;;   :ensure t
