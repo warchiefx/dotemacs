@@ -31,6 +31,8 @@
 ;(setq emacs-font "MesloLGSDZ-10")
 ;; (setq emacs-font "Hack-10")
 (setq emacs-font "Iosevka-10.5")
+;; (setq emacs-font "Jetbrains Mono-10")
+;; (setq emacs-font "Victor Mono-10")
 ;;(setq emacs-font "DejaVu Sans Mono-10")
 ;;(setq emacs-font "FiraCode-9")
 ;;(setq emacs-font "Hermit-10")
@@ -393,14 +395,14 @@
   :config
   (dimmer-mode t))
 
-(use-package highlight-indent-guides
-  :diminish
-  :hook
-  ((prog-mode yaml-mode) . highlight-indent-guides-mode)
-  :custom
-  (highlight-indent-guides-auto-enabled t)
-  (highlight-indent-guides-responsive t)
-  (highlight-indent-guides-method 'character)) ; column
+;; (use-package highlight-indent-guides
+;;   :diminish
+;;   :hook
+;;   ((prog-mode yaml-mode) . highlight-indent-guides-mode)
+;;   :custom
+;;   (highlight-indent-guides-auto-enabled t)
+;;   (highlight-indent-guides-responsive t)
+;;   (highlight-indent-guides-method 'column)) ; character
 
 (use-package deadgrep
   :bind
@@ -433,6 +435,49 @@
 (use-package keychain-environment
   :ensure t
   :hook (after-init . keychain-refresh-environment))
+
+; ; Minor optimizations, copied from doom-emacs
+(setq fast-but-imprecise-scrolling t)
+(setq frame-inhibit-implied-resize t)
+(setq-default cursor-in-non-selected-windows nil)
+(setq highlight-nonselected-windows nil)
+(blink-cursor-mode -1)
+(setq visible-cursor nil)
+(setq x-stretch-cursor nil)
+
+;; Don't resize windows & frames in steps; it's prohibitive to prevent the user
+;; from resizing it to exact dimensions, and looks weird.
+(setq window-resize-pixelwise t
+      frame-resize-pixelwise t)
+
+(setq window-divider-default-places t
+      window-divider-default-bottom-width 1
+      window-divider-default-right-width 1)
+(window-divider-mode)
+
+(setq echo-keystrokes 0.02)
+
+(setq minibuffer-prompt-properties '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
+(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+(setq ansi-color-for-comint-mode t)
+
+;; always avoid GUI
+(setq use-dialog-box nil)
+;; Don't display floating tooltips; display their contents in the echo-area,
+;; because native tooltips are ugly.
+(when (bound-and-true-p tooltip-mode)
+  (tooltip-mode -1))
+
+;; Explicitly define a width to reduce computation
+(setq-default display-line-numbers-width 3)
+
+;; Show absolute line numbers for narrowed regions makes it easier to tell the
+;; buffer is narrowed, and where you are, exactly.
+(setq-default display-line-numbers-widen t)
+
+;; Underline looks a bit better when drawn lower
+(setq x-underline-at-descent-line t)
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
