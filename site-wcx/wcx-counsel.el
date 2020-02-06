@@ -49,8 +49,10 @@
       '((swiper          . ivy-posframe-display-at-window-bottom-left)
         (complete-symbol . ivy-posframe-display-at-point)
         (counsel-M-x     . ivy-posframe-display-at-frame-top-center)
-        (counsel-find-file     . ivy-posframe-display-at-frame-top-center)
-        (t               . ivy-posframe-display-at-window-bottom-left)))
+        ;; (counsel-find-file     . ivy-posframe-display-at-frame-top-center)
+        (counsel-yank-pop . ivy-posframe-display-at-point)
+        (counsel-switch-buffer . ivy-posframe-display-at-frame-top-center)
+        (t               . ivy-posframe-display-at-frame-bottom-left)))
   (ivy-posframe-mode 1))
 
 (use-package counsel
