@@ -1,4 +1,4 @@
-(defvar wcx/lsp-provider "eglot")
+(defvar wcx/lsp-provider "lsp-mode")
 
 (when (string-equal wcx/lsp-provider "lsp-mode")
   (use-package lsp-mode
@@ -53,6 +53,7 @@
       (setq mode-line-format nil)))
 
   (use-package company-lsp
+    :defer t
     :after lsp-mode
     :commands company-lsp
     :init
