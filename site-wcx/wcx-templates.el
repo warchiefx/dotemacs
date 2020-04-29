@@ -14,11 +14,11 @@
 ;;; Code:
 (use-package yasnippet
   :hook (prog-mode . yas-minor-mode)
-  :config
-  (yas-global-mode 1)
+  :defer 60
   :diminish yas-minor-mode)
 
 (use-package yasnippet-snippets
+  :defer 60
   :ensure t)
 
 (provide 'wcx-templates)
