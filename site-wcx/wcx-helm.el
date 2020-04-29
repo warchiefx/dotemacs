@@ -1,22 +1,26 @@
 (use-package helm-projectile
   :ensure t
+  :disabled
   :bind
   (([(control f1)] . helm-projectile-ag)))
 
 (use-package helm-flx
   :ensure t
+  :disabled
   :after (helm)
   :config
   (helm-flx-mode +1))
 
 (use-package helm-fuzzier
   :ensure t
+  :disabled
   :after (helm)
   :config
   (helm-fuzzier-mode +1))
 
 (use-package helm
   :ensure t
+  :disabled
   :config
   (require 'helm-config)
   ;;(require 'helm-c-moccur)
@@ -71,6 +75,7 @@
 
 (use-package helm-descbinds
   :ensure t
+  :disabled
   :after helm
   :config
   (helm-descbinds-mode)
@@ -78,6 +83,7 @@
 
 (use-package helm-dash
   :ensure t
+  :disabled
   :commands (helm-dash helm-dash-install-docset)
   :bind (([(M-f1)] . helm-dash))
   :config
@@ -85,11 +91,13 @@
 
 (use-package helm-gtags
   :ensure t
+  :disabled
   :config
   (global-set-key [C-down-mouse-1] 'helm-gtags-find-tag-from-here))
 
 (use-package swiper-helm
   :ensure t
+  :disabled
   :bind (([M-f1] . swiper-helm)
          ))
 
