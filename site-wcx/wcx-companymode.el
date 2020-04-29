@@ -1,4 +1,5 @@
 (use-package company
+  :defer 30
   :hook (prog-mode . company-mode)
   :diminish company-mode
   :init
@@ -9,24 +10,24 @@
    company-tooltip-align-annotations t))
 
 (use-package company-quickhelp
+  :defer t
   :after company
   :config
   (company-quickhelp-mode 1))
 
 (use-package company-flx
+  :defer t
   :after company
   :config
   (setq company-flx-limit 400))
 
 (use-package company-restclient
-  :ensure t
+  :defer t
   :config (add-to-list 'company-backends 'company-restclient))
 
-(global-company-mode 1)
-
 (use-package company-statistics
-  :ensure t
-  :config (company-statistics-mode 1))
+  :defer 35
+  :hook (prog-mode . company-statistics-mode))
 
 ;; (use-package company-etags
 ;;   :config
