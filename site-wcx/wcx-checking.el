@@ -3,7 +3,7 @@
 ;;; Code:
 
 (declare-function python-shell-calculate-exec-path "python")
-(defvar wcx/checker "flymake")
+(defvar wcx/checker "flycheck")
 
 (when (string-equal wcx/checker "flycheck")
   (defun flycheck-virtualenv-executable-find (executable)
@@ -50,7 +50,8 @@ _v_ verify setup    _f_ check           _s_ select
     ;;                              (setq flycheck-checker 'python-pylint
     ;;                                    flycheck-checker-error-threshold 900
 
-    :diminish flycheck-mode)
+    ;; :diminish flycheck-mode)
+    )
 
   (use-package flycheck-posframe
     :after flycheck
