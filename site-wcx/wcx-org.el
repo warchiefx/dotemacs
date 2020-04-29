@@ -33,7 +33,7 @@
   (load-library "find-lisp")
   (setq org-agenda-files
         (append '("~/gdrive/orgfiles/main.org" "~/gdrive/orgfiles/readlater.org")
-         (find-lisp-find-files "~/gdrive/orgfiles" "\.org$")))
+                (find-lisp-find-files "~/gdrive/orgfiles" "\.org$")))
 
   (setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
   (setq org-default-notes-file "~/gdrive/orgfiles/main.org")
@@ -47,22 +47,22 @@
                                 filename) target-dir)))
 
   (setq org-capture-templates '(("t" "Todo" entry (file+headline "~/gdrive/orgfiles/main.org" "Tasks")
-                               "* TODO %?\n%U\n%a\n" :prepend t)
-                              ("n" "Note" entry (file+headline "~/gdrive/orgfiles/main.org" "Notes")
-                               "* %? :NOTE:\n%U\n%a\n")
-                              ("r" "Read Later" entry (file+headline "~/gdrive/orgfiles/readlater.org" "Read Later")
-                               "* TODO %? :LATER:\n" :prepend t)
-                              ("m" "Meeting Minutes" entry (file+olp+datetree "~/gdrive/orgfiles/meetings.org")
-                               "* %? :MEETING:\n" :prepend t :tree-type month :empty-lines 1 :kill-buffer t)
-                              ("p" "Project" entry (file (lambda () (funcall-interactively 'wcx/create-notes-file "~/gdrive/orgfiles/projects/")))
-                               "%[~/gdrive/orgfiles/templates/project.org]")
-                              ("R" "Research Project" entry (file (lambda () (funcall-interactively 'wcx/create-notes-file "~/gdrive/orgfiles/research/")))
-                               "%[~/gdrive/orgfiles/templates/research.org]")
-                              ))
+                                 "* TODO %?\n%U\n%a\n" :prepend t)
+                                ("n" "Note" entry (file+headline "~/gdrive/orgfiles/main.org" "Notes")
+                                 "* %? :NOTE:\n%U\n%a\n")
+                                ("r" "Read Later" entry (file+headline "~/gdrive/orgfiles/readlater.org" "Read Later")
+                                 "* TODO %? :LATER:\n" :prepend t)
+                                ("m" "Meeting Minutes" entry (file+olp+datetree "~/gdrive/orgfiles/meetings.org")
+                                 "* %? :MEETING:\n" :prepend t :tree-type month :empty-lines 1 :kill-buffer t)
+                                ("p" "Project" entry (file (lambda () (funcall-interactively 'wcx/create-notes-file "~/gdrive/orgfiles/projects/")))
+                                 "%[~/gdrive/orgfiles/templates/project.org]")
+                                ("R" "Research Project" entry (file (lambda () (funcall-interactively 'wcx/create-notes-file "~/gdrive/orgfiles/research/")))
+                                 "%[~/gdrive/orgfiles/templates/research.org]")
+                                ))
 
   (setq org-tag-alist '((:startgroup)
                         ("BUG" . ?b) ("RESEARCH" . ?r) ("MGMT" . ?m)
-                        ("NOTE" . ?t)
+                        ("NOTE" . ?t) ("SPEC" . ?c)
                         (:endgroup)
                         (:startgroup)
                         ("TRIVIAL" . ?T) ("TEDIOUS" . ?e) ("TODELEGATE" . ?d)
@@ -136,11 +136,11 @@
       ))
 
   (add-hook 'org-mode-hook (lambda ()
-   "Beautify Org Checkbox Symbol"
-   (push '("[ ]" .  "☐") prettify-symbols-alist)
-   (push '("[X]" . "☑" ) prettify-symbols-alist)
-   (push '("[-]" . "❍" ) prettify-symbols-alist)
-   (prettify-symbols-mode))))
+                             "Beautify Org Checkbox Symbol"
+                             (push '("[ ]" .  "☐") prettify-symbols-alist)
+                             (push '("[X]" . "☑" ) prettify-symbols-alist)
+                             (push '("[-]" . "❍" ) prettify-symbols-alist)
+                             (prettify-symbols-mode))))
 
 (use-package ox-qmd
   :after org
@@ -155,6 +155,53 @@
   :after org
   :config
   (org-edna-load))
+
+(use-package org-super-agenda
+  :ensure t
+  :after org
+  :config
+  (org-super-agenda-mode)
+  (setq org-super-agenda-groups
+        '(;; Each group has an implicit boolean OR operator between its selectors.
+          (:name "Today"  ; Optionally specify section name
+                 :time-grid t  ; Items that appear on the time grid
+                 :todo "TODAY")  ; Items that have this TODO keyword
+          (:name "Important"
+                 ;; Single arguments given alone
+                 :tag "bills"
+                 :priority "A")
+          ;; Set order of multiple groups at once
+          (:order-multi (2 (:name "Shopping in town"
+                                  ;; Boolean AND group matches items that match all subgroups
+                                  :and (:tag "shopping" :tag "@town"))
+                           (:name "Food-related"
+                                  ;; Multiple args given in list with implicit OR
+                                  :tag ("food" "dinner"))
+                           (:name "Personal"
+                                  :habit t
+                                  :tag "personal")
+                           (:name "Space-related (non-moon-or-planet-related)"
+                                  ;; Regexps match case-insensitively on the entire entry
+                                  :and (:regexp ("space" "NASA")
+                                                ;; Boolean NOT also has implicit OR between selectors
+                                                :not (:regexp "moon" :tag "planet")))))
+          ;; Groups supply their own section names when none are given
+          (:todo "WAITING" :order 8)  ; Set order of this section
+          (:todo ("SOMEDAY" "TO-READ" "CHECK" "TO-WATCH" "WATCHING")
+                 ;; Show this group at the end of the agenda (since it has the
+                 ;; highest number). If you specified this group last, items
+                 ;; with these todo keywords that e.g. have priority A would be
+                 ;; displayed in that group instead, because items are grouped
+                 ;; out in the order the groups are listed.
+                 :order 9)
+          (:priority<= "B"
+                       ;; Show this section after "Today" and "Important", because
+                       ;; their order is unspecified, defaulting to 0. Sections
+                       ;; are displayed lowest-number-first.
+                       :order 1)
+          ;; After the last group, the agenda will display items that didn't
+          ;; match any of these groups, with the default order position of 99
+          )))
 
 ;; (use-package org-bullets
 ;;   :ensure t
