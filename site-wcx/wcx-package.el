@@ -28,6 +28,6 @@
 
 ;; Improved package manager
 (use-package paradox
-  :ensure t)
+  :defer 10)
 
 (provide 'wcx-package)
