@@ -25,7 +25,12 @@
 ;;   (spaceline-toggle-hud-off)
 ;;   (spaceline-toggle-which-function-on))
 
+(use-package simple-modeline
+  :ensure t
+  :hook (after-init . simple-modeline-mode))
+
 (use-package doom-modeline
+  :disabled
   :hook (after-init . doom-modeline-mode)
   :init
   (setq doom-modeline-height 10)
@@ -70,8 +75,8 @@
 
 ;; ;; Telephone line
 (use-package telephone-line
-  :disabled
   :init
+  :disabled
   ;; Need to display telephone-line in *Messages* buffer
   ;; (defun recreate-message-buffer ()
   ;;   (cl-flet ((buffer-string* (buffer)
@@ -140,7 +145,7 @@
                   ((string= evil-state "operator")  "OP    ")
                   ((string= evil-state "motion")    "MOTION")
                   ((string= evil-state "emacs")     "EMACS ")
-                  (t "-"))))
+                  (t                                "IDLE  "))))
         (concat " " tag))))
 
   (telephone-line-defsegment wcx-projectile-segment ()
@@ -320,7 +325,7 @@
           (accent    . (wcx-buffer-segment))
           (nil    . (wcx-major-mode-segment))
           (nil    . (telephone-line-process-segment))
-          ;; (nil    . (wcx-flycheck-segment))
+          (nil    . (wcx-flycheck-segment))
           (nil    . (selection-info))
           (nil    . (wcx-read-only-status-segment))
           (nil    . (wcx-modified-status-segment))
