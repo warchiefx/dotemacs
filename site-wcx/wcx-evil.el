@@ -6,6 +6,8 @@
 (use-package evil
   :ensure t
   :diminish undo-tree-mode
+  :init
+  (setq evil-want-keybinding nil)
   :config
   (setcdr evil-insert-state-map nil)
   (define-key evil-insert-state-map
