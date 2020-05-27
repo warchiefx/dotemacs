@@ -29,9 +29,9 @@
   :defer t
   :hook ((js2-mode web-mode rjsx-mode) . tern-mode))
 
-(use-package company-tern
-  :config
-  (add-to-list 'company-backends 'company-tern))
+;; (use-package company-tern
+;;   :config
+;;   (add-to-list 'company-backends 'company-tern))
 
 (use-package skewer-mode
   :defer t
