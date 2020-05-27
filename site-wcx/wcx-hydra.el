@@ -41,7 +41,7 @@ _q_ quit            _f_ fold            _<_ previous        _<tab>_ current
 ^Magit^             ^Do^
 ^─────^─────────────^──^────────────────
 _q_ quit            _b_ blame
-^^                  _c_ clone
+_l_ git link        _c_ clone
 ^^                  _i_ init
 ^^                  _s_ status
 ^^                  _h_ timemachine
@@ -51,6 +51,7 @@ _q_ quit            _b_ blame
   ("b" magit-blame)
   ("c" magit-clone)
   ("i" magit-init)
+  ("l" git-link)
   ("s" magit-status)
   ("h" git-timemachine))
 
