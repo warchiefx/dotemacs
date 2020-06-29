@@ -135,4 +135,13 @@
      ("e" verb-export-request-on-point "Export...")))
    ))
 
+(use-package add-node-modules-path
+  :ensure t
+  :config
+  ;; automatically run the function when web-mode starts
+  (eval-after-load 'web-mode
+    '(add-hook 'web-mode-hook 'add-node-modules-path))
+  (eval-after-load 'js2-mode
+    '(add-hook 'js2-mode-hook 'add-node-modules-path)))
+
 (provide 'wcx-webdev)
