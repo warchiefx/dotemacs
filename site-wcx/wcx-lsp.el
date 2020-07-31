@@ -78,11 +78,13 @@
 
   (use-package dap-mode
     :ensure t
+    :defer 10
     :config
-    (dap-mode 1)
-    (dap-ui-mode 1)
+    (dap-auto-configure-mode)
     (require 'dap-java)
-    (require 'dap-python)))
+    (require 'dap-python)
+    (add-hook 'dap-stopped-hook
+              (lambda (arg) (call-interactively #'dap-hydra)))))
 
 (when (string-equal wcx/lsp-provider "eglot")
   (use-package eglot
