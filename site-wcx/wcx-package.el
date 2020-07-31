@@ -5,9 +5,9 @@
 (load-library "url-handlers")
 
 (setq package-enable-at-startup nil) ; dont do it immediately
-(setq package-archives '(("org"       . "http://orgmode.org/elpa/")
-             ("gnu"       . "http://elpa.gnu.org/packages/")
-             ("melpa"     . "https://melpa.org/packages/")))
+(setq package-archives '(("org"       . "https://orgmode.org/elpa/")
+             ("gnu"       . "https://elpa.gnu.org/packages/")
+             ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 
 ;; Bootstrap use-package
