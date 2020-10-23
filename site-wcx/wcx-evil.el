@@ -26,7 +26,9 @@
   (evil-set-initial-state 'indium-repl-mode 'emacs)
   (add-hook 'git-commit-mode-hook 'evil-emacs-state)
   (evil-set-initial-state 'magit-log-edit-mode 'insert)
-  (evil-mode 1))
+  (evil-mode 1)
+  (global-undo-tree-mode)
+  (evil-set-undo-system 'undo-tree))
 
 (use-package evil-anzu
   :ensure t
