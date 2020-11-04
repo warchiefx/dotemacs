@@ -15,8 +15,8 @@
                            (run-with-timer 0.1 nil 'invert-face 'mode-line)))
 
 ;; ----- Standard Loadpath
-(setq site-lisp-path "~/.emacs.d/site-lisp/")
-(setq site-wcx-path "~/.emacs.d/site-wcx/")
+(setq site-lisp-path "~/.config/emacs/site-lisp/")
+(setq site-wcx-path "~/.config/emacs/site-wcx/")
 (add-to-list 'load-path site-lisp-path)
 (add-to-list 'load-path site-wcx-path)
 
@@ -125,7 +125,7 @@
 (use-package server
   :ensure nil
   :config
-  (set-default 'server-socket-dir "~/.emacs.d/server")
+  (set-default 'server-socket-dir "~/.config/emacs/server")
   (server-start)
   :hook (after-init . server-mode))
 
@@ -156,7 +156,8 @@
 
 (use-package exec-path-from-shell
   :ensure t
-)
+  :config
+  (exec-path-from-shell-initialize))
 
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
