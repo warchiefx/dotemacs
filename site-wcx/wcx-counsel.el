@@ -38,6 +38,7 @@
 
 (use-package ivy-posframe
   :ensure t
+  :disabled
   :diminish (ivy-posframe-mode . "")
   :config
   (setq ivy-posframe-parameters
