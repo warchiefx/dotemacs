@@ -24,15 +24,6 @@
   :defer t
   :mode "\\.\\jsx\\$")
 
-(use-package tern
-  :diminish tern-mode
-  :defer t
-  :hook ((js2-mode web-mode rjsx-mode) . tern-mode))
-
-;; (use-package company-tern
-;;   :config
-;;   (add-to-list 'company-backends 'company-tern))
-
 (use-package skewer-mode
   :defer t
   :hook (web-mode . skewer-mode)
@@ -86,8 +77,13 @@
   :hook ((js2-mode rjsx-mode) . prettier-js-mode)
   :config
   (setq prettier-js-args '(
-                           "--trailing-comma" "all"
-                           "--bracket-spacing" "false"
+                           "--trailing-comma" "es5"
+                           "--bracket-spacing" "true"
+                           "--arrow-parens" "always"
+                           "--end-of-line" "lf"
+                           "--tab-width" "2"
+                           "--no-semi"
+                           "--single-quote"
                            )))
 
 (use-package ggtags
@@ -143,5 +139,10 @@
     '(add-hook 'web-mode-hook 'add-node-modules-path))
   (eval-after-load 'js2-mode
     '(add-hook 'js2-mode-hook 'add-node-modules-path)))
+
+(use-package jest-test-mode :ensure t :defer t :commands jest-test-mode :init
+  (add-hook 'typescript-mode-hook 'jest-test-mode)
+  (add-hook 'js-mode-hook 'jest-test-mode)
+  (add-hook 'typescript-tsx-mode-hook 'jest-test-mode))
 
 (provide 'wcx-webdev)
