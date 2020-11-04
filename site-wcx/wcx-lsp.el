@@ -7,23 +7,27 @@
     (setq lsp-auto-guess-root t)
     (setq lsp-prefer-flymake nil)
     :config
-    (require 'lsp-clients)
     (add-hook 'prog-mode-hook (lambda () (flymake-mode -1)))
     (define-key lsp-mode-map (kbd "S-<f6>") 'lsp-rename)
     (defun wcx/activate-lsp ()
-      ;; (ycmd-mode -1)
+      ;; (require 'lsp-pyright)
       (lsp))
 
-    (with-eval-after-load 'lsp-pyls
-      (setq lsp-pyls-plugins-pyls_mypy-live-mode nil))
+    ;; (with-eval-after-load 'lsp-pyls
+    ;;   (setq lsp-pyls-plugins-pyls_mypy-live-mode nil))
 
-    (defun lsp-set-cfg ()
-      (let ((lsp-cfg `(:pyls (:plugins (:pyls_mypy (:live_mode nil))))))
-        (lsp--set-configuration lsp-cfg)))
+    ;; (defun lsp-set-cfg ()
+    ;;   (let ((lsp-cfg `(:pyls (:plugins (:pyls_mypy (:live_mode nil))))))
+    ;;     (lsp--set-configuration lsp-cfg)))
 
-    (add-hook 'lsp-after-initialize-hook 'lsp-set-cfg)
-    :hook ((python-mode java-mode bash-mode lua-mode ruby-mode) . wcx/activate-lsp))
+    ;; (add-hook 'lsp-after-initialize-hook 'lsp-set-cfg)
+    :hook ((python-mode java-mode bash-mode lua-mode ruby-mode js2-mode) . wcx/activate-lsp))
 
+  ;; (use-package lsp-pyright
+  ;;   :after lsp-mode
+  ;;   :ensure t
+  ;;   :config
+  ;;   (setq lsp-pyright-venv-path "/home/warchiefx/.pyenv/versions"))
 
   (use-package lsp-ui
     :after lsp-mode
