@@ -5,20 +5,22 @@
   :mode "\\.\\(js\\|json\\|mjs\\|node\\)$"
   :hook (js-mode . js2-minor-mode)
   :config
+  (setq lsp-clients-typescript-server "typescript-language-server"
+        lsp-clients-typescript-server-args '("--stdio"))
   (setq js2-basic-offset 2
         js2-highlight-level 4
         js2-mode-show-parse-errors nil
         js2-mode-show-strict-warnings nil))
 
-(use-package js2-refactor
-  :defer t
-  :diminish js2-refactor-mode
-  :commands js2-refactor-mode
-  :ensure t
-  :init
-  (add-hook 'js2-mode-hook #'js2-refactor-mode)
-  :config
-  (js2r-add-keybindings-with-prefix "C-c C-m"))
+;; (use-package js2-refactor
+;;   :defer t
+;;   :diminish js2-refactor-mode
+;;   :commands js2-refactor-mode
+;;   :ensure t
+;;   :init
+;;   (add-hook 'js2-mode-hook #'js2-refactor-mode)
+;;   :config
+;;   (js2r-add-keybindings-with-prefix "C-c C-m"))
 
 (use-package rjsx-mode
   :defer t
@@ -89,8 +91,8 @@
 (use-package ggtags
   :hook ((js2-mode js-mode rjsx-mode web-mode) . (lambda () (ggtags-mode 1))))
 
-(use-package indium
-  :hook (rjsx-mode . indium-interaction-mode))
+;; (use-package indium
+;;   :hook (rjsx-mode . indium-interaction-mode))
 
 (use-package restclient
   :defer t
