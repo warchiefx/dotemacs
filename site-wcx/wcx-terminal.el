@@ -174,28 +174,28 @@ PWD is not in a git repo (or the git command is not found)."
   ;; :hook (eshell-mode-hook . esh-autosuggest-mode)
   :ensure t)
 
-(use-package vterm
-  :commands vterm
-  :ensure t
-  :bind (:map vterm-mode-map ("C-y" . vterm-yank)))
+;; (use-package vterm
+;;   :commands vterm
+;;   :ensure t
+;;   :bind (:map vterm-mode-map ("C-y" . vterm-yank)))
 
-(use-package vterm-toggle
-  :bind (([C-f7] . vterm-toggle)
-         (:map vterm-mode-map ("s-n" . vterm-toggle-forward))
-         (:map vterm-mode-map ("s-p" . vterm-toggle-backward))
-         (:map vterm-mode-map ([f7] . vterm-toggle))
-         )
-  :config
-  (setq vterm-toggle-fullscreen-p nil)
-  (evil-set-initial-state 'vterm-mode 'emacs)
-  (add-to-list 'display-buffer-alist
-               '("^v?term.*"
-                 (display-buffer-reuse-window display-buffer-at-bottom)
-                 ;;(display-buffer-reuse-window display-buffer-in-direction)
-                 ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-                 ;;(direction . bottom)
-                 ;;(dedicated . t) ;dedicated is supported in emacs27
-                 (reusable-frames . visible)
-                 (window-height . 0.4))))
+;; (use-package vterm-toggle
+;;   :bind (([C-f7] . vterm-toggle)
+;;          (:map vterm-mode-map ("s-n" . vterm-toggle-forward))
+;;          (:map vterm-mode-map ("s-p" . vterm-toggle-backward))
+;;          (:map vterm-mode-map ([f7] . vterm-toggle))
+;;          )
+;;   :config
+;;   (setq vterm-toggle-fullscreen-p nil)
+;;   (evil-set-initial-state 'vterm-mode 'emacs)
+;;   (add-to-list 'display-buffer-alist
+;;                '("^v?term.*"
+;;                  (display-buffer-reuse-window display-buffer-at-bottom)
+;;                  ;;(display-buffer-reuse-window display-buffer-in-direction)
+;;                  ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+;;                  ;;(direction . bottom)
+;;                  ;;(dedicated . t) ;dedicated is supported in emacs27
+;;                  (reusable-frames . visible)
+;;                  (window-height . 0.4))))
 
 (provide 'wcx-terminal)
