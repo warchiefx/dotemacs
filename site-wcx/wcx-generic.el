@@ -353,11 +353,11 @@
 ;;   ;;        ("C-M-S-g" . dumb-jump-quick-look)))
 ;;   )
 
-(use-package smart-jump
-  :ensure t
-  :diminish smart-jump-mode
-  :config
-  (smart-jump-setup-default-registers))
+;; (use-package smart-jump
+;;  :ensure t
+;;  :diminish smart-jump-mode
+;;  :config
+;;  (smart-jump-setup-default-registers))
 
 (use-package nswbuff                    ; Quick switching between buffers
   :bind* (("<C-tab>"           . nswbuff-switch-to-next-buffer)
@@ -479,6 +479,12 @@
 
 ;; Underline looks a bit better when drawn lower
 (setq x-underline-at-descent-line t)
+
+(use-package coverlay
+  :ensure t
+  :diminish coverlay-minor-mode
+  :config
+  (global-coverlay-mode))
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
