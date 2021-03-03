@@ -1,36 +1,38 @@
-;; (use-package smart-mode-line
-;;   :ensure t
-;;   :init
-;;   (setq sml/override-theme nil)
-;;   (setq powerline-arrow-shape 'curve)
-;;   :config
-;;   (eval-after-load "wcx-evil"
-;;     '(sml/setup)
-;;     )
-;;   (sml/setup))
+(use-package smart-mode-line
+  :ensure t
+  :disabled
+  :init
+  (setq sml/override-theme nil)
+  (setq powerline-arrow-shape 'curve)
+  :config
+  (eval-after-load "wcx-evil"
+    '(sml/setup)
+    )
+  (sml/setup))
 
-;; (use-package spaceline
-;;   :ensure t
-;;   :config
-;;   (require 'spaceline-config)
-;;   ;;(spaceline-emacs-theme)
-;;   (spaceline-spacemacs-theme)
-;;   (spaceline-helm-mode)
-;;   (spaceline-info-mode)
-;;   (spaceline-toggle-evil-state-on)
-;;   (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-;;   (spaceline-toggle-projectile-root-on)
-;;   (spaceline-toggle-version-control-on)
-;;   (spaceline-toggle-buffer-position-off)
-;;   (spaceline-toggle-hud-off)
-;;   (spaceline-toggle-which-function-on))
+(use-package spaceline
+  :ensure t
+  :disabled
+  :config
+  (require 'spaceline-config)
+  ;;(spaceline-emacs-theme)
+  (spaceline-spacemacs-theme)
+  (spaceline-helm-mode)
+  (spaceline-info-mode)
+  (spaceline-toggle-evil-state-on)
+  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+  (spaceline-toggle-projectile-root-on)
+  (spaceline-toggle-version-control-on)
+  (spaceline-toggle-buffer-position-off)
+  (spaceline-toggle-hud-off)
+  (spaceline-toggle-which-function-on))
 
 (use-package simple-modeline
   :ensure t
+  :disabled
   :hook (after-init . simple-modeline-mode))
 
 (use-package doom-modeline
-  :disabled
   :hook (after-init . doom-modeline-mode)
   :init
   (setq doom-modeline-height 10)

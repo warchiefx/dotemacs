@@ -25,17 +25,22 @@
 ;;   :config
 ;;   (load-theme 'wilmersdorf t))
 
-(use-package minsk-theme
-  :ensure t
-  :config
-  (load-theme 'minsk t))
+;; (use-package minsk-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'minsk t))
 
 ;; (use-package kaolin-themes
 ;;   :ensure t
 ;;   :config
 ;;   (setq kaolin-themes-modeline-border nil)
-;;   (load-theme 'kaolin-mono-dark)
+;;   (load-theme 'kaolin-dark)
 ;;   (kaolin-treemacs-theme))
+
+;; (use-package modus-vivendi-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'modus-vivendi))
 
 ;; (use-package tron-legacy-theme
 ;;   :load-path "themes/"
@@ -78,14 +83,14 @@
 ;;   (setq nord-region-highlight "snowstorm")
 ;;   (load-theme 'nord t))
 
-;; (use-package doom-themes
-;;   :ensure t
-;;   :init
-;;   (setq doom-themes-enable-bold t)
-;;   :config
-;;   (load-theme 'doom-city-lights t)
-;;   (doom-themes-visual-bell-config)
-;;   (doom-themes-org-config))
+(use-package doom-themes
+  :ensure t
+  :init
+  (setq doom-themes-enable-bold t)
+  :config
+  (load-theme 'doom-horizon t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config))
 
 ;; (use-package berrys-theme
 ;;   :ensure t
