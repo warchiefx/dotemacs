@@ -4,6 +4,19 @@
   :bind (:map js2-mode-map ("C-c C-p" . js2-print-json-path))
   :mode "\\.\\(js\\|json\\|mjs\\|node\\)$"
   :hook (js-mode . js2-minor-mode)
+  :mode-hydra
+  ("Errors"
+   (("<" flycheck-previous-error "prev" :exit nil)
+    (">" flycheck-next-error "next" :exit nil)
+    ("l" flycheck-list-errors "list"))
+   "LSP"
+   (("r" (lambda ()
+           (interactive)
+           (if (string-equal wcx/lsp-provider "eglot")
+               (call-interactively 'eglot-reconnect)
+             (call-interactively 'lsp-restart-workspace))) "restart"))
+   "Tools"
+   (("f" prettier-js "reformat")))
   :config
   (setq lsp-clients-typescript-server "typescript-language-server"
         lsp-clients-typescript-server-args '("--stdio"))
