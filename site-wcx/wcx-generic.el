@@ -345,13 +345,22 @@
         search-ring
         regexp-search-ring))
 
-;; (use-package dumb-jump
-;;   :ensure t
-;;   :diminish dumb-jump-mode
-;;   ;; :bind (("C-M-g" . dumb-jump-go)
-;;   ;;        ("C-M-p" . dumb-jump-back)
-;;   ;;        ("C-M-S-g" . dumb-jump-quick-look)))
-;;   )
+(use-package dumb-jump
+  :ensure t
+  :diminish dumb-jump-mode
+  :config
+  (setq dumb-jump-prefer-searcher 'rg)
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  :hydra (dumb-jumb-hydra (:color blue :columns 3)
+    "Dumb Jump"
+    ("j" dumb-jump-go "Go")
+    ("o" dumb-jump-go-other-window "Other window")
+    ("e" dumb-jump-go-prefer-external "Go external")
+    ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
+    ("i" dumb-jump-go-prompt "Prompt")
+    ("l" dumb-jump-quick-look "Quick look")
+    ("b" dumb-jump-back "Back"))
+  :bind (("s-." . dumb-jump-hydra/body)))
 
 ;; (use-package smart-jump
 ;;  :ensure t
