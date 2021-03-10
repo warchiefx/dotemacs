@@ -15,8 +15,8 @@
                            (run-with-timer 0.1 nil 'invert-face 'mode-line)))
 
 ;; ----- Standard Loadpath
-(setq site-lisp-path "~/.config/emacs/site-lisp/")
-(setq site-wcx-path "~/.config/emacs/site-wcx/")
+(setq site-lisp-path "~/.emacs.d/site-lisp/")
+(setq site-wcx-path "~/.emacs.d/site-wcx/")
 (add-to-list 'load-path site-lisp-path)
 (add-to-list 'load-path site-wcx-path)
 
