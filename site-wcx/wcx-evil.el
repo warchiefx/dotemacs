@@ -3,6 +3,11 @@
 (setq evil-want-integration 't)
 (setq evil-want-keybinding nil)
 
+(use-package undo-tree
+  :ensure t
+  :config
+  (global-undo-tree-mode))
+
 (use-package evil
   :ensure t
   :diminish undo-tree-mode
@@ -27,7 +32,6 @@
   (add-hook 'git-commit-mode-hook 'evil-emacs-state)
   (evil-set-initial-state 'magit-log-edit-mode 'insert)
   (evil-mode 1)
-  (global-undo-tree-mode)
   (evil-set-undo-system 'undo-tree))
 
 (use-package evil-anzu
