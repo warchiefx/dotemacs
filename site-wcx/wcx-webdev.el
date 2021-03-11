@@ -107,6 +107,30 @@
 ;; (use-package indium
 ;;   :hook (rjsx-mode . indium-interaction-mode))
 
+(use-package typescript-mode
+  :defer t
+  :mode ("\\.ts\\'" . typescript-mode)
+  :mode-hydra
+  ("Errors"
+   (("<" flycheck-previous-error "prev" :exit nil)
+    (">" flycheck-next-error "next" :exit nil)
+    ("l" flycheck-list-errors "list"))
+   "LSP"
+   (("r" (lambda ()
+           (interactive)
+           (if (string-equal wcx/lsp-provider "eglot")
+               (call-interactively 'eglot-reconnect)
+             (call-interactively 'lsp-restart-workspace))) "restart"))
+   "Tools"
+   (("f" prettier-js "reformat"))))
+
+(use-package tide
+  :ensure t
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
+
 (use-package restclient
   :defer t
   :mode ("\\.http\\'" . restclient-mode)
