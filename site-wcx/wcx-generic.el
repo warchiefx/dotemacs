@@ -360,8 +360,8 @@
     ("i" dumb-jump-go-prompt "Prompt")
     ("l" dumb-jump-quick-look "Quick look")
     ("b" dumb-jump-back "Back"))
-  :bind (("s-." . dumb-jump-hydra/body)
-         ("s-," . dumb-jump-back)))
+  :bind (("s-." . xref-find-definitions)
+         ("s-," . xref-pop-marker-stack)))
 
 ;; (use-package smart-jump
 ;;  :ensure t
