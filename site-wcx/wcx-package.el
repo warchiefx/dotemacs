@@ -20,6 +20,9 @@
 
     (require 'use-package))
 
+(use-package use-package-hydra
+  :ensure t)
+
 (setq use-package-always-ensure t)
 (setq use-package-expand-minimally t)
 
