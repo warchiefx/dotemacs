@@ -1,3 +1,5 @@
+(defvar wcx/lsp-provider)
+
 (setq py-autopep8-options '("--max-line-length=120"))
 
 (setq python-saved-check-command nil)
@@ -68,6 +70,11 @@
 (use-package py-isort
   :defer t
   :commands (py-isort-buffer py-isort-region))
+
+;; LSP Configuration
+(when (string-equal wcx/lsp-provider "lsp-mode")
+  (setq lsp-pyls-plugins-pycodestyle-max-line-length 120)
+  (setq lsp-pyls-plugins-pylint-enabled t))
 
 (use-package python-mode
   :mode ("\\.py\\'" . python-mode)
