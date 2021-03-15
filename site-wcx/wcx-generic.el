@@ -496,5 +496,19 @@
   :config
   (global-coverlay-mode))
 
+(use-package popper
+  :ensure t
+  :bind (("s-p"   . popper-toggle-latest)
+         ("M-p"   . popper-cycle)
+         ("M-s-p" . popper-toggle-type))
+  :init
+  (setq popper-reference-buffers
+        '("\\*Messages\\*"
+          "Output\\*$"
+          "\\*HTTP Response\\*"
+          help-mode
+          compilation-mode))
+  (popper-mode +1))
+
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
