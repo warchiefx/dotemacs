@@ -9,6 +9,9 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+(defvar wcx/lsp-provider "lsp-mode")
+(defvar wcx/checker "flycheck")
+
 (setq load-prefer-newer t)
 (setq ring-bell-function (lambda ()
                            (invert-face 'mode-line)

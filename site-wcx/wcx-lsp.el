@@ -1,4 +1,4 @@
-(defvar wcx/lsp-provider "lsp-mode")
+(defvar wcx/lsp-provider)
 
 (when (string-equal wcx/lsp-provider "lsp-mode")
   (use-package lsp-mode

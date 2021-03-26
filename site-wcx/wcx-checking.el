@@ -3,7 +3,7 @@
 ;;; Code:
 
 (declare-function python-shell-calculate-exec-path "python")
-(defvar wcx/checker "flycheck")
+(defvar wcx/checker)
 
 (when (string-equal wcx/checker "flycheck")
   (defun flycheck-virtualenv-executable-find (executable)
