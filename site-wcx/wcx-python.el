@@ -40,7 +40,16 @@
 
 (use-package pyvenv
   :ensure t
-  :bind (([?\C-c ?\C-x ?v] . pyvenv-workon)))
+  :init
+  (setenv "WORKON_HOME" (expand-file-name "~/.pyenv/versions"))
+  :bind (([?\C-c ?\C-x ?v] . pyvenv-workon))
+  :config
+  (setq pyvenv-post-activate-hooks
+        (list (lambda ()
+                (setq python-shell-interpreter (concat pyvenv-virtual-env "bin/python")))))
+  (setq pyvenv-post-deactivate-hooks
+        (list (lambda ()
+                (setq python-shell-interpreter "python3")))))
 
 (use-package pip-requirements
   :ensure t
