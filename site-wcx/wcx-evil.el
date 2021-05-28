@@ -154,6 +154,7 @@
 
 (use-package evil-collection
   :ensure t
+  :diminish evil-collection-unimpaired-mode
   :custom (evil-collection-setup-minibuffer t)
   :init (evil-collection-init))
 
