@@ -22,6 +22,7 @@
     ;;     (lsp--set-configuration lsp-cfg)))
 
     ;; (add-hook 'lsp-after-initialize-hook 'lsp-set-cfg)
+    (setq flycheck-idle-change-delay 5)
     :hook ((python-mode java-mode bash-mode lua-mode ruby-mode js2-mode typescript-mode) . wcx/activate-lsp))
 
   (use-package lsp-pyright
