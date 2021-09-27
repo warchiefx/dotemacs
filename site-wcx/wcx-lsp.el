@@ -10,8 +10,8 @@
     (add-hook 'prog-mode-hook (lambda () (flymake-mode -1)))
     (define-key lsp-mode-map (kbd "S-<f6>") 'lsp-rename)
     (defun wcx/activate-lsp ()
-      (when (equal major-mode 'python-mode)
-        (require 'lsp-pyright))
+      ;; (when (equal major-mode 'python-mode)
+      ;;   (require 'lsp-pyright))
       (lsp))
 
     ;; (with-eval-after-load 'lsp-pyls
@@ -25,16 +25,16 @@
     (setq flycheck-idle-change-delay 5)
     :hook ((python-mode java-mode bash-mode lua-mode ruby-mode js2-mode typescript-mode) . wcx/activate-lsp))
 
-  (use-package lsp-pyright
-    :ensure t
-    :after lsp-mode
-    :init
-    (when (executable-find "python3")
-      (setq lsp-pyright-python-executable-cmd "python3"))
-    (setq lsp-enable-file-watchers t)
-    (setq lsp-file-watch-threshold 2500)
-    (setq lsp-pyright-venv-path (expand-file-name "~/.pyenv/versions/"))
-    (setq lsp-pyright-venv-directory (expand-file-name "~/.pyenv/versions/")))
+  ;; (use-package lsp-pyright
+  ;;   :ensure t
+  ;;   :after lsp-mode
+  ;;   :init
+  ;;   (when (executable-find "python3")
+  ;;     (setq lsp-pyright-python-executable-cmd "python3"))
+  ;;   (setq lsp-enable-file-watchers t)
+  ;;   (setq lsp-file-watch-threshold 2500)
+  ;;   (setq lsp-pyright-venv-path (expand-file-name "~/.pyenv/versions/"))
+  ;;   (setq lsp-pyright-venv-directory (expand-file-name "~/.pyenv/versions/")))
 
   (use-package lsp-ui
     :after lsp-mode
