@@ -134,6 +134,9 @@
 (use-package restclient
   :defer t
   :mode ("\\.http\\'" . restclient-mode)
+  :quelpa ((restclient :repo "pashky/restclient.el"
+            :fetcher github
+            :files ("restclient.el", "restclient-jq.el")))
   :mode-hydra
   (restclient-mode
    ("Nav"
