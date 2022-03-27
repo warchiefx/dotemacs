@@ -5,8 +5,8 @@
 (load-library "url-handlers")
 
 (setq package-enable-at-startup nil) ; dont do it immediately
-(setq package-archives '(("org"       . "https://orgmode.org/elpa/")
-             ("gnu"       . "https://elpa.gnu.org/packages/")
+(setq package-archives '(
+             ("gnu"       . "http://elpa.gnu.org/packages/")
              ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 
@@ -21,6 +21,9 @@
     (require 'use-package))
 
 (use-package use-package-hydra
+  :ensure t)
+
+(use-package quelpa-use-package
   :ensure t)
 
 (setq use-package-always-ensure t)
