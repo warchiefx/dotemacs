@@ -14,8 +14,11 @@
 ;; Org-mode setup
 ;; The following lines are always needed. Choose your own keys.
 
+(use-package org-contrib
+  :pin nongnu)
+
 (use-package org
-  :ensure org-plus-contrib
+  :pin gnu
   :commands (wcx/org-get-clocked-time
              org
              org-capture
