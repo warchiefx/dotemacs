@@ -55,7 +55,7 @@
          (ppi (/ (caddr geometry) (/ (car size) 25.4))))
     ;; (message "PPI: %s" ppi)
     (if (> ppi 155)
-        (set-face-attribute 'default frame :height 190)
+        (set-face-attribute 'default frame :height 180)
       (set-face-attribute 'default frame :height 140))))
 
 ;; TODO: Figure out a way to make this happen as you drag the window instead of changing focus
