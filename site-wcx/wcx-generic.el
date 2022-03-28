@@ -58,8 +58,8 @@
         (set-face-attribute 'default frame :height 180)
       (set-face-attribute 'default frame :height 140))))
 
-;; TODO: Figure out a way to make this happen as you drag the window instead of changing focus
-(add-function :after after-focus-change-function #'td/adapt-font-size)
+;; (add-function :after after-focus-change-function #'td/adapt-font-size)
+(add-to-list 'window-size-change-functions #'td/adapt-font-size)
 (add-hook 'after-make-frame-functions #'td/adapt-font-size)
 
 ;;; It is always better to know current line and column number
