@@ -59,6 +59,9 @@
   :config
   (magit-org-todos-autoinsert))
 
+(use-package magit-delta
+  :hook (magit-mode . magit-delta-mode))
+
 ;; (use-package magit-gh-pulls
 ;;   :after magit
 ;;   :config
