@@ -6,9 +6,7 @@
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("gnu" . "https://elpa.gnu.org/packages/")
-                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-                         ;; ("org"   . "https://orgmode.org/elpa/")
-                         ("elpa"  . "https://elpa.gnu.org/packages/")))
+                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
 (package-initialize)
 ;; https://github.com/jwiegley/use-package/issues/319#issuecomment-845214233
