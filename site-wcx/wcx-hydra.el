@@ -76,17 +76,17 @@ _m_ make            _S_ save all        _f_ file            ^^
   ("s" helm-projectile-ag)
   ("S" projectile-save-project-buffers))
 
-(defhydra hydra-undo-tree (:color yellow
-                                  :hint nil
-                                  )
-  "
-  _p_: undo  _n_: redo _s_: save _l_: load   "
-  ("p"   undo-tree-undo)
-  ("n"   undo-tree-redo)
-  ("s"   undo-tree-save-history)
-  ("l"   undo-tree-load-history)
-  ("u"   undo-tree-visualize "visualize" :color blue)
-  ("q"   nil "quit" :color blue))
+;; (defhydra hydra-undo-tree (:color yellow
+;;                                   :hint nil
+;;                                   )
+;;   "
+;;   _p_: undo  _n_: redo _s_: save _l_: load   "
+;;   ("p"   undo-tree-undo)
+;;   ("n"   undo-tree-redo)
+;;   ("s"   undo-tree-save-history)
+;;   ("l"   undo-tree-load-history)
+;;   ("u"   undo-tree-visualize "visualize" :color blue)
+;;   ("q"   nil "quit" :color blue))
 
 
 (defhydra hydra-system (:color blue)
