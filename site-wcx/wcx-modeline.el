@@ -12,7 +12,7 @@
 
 (use-package spaceline
   :ensure t
-  :disabled
+  ;; :disabled
   :config
   (require 'spaceline-config)
   ;;(spaceline-emacs-theme)
@@ -34,6 +34,7 @@
 
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode)
+  :disabled
   :init
   (setq doom-modeline-height 10)
   (setq doom-modeline-buffer-file-name-style 'relative-from-project)

@@ -18,9 +18,9 @@
                            (run-with-timer 0.1 nil 'invert-face 'mode-line)))
 
 ;; ----- Standard Loadpath
-(setq site-lisp-path "~/.emacs.d/site-lisp/")
+;; (setq site-lisp-path "~/.emacs.d/site-lisp/")
 (setq site-wcx-path "~/.emacs.d/site-wcx/")
-(add-to-list 'load-path site-lisp-path)
+;; (add-to-list 'load-path site-lisp-path)
 (add-to-list 'load-path site-wcx-path)
 
 ;; Move custom definitions to another place.
@@ -104,6 +104,7 @@
 ;; (load-feature 'wcx-scala)
 ;; (load-feature 'wcx-auto-complete)
 (load-feature 'wcx-lsp)
+(load-feature 'wcx-misc-prog)
 
 ;; Games
 ;; (require 'wcx-nethack)

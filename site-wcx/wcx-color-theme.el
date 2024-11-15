@@ -30,12 +30,27 @@
 ;;   :config
 ;;   (load-theme 'minsk t))
 
+
+;; (load-theme 'wombat t)
 ;; (use-package kaolin-themes
 ;;   :ensure t
 ;;   :config
 ;;   (setq kaolin-themes-modeline-border nil)
-;;   (load-theme 'kaolin-dark)
+;;   (load-theme 'kaolin-aurora)
 ;;   (kaolin-treemacs-theme))
+
+(use-package kanagawa-themes
+  :ensure t
+  :config
+  (load-theme 'kanagawa-dragon))
+
+;; (use-package nano-theme
+;;   :ensure t
+;;   :quelpa (nano-theme
+;;            :fetcher github
+;;            :repo "rougier/nano-theme")
+;;   :config
+;;   (nano-dark))
 
 ;; (use-package modus-vivendi-theme
 ;;   :ensure t
@@ -83,14 +98,14 @@
 ;;   (setq nord-region-highlight "snowstorm")
 ;;   (load-theme 'nord t))
 
-(use-package doom-themes
-  :ensure t
-  :init
-  (setq doom-themes-enable-bold t)
-  :config
-  (load-theme 'doom-horizon t)
-  (doom-themes-visual-bell-config)
-  (doom-themes-org-config))
+;; (use-package doom-themes
+;;   :ensure t
+;;   :init
+;;   (setq doom-themes-enable-bold t)
+;;   :config
+;;   (load-theme 'doom-horizon t)
+;;   (doom-themes-visual-bell-config)
+;;   (doom-themes-org-config))
 
 ;; (use-package berrys-theme
 ;;   :ensure t

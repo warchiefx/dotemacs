@@ -7,17 +7,33 @@
 
 (defun wcx-restart-python ()
   (require 'wcx-utils)
-  ;; (set-variable 'ycmd-server-command `(,(executable-find "python3") ,(file-truename "~/.emacs.d/ycmd/ycmd/")))
-  (pyvenv-restart-python)
-  ;; (ycmd-restart-semantic-server)
-  )
+  (setq python-shell-interpreter (concat pyvenv-virtual-env "bin/python"))
+  (setq lsp-pyright-python-executable-cmd (concat pyvenv-virtual-env "bin/python"))
+  (call-interactively 'lsp-restart-workspace)
+  (pyvenv-restart-python))
+
+(use-package pyvenv
+  :ensure t
+  :init
+  (setenv "WORKON_HOME" (expand-file-name "~/.pyenv/versions"))
+  :bind (([?\C-c ?\C-x ?v] . pyvenv-workon))
+  :config
+  (setq pyvenv-post-activate-hooks
+        (list (lambda ()
+                (setq python-shell-interpreter (concat pyvenv-virtual-env "bin/python"))
+                (setq lsp-pyright-python-executable-cmd (concat pyvenv-virtual-env "bin/python"))
+                (call-interactively 'lsp-restart-workspace))))
+  (setq pyvenv-post-deactivate-hooks
+        (list (lambda ()
+                (setq python-shell-interpreter "python3")))))
 
 (use-package auto-virtualenv
   :ensure t
   :config
   (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
-  (add-hook 'pyvenv-post-activate-hooks 'wcx-restart-python))
+  ;; (add-hook 'pyvenv-post-activate-hooks 'wcx-restart-python))
+  )
 
 (use-package python-docstring
   :ensure t
@@ -37,19 +53,6 @@
   :config
   ;; (setq blacken-line-length 100)
   :bind (([?\C-c ?\C-x ?a] . blacken-buffer)))
-
-(use-package pyvenv
-  :ensure t
-  :init
-  (setenv "WORKON_HOME" (expand-file-name "~/.pyenv/versions"))
-  :bind (([?\C-c ?\C-x ?v] . pyvenv-workon))
-  :config
-  (setq pyvenv-post-activate-hooks
-        (list (lambda ()
-                (setq python-shell-interpreter (concat pyvenv-virtual-env "bin/python")))))
-  (setq pyvenv-post-deactivate-hooks
-        (list (lambda ()
-                (setq python-shell-interpreter "python3")))))
 
 (use-package pip-requirements
   :ensure t

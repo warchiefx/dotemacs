@@ -1,5 +1,6 @@
 ;;; wcx-package.el --- Package system setup
 (require 'package)
+(setq package-user-dir "~/.emacs.d/packages")
 
 ; Workaround for missing url-insert-buffer-contents function
 (load-library "url-handlers")

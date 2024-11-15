@@ -83,8 +83,8 @@
 
 (display-time-mode 0)
 
-(add-hook 'conf-javaprop-mode-hook
-          '(lambda () (conf-quote-normal nil)))
+;(add-hook 'conf-javaprop-mode-hook
+;          '(lambda () (conf-quote-normal nil)))
 
 (use-package winner
   :bind (("C-<f3>" . winner-undo)
@@ -537,6 +537,9 @@
          ("C-x C-j" . consult-dir-jump-file)))
 
 (use-package jq-mode
+  :ensure t)
+
+(use-package crontab-mode
   :ensure t)
 
 (provide 'wcx-generic)

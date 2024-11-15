@@ -1,15 +1,15 @@
-(use-package sane-term
-  :ensure t
-  :commands sane-term
-  :init
-  ;; shell to use for sane-term
-  (setq sane-term-shell-command "/usr/bin/zsh")
-  ;; sane-term will create first term if none exist
-  (setq sane-term-initial-create t)
-  ;; `C-d' or `exit' will kill the term buffer.
-  (setq sane-term-kill-on-exit t)
-  ;; After killing a term buffer, not cycle to another.
-  (setq sane-term-next-on-kill nil))
+;; (use-package sane-term
+;;   :ensure t
+;;   :commands sane-term
+;;   :init
+;;   ;; shell to use for sane-term
+;;   (setq sane-term-shell-command "/usr/bin/zsh")
+;;   ;; sane-term will create first term if none exist
+;;   (setq sane-term-initial-create t)
+;;   ;; `C-d' or `exit' will kill the term buffer.
+;;   (setq sane-term-kill-on-exit t)
+;;   ;; After killing a term buffer, not cycle to another.
+;;   (setq sane-term-next-on-kill nil))
 
 (use-package shell-pop
   :ensure t
