@@ -30,7 +30,7 @@
 ;;(setq emacs-font "Lucida Grande Mono-10.5")
 ;(setq emacs-font "MesloLGSDZ-10")
 ;; (setq emacs-font "Hack-12")
-(setq emacs-font "Iosevka-10.5")
+(setq emacs-font "Iosevka-12")
 ;; (setq emacs-font "Jetbrains Mono-10")
 ;; (setq emacs-font "Victor Mono-10")
 ;;(setq emacs-font "DejaVu Sans Mono-10")
@@ -56,7 +56,7 @@
     ;; (message "PPI: %s" ppi)
     (if (> ppi 155)
         (set-face-attribute 'default frame :height 180)
-      (set-face-attribute 'default frame :height 140))))
+      (set-face-attribute 'default frame :height 160))))
 
 ;; (add-function :after after-focus-change-function #'td/adapt-font-size)
 (add-to-list 'window-size-change-functions #'td/adapt-font-size)
@@ -96,6 +96,9 @@
 (require 'auth-source)
 (require 'auth-source-pass)
 (auth-source-pass-enable)
+(setq epg-pinentry-mode 'loopback)
+(require 'epa-file)
+(epa-file-enable)
 
 (use-package auto-compile
   :defer nil
@@ -541,6 +544,30 @@
 
 (use-package crontab-mode
   :ensure t)
+
+(use-package plantuml-mode
+  :ensure t
+  :config
+    (setq plantuml-executable-path "/opt/homebrew/bin/plantuml")
+    (setq plantuml-jar-path "~/.emacs.d/plantuml.jar")
+    (setq plantuml-default-exec-mode 'executable)
+    (setq plantuml-output-type "png")
+    (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode)))
+
+(use-package flycheck-plantuml
+  :ensure t
+  :config
+  (with-eval-after-load 'flycheck
+    (require 'flycheck-plantuml)
+    (flycheck-plantuml-setup)))
+
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
