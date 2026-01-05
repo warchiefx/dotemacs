@@ -9,7 +9,7 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-(defvar wcx/lsp-provider "lsp-mode")
+(defvar wcx/lsp-provider "eglot")
 (defvar wcx/checker "flycheck")
 
 (setq load-prefer-newer t)
@@ -104,7 +104,8 @@
 ;; (load-feature 'wcx-scala)
 ;; (load-feature 'wcx-auto-complete)
 (load-feature 'wcx-lsp)
-(load-feature 'wcx-misc-prog)
+(load-feature 'wcx-llm)
+;; (load-feature 'wcx-misc-prog)
 
 ;; Games
 ;; (require 'wcx-nethack)
