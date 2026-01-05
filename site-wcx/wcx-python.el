@@ -27,13 +27,13 @@
         (list (lambda ()
                 (setq python-shell-interpreter "python3")))))
 
-(use-package auto-virtualenv
-  :ensure t
-  :config
-  (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
-  (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
-  ;; (add-hook 'pyvenv-post-activate-hooks 'wcx-restart-python))
-  )
+;; (use-package auto-virtualenv
+;;   :ensure t
+;;   :config
+;;   (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
+;;   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
+;;   ;; (add-hook 'pyvenv-post-activate-hooks 'wcx-restart-python))
+;;   )
 
 (use-package python-docstring
   :ensure t
@@ -67,6 +67,7 @@
 
 (use-package smart-dash
   :defer t
+  :hook (python-ts-mode . smart-dash-mode)
   :hook (python-mode . smart-dash-mode))
 
 (use-package pipenv
@@ -89,12 +90,14 @@
   (setq lsp-pyls-plugins-pylint-enabled t))
 
 (use-package python-mode
-  :mode ("\\.py\\'" . python-mode)
-  :interpreter ("python" . python-mode)
+  :mode ("\\.py\\'" . python-ts-mode)
+  :interpreter ("python" . python-ts-mode)
   :config
   ;; (setq-default lsp-pyls-configuration-sources ["pylint"])
   (add-hook 'python-mode-hook (lambda ()
                                (semantic-mode 1)
+                               (setq font-lock-maximum-decoration t)
+                               (font-lock-mode t)
                                (setq eglot-workspace-configuration '(:pyls . (:plugins (:jedi_completion (:include_params t)))))
                                (when (string-equal wcx/checker "flycheck")
                                  (setq flycheck-checker 'python-pylint
@@ -118,6 +121,7 @@
    "Env"
    (("a" pipenv-activate "pipenv-activate" :exit nil)
     ("d" pipenv-deactivate "pipenv-deactivate" :exit nil)
+    ("z" poetry "poetry" :exit nil)
     ("w" pyvenv-workon "workon...")
     ("s" run-python "pyshell"))
    "Tools"
@@ -127,8 +131,46 @@
    "Test"
    (("t" python-pytest-popup "pytest..."))))
 
+(use-package ruff-format
+  :ensure t
+  :defer t)
+
+(use-package python-ts-mode
+  :ensure nil
+  :mode-hydra
+  ("Nav"
+   (("n" python-nav-forward-defun "next-defun" :exit nil)
+    ("p" python-nav-backward-defun "prev-defun" :exit nil))
+   "Errors"
+   (("<" flycheck-previous-error "prev" :exit nil)
+    (">" flycheck-next-error "next" :exit nil)
+    ("l" flycheck-list-errors "list"))
+   "LSP"
+   (("r" (lambda ()
+           (interactive)
+           (if (string-equal wcx/lsp-provider "eglot")
+               (call-interactively 'eglot-reconnect)
+             (call-interactively 'lsp-restart-workspace))) "restart"))
+   "Tools"
+   (("f" ruff-format-buffer "reformat")
+    ("c" whitespace-cleanup "clean whitespace")
+    ("i" py-isort-buffer "sort imports"))
+   "Test"
+   (("t" python-pytest-popup "pytest..."))))
+
+
 (use-package ggtags
+  :hook (python-ts-mode . ggtags-mode)
   :hook (python-mode . ggtags-mode))
+
+(use-package poetry
+ :ensure t
+ :config
+ (poetry-tracking-mode))
+
+(use-package uv-mode
+  :hook (python-mode . uv-mode-auto-activate-hook)
+  :hook (python-ts-mode . uv-mode-auto-activate-hook))
 
 (provide 'wcx-python)
 ;;; wcx-python.el ends here

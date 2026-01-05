@@ -113,11 +113,14 @@
 
     ;; Integrate project.el with projectile
     (add-to-list 'project-find-functions #'wcx/find-projectile-project)
-    ;; (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
+    (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
 
     (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
     (define-key eglot-mode-map (kbd "S-<f6>") 'eglot-rename)
     (define-key eglot-mode-map (kbd "C-<f4>") 'eglot-code-actions)
-    :hook ((python-mode java-mode bash-mode lua-mode ruby-mode rust-mode) . wcx/activate-lsp)))
+    :hook ((python-ts-mode . wcx/activate-lsp)
+           (python-mode . wcx/activate-lsp)
+           (prog-mode . wcx/activate-lsp)
+           (python-ts-mode . flyspell-prog-mode))))
 
 (provide 'wcx-lsp)

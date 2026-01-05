@@ -25,6 +25,8 @@
  '(ansi-term-color-vector
    [unspecified "#1e1e1e" "#cf6a4c" "#8f9d6a" "#f9ee98" "#7587a6" "#9b859d"
                 "#7587a6" "#a7a7a7"] t)
+ '(auth-source-gpg-encrypt-to '("C20A077859B9A9AB006B0691040BB8B61A006E41"))
+ '(auth-sources '("~/.authinfo" "~/.authinfo.gpg" "~/.netrc"))
  '(auto-hscroll-mode 'current-line)
  '(auto-save-default nil)
  '(beacon-color "#eab4484b8035")
@@ -48,7 +50,9 @@
  '(compilation-scroll-output 'first-error)
  '(compile-command "ant -s build.xml -emacs")
  '(connection-local-criteria-alist
-   '(((:application tramp :protocol "kubernetes")
+   '(((:application tramp :machine "Erebus.local")
+      tramp-connection-local-darwin-ps-profile)
+     ((:application tramp :protocol "kubernetes")
       tramp-kubernetes-connection-local-default-profile)
      ((:application tramp :machine "tartarus")
       tramp-connection-local-darwin-ps-profile)
@@ -143,7 +147,11 @@
  '(current-language-environment "Latin-1")
  '(cursor-type 'bar)
  '(custom-safe-themes
-   '("d2ab3d4f005a9ad4fb789a8f65606c72f30ce9d281a9e42da55f7f4b9ef5bfc6"
+   '("21eb44ad0e958f71261c436a06577dc114b2850e5a82bc12314cf63c2d2d1db5"
+     "9d5a33a0097c43f44759530c846e1adf9c40171f232a4b2ae561feccc99a03c4"
+     "3538194fff1b928df280dc08f041518a8d51ac3ff704c5e46d1517f5c4d8a0e0"
+     "ca2ce81d33e0b4bd0fdf20caefdde9cb617fec42eeeaf5cd79c80d630bd5cf6a"
+     "d2ab3d4f005a9ad4fb789a8f65606c72f30ce9d281a9e42da55f7f4b9ef5bfc6"
      "daa27dcbe26a280a9425ee90dc7458d85bd540482b93e9fa94d4f43327128077"
      "e4a702e262c3e3501dfe25091621fe12cd63c7845221687e36a79e17cf3a67e0"
      "a6920ee8b55c441ada9a19a44e9048be3bfb1338d06fc41bce3819ac22e4b5a1"
@@ -384,45 +392,53 @@
  '(org-src-fontify-natively t)
  '(package-check-signature nil)
  '(package-selected-packages
-   '(add-node-modules-path all-the-icons auto-compile auto-virtualenv
-                           autodisass-java-bytecode better-defaults blacken
-                           comment-tags company-flx company-quickhelp
-                           company-restclient company-statistics consult-dir
-                           counsel-gtags counsel-projectile coverlay
-                           crontab-mode csv-mode dashboard deadgrep diff-hl
-                           diminish docker dockerfile-mode doom-themes
-                           dumb-jump electric-operator embrace emmet-mode
-                           esh-autosuggest evil-anzu evil-args evil-collection
-                           evil-commentary evil-escape evil-exchange
-                           evil-goggles evil-indent-plus evil-leader
-                           evil-matchit evil-multiedit evil-numbers evil-org
-                           evil-space evil-surround evil-tutor
+   '(add-node-modules-path ai-code aidermacs all-the-icons auto-compile
+                           auto-virtualenv autodisass-java-bytecode
+                           better-defaults blacken comment-tags company-flx
+                           company-quickhelp company-restclient
+                           company-statistics consult-dir counsel-gtags
+                           counsel-projectile coverlay crontab-mode csv-mode
+                           dashboard deadgrep diff-hl diminish docker
+                           dockerfile-mode dumb-jump eat electric-operator
+                           embrace emmet-mode esh-autosuggest evil-anzu
+                           evil-args evil-collection evil-commentary
+                           evil-escape evil-exchange evil-goggles
+                           evil-indent-plus evil-leader evil-matchit
+                           evil-multiedit evil-numbers evil-org evil-space
+                           evil-surround evil-textobj-tree-sitter evil-tutor
                            evil-vimish-fold exato exec-path-from-shell
-                           flycheck-posframe frame-tag gcmh ggtags gist
-                           git-link git-timemachine groovy-imports groovy-mode
+                           flycheck-plantuml flycheck-posframe frame-tag gcmh
+                           gemini-cli ggtags gist git-link git-timemachine
                            helm-projectile ibuffer-vc ido-completing-read+
-                           ido-vertical-mode imenu-anywhere ivy-hydra iwindow
+                           ido-vertical-mode imenu-anywhere ivy-hydra
                            jade-mode jest-test-mode jq-mode k8s-mode
                            kanagawa-themes kaolin-themes keychain-environment
                            kubernetes-evil lsp-ivy lsp-java lsp-pyright lsp-ui
-                           lua-mode magit-delta magit-gitflow magit-org-todos
+                           lua-mode magit-gitflow magit-org-todos
                            major-mode-hydra makefile-executor meghanada
-                           multiple-cursors nord-theme nswbuff org-contrib
-                           org-edna org-super-agenda ox-gfm ox-qmd paradox
-                           pip-requirements pipenv popper prettier-js py-isort
-                           python-docstring python-mode python-pytest
-                           quelpa-use-package rainbow-delimiters rainbow-mode
-                           react-snippets realgud rjsx-mode sass-mode
-                           scss-mode shackle shell-pop skewer-mode smart-dash
+                           multiple-cursors nswbuff org-contrib org-edna
+                           org-super-agenda ox-gfm ox-qmd paradox
+                           pip-requirements pipenv poetry popper prettier-js
+                           py-isort python-docstring python-mode python-pytest
+                           python-ts-mode quelpa-use-package
+                           rainbow-delimiters rainbow-mode react-snippets
+                           realgud rjsx-mode ruff-format sass-mode scss-mode
+                           shackle shell-pop skewer-mode smart-dash
                            smart-shift smartparens smex spaceline
-                           switch-window symbol-overlay tide treemacs-evil
+                           switch-window symbol-overlay tide
+                           tree-sitter-indent tree-sitter-ispell
+                           tree-sitter-langs treemacs-evil
                            treemacs-icons-dired treemacs-magit
-                           treemacs-projectile typescript-mode undo-fu
-                           use-package-hydra verb web-mode which-key-posframe
-                           whitespace-cleanup-mode yascroll yasnippet-snippets
-                           zeal-at-point))
+                           treemacs-projectile treesit-auto typescript-mode
+                           undo-fu use-package-hydra uv-mode verb vterm
+                           vterm-toggle web-mode which-key-posframe
+                           whitespace-cleanup-mode xterm-color yascroll
+                           yasnippet-snippets zeal-at-point))
+ '(package-vc-selected-packages
+   '((gemini-cli :url "https://github.com/linchen2chris/gemini-cli.el")))
  '(paradox-automatically-star t)
  '(paradox-github-token "e63cdb71589f2da70b3fa5aec892bb7f5fd4e4b1")
+ '(plantuml-indent-level 2)
  '(puppet-indent-level tab-width)
  '(python-indent-offset 4)
  '(python-shell-interpreter "python2")
