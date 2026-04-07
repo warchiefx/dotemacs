@@ -187,6 +187,7 @@ PWD is not in a git repo (or the git command is not found)."
          )
   :config
   (setq vterm-toggle-fullscreen-p nil)
+  (setq vterm-toggle-use-dedicated-buffer t)
   (evil-set-initial-state 'vterm-mode 'emacs)
   (add-to-list 'display-buffer-alist
                '("^v?term.*"

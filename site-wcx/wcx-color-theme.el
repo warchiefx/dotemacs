@@ -32,17 +32,17 @@
 
 
 ;; (load-theme 'wombat t)
-;; (use-package kaolin-themes
-;;   :ensure t
-;;   :config
-;;   (setq kaolin-themes-modeline-border nil)
-;;   (load-theme 'kaolin-aurora)
-;;   (kaolin-treemacs-theme))
-
-(use-package kanagawa-themes
+(use-package kaolin-themes
   :ensure t
   :config
-  (load-theme 'kanagawa-dragon))
+  (setq kaolin-themes-modeline-border nil)
+  (load-theme 'kaolin-ocean)
+  (kaolin-treemacs-theme))
+
+;; (use-package kanagawa-themes
+;;   :ensure t
+;;   :config
+;;   (load-theme 'kanagawa-wave))
 
 ;; (use-package nano-theme
 ;;   :ensure t

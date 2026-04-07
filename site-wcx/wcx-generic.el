@@ -568,6 +568,12 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
+(setq desktop-restore-frames t)
+(setq desktop-restore-in-current-display t)
+(setq desktop-restore-forces-onscreen nil)
+
+(global-set-key [C-mouse-1] 'eglot-find-typeDefinition)
+(global-set-key [C-down-mouse-1] nil)
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here
