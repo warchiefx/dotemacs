@@ -4,6 +4,7 @@
 (menu-bar-mode 0)
 
 (require 'iso-transl)  ;; Handle dead keys and such
+(require 'epa-file)    ;; Transparent GPG file decryption
 
 ;;(horizontal-scroll-bar-mode 0)
 (setq frame-title-format "emacs [%b]"
@@ -31,20 +32,19 @@
 ;(setq emacs-font "MesloLGSDZ-10")
 ;; (setq emacs-font "Hack-12")
 (setq emacs-font "Iosevka-12")
-;; (setq emacs-font "Jetbrains Mono-10")
-;; (setq emacs-font "Victor Mono-10")
-;;(setq emacs-font "DejaVu Sans Mono-10")
+;; (setq emacs-font "JetBrains Mono-12")
 ;; (setq emacs-font "Fira Code-12")
-;; (setq emacs-font "Monoid-11")
-;; (setq emacs-font "Input Mono-12")
-;;(setq emacs-font "Hermit-10")
-;; (set-frame-font emacs-font)
-(defvar default-font (concat emacs-font ":antialias=true:hinting=true"))
-;; (defvar default-font emacs-font)
-;; (add-to-list 'face-font-rescale-alist (cons emacs-font 0.86))
-(if (display-graphic-p)
-   (set-face-attribute 'default nil :font default-font)
-   (add-to-list 'default-frame-alist `(font . ,default-font)))
+;; (setq emacs-font "Victor Mono-12")
+;; (setq emacs-font "Hack-12")
+
+;; macOS handles antialiasing/hinting on its own; the fontconfig-style
+;; ":antialias=true:hinting=true" suffix produces an invalid font-spec
+;; on Cocoa Emacs and triggers errors in timer-driven popups (which-key).
+;; Always set `default-frame-alist' so daemon-spawned graphical frames
+;; pick up the font; only call `set-face-attribute' if there's a GUI now.
+(add-to-list 'default-frame-alist `(font . ,emacs-font))
+(when (display-graphic-p)
+  (set-face-attribute 'default nil :font emacs-font))
 
 ;; Taken from https://www.reddit.com/r/emacs/comments/qoslj5/automatic_text_size_adjustment_per_display/
 ;; Adapts font size depending on the display
@@ -122,36 +122,9 @@
 ;; Buffer naming strategy
 (require 'uniquify)
 
-(use-package smex
-  :ensure t
-  :config
-  (global-set-key [(meta x)] (lambda ()
-                             (interactive)
-                             (or (boundp 'smex-cache)
-                                 (smex-initialize))
-                             (global-set-key [(meta x)] 'smex)
-                             (smex)))
-
-(global-set-key [(shift meta x)] (lambda ()
-                                   (interactive)
-                                   (or (boundp 'smex-cache)
-                                       (smex-initialize))
-                                   (global-set-key [(shift meta x)] 'smex-major-mode-commands)
-                                   (smex-major-mode-commands))))
-
-
-(use-package ido-vertical-mode
-  :config
-  (ido-vertical-mode 1)
-  (setq ido-vertical-define-keys 'C-n-C-p-up-and-down))
-
-
 (use-package yascroll
   :config
   (global-yascroll-bar-mode 1))
-
-(use-package ido-completing-read+
-  :ensure t)
 
 (use-package frame-tag
   :ensure t
@@ -184,12 +157,13 @@
   (setq switch-window-threshold 2))
 
 
-;; Avoid having to delete extra spaces after kill-line on end of line
-(defadvice kill-line (before check-position activate)
-  (if (and (eolp) (not (bolp)))
-      (progn (forward-char 1)
-             (just-one-space 0)
-             (backward-char 1))))
+;; Avoid having to delete extra spaces after kill-line on end of line.
+(defun wcx/kill-line-collapse-space (&rest _)
+  (when (and (eolp) (not (bolp)))
+    (forward-char 1)
+    (just-one-space 0)
+    (backward-char 1)))
+(advice-add 'kill-line :before #'wcx/kill-line-collapse-space)
 
 ;; Join next line with this.
 (global-set-key (kbd "C-c j")
@@ -228,10 +202,6 @@
 (use-package whitespace-cleanup-mode
   :ensure t
   :config (global-whitespace-cleanup-mode))
-
-(global-ede-mode 1)
-(require 'semantic/sb)
-(semantic-mode 1)
 
 ;; Post 24.4 stuff
 (superword-mode 1)
@@ -369,10 +339,16 @@
 
 (use-package dumb-jump
   :ensure t
+  :demand t
   :diminish dumb-jump-mode
   :config
   (setq dumb-jump-prefer-searcher 'rg)
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  ;; Replace the default etags backend (which always claims the request
+  ;; and prompts for a TAGS file) with dumb-jump as the global fallback.
+  ;; Eglot still wins because it prepends `eglot-xref-backend' buffer-locally
+  ;; in managed buffers.
+  (setq-default xref-backend-functions
+                '(dumb-jump-xref-activate etags--xref-backend))
   :hydra (dumb-jumb-hydra (:color blue :columns 3)
     "Dumb Jump"
     ("j" dumb-jump-go "Go")
@@ -545,21 +521,19 @@
 (use-package crontab-mode
   :ensure t)
 
+;; PlantUML — uses the homebrew-installed `plantuml' CLI; no bundled jar.
 (use-package plantuml-mode
   :ensure t
+  :mode "\\.plantuml\\'"
   :config
-    (setq plantuml-executable-path "/opt/homebrew/bin/plantuml")
-    (setq plantuml-jar-path "~/.emacs.d/plantuml.jar")
-    (setq plantuml-default-exec-mode 'executable)
-    (setq plantuml-output-type "png")
-    (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode)))
+  (setq plantuml-default-exec-mode 'executable
+        plantuml-executable-path (or (executable-find "plantuml") "plantuml")
+        plantuml-output-type "png"))
 
 (use-package flycheck-plantuml
   :ensure t
-  :config
-  (with-eval-after-load 'flycheck
-    (require 'flycheck-plantuml)
-    (flycheck-plantuml-setup)))
+  :after (flycheck plantuml-mode)
+  :config (flycheck-plantuml-setup))
 
 (use-package treesit-auto
   :custom
@@ -572,8 +546,45 @@
 (setq desktop-restore-in-current-display t)
 (setq desktop-restore-forces-onscreen nil)
 
-(global-set-key [C-mouse-1] 'eglot-find-typeDefinition)
+(defun wcx/mouse-goto-definition (event)
+  "Move point to the mouse click position, then jump to definition.
+Uses `xref-find-definitions', which delegates to eglot when an LSP
+server is active and falls back to dumb-jump otherwise."
+  (interactive "e")
+  (let ((posn (event-end event)))
+    (when (windowp (posn-window posn))
+      (select-window (posn-window posn)))
+    (when (numberp (posn-point posn))
+      (goto-char (posn-point posn))))
+  (call-interactively #'xref-find-definitions))
+
+(defun wcx/mouse-find-references (event)
+  "Move point to the mouse click position, then list references."
+  (interactive "e")
+  (let ((posn (event-end event)))
+    (when (windowp (posn-window posn))
+      (select-window (posn-window posn)))
+    (when (numberp (posn-point posn))
+      (goto-char (posn-point posn))))
+  (call-interactively #'xref-find-references))
+
+;; Cmd+click (macOS) and Ctrl+click → go to definition.
+;; Shift+Cmd+click and Shift+Ctrl+click → find references.
+;; Suppress the down-events so the click doesn't drag-select.
 (global-set-key [C-down-mouse-1] nil)
+(global-set-key [s-down-mouse-1] nil)
+(global-set-key [C-S-down-mouse-1] nil)
+(global-set-key [s-S-down-mouse-1] nil)
+(global-set-key [C-mouse-1] #'wcx/mouse-goto-definition)
+(global-set-key [s-mouse-1] #'wcx/mouse-goto-definition)
+(global-set-key [C-S-mouse-1] #'wcx/mouse-find-references)
+(global-set-key [s-S-mouse-1] #'wcx/mouse-find-references)
+
+;; Debugger (deferred — only loads when invoked).
+(use-package realgud
+  :ensure t
+  :defer t
+  :commands (realgud:ipdb realgud:pdb realgud:trepan3k))
 
 (provide 'wcx-generic)
 ;;; wcx-generic.el ends here

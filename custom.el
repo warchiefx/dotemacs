@@ -18,10 +18,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(Info-additional-directory-list '("~/.emacs.d/info"))
- '(all-the-icons-ivy-buffer-commands '(ivy-switch-buffer-other-window))
- '(android-mode-builder 'maven)
- '(android-mode-key-prefix "\\C-c \\C-a")
- '(android-mode-sdk-dir "~/Apps/android-sdk")
+ '(ai-code-onboarding-seen t)
  '(ansi-term-color-vector
    [unspecified "#1e1e1e" "#cf6a4c" "#8f9d6a" "#f9ee98" "#7587a6" "#9b859d"
                 "#7587a6" "#a7a7a7"] t)
@@ -31,10 +28,6 @@
  '(auto-save-default nil)
  '(beacon-color "#eab4484b8035")
  '(browse-url-browser-function 'browse-url-default-browser)
- '(browse-url-generic-program "google-chrome-stable")
- '(bsh-classpath '("/usr/share/libreadline-java/lib/libreadline-java.jar"))
- '(bsh-jar "/usr/share/bsh/lib/bsh.jar")
- '(bsh-vm "/etc/java-config-2/current-system-vm/bin/java")
  '(byte-compile-warnings '(suspicious lexical))
  '(c-default-style "k&r")
  '(case-fold-search t)
@@ -48,7 +41,6 @@
  '(company-transformers '(company-sort-by-backend-importance))
  '(compilation-message-face 'default)
  '(compilation-scroll-output 'first-error)
- '(compile-command "ant -s build.xml -emacs")
  '(connection-local-criteria-alist
    '(((:application tramp :machine "Erebus.local")
       tramp-connection-local-darwin-ps-profile)
@@ -213,11 +205,6 @@
  '(evil-insert-state-cursor '("#E57373" bar) t)
  '(evil-normal-state-cursor '("#FFEE58" box) t)
  '(evil-visual-state-cursor '("#C5E1A5" box) t)
- '(exec-path
-   '("/usr/local/sbin" "/usr/local/bin" "/usr/bin" "/opt/java/bin"
-     "/opt/java/db/bin" "/opt/java/jre/bin" "/usr/bin/vendor_perl"
-     "/usr/bin/core_perl" "/usr/lib/emacs/24.3/x86_64-unknown-linux-gnu"
-     "/usr/share/git/remote-helpers"))
  '(eyebrowse-switch-back-and-forth t)
  '(eyebrowse-wrap-around t)
  '(fill-column 78)
@@ -315,7 +302,7 @@
  '(mail-user-agent 'gnus-user-agent)
  '(major-mode-hydra-invisible-quit-key "q")
  '(make-backup-files nil)
- '(markdown-command "pandoc" t)
+ '(markdown-command "pandoc")
  '(mouse-drag-copy-region nil)
  '(nethack-use-tiles t)
  '(nlinum-highlight-current-line t)
@@ -392,7 +379,48 @@
  '(org-md-headline-style 'atx)
  '(org-src-fontify-natively t)
  '(package-check-signature nil)
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(add-node-modules-path ai-code aidermacs all-the-icons auto-compile
+                           auto-virtualenv autodisass-java-bytecode
+                           better-defaults blacken claude-code-ide
+                           comment-tags company-flx company-quickhelp
+                           company-restclient company-statistics consult-dir
+                           counsel-gtags counsel-projectile coverlay
+                           crontab-mode csv-mode dashboard deadgrep diff-hl
+                           diminish docker dockerfile-mode dumb-jump eat
+                           electric-operator embrace emmet-mode
+                           esh-autosuggest evil-anzu evil-args evil-collection
+                           evil-commentary evil-escape evil-exchange
+                           evil-goggles evil-indent-plus evil-leader
+                           evil-matchit evil-multiedit evil-numbers evil-org
+                           evil-space evil-surround evil-textobj-tree-sitter
+                           evil-tutor evil-vimish-fold exato
+                           exec-path-from-shell flycheck-plantuml
+                           flycheck-posframe frame-tag gcmh gemini-cli ggtags
+                           gist git-link git-timemachine helm-projectile
+                           ibuffer-vc ido-completing-read+ ido-vertical-mode
+                           imenu-anywhere ivy-hydra jade-mode jest-test-mode
+                           jq-mode k8s-mode kanagawa-themes kaolin-themes
+                           keychain-environment kubernetes-evil lsp-ivy
+                           lsp-java lsp-pyright lsp-ui lua-mode magit-gitflow
+                           magit-org-todos major-mode-hydra makefile-executor
+                           meghanada multiple-cursors nswbuff org-contrib
+                           org-edna org-super-agenda ox-gfm ox-qmd paradox
+                           pip-requirements pipenv poetry popper popup
+                           prettier-js py-isort python-docstring python-mode
+                           python-pytest quelpa-use-package rainbow-delimiters
+                           rainbow-mode react-snippets realgud rjsx-mode
+                           ruff-format sass-mode scss-mode shackle shell-pop
+                           skewer-mode smart-dash smart-shift smartparens smex
+                           spaceline switch-window symbol-overlay tabnine tide
+                           tree-sitter-indent tree-sitter-ispell
+                           tree-sitter-langs treemacs-evil
+                           treemacs-icons-dired treemacs-magit
+                           treemacs-projectile treesit-auto typescript-mode
+                           undo-fu use-package-hydra uv-mode verb vterm-toggle
+                           web-mode which-key-posframe whitespace-cleanup-mode
+                           xterm-color yascroll yasnippet-snippets
+                           zeal-at-point))
  '(package-vc-selected-packages
    '((claude-code-ide :url "https://github.com/manzaltu/claude-code-ide.el")
      (gemini-cli :url "https://github.com/linchen2chris/gemini-cli.el")))

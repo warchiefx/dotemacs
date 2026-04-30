@@ -117,26 +117,24 @@
    '((sql . t)))
 
   (when (package-installed-p 'major-mode-hydra)
-    (major-mode-hydra-bind org-mode "Navigation"
-      ("g" org-switchb "Open file")
-      ("j" org-goto "Jump to heading")
-      ("l" org-capture-goto-last-stored "Last Capture")
-      ("a" org-agenda "Agenda")
-      )
-    (major-mode-hydra-bind org-mode "Operations"
-      ("e" org-export-dispatch "Export")
-      ("c" org-capture "Capture")
-      ("A" org-archive-subtree-default "Archive" :color red)
-      )
-    (major-mode-hydra-bind org-mode "Clocking"
-      ("t" org-timer-start "Start Timer")
-      ("s" org-timer-stop "Stop Timer")
-      ("r" org-timer-set-timer "Set Timer") ; This one requires you be in an orgmode doc, as it sets the timer for the header
-      ("p" org-timer "Print Timer") ; output timer value to buffer
-      ("w" (org-clock-in '(4)) "Clock-In") ; used with (org-clock-persistence-insinuate) (setq org-clock-persist t)
-      ("o" org-clock-out "Clock-Out") ; you might also want (setq org-log-note-clock-out t)
-      ("J" org-clock-goto "Clock Goto") ; global visit the clocked task
-      ))
+    (major-mode-hydra-define+ org-mode nil
+      ("Navigation"
+       (("g" org-switchb                    "Open file")
+        ("j" org-goto                       "Jump to heading")
+        ("l" org-capture-goto-last-stored   "Last Capture")
+        ("a" org-agenda                     "Agenda"))
+       "Operations"
+       (("e" org-export-dispatch            "Export")
+        ("c" org-capture                    "Capture")
+        ("A" org-archive-subtree-default    "Archive" :color red))
+       "Clocking"
+       (("t" org-timer-start                "Start Timer")
+        ("s" org-timer-stop                 "Stop Timer")
+        ("r" org-timer-set-timer            "Set Timer")
+        ("p" org-timer                      "Print Timer")
+        ("w" (org-clock-in '(4))            "Clock-In")
+        ("o" org-clock-out                  "Clock-Out")
+        ("J" org-clock-goto                 "Clock Goto")))))
 
   (add-hook 'org-mode-hook (lambda ()
                              "Beautify Org Checkbox Symbol"

@@ -6,9 +6,10 @@
 (mapcar 'disable-theme
     custom-enabled-themes)
 
-(defadvice load-theme (before clear-previous-themes activate)
-  "Clear existing theme settings instead of layering them"
+(defun wcx/disable-other-themes (&rest _)
+  "Clear existing theme settings instead of layering them."
   (mapc #'disable-theme custom-enabled-themes))
+(advice-add 'load-theme :before #'wcx/disable-other-themes)
 
 ;; (use-package zerodark-theme
 ;;   :ensure t

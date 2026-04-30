@@ -1,190 +1,152 @@
-(use-package js2-mode
-  :defer t
-  :interpreter (("node" . js2-mode))
-  :bind (:map js2-mode-map ("C-c C-p" . js2-print-json-path))
-  :mode "\\.\\(js\\|json\\|mjs\\|node\\)$"
-  :hook (js-mode . js2-minor-mode)
-  :mode-hydra
-  ("Errors"
-   (("<" flycheck-previous-error "prev" :exit nil)
-    (">" flycheck-next-error "next" :exit nil)
-    ("l" flycheck-list-errors "list"))
-   "LSP"
-   (("r" (lambda ()
-           (interactive)
-           (if (string-equal wcx/lsp-provider "eglot")
-               (call-interactively 'eglot-reconnect)
-             (call-interactively 'lsp-restart-workspace))) "restart"))
-   "Tools"
-   (("f" prettier-js "reformat")))
+;;; wcx-webdev.el --- Web development (React/TS, REST) -*- lexical-binding: t -*-
+;;; Commentary:
+;; Frontend stack: tree-sitter modes for TS/JS/TSX/JSON, eglot for LSP
+;; (typescript-language-server), prettier for formatting, web-mode/emmet
+;; for templates. REST testing via restclient.
+;;
+;; Tree-sitter grammars are required for the *-ts-mode entries. Install
+;; per-language with M-x treesit-install-language-grammar (typescript,
+;; tsx, javascript, json).
+;;; Code:
+
+(defvar wcx/lsp-provider)
+
+;; ---------------------------------------------------------------------------
+;; Major modes (tree-sitter, all built-in)
+;; ---------------------------------------------------------------------------
+
+(use-package typescript-ts-mode
+  :ensure nil
+  :mode (("\\.ts\\'"  . typescript-ts-mode)
+         ("\\.tsx\\'" . tsx-ts-mode)
+         ("\\.jsx\\'" . tsx-ts-mode))
   :config
-  (setq lsp-clients-typescript-server "typescript-language-server"
-        lsp-clients-typescript-server-args '("--stdio"))
-  (setq js2-basic-offset 2
-        js2-highlight-level 4
-        js2-mode-show-parse-errors nil
-        js2-mode-show-strict-warnings nil))
+  (setq typescript-ts-mode-indent-offset 2))
 
-;; (use-package js2-refactor
-;;   :defer t
-;;   :diminish js2-refactor-mode
-;;   :commands js2-refactor-mode
-;;   :ensure t
-;;   :init
-;;   (add-hook 'js2-mode-hook #'js2-refactor-mode)
-;;   :config
-;;   (js2r-add-keybindings-with-prefix "C-c C-m"))
-
-(use-package rjsx-mode
-  :defer t
-  :mode "\\.\\jsx\\$")
-
-(use-package skewer-mode
-  :defer t
-  :hook (web-mode . skewer-mode)
+(use-package js-ts-mode
+  :ensure nil
+  :mode "\\.\\(js\\|mjs\\|cjs\\)\\'"
   :config
-  (skewer-setup)
-  :diminish skewer-mode)
+  (setq js-indent-level 2))
+
+(use-package json-ts-mode
+  :ensure nil
+  :mode "\\.json\\'")
 
 (use-package web-mode
-  :defer t
-  :mode "\\.\\(html\\|hbs\\)$"
-  :hook (web-mode . emmet-mode)
+  :ensure t
+  :mode "\\.\\(html?\\|hbs\\|svelte\\|ejs\\)\\'"
   :config
   (setq web-mode-markup-indent-offset 2
         web-mode-css-indent-offset 2
         web-mode-code-indent-offset 2
         web-mode-enable-auto-pairing nil
         web-mode-enable-auto-closing t
-        web-mode-enable-current-element-highlight t
-        web-mode-enable-current-column-highlight t)
-  (add-hook 'web-mode-before-auto-complete-hooks
-            '(lambda ()
-               (let ((web-mode-cur-language (web-mode-language-at-pos)))
-                 (if (string= web-mode-cur-language "css")
-                     (setq emmet-use-css-transform t)
-                   (setq emmet-use-css-transform nil))))))
+        web-mode-enable-current-element-highlight t))
+
+(use-package scss-mode
+  :ensure t
+  :defer t
+  :mode "\\.scss\\'")
+
+;; ---------------------------------------------------------------------------
+;; Editing helpers
+;; ---------------------------------------------------------------------------
 
 (use-package emmet-mode
+  :ensure t
   :diminish emmet-mode
-  :after web-mode
-  :defer t
-  :init
-  (dolist (hook '(sgml-mode-hook css-mode-hook kolon-mode-hook web-mode-hook))
-    (add-hook hook 'emmet-mode))
+  :hook ((sgml-mode css-mode web-mode tsx-ts-mode) . emmet-mode)
+  :config
   (setq emmet-expand-jsx-className? t))
 
-
-(mapc (lambda (mode)
-        (if (package-installed-p mode)
-            t
-          (if (assoc mode package-archive-contents)
-              (package-install mode)
-            (progn
-              (package-refresh-contents)
-              (package-install mode)))))
-      '(jade-mode scss-mode sass-mode))
-
-(use-package react-snippets)
-
+;; Prettier — picks up .prettierrc from the project, runs on save.
 (use-package prettier-js
-  :diminish prettier-js-mode
-  :hook ((js2-mode rjsx-mode) . prettier-js-mode)
-  :config
-  (setq prettier-js-args '(
-                           "--trailing-comma" "es5"
-                           "--bracket-spacing" "true"
-                           "--arrow-parens" "always"
-                           "--end-of-line" "lf"
-                           "--tab-width" "2"
-                           "--no-semi"
-                           "--single-quote"
-                           )))
-
-(use-package ggtags
-  :hook ((js2-mode js-mode rjsx-mode web-mode) . (lambda () (ggtags-mode 1))))
-
-;; (use-package indium
-;;   :hook (rjsx-mode . indium-interaction-mode))
-
-(use-package typescript-mode
-  :defer t
-  :mode ("\\.ts\\'" . typescript-mode)
-  :mode-hydra
-  ("Errors"
-   (("<" flycheck-previous-error "prev" :exit nil)
-    (">" flycheck-next-error "next" :exit nil)
-    ("l" flycheck-list-errors "list"))
-   "LSP"
-   (("r" (lambda ()
-           (interactive)
-           (if (string-equal wcx/lsp-provider "eglot")
-               (call-interactively 'eglot-reconnect)
-             (call-interactively 'lsp-restart-workspace))) "restart"))
-   "Tools"
-   (("f" prettier-js "reformat"))))
-
-(use-package tide
   :ensure t
-  :after (typescript-mode company flycheck)
-  :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save)))
+  :diminish prettier-js-mode
+  :hook ((typescript-ts-mode tsx-ts-mode js-ts-mode web-mode css-mode scss-mode)
+         . prettier-js-mode))
+
+;; Make project-local node_modules/.bin available, so prettier, eslint,
+;; and typescript-language-server resolve to the project's pinned versions.
+(use-package add-node-modules-path
+  :ensure t
+  :hook ((typescript-ts-mode tsx-ts-mode js-ts-mode web-mode)
+         . add-node-modules-path))
+
+(use-package jest-test-mode
+  :ensure t
+  :defer t
+  :diminish jest-test-mode
+  :hook ((typescript-ts-mode tsx-ts-mode js-ts-mode) . jest-test-mode))
+
+;; ---------------------------------------------------------------------------
+;; REST testing
+;; ---------------------------------------------------------------------------
 
 (use-package restclient
-  :defer t
+  :ensure t
   :mode ("\\.http\\'" . restclient-mode)
-  :quelpa ((restclient :repo "pashky/restclient.el"
-            :fetcher github
-            :files ("restclient.el", "restclient-jq.el")))
   :mode-hydra
   (restclient-mode
    ("Nav"
-    (("n" restclient-jump-next "next" :exit nil)
-     ("p" restclient-jump-prev "previous" :exit nil)
+    (("n" restclient-jump-next         "next"     :exit nil)
+     ("p" restclient-jump-prev         "previous" :exit nil)
      ("N" restclient-narrow-to-current "narrow")
-     ("W" widen "widen")
-     ("q" nil "quit"))
+     ("W" widen                        "widen")
+     ("q" nil                          "quit"))
     "Send"
-    (("s" restclient-http-send-current-stay-in-window "send" :exit nil)
-     ("S" restclient-http-send-current "send and jump")
-     ("r" restclient-http-send-current-raw "send raw"))
+    (("s" restclient-http-send-current-stay-in-window "send"        :exit nil)
+     ("S" restclient-http-send-current                "send + jump")
+     ("r" restclient-http-send-current-raw            "send raw"))
     "Misc"
     (("w" restclient-copy-curl-command "copy curl")
-     ("m" restclient-mark-current "mark")
-     ("q" nil "quit")))))
+     ("m" restclient-mark-current      "mark")))))
 
-(use-package verb
-  :defer t
-  :mode ("\\.verb\\'" . verb-mode)
-  :mode-hydra
-  (verb-mode
-   ("Send"
-    (("s" verb-send-request-on-point "Send")
-     ("o" verb-send-request-on-point-other-window "Send (other window)")
-     ("q" nil "quit"))
-    "Cleanup"
-    (("k" verb-auto-kill-response-buffers "Kill buffers"))
-    "Nav"
-    (("a" outline-show-all "Show all" :exit nil)
-     ("p" outline-previous-visible-heading "Prev" :exit nil)
-     ("n" outline-next-visible-heading "Next" :exit nil)
-     ("c" verb-cycle "Cycle" :exit nil)
-     ("e" verb-export-request-on-point "Export...")))
-   ))
-
-(use-package add-node-modules-path
+(use-package restclient-jq
   :ensure t
-  :config
-  ;; automatically run the function when web-mode starts
-  (eval-after-load 'web-mode
-    '(add-hook 'web-mode-hook 'add-node-modules-path))
-  (eval-after-load 'js2-mode
-    '(add-hook 'js2-mode-hook 'add-node-modules-path)))
+  :after restclient)
 
-(use-package jest-test-mode :ensure t :defer t :commands jest-test-mode :init
-  (add-hook 'typescript-mode-hook 'jest-test-mode)
-  (add-hook 'js-mode-hook 'jest-test-mode)
-  (add-hook 'typescript-tsx-mode-hook 'jest-test-mode))
+;; ---------------------------------------------------------------------------
+;; Hydras for the editor modes
+;; ---------------------------------------------------------------------------
+
+(defun wcx/web-restart-lsp ()
+  "Reconnect the active LSP for this buffer."
+  (interactive)
+  (if (string-equal wcx/lsp-provider "eglot")
+      (call-interactively #'eglot-reconnect)
+    (call-interactively #'lsp-restart-workspace)))
+
+(major-mode-hydra-define typescript-ts-mode (:title "TypeScript")
+  ("Errors"
+   (("<" flycheck-previous-error "prev" :exit nil)
+    (">" flycheck-next-error     "next" :exit nil)
+    ("l" flycheck-list-errors    "list"))
+   "LSP"
+   (("r" wcx/web-restart-lsp "restart"))
+   "Tools"
+   (("f" prettier-js "reformat"))))
+
+(major-mode-hydra-define tsx-ts-mode (:title "TSX")
+  ("Errors"
+   (("<" flycheck-previous-error "prev" :exit nil)
+    (">" flycheck-next-error     "next" :exit nil)
+    ("l" flycheck-list-errors    "list"))
+   "LSP"
+   (("r" wcx/web-restart-lsp "restart"))
+   "Tools"
+   (("f" prettier-js "reformat"))))
+
+(major-mode-hydra-define js-ts-mode (:title "JavaScript")
+  ("Errors"
+   (("<" flycheck-previous-error "prev" :exit nil)
+    (">" flycheck-next-error     "next" :exit nil)
+    ("l" flycheck-list-errors    "list"))
+   "LSP"
+   (("r" wcx/web-restart-lsp "restart"))
+   "Tools"
+   (("f" prettier-js "reformat"))))
 
 (provide 'wcx-webdev)
+;;; wcx-webdev.el ends here

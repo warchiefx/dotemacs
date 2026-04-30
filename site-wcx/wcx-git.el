@@ -3,10 +3,12 @@
   :init
   (setq magit-last-seen-setup-instructions "1.4.0")
   :config
-  (defadvice magit-status (around magit-fullscreen activate)
+  (defun wcx/magit-status-fullscreen (orig-fn &rest args)
+    "Save the window layout before opening magit-status fullscreen."
     (window-configuration-to-register :magit-fullscreen)
-    ad-do-it
+    (apply orig-fn args)
     (delete-other-windows))
+  (advice-add 'magit-status :around #'wcx/magit-status-fullscreen)
 
   (defun magit-quit-session ()
     "Restores the previous window configuration and kills the magit buffer"

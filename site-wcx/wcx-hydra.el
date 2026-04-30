@@ -1,131 +1,90 @@
+;;; wcx-hydra.el --- Hydras for common workflows -*- lexical-binding: t -*-
+;;; Commentary:
+;; Top-level hydras bound under C-c. Major-mode-hydra (C-<f12>) hosts the
+;; per-mode hydras defined in language modules.
+;;; Code:
+
 (use-package major-mode-hydra
   :ensure t
-  :bind
-  ("C-<f12>" . major-mode-hydra))
+  :bind ("C-<f12>" . major-mode-hydra))
 
 (use-package hydra
   :ensure t
-  :bind
-  ("C-c <tab>" . hydra-fold/body)
-  ("C-c g" . hydra-magit/body)
-  ("C-c ;" . hydra-projectile/body)
-  ("C-c s" . hydra-system/body)
-  ("C-c w" . hydra-windows/body)
+  :bind (("C-c <tab>" . wcx/hydra-fold/body)
+         ("C-c g"     . wcx/hydra-magit/body)
+         ("C-c ;"     . wcx/hydra-projectile/body)
+         ("C-c s"     . wcx/hydra-system/body)
+         ("C-c w"     . wcx/hydra-windows/body))
   :config (setq-default hydra-default-hint nil))
 
-(defhydra hydra-fold (:color pink)
-  "
-^
-^Fold^              ^Do^                ^Jump^              ^Toggle^
-^────^──────────────^──^────────────────^────^──────────────^──────^────────────
-_q_ quit            _f_ fold            _<_ previous        _<tab>_ current
-^^                  _k_ kill            _>_ next            _S-<tab>_ all
-^^                  _K_ kill all        ^^                  ^^
-^^                  ^^                  ^^                  ^^
-"
-  ("q" nil)
-  ("<tab>" vimish-fold-toggle)
-  ("S-<tab>" vimish-fold-toggle-all)
-  ("<" vimish-fold-previous-fold)
-  (">" vimish-fold-next-fold)
-  ("f" vimish-fold)
-  ("k" vimish-fold-delete)
-  ("K" vimish-fold-delete-all))
+(pretty-hydra-define wcx/hydra-fold
+  (:title "Fold" :color pink :quit-key "q")
+  ("Do"
+   (("f" vimish-fold              "fold")
+    ("k" vimish-fold-delete       "kill")
+    ("K" vimish-fold-delete-all   "kill all"))
+   "Jump"
+   (("<" vimish-fold-previous-fold "previous")
+    (">" vimish-fold-next-fold     "next"))
+   "Toggle"
+   (("<tab>"   vimish-fold-toggle      "current")
+    ("S-<tab>" vimish-fold-toggle-all  "all"))))
 
-(defhydra hydra-magit (:color blue)
-  "
-^
-^Magit^             ^Do^
-^─────^─────────────^──^────────────────
-_q_ quit            _b_ blame
-_l_ git link        _c_ clone
-^^                  _i_ init
-^^                  _s_ status
-^^                  _h_ timemachine
-^^                  ^^
-"
-  ("q" nil)
-  ("b" magit-blame)
-  ("c" magit-clone)
-  ("i" magit-init)
-  ("l" git-link)
-  ("s" magit-status)
-  ("h" git-timemachine))
+(pretty-hydra-define wcx/hydra-magit
+  (:title "Git" :color teal :quit-key "q")
+  ("Status"
+   (("s" magit-status      "status")
+    ("b" magit-blame       "blame")
+    ("h" git-timemachine   "timemachine"))
+   "Repo"
+   (("c" magit-clone       "clone")
+    ("i" magit-init        "init"))
+   "Share"
+   (("l" git-link          "git link"))))
 
-(defhydra hydra-projectile (:color blue)
-  "
-^
-^Projectile^        ^Buffers^           ^Find^              ^Search^
-^──────────^────────^───────^───────────^────^──────────────^──────^────────────
-_q_ quit            _b_ list            _d_ directory       _r_ replace
-_i_ reset cache     _K_ kill all        _D_ root            _s_ ag
-_m_ make            _S_ save all        _f_ file            ^^
-^^                  ^^                  _p_ project         ^^
-^^                  ^^                  ^^                  ^^
-"
-  ("q" nil)
-  ("b" helm-projectile-switch-to-buffer)
-  ("m" makefile-executor-execute-project-target)
-  ("d" helm-projectile-find-dir)
-  ("D" projectile-dired)
-  ("f" helm-projectile-find-file)
-  ("i" projectile-invalidate-cache :color red)
-  ("K" projectile-kill-buffers)
-  ("p" helm-projectile-switch-project)
-  ("r" projectile-replace)
-  ("s" helm-projectile-ag)
-  ("S" projectile-save-project-buffers))
+(pretty-hydra-define wcx/hydra-projectile
+  (:title "Projectile" :color teal :quit-key "q")
+  ("Find"
+   (("f" consult-projectile-find-file       "file")
+    ("d" consult-projectile-find-dir        "directory")
+    ("D" projectile-dired                   "root dired")
+    ("p" consult-projectile-switch-project  "project"))
+   "Buffers"
+   (("b" consult-project-buffer             "list")
+    ("K" projectile-kill-buffers            "kill all")
+    ("S" projectile-save-project-buffers    "save all"))
+   "Search"
+   (("s" consult-ripgrep                    "ripgrep")
+    ("r" projectile-replace                 "replace"))
+   "Cache / Build"
+   (("i" projectile-invalidate-cache         "reset cache" :color red)
+    ("m" makefile-executor-execute-project-target "make"))))
 
-;; (defhydra hydra-undo-tree (:color yellow
-;;                                   :hint nil
-;;                                   )
-;;   "
-;;   _p_: undo  _n_: redo _s_: save _l_: load   "
-;;   ("p"   undo-tree-undo)
-;;   ("n"   undo-tree-redo)
-;;   ("s"   undo-tree-save-history)
-;;   ("l"   undo-tree-load-history)
-;;   ("u"   undo-tree-visualize "visualize" :color blue)
-;;   ("q"   nil "quit" :color blue))
+(pretty-hydra-define wcx/hydra-system
+  (:title "System" :color teal :quit-key "q")
+  ("Packages"
+   (("p" paradox-list-packages    "list")
+    ("P" paradox-upgrade-packages "upgrade"))
+   "Processes"
+   (("s" list-processes           "list"))
+   "Shell"
+   (("e" (eshell t)               "eshell")
+    ("t" term                     "term")
+    ("T" ansi-term                "ansi-term")
+    ("v" vterm                    "vterm"))))
 
-
-(defhydra hydra-system (:color blue)
-  "
-^
-^System^            ^Packages^          ^Processes^         ^Shell^
-^──────^────────────^────────^──────────^─────────^─────────^─────^─────────────
-_q_ quit            _p_ list            _s_ list            _e_ eshell
-^^                  _P_ upgrade         ^^                  _t_ term
-^^                  ^^                  ^^                  _T_ ansi-term
-"
-  ("q" nil)
-  ("e" (eshell t))
-  ("p" paradox-list-packages)
-  ("P" paradox-upgrade-packages)
-  ("s" list-processes)
-  ("t" term)
-  ("T" ansi-term))
-
-(defhydra hydra-windows (:color pink)
-  "
-^
-^Windows^           ^Window^            ^Zoom^
-^───────^───────────^──────^────────────^────^──────────────
-_q_ quit            _b_ balance         _-_ out
-^^                  _i_ heighten        _+_ in
-^^                  _j_ narrow          _=_ reset
-^^                  _k_ lower           ^^
-^^                  _l_ widen           ^^
-^^                  ^^                  ^^
-"
-  ("q" nil)
-  ("b" balance-windows)
-  ("i" enlarge-window)
-  ("j" shrink-window-horizontally)
-  ("k" shrink-window)
-  ("l" enlarge-window-horizontally)
-  ("-" text-scale-decrease)
-  ("+" text-scale-increase)
-  ("=" (text-scale-increase 0)))
+(pretty-hydra-define wcx/hydra-windows
+  (:title "Windows" :color pink :quit-key "q")
+  ("Resize"
+   (("b" balance-windows               "balance")
+    ("i" enlarge-window                "heighten")
+    ("k" shrink-window                 "shorten")
+    ("j" shrink-window-horizontally    "narrow")
+    ("l" enlarge-window-horizontally   "widen"))
+   "Text Zoom"
+   (("-" text-scale-decrease           "out")
+    ("+" text-scale-increase           "in")
+    ("=" (text-scale-increase 0)       "reset"))))
 
 (provide 'wcx-hydra)
+;;; wcx-hydra.el ends here

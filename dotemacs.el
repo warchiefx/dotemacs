@@ -46,6 +46,15 @@
 
 (require 'benchmark)
 
+;; Pull PATH and other env vars from the user's login shell *before* any
+;; feature loads, so tools like cmake (vterm), language servers (eglot),
+;; pyenv, node, etc. are findable when Emacs.app is launched from the GUI.
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (setq exec-path-from-shell-arguments '("-l"))
+  (exec-path-from-shell-initialize))
+
 ; If debug-init is set, print module load times
 (defmacro load-feature (name)
   `(if init-file-debug
@@ -58,73 +67,28 @@
 (load-feature 'wcx-hydra)
 (load-feature 'wcx-companymode)
 (load-feature 'wcx-evil)
-(load-feature 'wcx-requirements)
-;; (load-feature 'wcx-fonts)
-;; (load-feature 'wcx-utils)
 (load-feature 'wcx-keybindings)
-;; (load-feature 'wcx-icicles)
-;; (load-feature 'wcx-ido)
 (load-feature 'wcx-color-theme)
 (load-feature 'wcx-modeline)
-(load-feature 'wcx-encryption)
-(load-feature 'wcx-workgroups)
-(load-feature 'wcx-debugger)
 (load-feature 'wcx-terminal)
 
 ;; Tools
 (load-feature 'wcx-org)
 (load-feature 'wcx-markdown)
 (load-feature 'wcx-filebrowser)
-;; (load-feature 'wcx-w3m)
-;; (load-feature 'wcx-gnus)
-;; (load-feature 'wcx-wanderlust)
-;; (load-feature 'wcx-gnus-nnrss)
-;; (load-feature 'wcx-bbdb)
-(load-feature 'wcx-tramp)
-;; (load-feature 'wcx-svn)
 (load-feature 'wcx-git)
-;; (load-feature 'wcx-mercurial)
 (load-feature 'wcx-templates)
-(load-feature 'wcx-cedet)
-;; (load-feature 'wcx-minimap)
 (load-feature 'wcx-checking)
 (load-feature 'wcx-projects)
-;; (load-feature 'wcx-helm)
-(load-feature 'wcx-counsel)
+(load-feature 'wcx-completion)
 (load-feature 'wcx-containers)
 
 ;; Programming Modes
 (load-feature 'wcx-java)
-;; (load-feature 'wcx-malabar)
 (load-feature 'wcx-python)
 (load-feature 'wcx-webdev)
-;; (load-feature 'wcx-slime)
-(load-feature 'wcx-lua)
-;; (load-feature 'wcx-go)
-;; (load-feature 'wcx-scala)
-;; (load-feature 'wcx-auto-complete)
 (load-feature 'wcx-lsp)
 (load-feature 'wcx-llm)
-;; (load-feature 'wcx-misc-prog)
-
-;; Games
-;; (require 'wcx-nethack)
-
-;; ----- Make this file be recompiled after it's saved
-(defun byte-compile-user-init-file ()
-  "Byte-compile the user init file."
-  (let ((byte-compile-warnings '(unresolved)))
-    ;; in case compilation fails, don't leave the old .elc around:
-    (if (file-exists-p (concat user-init-file ".elc"))
-	(delete-file (concat user-init-file ".elc")))
-    (byte-compile-file user-init-file)
-    (message "%s compiled" user-init-file)
-    ))
-(defun my-emacs-lisp-mode-hook ()
-  "Compile .emacs after it's saved."
-  (when (equal buffer-file-name user-init-file)
-    (add-hook 'after-save-hook 'byte-compile-user-init-file t t)))
-(add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook)
 
 ;; Start emacs-server, for emacsclient usage.
 (use-package server
@@ -158,14 +122,6 @@
   (diminish-afterload "eldoc" 'eldoc-mode)
   (diminish-afterload "projectile" 'projectile-mode))
 
-
-(use-package exec-path-from-shell
-  :ensure t
-  :config
-  (exec-path-from-shell-initialize))
-
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
 
 (defun display-startup-echo-area-message ()
   "Display startup echo area message."

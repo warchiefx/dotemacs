@@ -1,176 +1,131 @@
+;;; wcx-python.el --- Python development -*- lexical-binding: t -*-
+;;; Commentary:
+;; uv + ruff + pyright (via eglot, configured in wcx-lsp.el).
+;; .py files open in python-ts-mode (tree-sitter); the Python tooling here
+;; piggybacks on the python-mode-hook chain that python-ts-mode inherits.
+;;; Code:
+
 (defvar wcx/lsp-provider)
+(defvar wcx/checker)
 
-(setq py-autopep8-options '("--max-line-length=120"))
+;; ---------------------------------------------------------------------------
+;; Major mode mapping
+;; ---------------------------------------------------------------------------
 
-(setq python-saved-check-command nil)
+(add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode))
 
+;; ---------------------------------------------------------------------------
+;; Per-project venv (uv)
+;; ---------------------------------------------------------------------------
 
-(defun wcx-restart-python ()
-  (require 'wcx-utils)
-  (setq python-shell-interpreter (concat pyvenv-virtual-env "bin/python"))
-  (setq lsp-pyright-python-executable-cmd (concat pyvenv-virtual-env "bin/python"))
-  (call-interactively 'lsp-restart-workspace)
-  (pyvenv-restart-python))
-
-(use-package pyvenv
+(use-package uv-mode
   :ensure t
-  :init
-  (setenv "WORKON_HOME" (expand-file-name "~/.pyenv/versions"))
-  :bind (([?\C-c ?\C-x ?v] . pyvenv-workon))
-  :config
-  (setq pyvenv-post-activate-hooks
-        (list (lambda ()
-                (setq python-shell-interpreter (concat pyvenv-virtual-env "bin/python"))
-                (setq lsp-pyright-python-executable-cmd (concat pyvenv-virtual-env "bin/python"))
-                (call-interactively 'lsp-restart-workspace))))
-  (setq pyvenv-post-deactivate-hooks
-        (list (lambda ()
-                (setq python-shell-interpreter "python3")))))
+  :hook ((python-mode    . uv-mode-auto-activate-hook)
+         (python-ts-mode . uv-mode-auto-activate-hook)))
 
-;; (use-package auto-virtualenv
-;;   :ensure t
-;;   :config
-;;   (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
-;;   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)
-;;   ;; (add-hook 'pyvenv-post-activate-hooks 'wcx-restart-python))
-;;   )
-
-(use-package python-docstring
-  :ensure t
-  :config
-  (python-docstring-install)
-  :diminish python-docstring-mode)
-
-;; ipython support, also remove weird character on ipython prompt
-(when (executable-find "ipython")
-  (setq python-shell-interpreter "ipython")
-  (setq python-shell-interpreter-args "--simple-prompt"))
-
-(use-package blacken
-  :ensure t
-  :diminish blacken-mode
-  ;; :hook (python-mode . blacken-mode)
-  :config
-  ;; (setq blacken-line-length 100)
-  :bind (([?\C-c ?\C-x ?a] . blacken-buffer)))
-
-(use-package pip-requirements
-  :ensure t
-  :preface
-  (defun me/pip-requirements-ignore-case ()
-    (setq-local completion-ignore-case t))
-  :init (add-hook 'pip-requirements-mode-hook #'me/pip-requirements-ignore-case))
-
-(use-package python-pytest
-  :commands (python-pytest-popup)
-  :bind (("C-c C-x t" . python-pytest-popup)))
-
-(use-package smart-dash
-  :defer t
-  :hook (python-ts-mode . smart-dash-mode)
-  :hook (python-mode . smart-dash-mode))
-
-(use-package pipenv
-  :defer t
-  :hook (python-mode . pipenv-mode)
-  :diminish pipenv-mode
-  :init
-  (setq
-   pipenv-projectile-after-switch-function
-   #'pipenv-projectile-after-switch-default)
-  (setq pipenv-keymap-prefix (kbd "C-c C-o")))
-
-(use-package py-isort
-  :defer t
-  :commands (py-isort-buffer py-isort-region))
-
-;; LSP Configuration
-(when (string-equal wcx/lsp-provider "lsp-mode")
-  (setq lsp-pyls-plugins-pycodestyle-max-line-length 120)
-  (setq lsp-pyls-plugins-pylint-enabled t))
-
-(use-package python-mode
-  :mode ("\\.py\\'" . python-ts-mode)
-  :interpreter ("python" . python-ts-mode)
-  :config
-  ;; (setq-default lsp-pyls-configuration-sources ["pylint"])
-  (add-hook 'python-mode-hook (lambda ()
-                               (semantic-mode 1)
-                               (setq font-lock-maximum-decoration t)
-                               (font-lock-mode t)
-                               (setq eglot-workspace-configuration '(:pyls . (:plugins (:jedi_completion (:include_params t)))))
-                               (when (string-equal wcx/checker "flycheck")
-                                 (setq flycheck-checker 'python-pylint
-                                       flycheck-checker-error-threshold 900
-                                       flycheck-pylintrc "~/.pylintrc"))))
-
-  :mode-hydra
-  ("Nav"
-   (("n" python-nav-forward-defun "next-defun" :exit nil)
-    ("p" python-nav-backward-defun "prev-defun" :exit nil))
-   "Errors"
-   (("<" flycheck-previous-error "prev" :exit nil)
-    (">" flycheck-next-error "next" :exit nil)
-    ("l" flycheck-list-errors "list"))
-   "LSP"
-   (("r" (lambda ()
-           (interactive)
-           (if (string-equal wcx/lsp-provider "eglot")
-               (call-interactively 'eglot-reconnect)
-             (call-interactively 'lsp-restart-workspace))) "restart"))
-   "Env"
-   (("a" pipenv-activate "pipenv-activate" :exit nil)
-    ("d" pipenv-deactivate "pipenv-deactivate" :exit nil)
-    ("z" poetry "poetry" :exit nil)
-    ("w" pyvenv-workon "workon...")
-    ("s" run-python "pyshell"))
-   "Tools"
-   (("f" blacken-buffer "reformat")
-    ("c" whitespace-cleanup "clean whitespace")
-    ("i" py-isort-buffer "sort imports"))
-   "Test"
-   (("t" python-pytest-popup "pytest..."))))
+;; ---------------------------------------------------------------------------
+;; Formatting (ruff) and linting (ruff via flycheck, see wcx-checking)
+;; ---------------------------------------------------------------------------
 
 (use-package ruff-format
   :ensure t
-  :defer t)
+  :hook ((python-mode    . ruff-format-on-save-mode)
+         (python-ts-mode . ruff-format-on-save-mode))
+  :bind ([?\C-c ?\C-x ?a] . ruff-format-buffer))
 
-(use-package python-ts-mode
-  :ensure nil
-  :mode-hydra
-  ("Nav"
-   (("n" python-nav-forward-defun "next-defun" :exit nil)
-    ("p" python-nav-backward-defun "prev-defun" :exit nil))
-   "Errors"
-   (("<" flycheck-previous-error "prev" :exit nil)
-    (">" flycheck-next-error "next" :exit nil)
-    ("l" flycheck-list-errors "list"))
-   "LSP"
-   (("r" (lambda ()
-           (interactive)
-           (if (string-equal wcx/lsp-provider "eglot")
-               (call-interactively 'eglot-reconnect)
-             (call-interactively 'lsp-restart-workspace))) "restart"))
-   "Tools"
-   (("f" ruff-format-buffer "reformat")
-    ("c" whitespace-cleanup "clean whitespace")
-    ("i" py-isort-buffer "sort imports"))
-   "Test"
-   (("t" python-pytest-popup "pytest..."))))
+(use-package py-isort
+  :ensure t
+  :defer t
+  :commands (py-isort-buffer py-isort-region))
 
+;; ---------------------------------------------------------------------------
+;; Editing helpers
+;; ---------------------------------------------------------------------------
+
+(use-package python-docstring
+  :ensure t
+  :diminish python-docstring-mode
+  :hook ((python-mode    . python-docstring-mode)
+         (python-ts-mode . python-docstring-mode)))
+
+(use-package smart-dash
+  :ensure t
+  :defer t
+  :hook ((python-mode    . smart-dash-mode)
+         (python-ts-mode . smart-dash-mode)))
+
+;; Use ipython as the inferior shell when available.
+(when (executable-find "ipython")
+  (setq python-shell-interpreter "ipython"
+        python-shell-interpreter-args "--simple-prompt"))
+
+;; ---------------------------------------------------------------------------
+;; Other Python file types
+;; ---------------------------------------------------------------------------
+
+(use-package pip-requirements
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'pip-requirements-mode-hook
+            (lambda () (setq-local completion-ignore-case t))))
+
+;; ---------------------------------------------------------------------------
+;; Tests, navigation, tags
+;; ---------------------------------------------------------------------------
+
+(use-package python-pytest
+  :ensure t
+  :commands python-pytest-popup
+  :bind ("C-c C-x t" . python-pytest-popup))
 
 (use-package ggtags
-  :hook (python-ts-mode . ggtags-mode)
-  :hook (python-mode . ggtags-mode))
+  :ensure t
+  :defer t
+  :hook ((python-mode    . ggtags-mode)
+         (python-ts-mode . ggtags-mode)))
 
-(use-package poetry
- :ensure t
- :config
- (poetry-tracking-mode))
+;; ---------------------------------------------------------------------------
+;; Per-buffer setup and per-mode hydra
+;; ---------------------------------------------------------------------------
 
-(use-package uv-mode
-  :hook (python-mode . uv-mode-auto-activate-hook)
-  :hook (python-ts-mode . uv-mode-auto-activate-hook))
+(defun wcx/python-mode-setup ()
+  "Per-buffer Python configuration."
+  (setq font-lock-maximum-decoration t)
+  (when (string-equal wcx/checker "flycheck")
+    (setq-local flycheck-checker 'python-ruff
+                flycheck-checker-error-threshold 900)))
+
+(add-hook 'python-mode-hook    #'wcx/python-mode-setup)
+(add-hook 'python-ts-mode-hook #'wcx/python-mode-setup)
+
+(defun wcx/python-restart-lsp ()
+  "Reconnect the active LSP for this buffer (eglot or lsp-mode)."
+  (interactive)
+  (if (string-equal wcx/lsp-provider "eglot")
+      (call-interactively #'eglot-reconnect)
+    (call-interactively #'lsp-restart-workspace)))
+
+(major-mode-hydra-define python-ts-mode (:title "Python")
+  ("Nav"
+   (("n" python-nav-forward-defun  "next defun" :exit nil)
+    ("p" python-nav-backward-defun "prev defun" :exit nil))
+   "Errors"
+   (("<" flycheck-previous-error "prev" :exit nil)
+    (">" flycheck-next-error     "next" :exit nil)
+    ("l" flycheck-list-errors    "list"))
+   "LSP"
+   (("r" wcx/python-restart-lsp "restart"))
+   "Env"
+   (("a" uv-mode-set   "uv-activate"   :exit nil)
+    ("d" uv-mode-unset "uv-deactivate" :exit nil)
+    ("s" run-python    "pyshell"))
+   "Tools"
+   (("f" ruff-format-buffer  "reformat")
+    ("c" whitespace-cleanup  "clean whitespace")
+    ("i" py-isort-buffer     "sort imports"))
+   "Test"
+   (("t" python-pytest-popup "pytest..."))))
 
 (provide 'wcx-python)
 ;;; wcx-python.el ends here
