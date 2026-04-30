@@ -25,12 +25,15 @@
 (use-package ai-code
   :config
   (ai-code-set-backend  'claude-code-ide) ;; use claude-code-ide as backend
-  ;; Enable global keybinding for the main menu
   (global-set-key (kbd "C-c a") #'ai-code-menu)
-  ;; Optional: Use vterm if you prefer, by default it is eat
-  ;; Optional: Turn on auto-revert buffer, so that the AI code change automatically appears in the buffer
+  ;; Auto-revert so AI-edited files refresh in their buffers. 1s polling
+  ;; (the upstream suggestion) freezes Emacs every second across many open
+  ;; buffers; 5s is plenty for human-perceived freshness, and we skip
+  ;; remote files entirely so Tramp connections don't get hammered.
   (global-auto-revert-mode 1)
-  (setq auto-revert-interval 1) ;; set to 1 second for faster update
+  (setq auto-revert-interval 5
+        auto-revert-remote-files nil
+        auto-revert-verbose nil)
   ;; Optional: Set up Magit integration for AI commands in Magit popups
   (with-eval-after-load 'magit
     (ai-code-magit-setup-transients)))

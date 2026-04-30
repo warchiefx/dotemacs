@@ -41,6 +41,12 @@
 (use-package gcmh
   :ensure t
   :diminish
+  :custom
+  ;; Cap the deferred-GC heap. Without an upper bound, gcmh lets memory
+  ;; grow until idle, then a single GC pause can lock Emacs for seconds.
+  ;; 128MiB triggers GC during natural idle bursts instead.
+  (gcmh-high-cons-threshold (* 128 1024 1024))
+  (gcmh-idle-delay 'auto)
   :config
   (gcmh-mode 1))
 
@@ -48,11 +54,15 @@
 
 ;; Pull PATH and other env vars from the user's login shell *before* any
 ;; feature loads, so tools like cmake (vterm), language servers (eglot),
-;; pyenv, node, etc. are findable when Emacs.app is launched from the GUI.
+;; pyenv, node, npm-globals (e.g. openspec), etc. are findable when
+;; Emacs.app is launched from the GUI.
+;;
+;; We deliberately keep the default ("-l" "-i") so both zprofile *and*
+;; zshrc are sourced — NVM loads in zshrc, so without -i, anything under
+;; ~/.nvm/versions/node/<ver>/bin (npm globals) is invisible to Emacs.
 (use-package exec-path-from-shell
   :ensure t
   :config
-  (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-initialize))
 
 ; If debug-init is set, print module load times

@@ -157,7 +157,25 @@
     (eldoc-box-only-multi-line t)
     (eldoc-box-clear-with-C-g t)
     (eldoc-box-max-pixel-width 720)
-    (eldoc-box-max-pixel-height 480)))
+    (eldoc-box-max-pixel-height 480))
+
+  ;; Single diagnostics UI: flycheck. Bridge eglot's diagnostics into
+  ;; flycheck (so pyright/typescript-language-server errors show up in the
+  ;; same UI as ruff/eslint), then suppress the flymake instance eglot
+  ;; turns on by default.
+  (when (string-equal wcx/checker "flycheck")
+    (use-package flycheck-eglot
+      :ensure t
+      :after (flycheck eglot)
+      :custom
+      ;; nil = combine eglot diagnostics WITH native flycheck checkers;
+      ;; t (default) replaces them.
+      (flycheck-eglot-exclusive nil)
+      :config (global-flycheck-eglot-mode 1))
+
+    (add-hook 'eglot-managed-mode-hook
+              (lambda () (when (bound-and-true-p flymake-mode)
+                           (flymake-mode -1))))))
 
 (provide 'wcx-lsp)
 ;;; wcx-lsp.el ends here

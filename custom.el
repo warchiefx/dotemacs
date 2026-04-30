@@ -189,7 +189,6 @@
  '(ecb-tip-of-the-day nil)
  '(ecb-wget-setup '("/usr/bin/wget" . other))
  '(echo-keystrokes 0.01)
- '(eldoc-idle-delay 1)
  '(electric-pair-inhibit-predicate 'ignore)
  '(electric-pair-mode t)
  '(elpy-modules

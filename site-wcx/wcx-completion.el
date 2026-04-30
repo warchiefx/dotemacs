@@ -52,16 +52,6 @@
               ("M-DEL" . vertico-directory-delete-word))
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
-(use-package vertico-posframe
-  :ensure t
-  :after vertico
-  :custom
-  (vertico-posframe-poshandler #'posframe-poshandler-frame-top-center)
-  (vertico-posframe-parameters '((left-fringe . 8) (right-fringe . 8)))
-  (vertico-posframe-min-width 80)
-  (vertico-posframe-width 120)
-  :config (vertico-posframe-mode 1))
-
 ;; ---------------------------------------------------------------------------
 ;; Orderless — flexible space-separated match patterns
 ;; ---------------------------------------------------------------------------
