@@ -57,6 +57,19 @@ _v_ verify setup    _f_ check           _s_ select
     :after flycheck
     :config
     (flycheck-posframe-configure-pretty-defaults)
+    ;; Hide the error popup while corfu's completion popup is visible
+    ;; (both anchor at point, otherwise they overlap and obscure typing).
+    (add-to-list 'flycheck-posframe-inhibit-functions
+                 (lambda ()
+                   (and (bound-and-true-p corfu--frame)
+                        (frame-live-p corfu--frame)
+                        (frame-visible-p corfu--frame))))
+    ;; Also stay quiet while the user is actively editing or in evil
+    ;; insert state, so the popup doesn't flicker mid-keystroke.
+    (add-to-list 'flycheck-posframe-inhibit-functions
+                 (lambda ()
+                   (and (bound-and-true-p evil-mode)
+                        (eq evil-state 'insert))))
     (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode)))
 
 (when (string-equal wcx/checker "flymake")
