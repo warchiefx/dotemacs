@@ -33,6 +33,39 @@
               ("M-d"     . corfu-info-documentation)
               ("M-l"     . corfu-info-location)))
 
+(defun wcx/--usable-color-p (s)
+  "Non-nil if S is a real color name, not nil or an `unspecified-*' sentinel."
+  (and (stringp s)
+       (not (string-prefix-p "unspecified-" s))
+       (color-name-to-rgb s)))
+
+(defun wcx/corfu-restyle (&rest _)
+  "Re-derive corfu faces from the active theme's `default' face.
+Inheriting from `tooltip' isn't reliable — under macOS Cocoa or themes
+that don't restyle `tooltip', the popup ends up white. Computing a
+slightly-tinted variant of the buffer background gives a popup that
+stands out without clashing under any theme."
+  (when (and (display-graphic-p) (facep 'corfu-default))
+    (let ((bg (face-background 'default nil 'default))
+          (fg (face-foreground 'default nil 'default)))
+      ;; Early init / TTY frames / partially-loaded themes can return
+      ;; nil or "unspecified-bg"; bail rather than poison the face spec.
+      (when (and (wcx/--usable-color-p bg) (wcx/--usable-color-p fg))
+        (let* ((dark (color-dark-p (color-name-to-rgb bg)))
+               (popup-bg (if dark (color-lighten-name bg 8)
+                           (color-darken-name bg 4)))
+               (border  (if dark (color-lighten-name bg 25)
+                           (color-darken-name bg 25))))
+          (set-face-attribute 'corfu-default   nil :background popup-bg :foreground fg)
+          (set-face-attribute 'corfu-popupinfo nil :background popup-bg :foreground fg)
+          (set-face-attribute 'corfu-current   nil :inherit 'region    :extend t)
+          (set-face-attribute 'corfu-bar       nil :background border)
+          (set-face-attribute 'corfu-border    nil :background border)
+          (when (featurep 'kind-icon) (kind-icon-reset-cache)))))))
+
+(add-hook 'after-init-hook    #'wcx/corfu-restyle)
+(advice-add 'load-theme :after #'wcx/corfu-restyle)
+
 (use-package corfu-popupinfo
   :ensure nil
   :after corfu
