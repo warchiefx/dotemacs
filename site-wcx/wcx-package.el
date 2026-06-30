@@ -14,15 +14,22 @@
 (assq-delete-all 'org package--builtins)
 (assq-delete-all 'org package--builtin-versions)
 
-;; Bootstrap use-package
-(unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package)
-    (package-install 'diminish)
-    (package-install 'quelpa)
-    (package-install 'bind-key)
+;; Bootstrap core packages
+(unless (and (package-installed-p 'use-package)
+             (package-installed-p 'diminish)
+             (package-installed-p 'quelpa)
+             (package-installed-p 'bind-key))
+  (package-refresh-contents)
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
+  (unless (package-installed-p 'diminish)
+    (package-install 'diminish))
+  (unless (package-installed-p 'quelpa)
+    (package-install 'quelpa))
+  (unless (package-installed-p 'bind-key)
+    (package-install 'bind-key)))
 
-    (require 'use-package))
+(require 'use-package)
 
 (use-package use-package-hydra
   :ensure t)

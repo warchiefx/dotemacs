@@ -139,7 +139,8 @@
  '(current-language-environment "Latin-1")
  '(cursor-type 'bar)
  '(custom-safe-themes
-   '("c20728f5c0cb50972b50c929b004a7496d3f2e2ded387bf870f89da25793bb44"
+   '("606d9e3d98ef969d4e9eba9628ee1ce25934ecfe72cd0a995d31c907cb69dafd"
+     "c20728f5c0cb50972b50c929b004a7496d3f2e2ded387bf870f89da25793bb44"
      "21eb44ad0e958f71261c436a06577dc114b2850e5a82bc12314cf63c2d2d1db5"
      "9d5a33a0097c43f44759530c846e1adf9c40171f232a4b2ae561feccc99a03c4"
      "3538194fff1b928df280dc08f041518a8d51ac3ff704c5e46d1517f5c4d8a0e0"
@@ -378,48 +379,7 @@
  '(org-md-headline-style 'atx)
  '(org-src-fontify-natively t)
  '(package-check-signature nil)
- '(package-selected-packages
-   '(add-node-modules-path ai-code aidermacs all-the-icons auto-compile
-                           auto-virtualenv autodisass-java-bytecode
-                           better-defaults blacken claude-code-ide
-                           comment-tags company-flx company-quickhelp
-                           company-restclient company-statistics consult-dir
-                           counsel-gtags counsel-projectile coverlay
-                           crontab-mode csv-mode dashboard deadgrep diff-hl
-                           diminish docker dockerfile-mode dumb-jump eat
-                           electric-operator embrace emmet-mode
-                           esh-autosuggest evil-anzu evil-args evil-collection
-                           evil-commentary evil-escape evil-exchange
-                           evil-goggles evil-indent-plus evil-leader
-                           evil-matchit evil-multiedit evil-numbers evil-org
-                           evil-space evil-surround evil-textobj-tree-sitter
-                           evil-tutor evil-vimish-fold exato
-                           exec-path-from-shell flycheck-plantuml
-                           flycheck-posframe frame-tag gcmh gemini-cli ggtags
-                           gist git-link git-timemachine helm-projectile
-                           ibuffer-vc ido-completing-read+ ido-vertical-mode
-                           imenu-anywhere ivy-hydra jade-mode jest-test-mode
-                           jq-mode k8s-mode kanagawa-themes kaolin-themes
-                           keychain-environment kubernetes-evil lsp-ivy
-                           lsp-java lsp-pyright lsp-ui lua-mode magit-gitflow
-                           magit-org-todos major-mode-hydra makefile-executor
-                           meghanada multiple-cursors nswbuff org-contrib
-                           org-edna org-super-agenda ox-gfm ox-qmd paradox
-                           pip-requirements pipenv poetry popper popup
-                           prettier-js py-isort python-docstring python-mode
-                           python-pytest quelpa-use-package rainbow-delimiters
-                           rainbow-mode react-snippets realgud rjsx-mode
-                           ruff-format sass-mode scss-mode shackle shell-pop
-                           skewer-mode smart-dash smart-shift smartparens smex
-                           spaceline switch-window symbol-overlay tabnine tide
-                           tree-sitter-indent tree-sitter-ispell
-                           tree-sitter-langs treemacs-evil
-                           treemacs-icons-dired treemacs-magit
-                           treemacs-projectile treesit-auto typescript-mode
-                           undo-fu use-package-hydra uv-mode verb vterm-toggle
-                           web-mode which-key-posframe whitespace-cleanup-mode
-                           xterm-color yascroll yasnippet-snippets
-                           zeal-at-point))
+ '(package-selected-packages nil)
  '(package-vc-selected-packages
    '((claude-code-ide :url "https://github.com/manzaltu/claude-code-ide.el")
      (gemini-cli :url "https://github.com/linchen2chris/gemini-cli.el")))
@@ -507,7 +467,6 @@
  '(evil-goggles-undo-redo-change-face ((t (:inherit 'diff-changed))))
  '(evil-goggles-undo-redo-remove-face ((t (:inherit 'diff-refine-removed))))
  '(evil-goggles-yank-face ((t (:inherit diff-changed))))
- '(lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))) t)
  '(spacebar-active ((t (:inherit font-lock-keyword-face :weight bold))))
  '(yascroll:thumb-fringe ((t (:background "dim gray" :foreground "dim gray"))))
  '(yascroll:thumb-text-area ((t (:background "dim gray")))))

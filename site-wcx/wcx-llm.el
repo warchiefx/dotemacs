@@ -15,6 +15,7 @@
   :bind-keymap ("C-c c" . gemini-cli-command-map)) ;; or your preferred key
 
 (use-package claude-code-ide
+  :ensure t
   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
   :bind ("C-c x" . claude-code-ide-menu) ; Set your favorite keybinding
   :config
@@ -23,6 +24,7 @@
   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 
 (use-package ai-code
+  :ensure t
   :config
   (ai-code-set-backend  'claude-code-ide) ;; use claude-code-ide as backend
   (global-set-key (kbd "C-c a") #'ai-code-menu)

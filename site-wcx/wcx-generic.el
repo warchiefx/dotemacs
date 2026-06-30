@@ -536,6 +536,7 @@
   :config (flycheck-plantuml-setup))
 
 (use-package treesit-auto
+  :ensure t
   :custom
   (treesit-auto-install 'prompt)
   :config
