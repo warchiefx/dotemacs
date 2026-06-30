@@ -45,6 +45,14 @@
 
 ;; Improved package manager
 (use-package paradox
-  :defer 10)
+  :defer 10
+  :config
+  ;; Hot-patch to prevent "Wrong type argument: number-or-marker-p, nil"
+  ;; when encountering package statuses not tracked by paradox.
+  (defun paradox--inc-count (string)
+    "Increment the cdr of (assoc-string STRING paradox--package-count)."
+    (let ((cons (assoc-string string paradox--package-count)))
+      (when cons
+        (setcdr cons (1+ (cdr cons)))))))
 
 (provide 'wcx-package)

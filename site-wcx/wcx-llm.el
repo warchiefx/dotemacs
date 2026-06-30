@@ -26,7 +26,10 @@
 (use-package ai-code
   :ensure t
   :config
-  (ai-code-set-backend  'claude-code-ide) ;; use claude-code-ide as backend
+  ;; Set the binary path for the Antigravity CLI backend
+  (setq ai-code-antigravity-cli-program "/Users/warchiefx/.local/bin/agy")
+  
+  (ai-code-set-backend 'claude-code-ide) ;; use claude-code-ide as default backend
   (global-set-key (kbd "C-c a") #'ai-code-menu)
   ;; Auto-revert so AI-edited files refresh in their buffers. 1s polling
   ;; (the upstream suggestion) freezes Emacs every second across many open
