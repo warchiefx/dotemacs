@@ -44,7 +44,7 @@ _v_ verify setup    _f_ check           _s_ select
     (setq-default
      flycheck-check-syntax-automatically '(save mode-enabled idle-change)
      flycheck-idle-change-delay 0.4
-     flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+     flycheck-disabled-checkers '(emacs-lisp-checkdoc python-mypy))
     (global-flycheck-mode 1)
     ;; (add-hook 'python-mode-hook (lambda ()
     ;;                              (setq flycheck-checker 'python-pylint

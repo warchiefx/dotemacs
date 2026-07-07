@@ -113,18 +113,19 @@
     ;; Use projectile's notion of project root.
     (add-to-list 'project-find-functions #'wcx/find-projectile-project)
 
-    ;; Python LSP. basedpyright is the actively-maintained pyright fork
-    ;; with the concurrent-pre-init crashes fixed and stricter inference;
+    ;; Python LSP. ty is Astral's Rust-based type checker and language server;
+    ;; basedpyright is the actively-maintained pyright fork;
     ;; pylsp is the conservative fallback (jedi-based, no watchers, runs
     ;; from the venv). Toggle via `wcx/python-lsp' below.
-    (defvar wcx/python-lsp 'pylsp
-      "Which Python LSP eglot should use: `basedpyright' or `pylsp'.
+    (defvar wcx/python-lsp 'ty
+      "Which Python LSP eglot should use: `ty', `basedpyright', or `pylsp'.
 After changing, re-open the Python buffer (or `eglot-shutdown' + reopen).")
 
     (add-to-list 'eglot-server-programs
                  `((python-mode python-ts-mode)
                    . ,(pcase wcx/python-lsp
                         ('basedpyright '("basedpyright-langserver" "--stdio"))
+                        ('ty           '("ty" "server"))
                         (_             '("pylsp")))))
 
     ;; Inlay hints (parameter names, inferred types) where supported.
