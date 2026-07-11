@@ -413,9 +413,38 @@
 ;;   (highlight-indent-guides-responsive t)
 ;;   (highlight-indent-guides-method 'column)) ; character
 
+(defun wcx/deadgrep-dwim ()
+  "Run deadgrep search using symbol at point or active region.
+If a region is active, search for the active region.
+Otherwise:
+- With a prefix argument, prompt for the search term, defaulting to the symbol at point.
+- Without a prefix argument, search for the symbol at point if it exists, without prompting.
+- If there is no symbol at point, prompt for the search term."
+  (interactive)
+  (require 'deadgrep)
+  (let ((search-term
+         (cond
+          ((use-region-p)
+           (let ((region (buffer-substring-no-properties (region-beginning) (region-end))))
+             (deactivate-mark)
+             region))
+          (t
+           (let* ((sym (symbol-at-point))
+                  (sym-name (when sym
+                              (substring-no-properties (symbol-name sym)))))
+             (if current-prefix-arg
+                 (read-from-minibuffer
+                  (deadgrep--search-prompt sym-name) nil nil nil 'deadgrep-history sym-name)
+               (or sym-name
+                   (read-from-minibuffer
+                    (deadgrep--search-prompt nil) nil nil nil 'deadgrep-history))))))))
+    (when (and search-term (not (string-empty-p search-term)))
+      (let ((current-prefix-arg nil))
+        (deadgrep search-term)))))
+
 (use-package deadgrep
   :bind
-  (("C-<f1>" . deadgrep))
+  (("C-<f1>" . wcx/deadgrep-dwim))
   :config
   (with-eval-after-load 'evil
     (evil-define-state deadgrep

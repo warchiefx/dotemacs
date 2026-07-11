@@ -17,6 +17,27 @@
          ("C-c w"     . wcx/hydra-windows/body))
   :config (setq-default hydra-default-hint nil))
 
+(use-package qs
+  :load-path "/Users/warchiefx/Work/xmonk/qs/editors/emacs"
+  :commands (qs-def qs-ref qs-grep qs-callers qs-callees qs-callgraph qs-toggle-window)
+  :config
+  (qs-mode 1))
+
+(declare-function wcx/deadgrep-dwim "wcx-generic")
+
+(pretty-hydra-define wcx/hydra-qs
+  (:title "Quick Search" :color teal :quit-key "q")
+  ("Search"
+   (("d" qs-def "definition")
+    ("r" qs-ref "references")
+    ("g" qs-grep "grep")
+    ("R" wcx/deadgrep-dwim "ripgrep")
+    ("t" qs-toggle-window "toggle"))
+   "Call Graph"
+   (("c" qs-callers "callers")
+    ("C" qs-callees "callees")
+    ("G" qs-callgraph "callgraph"))))
+
 (pretty-hydra-define wcx/hydra-fold
   (:title "Fold" :color pink :quit-key "q")
   ("Do"
@@ -71,7 +92,9 @@
    (("e" (eshell t)               "eshell")
     ("t" term                     "term")
     ("T" ansi-term                "ansi-term")
-    ("v" vterm                    "vterm"))))
+    ("v" vterm                    "vterm"))
+   "Search"
+   (("f" wcx/hydra-qs/body        "qs search"))))
 
 (pretty-hydra-define wcx/hydra-windows
   (:title "Windows" :color pink :quit-key "q")

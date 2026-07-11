@@ -139,7 +139,8 @@
  '(current-language-environment "Latin-1")
  '(cursor-type 'bar)
  '(custom-safe-themes
-   '("606d9e3d98ef969d4e9eba9628ee1ce25934ecfe72cd0a995d31c907cb69dafd"
+   '("f2f07719428af0572740e5f962677173777b439349ec6abc0db2db8d4ce3de41"
+     "606d9e3d98ef969d4e9eba9628ee1ce25934ecfe72cd0a995d31c907cb69dafd"
      "c20728f5c0cb50972b50c929b004a7496d3f2e2ded387bf870f89da25793bb44"
      "21eb44ad0e958f71261c436a06577dc114b2850e5a82bc12314cf63c2d2d1db5"
      "9d5a33a0097c43f44759530c846e1adf9c40171f232a4b2ae561feccc99a03c4"
@@ -379,7 +380,39 @@
  '(org-md-headline-style 'atx)
  '(org-src-fontify-natively t)
  '(package-check-signature nil)
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(add-node-modules-path ai-code auto-compile autodisass-java-bytecode
+                           better-defaults cape claude-code-ide comment-tags
+                           consult-dir consult-projectile corfu coverlay
+                           crontab-mode csv-mode dashboard deadgrep diff-hl
+                           diminish docker dockerfile-mode doom-modeline
+                           dumb-jump eat eldoc-box electric-operator
+                           embark-consult embrace emmet-mode esh-autosuggest
+                           evil-anzu evil-args evil-collection evil-commentary
+                           evil-escape evil-exchange evil-goggles
+                           evil-indent-plus evil-leader evil-matchit
+                           evil-multiedit evil-numbers evil-org evil-space
+                           evil-surround evil-tutor evil-vimish-fold exato
+                           exec-path-from-shell flycheck-eglot
+                           flycheck-plantuml flycheck-posframe frame-tag gcmh
+                           gemini-cli ggtags gist git-link git-timemachine
+                           helm-projectile ibuffer-vc jest-test-mode k8s-mode
+                           kaolin-themes keychain-environment kind-icon
+                           kubernetes-evil magit-gitflow magit-org-todos
+                           major-mode-hydra makefile-executor marginalia
+                           markdown-mode multiple-cursors nswbuff orderless
+                           org-contrib org-edna org-super-agenda ox-gfm ox-qmd
+                           paradox pip-requirements popper popup prettier-js
+                           py-isort python-docstring python-pytest
+                           quelpa-use-package rainbow-delimiters rainbow-mode
+                           realgud restclient-jq ruff-format scss-mode shackle
+                           smart-dash smart-shift smartparens switch-window
+                           symbol-overlay treemacs-evil treemacs-icons-dired
+                           treemacs-magit treemacs-projectile treesit-auto
+                           undo-fu use-package-hydra uv-mode vertico
+                           vterm-toggle web-mode which-key-posframe
+                           whitespace-cleanup-mode xterm-color yascroll
+                           yasnippet-snippets zeal-at-point))
  '(package-vc-selected-packages
    '((claude-code-ide :url "https://github.com/manzaltu/claude-code-ide.el")
      (gemini-cli :url "https://github.com/linchen2chris/gemini-cli.el")))
